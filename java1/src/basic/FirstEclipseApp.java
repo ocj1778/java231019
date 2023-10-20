@@ -16,7 +16,7 @@ package basic;
 
 //깃허브(GitHub) : 분산 버전 관리 툴인 깃 저장소 호스팅 기능을 제공하는 웹서비스
 //깃(Git) : 여러명의 사용자들간의 파일의 작업을 조율하기 위한 분산 버전 관리 시스템(프로그램)
-public class FirstEclipseApp {
+public class FirstEclipseApp { 
 	//행주석 : 하나의 행에 표현된 문장을 설명문으로 설정하여 사용 
 	public static void main(String[] args) {
 		System.out.print("이클립스에서 처음 만든 프로그램입니다.");//출력메소드 호출
