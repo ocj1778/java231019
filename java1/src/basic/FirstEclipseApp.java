@@ -23,13 +23,3 @@ public class FirstEclipseApp {
 		System.out.println("재미있게 만들어 봐요.");/* 출력메소드 호출 */
 	}
 }
-
-
-
-
-
-
-
-
-
-
