@@ -33,7 +33,6 @@ package basic;
 //2.카멜 표기법(CamelCase) : 조합된 단어 중 첫번째 단어를 제외한 나머지 단어의 첫문자를 대문자로 표현하여 작성 - 메소드명, 변수명 등
 //3.스네이크 표기법(SnakeCase) : 조합된 단어를 _로 구분하여 작성 - 상수명(Constant - 상수명은 무조건 대문자로 작성) 
 
-
 public class VariableApp {
 	public static void main(String[] args) {
 		int su;//정수값을 저장하기 위한 변수 선언 - 메모리에 변수 생성
@@ -58,6 +57,13 @@ public class VariableApp {
 		System.out.println(2+0+2+3+"년은 토끼띠입니다.");//잘못된 결과 발생 - 실행 오류
 		//"" - 문자가 없는 비어있는 문자열(NullString)
 		System.out.println(""+2+0+2+3+"년은 토끼띠입니다.");
+		System.out.println("===============================================================");
+		//동일한 자료형의 변수는 , 기호를 사용하여 나열 선언 가능
+		int num1=100, num2=200;
+		System.out.println("연산결과 = "+num1+num2);//잘못된 결과 발생 - 실행 오류
+		System.out.println("연산결과 = "+(num1+num2));
+		System.out.println("연산결과 = "+num1*num2);
+		System.out.println("연산결과 = "+(num1*num2));
 		System.out.println("===============================================================");
 		
 	}
