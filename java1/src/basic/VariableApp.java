@@ -65,24 +65,17 @@ public class VariableApp {
 		System.out.println("연산결과 = "+num1*num2);
 		System.out.println("연산결과 = "+(num1*num2));
 		System.out.println("===============================================================");
+		int kor=88, eng=90;
+		//int tot=88+90;
+		int tot=kor+eng;//변수값으로 연산 처리하고 결과값을 변수에 저장 - 처리 명령
+		System.out.println("점수 합계 = "+tot);
+		System.out.println("===============================================================");
+		//변수에 값이 저장되어 있지 않은 상태에서 변수를 사용할 경우 에러 발생
+		//int count;
+		//System.out.println("count = "+count);
 		
+		//변수에 저장 불가능한 값을 저장 시킬 경우 에러 발생
+		//int count=10.0;
+		//System.out.println("count = "+count);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
