@@ -1,6 +1,6 @@
 package basic;
 
-//저장단위 - Bit > Byte > Word > Field(Column) > Record(Row)
+//저장단위 - Bit > Byte > Word > Field(Column) > Record(Row) > Table > DataBase
 //Bit : 0과 1을 저장하기 위한 저장의 최소 단위
 //Byte(8Bit) : 영문자 하나를 저장하기 위한 표현의 최소 단위
 
@@ -9,7 +9,7 @@ package basic;
 //1.기본형(PrimitiveType) - 기본값을 표현하기 하기 위한 자료형 - 키워드(8개)
 // => 숫자형(정수형, 실수형, 문자형) - 연산 가능, 논리형
 //2.참조형(ReferenceType) - 특정 대상을 표현하기 위한 자료형 - 식별자(클래스)
-// => String 클래스 : 문자열(문자그룹)을 표현하기 위한 자료형(클래스)
+// => String 클래스 : 문자열(문자그룹)을 표현하기 위한 자료형
 
 //리터럴(Literal) : 프로그램에서 기본값을 표현하기 위해 사용하는 표현방법
 //변수(Variable) : 리터럴(값)을 저장하기 위해 메모리(Memory)에 부여하여 사용하는 이름(식별자)
