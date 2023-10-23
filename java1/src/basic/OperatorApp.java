@@ -7,7 +7,7 @@ package basic;
 //일반적으로 연산식은 왼쪽에서 오른쪽 방향으로 실행되지만 단항 연산자와 대입 연산자를 이용한
 //연산식은 오른쪽에서 왼쪽 방향으로 실행되어 처리
 //ex)  A + B + C         A = B = C
-//     ────→        ←────
+//     ────→        ←──── 
 public class OperatorApp {
 	public static void main(String[] args) {
 		//최우선 연산자 : 무조건 가장 먼저 연산 처리되는 연산자
