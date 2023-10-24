@@ -36,8 +36,8 @@ public class TypeCastApp {
 		System.out.println("num = "+num);
 		
 		int num1=95, num2=10;
-		//double num3=num1/num2;//변수값 : 9.0
-		double num3=(double)num1/num2;//변수값 : 9.5
+		//double num3=num1/num2;//연산결과값 : 9 >> 변수값 : 9.0(자동 형변환)
+		double num3=(double)num1/num2;//연산결과값 : 9.5 >> 변수값 : 9.5
 		System.out.println("num3 = "+num3);
 		
 		//커다란 정수값은 _ 기호를 사용하여 표현 가능

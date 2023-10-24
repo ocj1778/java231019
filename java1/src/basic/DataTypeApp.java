@@ -54,11 +54,11 @@ public class DataTypeApp {
 		System.out.println("==============================================================");
 		//문자형(CharacterType) 리터럴 - ' ' 안에 하나의 문자로 표현되는 값
 		// => Java 프로그램에 문자형 리터럴은 기본적으로 2Byte로 표현
-		// => 문자형 리터럴은 일반 문자값외에 회피문자(제어문자)가 존재
-		//회피문자(Escape Character) : 표현 불가능한 문자를 표현하기 위한 만들어진 문자값 - \ 기호 사용
+		// => 문자형 리터럴은 일반 문자외에 회피문자(제어문자)가 존재
+		//회피문자(Escape Character) : 표현 불가능한 문자를 표현하기 위한 만들어진 문자값 - \ 기호를 사용하여 표현
 		// => '\n' : Enter, '\t' : Tab, '\'' : ' 문자, '\"' : " 문자, '\\' : \ 문자, '\0' : NULL 문자 
 		//문자형 리터럴은 내부적으로 약속된 정수값(0~65535)으로 표현 - 유니코드(UniCode)
-		// => 'A' : 65, 'a' : 97, '0' : 48, ' ' : 32, '\n' : 13, '가' : glgl완성형) 
+		// => 'A' : 65, 'a' : 97, '0' : 48, ' ' : 32, '\n' : 13, '가' : 44032
 		System.out.println("<<문자형(CharacterType)>>");
 		System.out.println("문자값 = "+'A');
 		System.out.println("문자값 = "+'가');
@@ -92,7 +92,7 @@ public class DataTypeApp {
 		System.out.println("d1 = "+d1);
 		System.out.println("d2 = "+d2);
 		System.out.println("==============================================================");
-		//문자열(StringType) 리터럴 : " " 안에 0개 이상의 문자들을 사용하여 표현되는 값
+		//문자열(StringType) 리터럴 : " " 안에 0개 이상의 문자들을 사용하여 표현되는 값 - String 객체
 		// => 문자열은 기본형(원시형)이 아닌 String 클래스(참조형)를 사용하여 표현
 		System.out.println("<<문자열(StringType)>>");
 		System.out.println("문자열 = "+"홍길동");
