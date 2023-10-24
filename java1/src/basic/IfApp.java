@@ -109,6 +109,7 @@ public class IfApp {
 			
 			//변수값(점수)을 이용하여 등급(학점)을 구분하여 출력하는 프로그램 작성
 			// => 100 ~ 90 : A, 89 ~ 80 : B, 79 ~ 70 : C, 69 ~ 60 : D, 59 ~ 0 : F
+			/*
 			String grade="";//학점을 저장하기 위한 변수
 			if(jumsu <= 100 && jumsu >= 90) {
 				grade = "A";
@@ -121,7 +122,20 @@ public class IfApp {
 			} else if(jumsu <= 59 && jumsu >= 0) {
 				grade = "F";
 			}
-			
+			*/
+
+			String grade;
+			if(jumsu >= 90) {
+				grade = "A";
+			} else if(jumsu >= 80) {
+				grade = "B";
+			} else if(jumsu >= 70) {
+				grade = "C";
+			} else if(jumsu >= 60) {
+				grade = "D";
+			} else {
+				grade = "F";
+			}
 			System.out.println("[결과]"+jumsu+"점 = "+grade+"학점");			
 		} else {
 			System.out.println("[에러]0~100 범위를 벗어난 비정상적인 점수가 입력 되었습니다.");
@@ -130,22 +144,3 @@ public class IfApp {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
