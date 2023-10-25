@@ -13,6 +13,14 @@ package basic;
 // => 초기식과 증감식은 , 기호를 사용하여 나열 작성 가능
 // => 초기식,조건식, 증감식 생략 가능 - 조건식을 생략한 경우 무조건 참으로 처리하여 무한루프 발생
 
+//프로그램의 흐름을 파악하기 위한 이클립스 기능
+//1.중지점(BreakPoint) 설정 : 스레드를 일시 정지하기 위한 위치 지정 
+//2.[F11] : 프로그램을 Debug 기능으로 실행하기 위한 단축키 
+//3.Debug Perspective 변환
+//4.[F6] : 현재 스레드 위치의 명령을 실행하기 위한 단축키 >> 반복 - 실행 오류 수정
+//5.프로그램 강제 종료(Terminate : Ctrl + F2)
+//6.Java Perspective 변환 후 중지점 제거
+
 public class ForApp {
 	public static void main(String[] args) {
 		//"Java Programming"를 화면에 5번 출력
