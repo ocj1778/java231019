@@ -26,7 +26,7 @@ public class ScannerApp {
 		System.out.print("나이 입력 >> ");
 		//Scanner.nextInt() : 입력값을 정수값으로 변환하여 반환하는 메소드
 		//키보드로 입력된 값을 정수값로 반환받아 정수형 변수에 저장
-		// =>
+		// => 키보드로 입력된 값이 정수값이 아닌 경우 예외(Exception) 발생 - 프로그램 강제 종료
 		int age=scanner.nextInt();
 		
 		System.out.println("[결과]이름 = "+name+"님의 나이는 "+age+"살입니다.");
