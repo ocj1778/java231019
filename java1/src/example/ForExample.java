@@ -1,7 +1,5 @@
 package example;
 
-import java.util.Iterator;
-
 public class ForExample {
 	public static void main(String[] args) {
 		//본인 이름을 화면에 7번 출력하세요.
