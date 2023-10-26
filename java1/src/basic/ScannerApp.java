@@ -12,7 +12,7 @@ public class ScannerApp {
 		//Scanner 클래스 : 입력스트림(키보드, 파일 등)을 이용하여 원하는 자료형의 값을 제공
 		//받기 위한 기능(메소드)가 선언된 클래스
 		//Scanner 클래스를 이용하여 객체를 생성한 후 참조변수에 저장
-		// => new Scanner(System.in) : 키보드로부터 제공된 값을 얻아올 수 있는 객체 생성
+		// => new Scanner(System.in) : 키보드로부터 제공된 값을 얻어올 수 있는 객체 생성
 		// => 생성된 객체를 참조변수에 저장하여 참조변수로 객체의 메소드를 호출하여 필요한 기능 구현
 		Scanner scanner=new Scanner(System.in);
 		
