@@ -64,7 +64,7 @@ public class RpaGameApp {
 		if(count==0) {
 			System.out.println("[메세지]사용자가 컴퓨터에게 한번도 이기지 못했습니다.");
 		} else {
-			System.out.println("[메세지]사용자가 컴퓨터에게 "+count+"번을 연속적으로 이겼습니다.");
+			System.out.println("[메세지]사용자가 컴퓨터에게 연속적으로 "+count+"번 이겼습니다.");
 		}
 		
 		scanner.close();
