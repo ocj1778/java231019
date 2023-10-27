@@ -36,7 +36,7 @@ public class UpAndDownExample {
 			//난수값과 키보드 입력값을 비교하여 결과 출력
 			if(dap == input) {
 				System.out.println("[메세지]축하합니다."+i+"번만에 맞췄습니다.");
-				result=true;//변수에 정답을 맞춘 상태값을 저장
+				result=true;//정답을 맞춘 변수에 저장된 상태값을 변경
 				break;//난수값을 맞추기 위한 반복문 종료
 			} else if(dap > input) {
 				System.out.println("[결과]"+input+"보다 큰 값을 입력해 보세요.");
