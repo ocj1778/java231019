@@ -12,7 +12,7 @@ public class DoubleArrayApp {
 		System.out.println("numArray[0] = "+numArray[0]);
 		System.out.println("numArray[1] = "+numArray[1]);
 		System.out.println("==============================================================");
-		//2차원 배열의 요소를 사용하기 위해서는 첨자을 2개 사용
+		//2차원 배열의 요소를 사용하기 위해서는 첨자를 2개 사용
 		System.out.println("numArray[0][0] = "+numArray[0][0]);
 		System.out.println("numArray[0][1] = "+numArray[0][1]);
 		System.out.println("numArray[0][2] = "+numArray[0][2]);

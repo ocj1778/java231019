@@ -39,10 +39,10 @@ public class LottoApp {
 		
 		//배열의 모든 요소값을 비교하여 오름차순 정렬되도록 배열의 요소값을 바꾸어 저장
 		// => 선택 정렬 알고리즘(Selection Sort Algorithm)를 사용하여 오름차순 정렬되도록 처리
-		for(int i=0;i<lotto.length-1;i++) {//비교 요소의 첨자를 표현하기 위한 반복문 : 0 ~ 끝-1
+		for(int i=0;i<lotto.length-1;i++) {//비교 요소의 첨자를 표현하기 위한 반복문 : 처음 ~ 끝-1
 			for(int j=i+1;j<lotto.length;j++) {//피비교 요소의 첨자를 표현하기 위한 반복문 : 비교+1 ~ 끝
 				//lotto[i] : 비교하는 요소, lotto[j] : 피비교 요소 
-				if(lotto[i] > lotto[j]) {
+				if(lotto[i] > lotto[j]) {//오름차순 정렬
 					//요소에 저장된 값을 바꾸어 저장 - Swap Algorithm
 					int temp=lotto[i];
 					lotto[i]=lotto[j];
