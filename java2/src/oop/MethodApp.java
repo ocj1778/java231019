@@ -19,5 +19,33 @@ public class MethodApp {
 		method.displayTwo();
 		method.displayOne();
 		System.out.println("==============================================================");
+		method.printOne();
+		method.printOne();
+		System.out.println("==============================================================");
+		method.printTwo(50);
+		method.printTwo(80);
+		method.printTwo(-30);
+		System.out.println("==============================================================");
+		method.printThree(35, 79);
+		method.printThree(19, 88);
+		method.printThree(67, 12);
+		System.out.println("==============================================================");
+		//객체의 메소드를 호출하여 반환되는 값을 제공받아 변수에 저장
+		int sum=method.returnTotal(30, 70);
+		System.out.println("합계 = "+sum);
+		//객체의 메소드를 호출하여 반환되는 값을 제공받아 출력 처리
+		System.out.println("합계 = "+method.returnTotal(20, 80));
+		System.out.println("==============================================================");
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

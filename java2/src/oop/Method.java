@@ -28,6 +28,12 @@ package oop;
 // => 메소드 호출시 매개변수에 차례대로 값을 전달하여 저장해야만 메소드 호출
 // => 매개변수에 값이 정상적으로 전달되지 않은 경우 메소드 호출 불가능 - 에러 발생
 
+//return : 메소드를 강제로 종료하여 프로그램의 흐름(스레드)을 메소드를 호출한 위치로 되돌리는 키워드
+// => 일반적으로 if 구문과 같이 사용
+//형식) if(조건식) return;  => 메소드의 반환형을 [void]로 작성
+//return 키워드를 사용하여 메소드의 처리 결과값을 메소드를 호출한 위치로 반환하는 기능 제공
+//형식) return 반환값; => 메소드의 반환형은 반환되는 값의 자료형으로 작성
+
 //객체 생성을 목적으로 작성된 클래스
 public class Method {
 	void displayOne() {
@@ -37,6 +43,58 @@ public class Method {
 	void displayTwo() {
 		System.out.println("Method 클래스에 선언된 displayTwo() 메소드 호출");
 	}
+	
+	void printOne() {
+		int total=0;
+		for(int i=1;i<=100;i++) {
+			total+=i;	
+		}
+		System.out.println("1~100 범위의 정수들의 합계 = "+total);
+	}
+	
+	void printTwo(int number) {
+		//매개변수에 저장된 값에 대한 검증
+		if(number <= 0) {
+			System.out.println("[에러]매개변수에는 0보다 큰 값이 저장되어야 됩니다.");
+			return;//메소드 강제 종료
+		}
+		
+		int total=0;
+		for(int i=1;i<=number;i++) {
+			total+=i;	
+		}
+		System.out.println("1~"+number+" 범위의 정수들의 합계 = "+total);
+	}
+	
+	void printThree(int start, int end) {
+		if(start > end) {
+			int temp=start;
+			start=end;
+			end=temp;
+		}
+		 
+		int total=0;
+		for(int i=start;i<=end;i++) {
+			total+=i;	
+		}
+		System.out.println(start+"~"+end+" 범위의 정수들의 합계 = "+total);
+	}
+	
+	int returnTotal(int start, int end) {
+		if(start > end) {
+			int temp=start;
+			start=end;
+			end=temp;
+		}
+		 
+		int total=0;
+		for(int i=start;i<=end;i++) {
+			total+=i;	
+		}
+		
+		return total;
+	}
+	
 }
 
 
