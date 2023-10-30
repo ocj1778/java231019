@@ -36,9 +36,9 @@ package oop;
 public class Car {
 	//필드(Field) : 표현대상의 속성값을 저장하기 위한 변수
 	// => 클래스 내부의 작성된 모든 메소드에서 필드 사용 가능
-	String modelName;//모델명
-	boolean engineStatus;//엔진상태 - false : EngineOff, true : EngineOn
-	int currentSpeed;//현재속도
+	private String modelName;//모델명
+	private boolean engineStatus;//엔진상태 - false : EngineOff, true : EngineOn
+	private int currentSpeed;//현재속도
 	
 	//생성자(Constructor) : 표현대상을 객체를 생성하기 위한 특별한 메소드
 	// => 클래스 내부에 생성자를 작성하지 않으면 매개변수가 없는 기본 생성자(Default Constructor)를
@@ -46,12 +46,12 @@ public class Car {
 	
 	//메소드 : 표현대상의 행위(기능)을 제공하기 위한 함수
 	// => 필드를 사용하여 메소드 내부에 작성된 명령으로 필요한 기능 구현
-	void startEngine() {//시동 온(On)
+	public void startEngine() {//시동 온(On)
 		engineStatus=true;
 		System.out.println(modelName+"의 자동차 시동을 켰습니다.");
 	}
 	
-	void stopEngine() {//시동 오프(Off)
+	public void stopEngine() {//시동 오프(Off)
 		if(currentSpeed != 0) {
 			/*
 			currentSpeed=0;
@@ -67,7 +67,7 @@ public class Car {
 		System.out.println(modelName+"의 자동차 시동을 껐습니다.");
 	}
 	
-	void speedUp(int speed) {//속도 증가
+	public void speedUp(int speed) {//속도 증가
 		if(!engineStatus) {//엔진이 꺼져 있는 경우
 			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
 			return;
@@ -82,7 +82,7 @@ public class Car {
 				+"Km/h 증가 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
 	}
 	
-	void speedDwon(int speed) {//속도 감소
+	public void speedDwon(int speed) {//속도 감소
 		if(!engineStatus) {//엔진이 꺼져 있는 경우
 			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
 			return;
@@ -97,10 +97,55 @@ public class Car {
 				+"Km/h 감소 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
 	}
 	
-	void speedZero() {//이동 중지
+	public void speedZero() {//이동 중지
 		currentSpeed=0;
 		System.out.println(modelName+"의 자동차가 멈췄습니다.");
 	}
+	
+	//은닉화 처리된 필드를 위해 필드값을 반환하는 Getter 메소드와 필드값을 변경하는 Setter 
+	//메소드 작성 - 캡슐화
+	//캡슐화(Encapsulation) : 표현대상의 속성(필드)과 행위(메소드)를 하나의 자료형(클래스)로 선언
+	// => 필드를 은닉화 처리하여 필드값을 보호하고 메소드를 호출하여 필드값 처리  
+	
+	//Getter 메소드 : 클래스 외부에서 필드값을 사용할 수 있도록 필드값을 반환하는 메소드
+	//형식) public 반환형 메소드명() { return 필드명; }
+	// => 메소드의 이름은 [get필드명] 형식으로 작성하는 것을 권장
+	// => 필드의 자료형이 [boolean]인 경우 메소드의 이름은 [is필드명] 형식으로 작성
+	public String getModelName() { //모델명을 반환하는 메소드
+		return modelName;
+	}
+	
+	//Setter 메소드 : 클래스 외부의 값을 매개변수로 전달받아 매개변수에 저장된 값으로 필드값 변경하는 메소드
+	//형식) public void 메소드명(자료형 매개변수) { 필드명=매개변수; }
+	// => 메소드의 이름은 [set필드명] 형식으로 작성하는 것을 권장
+	// => 매개변수에 전달되어 저장된 값을 검증 가능
+	public void setModelName(String modelName) {//매개변수를 이용하여 모델명을 변경하는 메소드
+		//매개변수에 저장된 값에 대한 데이타 검증 후 필드값으로 저장
+		//this : 메소드 내부에서 클래스의 객체를 표현하기 위한 키워드
+		// => 필드는 this 키워드를 사용하여 표현하고 매개변수는 this 키워드를 사용하지 않고 표현
+		this.modelName=modelName;
+	}
+
+	//이클립스에서는 은닉화 처리되어 작성된 필드에 대한 Getter 메소드와 Setter 메소드를
+	//자동으로 생성하는 기능 제공
+	//[Alt]+[Shift]+[S] >> 팝업메뉴 - [R] >> Getter & Setter 메소드 생성창 >> 필드 선택 >> [Generate] 클릭 
+	public boolean isEngineStatus() {
+		return engineStatus;
+	}
+
+	public void setEngineStatus(boolean engineStatus) {
+		this.engineStatus = engineStatus;
+	}
+
+	public int getCurrentSpeed() {
+		return currentSpeed;
+	}
+
+	public void setCurrentSpeed(int currentSpeed) {
+		this.currentSpeed = currentSpeed;
+	}
+	
+	
 }
 
 
