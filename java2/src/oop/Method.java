@@ -7,7 +7,7 @@ package oop;
 //함수(Function) : 매개변수로 값을 제공받아 연산 처리하여 결과를 반환하는 명령의 모임
 
 //메소드 선언 방법
-//형식) 반환형 메소드명(자료형 변수명, 자료형 변수명,...) {
+//형식) double 메소드명(자료형 변수명, 자료형 변수명,...) {
 //             명령;
 //             ...
 //      }
@@ -95,7 +95,52 @@ public class Method {
 		return total;
 	}
 	
+	//매개변수로 전달받은 정수값을 홀수와 짝수로 구분하여 반환하는 메소드
+	// => false 반환 : 홀수, true 반환 : 짝수
+	boolean isOddEven(int number) {
+		if(number % 2 != 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//배열을 반환하는 메소드
+	int[] returnArray() {
+		/*
+		int[] array={10, 20, 30, 40, 50};
+		return array;//참조변수에 저장된 배열의 메모리 주소 반환 - 배열 반환
+		*/
+		
+		//배열을 참조변수에 저장하지 않고 배열을 생성하여 반환
+		//return {10, 20, 30, 40, 50};//에러 발생
+		return new int[]{10, 20, 30, 40, 50};
+	}
+	
+	//매개변수로 배열을 전달받아 모든 배열 요소값의 합계를 계산하여 반환하는 메소드
+	int sumOne(int[] array) {//배열의 메모리 주소를 전달받아 매개변수(참조변수)에 저장
+		int total=0;
+		for(int su : array) {
+			total += su;
+		}
+		return total;
+	}
+	
+	//매개변수 생략 기호(...)를 이용해 매개변수를 작성하여 0개 이상의 값을 전달받아 합계를
+	//계산하여 반환하는 메소드
+	// => 0개 이상의 값을 전달받아 저장한 매개변수는 메소드 내부에서는 배열과 동일하게 처리
+	int sumTwo(int... number) {
+		int total=0;
+		for(int su : number) {
+			total += su;
+		}
+		return total;
+	}
+	
 }
+
+
+
 
 
 

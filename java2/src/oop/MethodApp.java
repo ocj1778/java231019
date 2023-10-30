@@ -36,16 +36,48 @@ public class MethodApp {
 		//객체의 메소드를 호출하여 반환되는 값을 제공받아 출력 처리
 		System.out.println("합계 = "+method.returnTotal(20, 80));
 		System.out.println("==============================================================");
+		boolean result=method.isOddEven(10);
+		//조건식 대신 boolean 변수에 저장된 논리값을 사용하여 명령 선택 실행 
+		if(result) {
+			System.out.println("매개변수로 전달된 값은 [짝수]입니다.");
+		} else {
+			System.out.println("매개변수로 전달된 값은 [홀수]입니다.");
+		}
+		
+		//조건식 대신 메소드의 반환값(논리값)을 사용하여 명령 선택 실행 
+		if (method.isOddEven(11)) {
+			System.out.println("매개변수로 전달된 값은 [짝수]입니다.");
+		} else {
+			System.out.println("매개변수로 전달된 값은 [홀수]입니다.");
+		}
+		System.out.println("==============================================================");
+		//메소드를 호출하여 반환되는 배열의 메모리 주소를 참조에 저장 
+		// => 참조변수에 저장된 메모리 주소를 이용하여 배열 참조
+		int[] numArray=method.returnArray();//배열을 반환받아 저장
+		for(int number : numArray) {
+			System.out.print(number+" ");
+		}
+		System.out.println();
+		System.out.println("==============================================================");
+		/*
+		int[] suArray= {10, 20, 30};
+		//매개변수에 배열을 전달하여 메소드 호출 - 반환값(모든 요소값의 합계)을 제공받아 출력
+		System.out.println("합계 = "+method.sumOne(suArray));
+		*/
+		
+		//배열을 생성하여 매개변수에 배열을 전달하여 메소드 호출
+		//System.out.println("합계 = "+method.sumOne({10, 20, 30}));//에러 발생
+		System.out.println("합계 = "+method.sumOne(new int[]{10, 20, 30}));
+		//배열에는 요소값을 0개 이상 저장하여 전달해 메소드 호출 가능 
+		System.out.println("합계 = "+method.sumOne(new int[]{}));
+		System.out.println("합계 = "+method.sumOne(new int[]{10, 20}));
+		System.out.println("합계 = "+method.sumOne(new int[]{10, 20, 30, 40, 50}));
+		System.out.println("==============================================================");
+		//메소드 호출시 모든 전달값이 매개변수에 전달되어 저장
+		System.out.println("합계 = "+method.sumTwo(10, 20, 30));
+		System.out.println("합계 = "+method.sumTwo());
+		System.out.println("합계 = "+method.sumTwo(10, 20));
+		System.out.println("합계 = "+method.sumTwo(10, 20, 30, 40, 50));
+		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
