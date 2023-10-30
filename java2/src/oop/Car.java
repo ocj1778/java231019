@@ -20,6 +20,15 @@ package oop;
 // => 힙영역에 생성된 객체의 메모리 주소를 참조변수에 저장하여 참조변수에 저장된 메모리 주소로 객체 참조
 // => 참조변수에 저장된 메모리 주소로 객체를 참조하여 . 연산자를 사용해 객체의 필드 또는 메소드 사용
 
+//클래스를 선언할 때 필드와 메소드에 접근 제한자를 사용하여 객체의 접근 허용 관련 설정 가능
+//접근 제한자(Access Modifier) : private, package(default), protected, public
+// => 클래스, 필드, 생성자, 메소드를 작성할 때 접근 허용 관련 설정을 하기 위한 키워드(제한자)
+//private : 클래스 내부에서만 접근 가능하도록 허용하는 접근 제한자
+// => 필드, 생성자, 메소드를 은닉화 처리하기 위해 사용 - 클래스 외부에서 접근할 경우 에러 발생
+// => 일반적으로 필드를 작성할 때 사용 - 객체를 사용하여 필드에 직접적인 접근 제한하여 비정상적인 값이 저장되는 것을 방지
+// => 데이타 은닉화(Data Hiding) : 값을 숨겨 보호하기 위한 기능 - 비정상적인 값 저장 방지
+//public : 모든 패키지의 클래스에서 접근 가능하도록 허용하는 접근 제한자
+// => 일반적으로 메소드 작성할 때 사용 - 프로그램 작성에 필요한 모든 클래스(객체)에서 사용 가능하도록 허용
 
 //자동차를 모델링하여 작성된 클래스
 // => 속성 : 모델명, 엔진상태, 현재속도 - 필드
@@ -43,17 +52,46 @@ public class Car {
 	}
 	
 	void stopEngine() {//시동 오프(Off)
+		if(currentSpeed != 0) {
+			/*
+			currentSpeed=0;
+			System.out.println(modelName+"의 자동차가 멈췄습니다.");
+			*/
+			
+			//클래스 내부에 작성된 메소드는 서로 호출 가능
+			// => 코드의 중복성을 최소화 하여 프로그램의 생산성 및 유지보수의 효율성 증가
+			speedZero();
+		}
+		
 		engineStatus=false;
 		System.out.println(modelName+"의 자동차 시동을 껐습니다.");
 	}
 	
 	void speedUp(int speed) {//속도 증가
+		if(!engineStatus) {//엔진이 꺼져 있는 경우
+			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
+			return;
+		}
+		
+		if(currentSpeed+speed > 150) {
+			speed = 150 - currentSpeed;
+		}
+		
 		currentSpeed+=speed;
 		System.out.println(modelName+"의 자동차 속도가 "+speed
 				+"Km/h 증가 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
 	}
 	
 	void speedDwon(int speed) {//속도 감소
+		if(!engineStatus) {//엔진이 꺼져 있는 경우
+			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
+			return;
+		}
+		
+		if(currentSpeed < speed) {
+			speed = currentSpeed;
+		}
+		
 		currentSpeed-=speed;
 		System.out.println(modelName+"의 자동차 속도가 "+speed
 				+"Km/h 감소 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
