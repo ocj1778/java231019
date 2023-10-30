@@ -1,7 +1,7 @@
 package oop;
 
 //Car 클래스를 객체로 생성하여 사용하기 위한 클래스 - 프로그램
-public class CapApp {
+public class CarApp {
 	public static void main(String[] args) {
 		//Car 클래스를 이용하여 객체를 생성해 참조변수에 저장
 		// => 하나의 클래스로 서로 다른 속성값이 저장된 다수의 객체 생성
