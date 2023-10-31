@@ -21,6 +21,7 @@ public class StudentApp {
 		System.out.println("==============================================================");
 		*/
 		
+		/*
 		//객체를 저장할 수 있는 요소가 5개인 배열을 생성하여 참조변수에 저장
 		// => 모든 배열 요소에는 기본적으로 [null] 저장
 		Student[] students=new Student[5];
@@ -44,6 +45,19 @@ public class StudentApp {
 			}
 		}
 		System.out.println("==============================================================");
+		*/
+		
+		Student[] students = {new Student(1000, "홍길동", 90, 90)
+				, new Student(2000, "임꺽정", 94, 98),  new Student(3000, "전우치", 91, 80)
+				, new Student(4000, "일지매", 76, 82), new Student(5000, "장길산", 84, 86)};
+		
+		//향상된 for 구문 사용해 배열 요소에 저장된 객체의 메모리 주소를 차례대로 제공받아 
+		//참조변수에 저장하여 일괄적으로 메소드 호출 가능 
+		for(Student student : students) {
+			student.display();
+		}
+		System.out.println("==============================================================");
+		
 	}
 }
 
