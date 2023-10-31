@@ -71,7 +71,7 @@ public class Student {
 	}
 	
 	public void display() {
-		System.out.print("["+name+"]님의 성적");
+		System.out.print("["+name+"]님의 성적 >> ");
 		System.out.println("국어 = "+kor+", 영어 = "+eng+", 총점 = "+tot);
 	}
 }
