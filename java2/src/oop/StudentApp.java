@@ -47,6 +47,9 @@ public class StudentApp {
 		System.out.println("==============================================================");
 		*/
 		
+		//모든 학생들의 총점 합계를 저장하기 위한 변수
+		//int total=0;
+		
 		Student[] students = {new Student(1000, "홍길동", 90, 90)
 				, new Student(2000, "임꺽정", 94, 98),  new Student(3000, "전우치", 91, 80)
 				, new Student(4000, "일지매", 76, 82), new Student(5000, "장길산", 84, 86)};
@@ -55,19 +58,22 @@ public class StudentApp {
 		//참조변수에 저장하여 일괄적으로 메소드 호출 가능 
 		for(Student student : students) {
 			student.display();
+
+			//학생의 총점을 반환받아 총점 합계 변수에 누적하여 저장
+			//total+=student.getTot();
+			
+			//정적 필드는 클래스를 이용하여 사용 가능
+			//Student.total+=student.getTot();
+			
+			//정적 메소드는 클래스를 이용하여 호출 가능 - 메소드 호출 용이
+			// => 정적 필드(total)에 학생 총점(tot)를 반환받아 합한 결과값으로 정적 필드(total) 변경
+			Student.setTotal(Student.getTotal()+student.getTot());
 		}
 		System.out.println("==============================================================");
-		
+		//모든 학생들의 총점 합계를 계산하여 출력
+		//System.out.println("총합계 = "+total);
+		//System.out.println("총합계 = "+Student.total);
+		System.out.println("총합계 = "+Student.getTotal());
+		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
