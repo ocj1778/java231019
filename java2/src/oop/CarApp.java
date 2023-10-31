@@ -3,13 +3,15 @@ package oop;
 //Car 클래스를 객체로 생성하여 사용하기 위한 클래스 - 프로그램
 public class CarApp {
 	public static void main(String[] args) {
-		//Car 클래스를 이용하여 객체를 생성해 참조변수에 저장
+		//Car 클래스를 이용하여 객체를 생성해 참조변수에 객체의 메모리 주소 저장
 		// => 하나의 클래스로 서로 다른 속성값이 저장된 다수의 객체 생성
-		// => 클래스는 객체를 생성하기 위한 틀(Template)
+		// => 클래스는 다수의 객체를 생성하기 위한 틀(Template)
 		// => 객체를 생성하면 객체 필드에는 기본값(숫자형 : 0, 논리형 : false, 참조형 : null)이 초기값으로 자동 저장
-		Car carOne=new Car();
-		Car carTwo=new Car();
-		Car carThree=new Car();
+		Car carOne=new Car();//carOne >> modelName = null, engineStatus = false, currentSpeed = 0
+		Car carTwo=new Car();//carTwo >> modelName = null, engineStatus = false, currentSpeed = 0
+		//참조변수에 저장된 객체의 메모리 주소를 다른 참조변수에 저장
+		// => 두 참조변수에는 동일한 객체의 메모리 주소를 저장하고 있으므로 같은 객체 참조
+		Car carThree=carOne;
 		
 		System.out.println("carOne = "+carOne);
 		System.out.println("carTwo = "+carTwo);
@@ -18,7 +20,7 @@ public class CarApp {
 		//참조변수.필드명 : 참조변수에 저장된 객체를 사용하여 필드 사용
 		// => 참조변수가 참조하는 객체의 필드에는 기본값이 초기값으로 저장
 		//문제점)객체를 사용하여 필드에 직접적인 접근을 허용하면 필드에 비정상적인 값 저장 가능
-		//해결법)클래스 선언시 필드가 숨겨지도록 은닉화 처리하여 작성
+		//해결법)클래스 작성시 필드가 숨겨지도록 은닉화 처리하여 선언
 		// => 참조변수에 저장된 객체를 사용하여 은닉화 처리된 필드를 사용할 경우 에러 발생
 		//carOne.modelName="싼타페";//객체 필드값 변경
 		//은닉화 처리된 필드값을 직접 변경할 경우 에러가 발생되므로 Setter 메소드를 호출하여 필드값 변경

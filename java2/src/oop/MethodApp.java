@@ -51,16 +51,23 @@ public class MethodApp {
 			System.out.println("매개변수로 전달된 값은 [홀수]입니다.");
 		}
 		System.out.println("==============================================================");
-		//메소드를 호출하여 반환되는 배열의 메모리 주소를 참조에 저장 
+		/*
+		//메소드를 호출하여 반환되는 배열의 메모리 주소를 참조변수에 저장 
 		// => 참조변수에 저장된 메모리 주소를 이용하여 배열 참조
 		int[] numArray=method.returnArray();//배열을 반환받아 저장
 		for(int number : numArray) {
 			System.out.print(number+" ");
 		}
 		System.out.println();
+		*/
+		
+		for(int number : method.returnArray()) {
+			System.out.print(number+" ");
+		}
+		System.out.println();
 		System.out.println("==============================================================");
 		/*
-		int[] suArray= {10, 20, 30};
+		int[] suArray={10, 20, 30};
 		//매개변수에 배열을 전달하여 메소드 호출 - 반환값(모든 요소값의 합계)을 제공받아 출력
 		System.out.println("합계 = "+method.sumOne(suArray));
 		*/

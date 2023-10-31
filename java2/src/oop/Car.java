@@ -28,6 +28,7 @@ package oop;
 // => 일반적으로 필드를 작성할 때 사용 - 객체를 사용하여 필드에 직접적인 접근 제한하여 비정상적인 값이 저장되는 것을 방지
 // => 데이타 은닉화(Data Hiding) : 값을 숨겨 보호하기 위한 기능 - 비정상적인 값 저장 방지
 //public : 모든 패키지의 클래스에서 접근 가능하도록 허용하는 접근 제한자
+// => 클래스, 필드, 생성자, 메소드를 작성할 때 사용하는 접근 제한자
 // => 일반적으로 메소드 작성할 때 사용 - 프로그램 작성에 필요한 모든 클래스(객체)에서 사용 가능하도록 허용
 
 //자동차를 모델링하여 작성된 클래스
@@ -118,7 +119,7 @@ public class Car {
 	//Setter 메소드 : 클래스 외부의 값을 매개변수로 전달받아 매개변수에 저장된 값으로 필드값 변경하는 메소드
 	//형식) public void 메소드명(자료형 매개변수) { 필드명=매개변수; }
 	// => 메소드의 이름은 [set필드명] 형식으로 작성하는 것을 권장
-	// => 매개변수에 전달되어 저장된 값을 검증 가능
+	// => 매개변수에 전달되어 저장된 값을 검증하여 필드에 저장
 	public void setModelName(String modelName) {//매개변수를 이용하여 모델명을 변경하는 메소드
 		//매개변수에 저장된 값에 대한 데이타 검증 후 필드값으로 저장
 		//this : 메소드 내부에서 클래스의 객체를 표현하기 위한 키워드
@@ -128,7 +129,7 @@ public class Car {
 
 	//이클립스에서는 은닉화 처리되어 작성된 필드에 대한 Getter 메소드와 Setter 메소드를
 	//자동으로 생성하는 기능 제공
-	//[Alt]+[Shift]+[S] >> 팝업메뉴 - [R] >> Getter & Setter 메소드 생성창 >> 필드 선택 >> [Generate] 클릭 
+	//[Alt]+[Shift]+[S] >> 팝업메뉴 - [R] >> Getter & Setter 메소드 생성창 - 필드 선택 후 [Generate] 클릭 
 	public boolean isEngineStatus() {
 		return engineStatus;
 	}
@@ -144,26 +145,4 @@ public class Car {
 	public void setCurrentSpeed(int currentSpeed) {
 		this.currentSpeed = currentSpeed;
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
