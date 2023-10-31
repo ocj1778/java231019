@@ -20,8 +20,10 @@ public class Student {
 		this.kor = kor;
 		this.eng = eng;
 		
-		//매개변수로 전달받은 값을 계산하여 필드 초기화 
-		tot=kor+eng;
+		//매개변수로 전달받은 값을 계산하여 필드 초기화 - 총점을 계산하는 메소드 호출 가능
+		// => 코드(명령)의 중복성을 최소화하여 프로그램의 생산성 및 유지보수의 효율성 증가
+		//tot=kor+eng;
+		calcTot();
 	}
 
 	//메소드(Method)
