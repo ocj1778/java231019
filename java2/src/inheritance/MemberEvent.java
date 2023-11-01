@@ -1,6 +1,7 @@
 package inheritance;
 
 //이벤트 관련 회원정보(아이디, 이름, 이메일)를 저장하기 위한 클래스
+// => 회원정보를 저장하기 위한 Member 클래스를 상속받아 작성하는 것을 권장
 public class MemberEvent {
 	private String id;
 	private String name;
