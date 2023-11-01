@@ -25,6 +25,7 @@ public class Car {
 	private String modelName;
 	private int productionYear;
 	//엔진정보를 저장하기 위한 필드 - Engine 클래스를 사용하여 필드 작성
+	// => 생성자 또는 Setter 메소드를 사용하여 Engine 객체를 제공받아 필드에 저장 - 포함 관계 성립
 	private Engine carEngine;
 	
 	public Car() {
@@ -66,17 +67,13 @@ public class Car {
 	public void displayCar() {
 		System.out.println("모델명 = "+modelName);
 		System.out.println("생산년도 = "+productionYear);
-		System.out.println("엔진정보 = "+carEngine);
+		//필드에 저장된 객체의 메모리 주소 출력
+		//System.out.println("엔진정보 = "+carEngine);
+		
+		//필드에 저장된 Engine 객체를 이용하여 메소드 호출해 Engine 객체의 필드값을 반환받아 출력
+		// => 포함 관계로 만들어진 클래스의 메소드를 객체를 저장한 필드로 호출하여 필요한 기능 구현
+		// => 포함 관계가 만들어져 있지 않은 상태로 메소드를 호출할 경우 NullPointerException 발생
+		System.out.println("엔진정보(연료타입) = "+carEngine.getFualType());
+		System.out.println("엔진정보(배기량) = "+carEngine.getDisplacement());
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
