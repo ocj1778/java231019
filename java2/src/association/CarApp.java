@@ -29,14 +29,12 @@ public class CarApp {
 		Car carTwo=new Car("싼타페", 2022, new Engine("휘발유", 3000));
 		carTwo.displayCar();
 		System.out.println("==============================================================");
+		System.out.println(carOne.getModelName()+"의 엔진정보 >> ");
+		engine.displayEngine();
+		System.out.println("==============================================================");
+		System.out.println(carTwo.getModelName()+"의 엔진정보 >> ");
+		//Car 객체의 carEngine 필드에 저장된 Engine 객체를 Getter 메소드로 반환받아 Engine 클래스의 메소드 호출
+		carTwo.getCarEngine().displayEngine();
+		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
