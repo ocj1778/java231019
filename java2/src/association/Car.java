@@ -64,9 +64,10 @@ public class Car {
 	
 	//자동차 정보를 표현한 필드값을 출력하는 메소드
 	public void displayCar() {
-		
+		System.out.println("모델명 = "+modelName);
+		System.out.println("생산년도 = "+productionYear);
+		System.out.println("엔진정보 = "+carEngine);
 	}
-	
 }
 
 
