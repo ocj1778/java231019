@@ -36,11 +36,11 @@ public class StudentApp {
 		//반복문을 사용하여 배열 요소에 저장된 모든 객체를 참조하여 메소드 호출 가능 - 일괄처리
 		//참조변수에 [null]이 저장된 상태에서 참조변수로 메소드를 호출할 경우 참조변수에 의해
 		//참조될 객체가 없으므로 실행시 NullPointerException 발생
-		// => 예외가 발생시 명령에서 프로그램 강제 종료
+		// => 명령 실행시 예외가 발생된 경우 실행된 명령 위치에서 프로그램 강제 종료
 		for(int i=0;i<students.length;i++) {
 			//참조변수에 저장된 값이 [null]이 아닌 경우 참조변수로 객체를 참조하여 메소드 호출
 			// => NullPointerException 발생을 방지할 수 있는 선택문
-			if(students[i] != null) {
+			if(students[i] != null) {//배열 요소로 객체를 참조할 수 있는 경우 - 객체가 존재할 경우
 				students[i].display();
 			}
 		}
@@ -54,7 +54,7 @@ public class StudentApp {
 				, new Student(2000, "임꺽정", 94, 98),  new Student(3000, "전우치", 91, 80)
 				, new Student(4000, "일지매", 76, 82), new Student(5000, "장길산", 84, 86)};
 		
-		//향상된 for 구문 사용해 배열 요소에 저장된 객체의 메모리 주소를 차례대로 제공받아 
+		//향상된 for 구문을 사용해 배열 요소에 저장된 객체의 메모리 주소를 차례대로 제공받아 
 		//참조변수에 저장하여 일괄적으로 메소드 호출 가능 
 		for(Student student : students) {
 			student.display();
