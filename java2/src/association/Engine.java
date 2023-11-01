@@ -31,7 +31,7 @@ public class Engine {
 		this.displacement = displacement;
 	}
 	
-	//엔진정보(필드값)를 출력하는 메소드
+	//엔진 정보를 표현한 필드값을 출력하는 메소드
 	public void displayEngine() {
 		System.out.println("엔진타입 = "+fualType);
 		System.out.println("배기량 = "+displacement);

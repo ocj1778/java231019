@@ -25,6 +25,47 @@ public class Car {
 	private String modelName;
 	private int productionYear;
 	//엔진정보를 저장하기 위한 필드 - Engine 클래스를 사용하여 필드 작성
+	private Engine carEngine;
+	
+	public Car() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Car(String modelName, int productionYear, Engine carEngine) {
+		super();
+		this.modelName = modelName;
+		this.productionYear = productionYear;
+		this.carEngine = carEngine;
+	}
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+
+	public int getProductionYear() {
+		return productionYear;
+	}
+
+	public void setProductionYear(int productionYear) {
+		this.productionYear = productionYear;
+	}
+
+	public Engine getCarEngine() {
+		return carEngine;
+	}
+
+	public void setCarEngine(Engine carEngine) {
+		this.carEngine = carEngine;
+	}
+	
+	//자동차 정보를 표현한 필드값을 출력하는 메소드
+	public void displayCar() {
+		
+	}
 	
 }
 
