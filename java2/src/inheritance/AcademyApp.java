@@ -31,6 +31,23 @@ public class AcademyApp {
 		
 		//배열 요소에 저장된 부모 객체를 하나씩 제공받아 참조변수에 저장하여 메소드를 일괄적으로 호출
 		for(AcademyPerson person : persons) {
+			//오버라이드 선언되지 않은 자식클래스의 메소드를 호출하기 위해서는 명시적 객체 
+			//형변환을 이용하여 부모클래스의 참조변수을 자식클래스로 변환하여 자식 객체를
+			//일시적으로 저장해 자식클래스의 메소드 호출
+			//문제점)상속관계가 아닌 클래스로 명시적 객체 형변환 할 경우 ClassCastException 발생
+			//해결법)참조변수가 객체 형변환 가능한 클래스인지를 확인한 후 명시적 객체 형변환 이용
+			// => instanceof 연산자를 사용하여 참조변수의 객체 형변환 가능 클래스 검사
+			//형식) 참조변수 instanceof 클래스
+			// => 참조변수로 객체 형변환 가능한 클래스인 경우 [true]를 제공하고 아닌 경우
+			//[false]를 제공하는 연산자
+			if(person instanceof AcademyStudent) {
+				System.out.println(((AcademyStudent)person).getCourse()+"의 학생정보 >> ");
+			} else if(person instanceof AcademyInstructor) {
+				System.out.println(((AcademyInstructor)person).getSubject()+"의 강사정보 >> ");
+			} else if(person instanceof AcademyStaff) {
+				System.out.println(((AcademyStaff)person).getDepart()+"의 직원정보 >> ");
+			}
+			
 			//오버라이드 선언된 자식클래스의 메소드는 묵시적 객체 형변환에 의해 부모클래스의 
 			//참조변수가 일시적으로 자식클래스로 변경되어 자식 객체를 참조해 자식클래스의 메소드 호출
 			// => 오버라이드에 의한 다형성 : 묵시적 객체 형변환에 의해 참조변수의 자료형이
@@ -38,7 +55,6 @@ public class AcademyApp {
 			person.display();
 			System.out.println("==========================================================");
 		}
-		
 	}
 }
 
