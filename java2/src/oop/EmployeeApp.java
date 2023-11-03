@@ -56,25 +56,11 @@ public class EmployeeApp {
 			//자식클래스에서 부모클래스의 메소드를 오버라이드 선언하지 않으면 부모클래스의 메소드 호출
 			// => 비정상적인 결과 발생(실행 오류)
 			System.out.println("사원급여 = "+employee.computePay());
+			
+			//성과급을 계산하여 반환하는 메소드를 호출해 상과급을 반환받아 출력
+			System.out.println("성과급 = "+employee.computeIncetive());
 			System.out.println("==========================================================");
 		}
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
