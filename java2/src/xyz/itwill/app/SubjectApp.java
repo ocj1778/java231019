@@ -13,14 +13,24 @@ package xyz.itwill.app;
 //형식) package 패키지경로;
 // => Java 자료형이 특정 패키지에 작성되어 있는지를 명확히 구분하여 사용
 
+//import : 다른 패키지에 작성된 Java 자료형을 명확히 표현하여 사용하기 위한 키워드
+//형식) import 패키지경로.자료형;  
+// => Java 자료형 대신 *(전체) 사용 가능
+// => package 선언문 뒤에 작성하며 Java 자료형 선언 전에 작성 
+
+import xyz.itwill.subject.OracleSubject;
+
 public class SubjectApp {
 	public static void main(String[] args) {
 		//같은 패키지에 선언된 Java 자료형은 패키지 경로를 표현하지 않아도 Java 자료형 사용 가능
 		// => 자료형
 		//다른 패키지에 선언된 Java 자료형은 패키지 경로를 반드시 표현해야만 Java 자료형 사용 가능
 		// => 패키지경로.자료형
-		xyz.itwill.subject.JavaSubject subject1=new xyz.itwill.subject.JavaSubject();
-
+		//xyz.itwill.subject.OracleSubject subject1=new xyz.itwill.subject.OracleSubject();
+		
+		//다른 패키지에 선언된 Java 자료형을 import 처리하면 패키지 경로를 표현없이 Java 자료형 사용 가능
+		OracleSubject subject1=new OracleSubject();
+		subject1.display();
 	}
 }
 
