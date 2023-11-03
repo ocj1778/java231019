@@ -44,10 +44,21 @@ public abstract class Employee {
 		this.empName = empName;
 	}
 	
-	/*
 	//사원의 급여를 계산하여 반환하는 메소드
+	// => 자식클래스에서 메소드 오버라이드 선언하기 위해 작성된 메소드
+	// => 자식클래스에서 반드시 오버라이드 선언하지 않아도 에러 미발생 - 강제성 X
 	public int computePay() {
 		return 0;
 	}
-	*/
 }
+
+
+
+
+
+
+
+
+
+
+
