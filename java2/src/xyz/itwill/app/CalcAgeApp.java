@@ -49,11 +49,3 @@ public class CalcAgeApp {
 		scanner.close();
 	}
 }
-
-
-
-
-
-
-
-
