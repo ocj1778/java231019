@@ -49,14 +49,14 @@ public class MemberCastApp {
 		//명시적 객체 형변환 : Cast 연산자를 사용하여 부모클래스의 참조변수의 자료형을 자식
 		//클래스로 변경하여 일시적으로 참조변수가 자식 객체를 참조할 수 있도록 만들어 주는 기능
 		// => 명시적 객체 형변환에 의해 자식클래스로 자료형이 변경된 참조변수에는 일시적으로  
-		//자식 객체가 저장되어 자식클래스의 메소드 호출 가능
+		//자식 객체가 저장되어 자식 객체를 참조해 자식클래스의 메소드 호출 가능
 		/*
 		MemberEvent event=(MemberEvent)member4;
 		event.setEmail("opq@itwill.xyz");
 		*/
 		
-		//Cast 연산자보다 . 연산자가 먼저 처리되므로 Cast 연산자가 먼저 실행해 객체 형변환을
-		//해야만 자식 객체를 참조하여 자식클래스의 메소드 호출 가능
+		//Cast 연산자보다 . 연산자가 먼저 실행돼 에러가 발생하기 때문에 Cast 연산자가 먼저 
+		//실행되도록 우선 처리 연산자를 사용 - 객체 형변환 후 자식클래스의 메소드 호출
 		((MemberEvent)member4).setEmail("opq@itwill.xyz");
 		
 		//((MemberEvent)member4).display();
