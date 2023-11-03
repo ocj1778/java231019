@@ -2,15 +2,15 @@ package oop;
 
 //시간제 사원정보(사원번호, 사원이름, 시급, 근무시간)를 저장하기 위한 클래스
 // => Employee 클래스를 상속받아 작성
-public class EmployrrTime extends Employee {
+public class EmployeeTime extends Employee {
 	private int moneyPerHour;
 	private int workedHour;
 
-	public EmployrrTime() {
+	public EmployeeTime() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EmployrrTime(int empNo, String empName, int moneyPerHour, int workedHour) {
+	public EmployeeTime(int empNo, String empName, int moneyPerHour, int workedHour) {
 		super(empNo, empName);
 		this.moneyPerHour = moneyPerHour;
 		this.workedHour = workedHour;
