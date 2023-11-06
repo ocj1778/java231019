@@ -15,7 +15,7 @@ package xyz.itwill.app;
 //import : 다른 패키지에 작성된 Java 자료형을 명확히 표현하여 사용하기 위한 키워드
 //형식) import 패키지경로.자료형;  
 // => Java 자료형 대신 *(전체) 사용 가능
-// => package 선언문 뒤에 작성하며 Java 자료형 선언 전에 작성
+// => package 선언문 뒤, Java 자료형 선언 전에 작성
 //이클립스에서는 프로그램 작성에 필요한 Java 자료형을 import 선언문으로 처리하거나 불필요한  
 //Java 자료형의 import 선언문을 제거하는 기능 제공
 // => [Ctrl]+[Shift]+[O] - import 선언문을 정리하는 단축키
@@ -38,11 +38,11 @@ public class SubjectApp {
 		subject1.display();
 
 		//이클립스에는 다른 패키지의 Java 자료형을 사용할 경우 import 선언문을 자동으로 생성하여 제공
-		// => 자료형 이름 >> [Ctrl]+[Space] 
-		// => 같은 이름의 자료형이 여러 개인 경우 패키지를 구분하여 자료형 선택
+		// => 자료형의 이름 >> [Ctrl]+[Space] 
 		NetworkSubject subject2=new NetworkSubject();
 		subject2.display();
 		
+		//같은 이름의 자료형이 여러 개인 경우 패키지를 잘 구분하여 자료형 선택
 		JavaSubject subject3=new JavaSubject();
 		subject3.display();
 		

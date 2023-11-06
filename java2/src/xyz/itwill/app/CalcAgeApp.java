@@ -21,11 +21,11 @@ public class CalcAgeApp {
 		
 		//Date 클래스로 객체를 생성하여 참조변수에 저장
 		// => java.util.Date 클래스 : 날짜와 시간을 저장하기 위한 클래스
-		// => Date 클래스의 기본 생성자를 이용하여 객체를 생성하면 Date 객체에는 현재 시스템의
-		//날짜와 시간이 자동으로 저장
+		// => Date 클래스의 기본 생성자를 이용하여 객체를 생성하면 Date 객체에는 현재 
+		//시스템(OS - 운영체제)의 날짜와 시간이 자동으로 저장
 		Date now=new Date();
 		
-		//Date.getYear() : Date 객체에 저장된 날짜와 시간에서 년도를 반환하는 메소드
+		//Date.getYear() : Date 객체에 저장된 날짜와 시간에서 년도를 얻어와 반환하는 메소드
 		// => Date 객체의 년도는 1900년을 기준으로 1년에 1씩 증가된 정수값이 저장되어 있으므로
 		// 반드시 1900을 더해야 현재 년도를 표현 가능
 		// => @Deprecated 어노테이션이 적용된 메소드
@@ -34,9 +34,10 @@ public class CalcAgeApp {
 		//@SuppressWarnings : 경고를 제거하는 어노테이션
 		//형식) @SuppressWarnings(속성 = 속성값, 속성 = 속성값, ...)
 		// => @SuppressWarnings 어노테이션은 명령에서 사용 가능하지만 메소드, 클래스에서도 사용 가능
-		// => @SuppressWarnings 어노테이션의 value 속성에 경고 관련 속성값을 반드시 설정 - 속성값의 경고 제거
+		// => @SuppressWarnings 어노테이션의 반드시 value 속성에 경고 관련 속성값을 설정 - 속성값의 경고 제거
 		// => @SuppressWarnings 어노테이션에 value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 		@SuppressWarnings("deprecation")
+		//[Ctrl] 기능키를 누른 상태에서 식별자에 마우스로 클릭할 경우 해당 식별자가 선언된 위치로 이동 
 		int currentYear=now.getYear()+1900;
 		
 		//현재 년도와 태어난 년도를 이용하여 나이를 계산하여 변수에 저장
