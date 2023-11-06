@@ -27,7 +27,8 @@ package xyz.itwill.realization;
 //2.클래스 선언시 반드시 만들어야 되는 메소드를 정의하기 위해 인터페이스 사용 - 작업지시서
 //ex) TV or Radio or SmartPhone >> 볼륨 증가, 불륨 감소 - 인터페이스 
 // => 인터페이스를 상속받은 모든 자식클래스에 동일한 메소드가 선언되도록 규칙 제공
-// => 클래스간의 결합도를 낮추어 시스템 변경에 따른 유지보수의 효율성 증가
+// => 클래스간의 결합도를 낮추어 시스템 변경에 따른 클래스 변경에도 기존 클래스에 대한 
+//영향 최소화 => 유지보수의 효율성 증가
 
 public class WolfHumanApp {
 	public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package xyz.itwill.realization;
 
-public class BoardCarReal implements BoatCar {
+public class BoatCarReal implements BoatCar {
 	@Override
 	public void run() {
 		System.out.println("땅위를 달리는 능력");
