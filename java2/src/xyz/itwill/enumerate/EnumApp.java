@@ -3,6 +3,7 @@ package xyz.itwill.enumerate;
 public class EnumApp {
 	public static void main(String[] args) {
 		//열거형에 선언된 상수필드값 출력 - 상수필드에 저장된 정수값 대신 상수필드명 출력
+		// => 열거형에 선언된 상수필드의 이름이 하나의 값으로 사용
 		// => 프로그램에서 상수필드가 값을 대표하는 이름으로 사용 가능
 		System.out.println("삽입(EnumOne.INSERT) = "+EnumOne.INSERT);
 		System.out.println("변경(EnumOne.UPDATE) = "+EnumOne.UPDATE);
