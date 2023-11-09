@@ -3,7 +3,7 @@ package xyz.itwill.exception;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//키보드로 정수값을 입력받아 저장된 비밀번호롸 비교하여 결과를 출력하는 프로그램 작성
+//키보드로 정수값을 입력받아 저장된 비밀번호와 비교하여 결과를 출력하는 프로그램 작성
 public class PasswordMatchApp {
 	public static void main(String[] args) {
 		/*
