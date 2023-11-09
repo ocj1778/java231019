@@ -23,7 +23,8 @@ public class Account {
 	}
 	
 	//입금 처리 메소드 - 매개변수로 입금자와 입금액을 전달받아 처리
-	public void deposit(String name, int amount) {
+	//public void deposit(String name, int amount) {
+	public synchronized void deposit(String name, int amount) {
 		balance+=amount;
 		System.out.println("[입금]"+name+"님이 "+amount+"원을 입금하여 잔액은 "+balance+"원입니다.");
 	}
