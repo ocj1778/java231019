@@ -33,8 +33,7 @@ public class AccountUser extends Thread {
 	}
 	
 	//새롭게 생성된 스레드가 실행될 명령 작성 
-	// => AccountUser 객체를 참조하여 필드 또는 메소드 사용 가능
-	// => 필드에 저장된 Account 객체를 참조하여 입력 또는 출금 처리하는 메소드 호출
+	// => 필드에 저장된 Account 객체를 참조하여 입력(출금) 처리하는 메소드 호출
 	@Override
 	public void run() {
 		//account.deposit(userName, 5000);
@@ -44,13 +43,3 @@ public class AccountUser extends Thread {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-

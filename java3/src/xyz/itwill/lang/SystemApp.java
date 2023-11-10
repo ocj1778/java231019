@@ -28,7 +28,7 @@ public class SystemApp {
 		
 		if(num==0) {
 			System.out.println("[메세지]프로그램을 종료합니다.");
-			//System.exit(int status) : 프로그램의 모든 스레드를 소멸시키는 메소드
+			//System.exit(int status) : 프로그램의 모든 스레드를 강제로 소멸시키는 메소드
 			// => 프로그램을 강제로 종료하는 메소드
 			System.exit(0);
 		}
@@ -40,7 +40,7 @@ public class SystemApp {
 		//제공하는 프로그램 - 운영체제)의 현재 날짜와 시간에 대한 타임스템프를 반환하는 메소드
 		//타임스템프(TimeStamp) : 날짜와 시간을 정수값으로 표현하기 위해 만들어진 시간값
 		// => 1970년 1월 1일을 기준으로 1/1000초(1ms)당 1씩 증가된 정수값
-		// => 날짜와 시간을 정수값으로 표현하여 연산(-)하기 위해 사용
+		// => 날짜와 시간을 정수값으로 표현하여 연산하기 위해 사용
 		long startTime=System.currentTimeMillis();
 		
 		for(int i=1;i<=num;i++) {
