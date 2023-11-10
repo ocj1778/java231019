@@ -153,43 +153,14 @@ public class StringApp {
 		//마지막 문자까지 분리하여 문자열(String 객체)로 반환
 		System.out.println("전화번호 뒷부분 = "+str9.substring(9));
 		System.out.println("===============================================================");
+		//String.valueOf(Object obj) : 매개변수로 전달받은 모든 자료형의 값을 문자열(String 객체)로
+		//변환하여 반환하는 정적메소드
+		//String numberString=String.valueOf(100);
+		//[문자열+값] 또는 [값+문자열] 형식의 연산식을 사용하면 모든 자료형의 값을 문자열과
+		//결합하여 문자열(String 객체)로 제공받아 사용
+		String numberString=100+"";
 		
-		
-		
+		System.out.println("numberString = "+numberString);
+		System.out.println("===============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
