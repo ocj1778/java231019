@@ -20,7 +20,7 @@ public class ConsoleCalculateApp {
 		
 		scanner.close();
 
-		//연산식에 검색될 연산자가 저장된 문자열 배열 생성
+		//연산식에서 검색될 연산자가 저장된 문자열 배열 생성
 		String[] operatorArray={"*", "/", "+", "-"};
 		
 		//연산식에서 필요한 연산자를 검색하여 연산자의 시작첨자를 반환받아 저장
@@ -37,10 +37,10 @@ public class ConsoleCalculateApp {
 			//연산식에서 연산자를 찾은 경우 반복문 종료
 			if(index != -1) break;
 		}
-		
+
 		//연산식에 연산자가 없거나 연산자가 맨 앞 또는 뒤에 위치한 경우 - 연산식이 잘못된 경우 
 		if(index <= 0 || index >= operation.length()-1) {
-			System.out.println("[에러]연산식에 연산자가 없거나 잘못 입력 하였습니다.");
+			System.out.println("[에러]연산식을 잘못 입력 하였습니다.");
 			System.exit(0);
 		}
 		
@@ -60,6 +60,7 @@ public class ConsoleCalculateApp {
 			int result=0;//연산 결과를 저장하기 위한 변수
 			switch (operator) {
 			case "*": result=num1*num2; break;
+			//두번째 피연산자의 값이 [0]인 경우 ArithmeticException 예외 발생
 			case "/": result=num1/num2; break;
 			case "+": result=num1+num2; break;
 			case "-": result=num1-num2; break;

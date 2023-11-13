@@ -110,7 +110,7 @@ public class StringApp {
 		//String.toUpperCase() : String 객체에 저장된 문자열을 모두 대문자로 바꾼 문자열
 		//(String 객체)로 반환하는 메소드 
 		System.out.println("str6 = "+str6.toUpperCase());
-		//String.toUpperCase() : String 객체에 저장된 문자열을 모두 소문자로 바꾼 문자열
+		//String.toLowerCase() : String 객체에 저장된 문자열을 모두 소문자로 바꾼 문자열
 		//(String 객체)로 반환하는 메소드
 		System.out.println("str6 = "+str6.toLowerCase());
 		System.out.println("===============================================================");

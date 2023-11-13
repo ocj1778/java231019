@@ -7,7 +7,6 @@ import java.util.Scanner;
 // => 비정상적인 주민번호가 입력된 경우 에러 메세지를 출력하고 재입력 되도록 처리
 //ex) 주민번호[ex.901225-1234567] >> 000101-4567890
 //    [결과]생년월일 = 2000년 01월 01일, 성별 = 여자 
-
 public class PersonNumberApp {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
