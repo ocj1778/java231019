@@ -1,7 +1,7 @@
 package basic;
 
 //1~45 범위의 정수 난수값을 6개 제공받아 출력하는 프로그램 작성
-// => 6개의 난수값은 서로 중복되지 않도록 처리하고 오름차순 정렬하여 정렬
+// => 6개의 난수값은 서로 중복되지 않도록 처리하고 오름차순 정렬하여 출력
 //정렬(Sort) : 값을 비교하여 순서대로 나열하는 기능 - 오름차순 정렬(Ascending Sort), 내림차순 정렬(Descending Sort)
 public class LottoApp {
 	public static void main(String[] args) {
