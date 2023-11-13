@@ -1,6 +1,6 @@
 package xyz.itwill.util;
 
-//Object 클래스로 필드가 선언된 클래스를 객체를 생성해 사용
+//Object 클래스로 필드가 선언된 클래스로 객체를 생성해 사용
 // => Object 클래스의 필드에는 모든 클래스의 객체를 전달받아 저장 가능
 // => Object 클래스의 필드에 저장된 객체를 반환받아 사용하기 위해 반드시 명시적 객체 형변환
 //사용 - ClassCastException 발생 가능
