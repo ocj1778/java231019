@@ -8,16 +8,16 @@ public class DateApp {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		//new 연산자로 Date 클래스의 기본 생성자를 호출하여 객체를 생성하면 플렛폼의 현재
-		//날짜와 시간이 저장된 Date 객체 생성
+		//날짜와 시간 관련 정보가 저장된 Date 객체 생성
 		Date now=new Date();
 		
-		//Date.toString() : Date 객체에 날짜와 시간 관련 정보를 문자열로 변환하여 반환하는 메소드
+		//Date.toString() : Date 객체에 저장된 날짜와 시간 관련 정보를 문자열로 변환하여 반환하는 메소드
 		System.out.println("now.toString() = "+now.toString());
 		//Date 객체가 저장된 참조변수를 출력하면 자동으로 toString() 메소드 호출
 		System.out.println("now = "+now);
 		
-		//Date.toLocaleString() : Date 객체에 날짜와 시간 관련 정보를 플렛폼의 지역 관련 정보를
-		//이용한 형태의 문자열로 변환하여 반환하는 메소드 - Deprecated 처리된 메소드
+		//Date.toLocaleString() : Date 객체에 저장된 날짜와 시간 관련 정보를 플렛폼의 지역 
+		//관련 정보를 이용한 형태의 문자열로 변환하여 반환하는 메소드 - Deprecated 처리된 메소드
 		//System.out.println("now = "+now.toLocaleString());
 
 		//요일을 저장하기 위한 문자열 배열 선언
