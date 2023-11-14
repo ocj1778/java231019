@@ -11,7 +11,7 @@ import java.util.Set;
 // => Collection 인터페이스는 Set 인터페이스와 List 인터페이스의 부모 인터페이스
 
 //Set 인터페이스를 상속받은 콜렉션 클래스 - HashSet 클래스, TreeSet 클래스 등
-// => 객체의 저장 순서가 없으며 메모리 주소(HashCode)와 객체에 저장된 값(Value)이 같은 객체가  
+// => 요소의 저장 순서가 없으며 메모리 주소(HashCode)와 객체에 저장된 값(Value)이 같은 객체가  
 //중복 저장되지 않도록 하는 기능을 제공 
 public class SetApp {
 	public static void main(String[] args) {
