@@ -87,6 +87,15 @@ public class ListApp {
 		Collections.sort(list);
 		System.out.println("list = "+list);
 		System.out.println("==============================================================");
+		//List.contains(E element) : 매개변수로 전달받은 객체(값)와 같은 동일한 객체가 List 
+		//객체의 요소값으로 저장되어 있지 않은 경우 [false]를 반환하고 저장되어 있는 경우 
+		//[true]를 반환하는 메소드
+		if(list.contains("홍길동")) {
+			System.out.println("List 객체에 저장되어 있는 요소값(객체)입니다.");
+		} else {
+			System.out.println("List 객체에 저장되어 있지 않은 요소값(객체)입니다.");
+		}
+		System.out.println("==============================================================");
 		//List.clear() : List 객체에 저장된 모든 요소값을 삭제하는 메소드
 		list.clear();
 		//System.out.println("list = "+list);
@@ -98,7 +107,7 @@ public class ListApp {
 		}
 		System.out.println("==============================================================");
 		//Arrays.asList(E ... element) : 매개변수로 0개 이상의 객체를 전달받아 List 객체의
-		//요소값으로 저장하여 반환하는 메소드 - 배열(Array) >> List 객체
+		//요소값으로 저장하여 반환하는 정적메소드 - 배열(Array) >> List 객체
 		List<Integer> numberList=Arrays.asList(10, 20, 30, 40, 50);
 		System.out.println("numberList = "+numberList);		
 		System.out.println("==============================================================");
