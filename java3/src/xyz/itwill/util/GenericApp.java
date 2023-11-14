@@ -2,7 +2,7 @@ package xyz.itwill.util;
 
 //제네릭 타입으로 필드가 선언된 클래스로 객체를 생성해 사용
 // => 제네릭 타입 대신 사용될 Java 자료형의 객체만 필드에 저장 가능 - 제한적인 객체 저장
-// => 명시적 객체 형변환 없이 필드값을 반환받아 사용 가능
+// => 명시적 객체 형변환 없이 필드값(객체)을 반환받아 사용 가능
 public class GenericApp {
 	public static void main(String[] args) {
 		//제네릭 타입 대신 사용될 Java 자료형을 전달해야만 제네릭 클래스 사용 가능

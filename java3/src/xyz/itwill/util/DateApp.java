@@ -41,8 +41,8 @@ public class DateApp {
 		// => 날짜와 시간을 정수값(long)으로 변환하여 연산 처리하기 위해 사용
 		long currentTime=now.getTime();//long currentTime=System.currentTimeMillis();
 		
-		//new 연산자로 Date(int year, int month, int date)의 생성자를 호출하여 Date 객체 생성
-		//[2000년 1월 1일 0시 0분 0초]의 날짜와 시간 관련 정보가 저장된 Date 객체
+		//new 연산자로 Date 클래스의 Date(int year, int month, int date)의 생성자를 호출하여 Date 객체 생성
+		// => [2000년 1월 1일 0시 0분 0초]의 날짜와 시간 관련 정보가 저장된 Date 객체 생성
 		Date wantDate=new Date(100, 0, 1);
 		System.out.println("wantDate = "+wantDate);
 		

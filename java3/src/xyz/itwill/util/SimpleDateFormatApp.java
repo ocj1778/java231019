@@ -15,7 +15,7 @@ public class SimpleDateFormatApp {
 		//new 연산자로 SimpleDateFormat 클래스의 매개변수가 작성된 생성자를 호출하여 객체 생성
 		// => SimpleDateFormat(String pattern) 생성자로 매개변수에 날짜와 시간 관련 패턴정보를
 		//전달받아 저장한 SimpleDateFormat 객체 생성
-		// => 패턴정보 : 패턴문자(날짜와 시간을 표현하기 위한 문자)를 사용하여 표현된 문자열
+		// => 패턴정보 : 패턴문자(날짜와 시간을 표현하기 위한 문자)를 사용하여 날짜와 시간을 표현한 문자열
 		// => 패턴문자 : y(년), M(월), d(일), E(요일), AM or PM(오전 또는 오후), h(시:12)
 		//, H(시:24), m(분), s(초)
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
