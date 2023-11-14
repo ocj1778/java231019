@@ -60,4 +60,5 @@ public class UserVO {
 	public String toString() {
 		return "{"+id+", "+name+", "+email+"}";
 	}
+
 }
