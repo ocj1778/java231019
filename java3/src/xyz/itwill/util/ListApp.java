@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 //List 인터페이스를 상속받은 콜레션 클래스 - ArrayList 클래스, Vector 클래스, LinkedList 클래스 등
-// => 요소의 순서가 존재하며 요소에 메모리 주소와 필드값이 같은 동일한 객체(값) 저장 가능
+// => 요소의 순서가 존재하며 요소에 메모리 주소와 필드값이 같은 동일한 객체 저장 가능
 // => List 객체의 요소는 첨자를 사용하여 구분
 // => List 객체에 저장된 요소값이 많은 경우 검색하는 속도가 느려진다는 단점이 존재
 public class ListApp {
@@ -81,7 +81,7 @@ public class ListApp {
 		//Collections 클래스 : 콜렉션 객체의 요소를 처리하기 위한 기능을 메소드로 제공하는 클래스
 		//Collections.sort(List list) : 매개변수로 전달받은 List 객체에 저장된 모든 요소값을
 		//비교하여 오름차순 정렬하기 위한 정적메소드
-		// => List 객체에 저장된 요소값(객체)를 정렬하기 위해 객체의 클래스는 반드시 Comparable
+		// => List 객체에 저장된 요소값(객체)를 정렬하기 위해 객체의 클래스가 반드시 Comparable
 		//인터페이스를 상속받아 compareTo() 메소드를 오버라이드 선언하여 객체 필드값을 비교해 
 		//정렬될 수 있도록 처리
 		Collections.sort(list);

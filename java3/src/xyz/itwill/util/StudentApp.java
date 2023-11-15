@@ -18,8 +18,8 @@ public class StudentApp {
 		System.out.print("정렬 전 >> ");
 		System.out.println(studentListOne);
 		
-		//Collections 클래스의 sort() 메소드를 호출하면 List 객체에 저장된 모든 요소값(객체 필드값)을 
-		//비교하여 정렬하기 위해 Student 클래스의 compareTo() 메소드를 자동 호출하여 비교 처리
+		//Collections 클래스의 sort() 메소드를 호출하여 List 객체에 저장된 모든 요소값(객체 필드값)을 
+		//비교하여 정렬하기 위해 Student 클래스의 compareTo() 메소드를 자동 호출
 		Collections.sort(studentListOne);
 		
 		System.out.print("정렬 후 >> ");
