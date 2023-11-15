@@ -30,7 +30,7 @@ public class PersonApp {
 	}
  	
 	public static void main(String[] args) {
-		forEach(Arrays.asList("홍길동","임꺽정","전우치"), str -> System.out.print(str+" "));
+		forEach(Arrays.asList("홍길동","임꺽정","전우치"),str -> System.out.println(str+" "));
 		//List.of(E... element) : 매개변수로 전달받은 0개 이상의 객체가 저장된 List 객체를
 		//반환하는 정적메소드
 		forEach(List.of(100, 200, 300), num -> System.out.print(num+" "));
