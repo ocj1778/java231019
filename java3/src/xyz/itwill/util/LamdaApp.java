@@ -25,9 +25,7 @@ public class LamdaApp {
 		*/
 		
 		//람다표현식을 이용하여 객체를 생성해 참조변수에 저장
-		Consumer<Integer> integerConsumer = i -> {
-			System.out.println(number + i);
-		};
+		Consumer<Integer> integerConsumer = i -> System.out.println(number + i);
 
 		integerConsumer.accept(200);
 		

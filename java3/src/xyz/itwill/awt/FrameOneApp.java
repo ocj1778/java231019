@@ -3,13 +3,13 @@ package xyz.itwill.awt;
 import java.awt.Frame;
 
 //CUI(Character User Interface) 프로그램 : 문자 중심의 사용자 환경에서 실행되는 프로그램
-//GUI(Graphic User Interface) 프로그램 : 그래핏 중심의 사용자 환경에서 실행되는 프로그램
+//GUI(Graphic User Interface) 프로그램 : 그래픽 중심의 사용자 환경에서 실행되는 프로그램
 // => 컴퍼넌트를 사용하여 작성한 프로그램
 
 //java.awt 패키지 : GUI 프로그램을 작성하기 위한 Java 자료형이 선언된 패키지
 // => 플렛폼(운영체제 - OS)에 종속된 컴퍼넌트 사용
 //javax.swing 패키지 : GUI 프로그램을 작성하기 위한 Java 자료형이 선언된 패키지
-// => java.awt 패키지의 확장 패키지 - Java 클래스로 객체를 생성하여 컴퍼넌트 사용 
+// => java.awt 패키지의 확장 패키지 - Java 클래스를 이용하여 컴퍼넌트 사용
 
 //컴퍼넌트(Component) : GUI 프로그램에서 사용자 환경(UI - User Interface)를 구현하기 위한 클래스
 // => Button, List, Label, Canvas, Checkbox, Choice, Scrollbar, TextField, TextArea 등
