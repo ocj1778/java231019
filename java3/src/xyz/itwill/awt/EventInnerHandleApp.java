@@ -7,6 +7,8 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//java.awt.event 패키지 : 이벤트 처리를 위한 Java 자료형이 선언된 패키지
+
 //[EXIT] 버튼을 누른 경우 프로그램을 종료하는 기능의 프로그램 작성
 // => 이벤트 처리 클래스를 UI 클래스의 내부 클래스로 작성하여 사용
 // => 이벤트 처리 클래스의 메소드에서 UI 클래스의 컴퍼넌트 또는 컨테이너 사용 가능
