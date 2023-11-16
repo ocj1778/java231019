@@ -149,6 +149,16 @@ public class CalculatorFrameApp extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JButton eventSource=(JButton)e.getSource();
 		
+		if(eventSource == b_C) {
+			
+		} else if(eventSource == b_equals) {
+			
+		} else {
+			operation+=eventSource.getText();
+			
+			label.setText(operation);
+		}
 	}
 }
