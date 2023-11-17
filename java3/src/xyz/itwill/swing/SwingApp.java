@@ -62,7 +62,6 @@ public class SwingApp extends JFrame {
 		// => JScrollPane 생성자의 매개변수에는 스크롤을 제공하고 싶은 컴퍼넌트 전달
 		JScrollPane scrollPane=new JScrollPane(textArea);
 		
-		
 		container.add(scrollPane, BorderLayout.CENTER);
 		container.add(textField, BorderLayout.SOUTH);
 		
