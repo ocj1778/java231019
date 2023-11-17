@@ -50,7 +50,7 @@ public class PanelApp extends Frame {
 		textField.setFont(new Font(Font.SANS_SERIF, Font.BOLD+Font.ITALIC, 18));
 		
 		//Component.setForeground(Color c) : 컴퍼넌트의 글자색을 변경하는 메소드
-		//Color 클래스 : 색상 정보를 저장하기 위한 클래스
+		//Color 클래스 : 색에 대한 정보를 저장하기 위한 클래스
 		// => Color 클래스의 Color(int red, int green, int blue) 생성자를 사용하여 객체 생성
 		// => 매개변수에 전달되는 색은 0~255 범위 정수값만 사용 가능
 		red.setForeground(new Color(255, 0, 0));
@@ -66,7 +66,7 @@ public class PanelApp extends Frame {
 		red.setEnabled(false);
 	
 		//TextComponent.setFocusable(boolean b) : 텍스트 컴퍼넌트의 입력 포커스(Focus) 제공 여부를 변경하는 메소드
-		// => false : 입력 포커스 비제공, true : 입력 포커스 제공 - 기본
+		// => false : 입력 포커스 미제공, true : 입력 포커스 제공 - 기본
 		textArea.setFocusable(false);
 		
 		setBounds(600, 100, 300, 400);

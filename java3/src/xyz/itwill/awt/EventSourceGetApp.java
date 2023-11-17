@@ -56,6 +56,7 @@ public class EventSourceGetApp extends Frame {
 		/**
 		//컴퍼넌트에서 이벤트가 발생될 경우 이벤트를 처리하기 위한 객체 등록
 		// => 컴퍼넌트마다 이벤트를 처리하는 클래스를 다르게 설정
+		// => 익명의 클래스로 이벤트 처리 객체를 생성해 이벤트 처리되도록 등록하는 것을 권장  
 		red.addActionListener(new RedButtonEventHandle());
 		green.addActionListener(new GreenButtonEventHandle());
 		blue.addActionListener(new BlueButtonEventHandle());
@@ -107,14 +108,16 @@ public class EventSourceGetApp extends Frame {
 	}
 	*/
 	
+	//모든 색상 버튼에 대한 이벤트 처리를 위해 작성된 클래스
 	public class ColorButtonEventHandle implements ActionListener {
 		//이벤트 처리 메소드의 매개변수에는 컴퍼넌트에서 발생된 이벤트 정보가 저장된 
-		//Event 객체가 전달되어 저장 - 이벤트 처리 메소드에서 발생된 이벤트 정보 사용
+		//Event 객체가 전달되어 저장 
+		// => 이벤트 처리 메소드에서 Event 객체의 메소드를 호출하여 필요한 기능 구현
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//Event.getSource() : 이벤트가 발생된 컴퍼넌트(컨테이너)를 반환하는 메소드
 			// => 이벤트가 발생된 컴퍼넌트(컨테이너)가 Object 객체로 반환되므로 명시적 객체
-			//형변환 사용해야 자식클래스의 메소드의 메소드 호출 가능
+			//형변환 사용해야 자식클래스의 메소드 호출 가능
 			Object eventSource=e.getSource();
 			
 			//이벤트가 발생된 컴퍼넌트(컨테이너)의 메모리 주소를 비교하여 명령 선택 실행

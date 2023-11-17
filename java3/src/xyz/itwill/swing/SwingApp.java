@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -18,11 +19,12 @@ import javax.swing.JTextField;
 //javax.swing 패키지의 컴퍼넌트(컨테이너)로 UI 클래스를 작성하는 방법 - AWT 프로그램과의 차이점
 //1.java.awt 패키지의 컴퍼넌트(컨테이너)를 구현한 클래스 이름 앞에 [J]를 붙여 javax.swing
 //패키지의 컴퍼넌트(컨테이너)로 구현
-//2.프레임의 [닫기] 버튼을 누른 경우 동작되는 기능을 기본적으로 제공
+//2.프레임(JFrame 객체)의 [닫기] 버튼을 누른 경우 프레임이 보여지지 않는 기능 제공
 // => JFrame.setDefaultCloseOperation(int operation) 메소드를 호출하여 프레임의 [닫기] 버튼을
 //누른 경우 동작되는 기능을 변경 가능
 //3.프레임을 직접 변경하지 않고 프레임의 Container 객체를 반환받아 변경 처리
-// => 프레임의 배치관리자 변경, 프레임의 배경색 변경, 프레임에 컴퍼넌트 배치 등
+// => JFrame.getContentPane() : 프레임의 Container 객체를 반환하는 메소드
+// => 프레임의 배치관리자 변경, 프레임의 배경색 변경, 프레임의 컴퍼넌트 배치  등
 
 //JTextField 컴퍼넌트에서 메세지를 입력한 후 엔터를 누르면 JTextArea 컴퍼넌트에 메세지를
 //추가하여 출력되도록 프로그램 작성
@@ -49,10 +51,19 @@ public class SwingApp extends JFrame {
 		// => JTextArea 컴퍼넌트를 출력 전용 컴퍼넌트로 사용
 		textArea.setFocusable(false);
 		
-		//JFrame.getContentPane() : 프레임의 Container 객체를 반환하는 메소드
 		Container container=getContentPane();
 		
-		container.add(textArea, BorderLayout.CENTER);
+		//JTextArea 컴퍼넌트는 폭과 높이를 벗어난 문자열 출력 불가능 - 스크롤 미발생
+		// => JScrollPane 컨테이너에 JTextArea 컴퍼넌트를 배치하여 사용하면 스크롤 발생
+		//container.add(textArea, BorderLayout.CENTER);
+		
+		//JScrollPane 클래스 : 컴퍼넌트에 스크롤을 제공하기 위한 컨테이너 클래스
+		// => JScrollPane 클래스의 JScrollPane(Component view) 생성자로 객체 생성
+		// => JScrollPane 생성자의 매개변수에는 스크롤을 제공하고 싶은 컴퍼넌트 전달
+		JScrollPane scrollPane=new JScrollPane(textArea);
+		
+		
+		container.add(scrollPane, BorderLayout.CENTER);
 		container.add(textField, BorderLayout.SOUTH);
 		
 		//setDefaultCloseOperation(int operation) 메소드의 매개변수에는 WindowConstants 클래스의 상수 전달
@@ -79,9 +90,13 @@ public class SwingApp extends JFrame {
 			//문자열을 얻어와 반환하는 메소드
 			String text=textField.getText();
 			
-			if(!text.equals("")) {//입력된 문자열이 있는 경우
+			if(!text.equals("")) {//JTextField 컴퍼넌트에 입력된 문자열이 있는 경우
 				//JTextArea.append(String text) : JTextArea 컴퍼넌트에 문자열을 추가하여 출력하는 메소드
 				textArea.append("[홍길동]"+text+"\n");
+				
+				//JTextArea 컴퍼넌트의 스크롤을 JTextArea 컴퍼넌트의 끝지점으로 이동되도록 처리
+				//JTextArea.setCaretPosition(int position) : JTextArea 컴퍼넌트의 출력 위치를 이동하는 메소드
+				textArea.setCaretPosition(textArea.getText().length());
 				
 				//TextComponent.setText(String text) : JTextField 컴퍼넌트 또는 JTextArea 컴퍼넌트의 
 				//문자열을 변경하는 메소드

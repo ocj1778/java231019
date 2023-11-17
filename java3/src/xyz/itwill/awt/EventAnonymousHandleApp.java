@@ -27,6 +27,8 @@ public class EventAnonymousHandleApp extends Frame {
 			}
 		});
 		
+		//exit.addActionListener(e -> System.exit(0));
+		
 		setBounds(800, 200, 300, 300);
 		setVisible(true);
 	}

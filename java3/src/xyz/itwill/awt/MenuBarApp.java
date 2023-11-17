@@ -10,7 +10,9 @@ import java.awt.MenuShortcut;
 import java.awt.TextArea;
 import java.awt.event.KeyEvent;
 
-//Frame >> MenuBar >> Menu >> MenuItem
+//Frame 클래스는 메뉴를 제공하는 메뉴바(MenuBar) 영역이 존재하는 컨테이너
+// => 프레임의 메뉴바 영역을 변경하여 메뉴 제공
+// => Frame - MenuBar << Menu << MenuItem
 public class MenuBarApp extends Frame {
 	private static final long serialVersionUID = 1L;
 
@@ -24,10 +26,6 @@ public class MenuBarApp extends Frame {
 		Menu file=new Menu("File");
 		Menu help=new Menu("Help");
 		
-		//메뉴바에 메뉴 배치
-		menuBar.add(file);
-		menuBar.add(help);
-		
 		//MenuItem 클래스 : 메뉴에 배치하기 위한 메뉴아이템 컴퍼넌트
 		//MenuShortcut 클래스 : 메뉴아이템에 단축키를 제공하기 위한 클래스
 		//KeyEvent : 키보드 관련 이벤트 정보를 저장하기 위한 클래스
@@ -38,7 +36,7 @@ public class MenuBarApp extends Frame {
 
 		MenuItem view=new MenuItem("HelpView");
 		MenuItem info=new MenuItem("Infomation");
-		
+
 		//메뉴에 메뉴아이템 배치
 		file.add(open);
 		file.add(save);
@@ -48,6 +46,10 @@ public class MenuBarApp extends Frame {
 		help.add(view);
 		file.addSeparator();
 		help.add(info);
+		
+		//메뉴바에 메뉴 배치
+		menuBar.add(file);
+		menuBar.add(help);
 		
 		//프레임의 메뉴바를 변경하는 메소드
 		setMenuBar(menuBar);

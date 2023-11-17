@@ -14,8 +14,7 @@ public class WindowAdapterApp extends Frame {
 		
 		//addWindowListener(new WindowEventHandleTwo());
 		
-		//Adapter 클래스(추상클래스)를 상속받은 익명의 내부클래스로 객체를 생성하여 이벤트 
-		//처리를 위한 객체로 등록 
+		//Adapter 클래스(추상클래스)를 상속받은 익명의 내부클래스로 객체를 생성하여 이벤트 처리를 위한 객체로 등록 
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -33,7 +32,7 @@ public class WindowAdapterApp extends Frame {
 	
 	/*
 	//Adapter 클래스 : Listener 인터페이스에 추상메소드가 2개 이상 선언된 경우 Listener
-	//인터페이스 대신 이벤트 처리를 위해 제공되는 클래스
+	//인터페이스 대신 이벤트 처리를 위해 제공되는 클래스 - 추상클래스
 	// => Adapter 클래스를 상속받은 자식클래스는 필요한 이벤트 처리 메소드만 오버라이드 선언
 	//하여 이벤트 처리 가능
 	public class WindowEventHandleTwo extends WindowAdapter {
