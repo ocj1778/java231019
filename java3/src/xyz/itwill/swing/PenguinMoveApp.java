@@ -2,11 +2,13 @@ package xyz.itwill.swing;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-//키보드를 누르면 펭귄 이미지가 이동되는 프로그램 작성
+//키보드의 방향키를 누르면 펭귄 이미지가 움직이는 프로그램 작성
 public class PenguinMoveApp extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -59,6 +61,9 @@ public class PenguinMoveApp extends JFrame {
 		penguinX=JFRAME_WIDTH / 2 - PENGUIN_SIZE / 2;
 		penguinY=JFRAME_HEIGHT - PENGUIN_SIZE;
 		
+		//프레임에서 키보드 관련 이벤트가 발생될 경우 이벤트를 처리하기 위한 객체 등록
+		addKeyListener(new PenguinMoveHandle());
+		
 		setResizable(false);//프레임의 크기를 변경하지 않도록 설정
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//setBounds(700, 200, 646, 461);
@@ -80,17 +85,49 @@ public class PenguinMoveApp extends JFrame {
 		
 		g.drawImage(penguins[penguinNo], penguinX, penguinY, PENGUIN_SIZE, PENGUIN_SIZE, this);
 	}
+	
+	//키보드 관련 이벤트를 처리하기 위한 이벤트 처리 클래스
+	// => KeyListener 인터페이스 대신 KeyAdapter 클래스를 상속받아 작성
+	public class PenguinMoveHandle extends KeyAdapter {
+		//키보드를 누르고 있는 상태에서 자동 호출되는 이벤트 처리 메소드
+		@Override
+		public void keyPressed(KeyEvent e) {
+			//KeyEvent.getKeyCode() : 이벤트를 발생한 키보드의 고유값을 반환하는 메소드
+			// => KeyEvent.getKeyChar() : 이벤트를 발생한 키보드의 문자값(코드값)을 반환하는 메소드
+			int keyCode=e.getKeyCode();
+			
+			//KeyEvent 클래스에는 키보드(가상의 키보드)의 고유값이 저장된 상수 존재
+			switch(keyCode) {
+			//이벤트가 발생된 키보드가 왼쪽 방향키인 경우
+			case KeyEvent.VK_LEFT:
+				//펭귄 이미지가 출력될 X 좌표값이 저장된 필드값 변경
+				penguinX-=10;
+				
+				if(penguinX <= 0) {
+					penguinX = 0;
+				}
+				
+				//펭귄 이미지를 나타내는 필드값 변경
+				penguinNo++;
+				penguinNo%=3;
+				
+				repaint();//paint() 메소드를 호출하여 이미지를 다시 출력
+				break;
+			case KeyEvent.VK_RIGHT:
+				//펭귄 이미지가 출력될 X 좌표값이 저장된 필드값 변경
+				penguinX+=10;
+				
+				if(penguinX >= JFRAME_WIDTH-PENGUIN_SIZE) {
+					penguinX=JFRAME_WIDTH-PENGUIN_SIZE;
+				}
+				
+				//펭귄 이미지를 나타내는 필드값 변경
+				penguinNo++;
+				penguinNo%=3;
+				
+				repaint();//paint() 메소드를 호출하여 이미지를 다시 출력
+				break;	
+			}
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
