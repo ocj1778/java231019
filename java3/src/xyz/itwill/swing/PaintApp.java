@@ -76,10 +76,3 @@ public class PaintApp extends JFrame {
 		g.drawString("["+x+","+y+"]", x, y);
 	}
 }
-
-
-
-
-
-
-
