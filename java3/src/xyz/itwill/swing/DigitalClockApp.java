@@ -2,6 +2,8 @@ package xyz.itwill.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,8 +20,14 @@ public class DigitalClockApp extends JFrame {
 	JLabel clockLable;
 	JButton startButton, stopButton;
 	
+	//플렛폼의 현재 날짜와 시간 정보를 제공받아 출력하는 스레드의 실행상태를 저장하기 위한 필그
+	// => false : 스레드 일시중지 상태, true : 스레드 실행 상태
+	private boolean isRun;
+	
 	public DigitalClockApp(String title) {
 		super(title);
+		
+		isRun=true;
 		
 		/*
 		Date now=new Date();
@@ -75,7 +83,11 @@ public class DigitalClockApp extends JFrame {
 			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
 			while(true) {
-				clockLable.setText(dateFormat.format(new Date()));
+				//isRun 필드값이 [true]인 경우에만 플렛폼의 현재 날짜와 시간 정보를 제공받아
+				//컴퍼넌트의 문자열 변경 처리
+				if(isRun) {
+					clockLable.setText(dateFormat.format(new Date()));
+				}
 				
 				try {
 					Thread.sleep(1000);
@@ -85,6 +97,9 @@ public class DigitalClockApp extends JFrame {
 			}
 		}).start();
 		
+		//JVM(Java Virtual Machine)은 이벤트를 처리하기 위해 Event-Queue 스레드를 자동 생성
+		startButton.addActionListener(new ClockButtonEventHandle());
+		stopButton.addActionListener(new ClockButtonEventHandle());
 		
 		getContentPane().add(clockLable, BorderLayout.CENTER);
 		getContentPane().add(panel, BorderLayout.SOUTH);
@@ -120,12 +135,26 @@ public class DigitalClockApp extends JFrame {
 		}
 	}
 	*/
+
+	//JButton 컴퍼넌트를 누른 경우 이벤트 처리를 위해 작성한 클래스
+	// => 버튼을 누른 경우 플렛폼의 현재 날짜와 시간 정보를 제공받아 출력하는 스레드를 일시 
+	//중지하거나 재실행되도록 설정
+	public class ClockButtonEventHandle implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object eventSource=e.getSource();
+			
+			if(eventSource == startButton) {
+				startButton.setEnabled(false);
+				stopButton.setEnabled(true);
+				
+				isRun=true;
+			} else if(eventSource == stopButton){
+				startButton.setEnabled(true);
+				stopButton.setEnabled(false);
+
+				isRun=false;
+			}
+		}
+	}
 }
-
-
-
-
-
-
-
-
