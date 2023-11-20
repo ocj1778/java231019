@@ -45,17 +45,18 @@ public class PaintApp extends JFrame {
 		new PaintApp("Paint");
 	}
 	
-	//JWindow.paint(Graphics g) : 컨테이너(JFrame, JWindow, JDialog 등)를 출력하는 메소드
-	// => GUI 프로그램이 실행되어 컨테이너가 보여질 경우 또는 GUI 프로그램이 아이콘에서 해제되어 
-	//컨테이너가 보여질 경우, 컨테이너의 크기가 변경될 경우 자동 호출되는 메소드
-	// => Graphics 객체 : 컨테이너와 종속된 컴퍼넌트를 그리기 위한 기능을 제공하는 객체
-	//JWindow 클래스(JFrame 클래스의 부모클래스)의 paint() 메소드를 오버라이드 선언
+	//Window.paint(Graphics g) : 컨테이너(JFrame, JWindow, JDialog 등)의 그림을 출력하는 메소드
+	// => GUI 프로그램이 실행되어 컨테이너가 보여지는 경우 또는 GUI 프로그램이 아이콘에서 해제 
+	//되어 컨테이너가 보여지는 경우, 컨테이너의 크기가 변경될 경우 자동 호출되는 메소드
+	// => Graphics 객체 : 컨테이너에 그림을 그리기 위한 기능을 제공하는 객체
+	//컨테이너에 원하는 그림을 그리기 위해 Window 클래스(JFrame 클래스의 부모클래스)의 paint() 
+	//메소드를 오버라이드 선언
 	@Override
 	public void paint(Graphics g) {
 		//System.out.println("paint(Graphics g) 메소드 호출");
 		
-		//super 키워드로 부모클래스의 숨겨진 메소드 호출 - 컨테이너 출력
-		// => repaint() 메소드에 의해 paint() 메소드가 호출될 경우 컨테이너를 다시 출력하여 초기화 처리
+		//super 키워드로 부모클래스의 숨겨진 메소드 호출 
+		// => paint() 메소드가 호출될 경우 컨테이너를 초기화 처리하기 위한 명령
 		super.paint(g);
 		
 		/*

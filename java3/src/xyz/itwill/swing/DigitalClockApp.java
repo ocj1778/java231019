@@ -83,8 +83,8 @@ public class DigitalClockApp extends JFrame {
 			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
 			while(true) {
-				//isRun 필드값이 [true]인 경우에만 플렛폼의 현재 날짜와 시간 정보를 제공받아
-				//컴퍼넌트의 문자열 변경 처리
+				//isRun 필드값이 [false]인 경우 플렛폼의 현재 날짜와 시간 정보를 제공받아  
+				//컴퍼넌트의 문자열을 변경 처리하지 않고 [true]인 경우 변경 처리되도록 설정  
 				if(isRun) {
 					clockLable.setText(dateFormat.format(new Date()));
 				}
