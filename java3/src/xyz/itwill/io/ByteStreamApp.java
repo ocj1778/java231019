@@ -7,9 +7,9 @@ import java.io.IOException;
 //스트림(Stream) : 값을 전달하기 위한 목적으로 생성된 입력 및 출력 클래스로 생성된 객체
 // => 시냇물이 흐르는 모양을 모델링하여 만들어진 클래스로 한쪽방향으로 전달되어 순차적으로 처리
 
-//원시데이타 기반의 스트림(Byte Stream) : 가동되지 않은 순수한 원시데이타를 전달하기 위한 입력 또는 출력 스트림
+//원시데이타 기반의 스트림(Byte Stream) : 가공되지 않은 순수한 원시데이타를 전달하기 위한 입력 또는 출력 스트림
 // => 전달값을 1Byte 단위로 입력 또는 출력하기 위한 스트림
-// => InputStream 클래스와 OutputStream 클래스를 기반으로 설정된 클래스
+// => InputStream 클래스와 OutputStream 클래스를 기반으로 만들어진 클래스
 
 //키보드로 입력받은 원시데이타(1Byte)를 모니터로 전달하여 출력하는 프로그램 작성
 // => EOF(End Of File) 신호(입력스트림 종료 - Ctrl+Z)를 입력받으면 프로그램 종료
@@ -38,7 +38,7 @@ public class ByteStreamApp {
 			//System.out : Java 프로그램 개발을 위해 기본적으로 제공되는 모니터 출력스트림이 저장된 필드
 			// => OutputStream 클래스를 기반으로 생성된 출력스트림(객체) - PrintStream 클래스
 			// => 원시데이타(1Byte)를 모니터 출력스트림으로 전달하면 모니터에 원시데이타 출력
-			//OutputStream.write(int b) : 매개변수로 전달받은 정수값을 출력스트림에 원시데이타로 전달하는 메소드
+			//OutputStream.write(int b) : 매개변수로 전달받은 정수값(1Byte)을 출력스트림에 원시데이타로 전달하는 메소드
 			System.out.write(readByte);
 		}
 		
