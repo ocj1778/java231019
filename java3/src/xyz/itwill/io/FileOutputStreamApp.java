@@ -3,7 +3,7 @@ package xyz.itwill.io;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-//키보드로 입력받은 원시데이타를 파일로 전달하여 저장하는 프로그램 작성
+//키보드로 입력받은 값을 원시데이타로 제공받아 파일로 전달하여 저장하는 프로그램 작성
 // => EOF(End Of File) 신호(입력스트림 종료 - Ctrl+Z)를 입력받으면 프로그램 종료
 public class FileOutputStreamApp {
 	public static void main(String[] args) throws IOException {
@@ -27,7 +27,7 @@ public class FileOutputStreamApp {
 		int readByte;
 		
 		while(true) {
-			//키보드 입력스트림에 존재하는 원시데이타를 반환받아 변수에 저장
+			//키보드 입력스트림에 존재하는 값을 원시데이타로 반환받아 변수에 저장
 			readByte=System.in.read();
 			
 			if(readByte == -1) break;
