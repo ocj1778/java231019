@@ -10,7 +10,7 @@ public class FileWriterApp {
 	public static void main(String[] args) throws IOException {
 		System.out.println("[메세지]키보드를 눌러 값을 입력해 주세요.[프로그램 종료 : Ctrl+Z]");
 
-		//키보드 입력스트림을 전달받아 InputStreamReader 클래스의 입력스트림으로 확장
+		//키보드 입력스트림을 전달받아 InputStreamReader 클래스로 입력스트림 확장
 		// => 키보드 입력값을 문자데이타로 제공받기 위한 입력스트림 생성
 		InputStreamReader in=new InputStreamReader(System.in);
 		
