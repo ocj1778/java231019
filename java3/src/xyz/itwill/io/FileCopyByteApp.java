@@ -16,7 +16,7 @@ public class FileCopyByteApp {
 		//원본파일에 저장된 값을 원시데이타로 제공받기 위한 입력스트림 생성
 		BufferedInputStream in=null;
 		try {
-			//BufferedInputStream 클래스 :  대량의 원시데이타를 제공받을 입력스트림을 생성하기 위한 클래스
+			//BufferedInputStream 클래스 : 대량의 원시데이타를 제공받을 입력스트림을 생성하기 위한 클래스
 			// => BufferedInputStream(InputStream in) 생성자로 객체 생성
 			// => in 매개변수에 InputStream 객체를 전달받아 저장
 			//FileInputStream 클래스로 만들어진 파일 입력스트림을 BufferedInputStream 클래스를
@@ -28,7 +28,7 @@ public class FileCopyByteApp {
 		}
 		
 		//타겟파일에 원시데이타를 전달하기 위한 출력스트림 생성
-		//BufferedOutputStream 클래스 :  대량의 원시데이타를 전달할 출력스트림을 생성하기 위한 클래스
+		//BufferedOutputStream 클래스 : 대량의 원시데이타를 전달할 출력스트림을 생성하기 위한 클래스
 		// => BufferedOutputStream(OutputStream out) 생성자로 객체 생성
 		// => out 매개변수에 OutputStream 객체를 전달받아 저장
 		//FileOutputStream 클래스로 만들어진 파일 출력스트림을 BufferedOutputStream 클래스를
