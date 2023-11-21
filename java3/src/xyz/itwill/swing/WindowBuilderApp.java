@@ -26,12 +26,13 @@ public class WindowBuilderApp extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
 	private JButton addBtn;
 	private JButton modifyBtn;
 	private JButton removeBtn;
 	private JButton searchBtn;
 	private JMenuItem open;
+	private JScrollPane scrollPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -62,24 +63,6 @@ public class WindowBuilderApp extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
-		table.setFont(new Font("굴림", Font.BOLD, 17));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"\uD559\uBC88", "\uC774\uB984", "\uC804\uD654\uBC88\uD638"
-			}
-		));
-		table.getColumnModel().getColumn(1).setPreferredWidth(99);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(124);
-		table.getColumnModel().getColumn(2).setMinWidth(30);
-		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
@@ -119,6 +102,22 @@ public class WindowBuilderApp extends JFrame {
 		open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
 		open.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
 		file.add(open);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setToolTipText("");
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new String[] {
+				"\uD559\uBC88", "\uC774\uB984", "\uC804\uD654\uBC88\uD638"
+			},0));
+		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setMinWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(170);
+		table.setFont(new Font("굴림", Font.PLAIN, 16));
+		scrollPane.setViewportView(table);
 	}
 
 }

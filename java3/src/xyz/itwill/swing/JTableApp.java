@@ -106,9 +106,9 @@ public class JTableApp extends JFrame {
 		public InputStudentDialog(JFrame frame, String title) {
 			//JDialog(Frame owner, String title, boolean model) 생성자를 super 키워드로 호출
 			// => owner 매개변수에는 부모창의 JFram 객체를 전달받고 model 매개변수에는 부모창의
-			//비활성화 여부를 설정하는 논리값(false : 부모창 활성화, true : 부모창 비활성화)을 
-			//전달받아 JDialog 객체 생성
-			super(frame, title, true);
+			//비활성화 여부를 설정하는 논리값(false : 부모창 활성화 - Modaless, true : 부모창
+			//비활성화 - Modal)을 전달받아 JDialog 객체 생성
+			super(frame, title, true);//모달 다이얼로그
 
 			getContentPane().setLayout(new GridLayout(2, 1));
 		
@@ -124,7 +124,9 @@ public class JTableApp extends JFrame {
 			panelOne.add(nameTf);
 			panelOne.add(new JLabel("전화번호", JLabel.CENTER));
 			panelOne.add(phoneTf);
-		
+
+			numTf.requestFocus();	
+			
 			okBtn=new JButton("추가");	
 			cancelBtn=new JButton("취소");
 			
@@ -162,7 +164,7 @@ public class JTableApp extends JFrame {
 					numTf.setText("");
 					nameTf.setText("");
 					phoneTf.setText("");
-					
+
 					setVisible(false);
 				}
 			});
