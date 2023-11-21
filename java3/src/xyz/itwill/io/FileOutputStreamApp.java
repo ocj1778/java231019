@@ -14,10 +14,15 @@ public class FileOutputStreamApp {
 		// => name 매개변수에는 파일 출력스트림을 생성하기 위한 파일경로를 전달하여 저장
 		// => 매개변수로 전달받은 위치(파일경로)에 파일이 존재하지 않는 경우 FileNotFoundException 발생
 		// => FileNotFoundException 대신 IOException를 이용하여 예외 처리 또는 예외 전달 가능
-		//파일 출력스트림은 매개변수로 전달받은 파일이 없는 경우 파일을 생성하여 출력스트림 제공
+		// => 파일 출력스트림은 매개변수로 전달받은 파일이 없는 경우 파일을 생성하여 출력스트림 제공
 		// => 매개변수로 전달받은 파일이 있는 경우 기존 파일에 저장된 데이타는 초기화 처리되고 
 		//출력스트림으로 새롭게 전달받은 값으로 파일에 저장 - 덮어씌우기(OverWrite)
-		FileOutputStream out=new FileOutputStream("c:/data/byte.txt");
+		//FileOutputStream out=new FileOutputStream("c:/data/byte.txt");
+		
+		//FileOutputStream(String name, boolean append) 생성자를 사용하여 객체 생성
+		// => append 매개변수에 [false]를 전달하면 기존 내용을 없애고 새로운 내용으로 저장하며
+		//[true]를 전달하면 기존 내용 뒤에 새로운 내용을 추가하여 저장
+		FileOutputStream out=new FileOutputStream("c:/data/byte.txt", true);
 		
 		int readByte;
 		
