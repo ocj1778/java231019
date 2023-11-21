@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-//문자데이타 기반의 스트림(Character Stream) : 원시데이타를 가동 처리한 문자데이타를 전달하기
+//문자데이타 기반의 스트림(Character Stream) : 원시데이타를 가공 처리한 문자데이타를 전달하기
 //위한 입력 또는 출력 스트림
 // => 원시데이타를 인코딩 처리하여 원하는 문자형태(캐릭터셋 - CharacterSet)의 문자데이터로 변환
 // => 전달값을 2Byte 단위로 입력 또는 출력하기 위한 스트림
@@ -21,8 +21,8 @@ public class CharacterStreamApp {
 		// => 키보드를 사용하여 인코딩 처리된 문자값(2Byte)을 전달받을 수 있는 입력스트림 생성 
 		InputStreamReader in=new InputStreamReader(System.in);
 		
-		//OutputStreamWriter 클래스 : 매개변수로 OutputStream 객체를 전달받아 문자데이타를  
-		//출력하기 위한 출력스트림(Writer 객체)을 생성하기 클래스 - 스트림 확장
+		//OutputStreamWriter 클래스 : 매개변수로 OutputStream 객체를 전달받아 문자데이타를 전달하기 
+		//위한 출력스트림(Writer 객체)을 생성하기 클래스 - 스트림 확장
 		// => 모니터를 사용하여 인코딩 처리된 문자값(2Byte)을 전달하여 출력할 수 있는 출력스트림 생성 
 		//OutputStreamWriter out=new OutputStreamWriter(System.out);
 		
@@ -35,8 +35,8 @@ public class CharacterStreamApp {
 		int readByte;
 		
 		while(true) {
-			//Reader.read() : 입력스트림에 존재하는 문자값(2Byte)을 문자데이타로 얻어와
-			//정수값으로 반환하는 메소드
+			//Reader.read() : 입력스트림에 존재하는 원시데이타를 인코딩 처리하여 문자값(2Byte)으로
+			//변환된 문자데이타를 얻어와 정수값으로 반환하는 메소드
 			readByte=in.read();
 			
 			if(readByte == -1) break;
