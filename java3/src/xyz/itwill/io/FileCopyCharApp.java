@@ -8,7 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 //원본파일(c:/data/bandzip.exe)에 저장된 값을 문자데이타로 제공받아 타겟파일(c:/data/bandzip_char.exe)에
-//전달하여 저장하는 프로그램 작성 - 파일 복사 프로그램 
+//전달하여 저장하는 프로그램 작성 - 파일 복사 프로그램
+// => 텍스트 형식의 원본파일(문서파일 - Text File)을 복사하여 타겟파일로 전달하여 저장 가능
+// => 텍스트 형식의 파일을 제외한 원본파일(이진파일 - Binary File)은 파일에 저장된 값을 인코딩
+//처리한 문자데이타로 읽어 타겟파일에 전달하므로 변형된 값으로 저장 - 원본파일과 다른 파일로 복사
 public class FileCopyCharApp {
 	public static void main(String[] args) throws IOException {
 		//원본파일에 저장된 값을 문자데이타로 제공받기 위한 입력스트림 생성
