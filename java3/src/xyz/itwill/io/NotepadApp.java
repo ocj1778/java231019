@@ -181,7 +181,7 @@ public class NotepadApp extends JFrame {
 					}
 				} else {//현재 작업중인 파일이 있는 경우
 					try {
-						BufferedWriter out=new BufferedWriter(new FileWriter(file));
+						BufferedWriter out=new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
 						String text=textArea.getText();
 						out.write(text);
 						out.close();
