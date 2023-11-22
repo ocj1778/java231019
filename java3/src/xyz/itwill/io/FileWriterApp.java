@@ -29,12 +29,12 @@ public class FileWriterApp {
 		int readByte;
 		
 		while(true) {
-			//키보드 입력스트림에 존재하는 값을 문자데이타로 반환받아 변수에 저장
+			//확장된 키보드 입력스트림으로 문자데이타를 제공받아 변수에 저장
 			readByte=in.read();
 			
 			if(readByte == -1) break;
 			
-			//파일 출력스트림에 문자데이타를 전달하여 저장 - SAVE
+			//파일 출력스트림에 문자데이타를 전달하여 파일에 저장 - SAVE
 			out.write(readByte);
 		}
 		

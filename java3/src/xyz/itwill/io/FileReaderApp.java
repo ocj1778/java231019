@@ -30,15 +30,16 @@ public class FileReaderApp {
 		int readByte;
 		
 		while(true) {
-			//파일 입력스트림을 사용하여 파일에 저장된 값을 문자데이타로 변환받아 저장 - LOAD
+			//파일 입력스트림을 사용하여 파일에 저장된 값을 문자데이타로 제공받아 저장 - LOAD
 			readByte = in.read();
 			
 			//파일 입력스트림으로 제공받을 문자데이타가 없는 경우 반복문 종료
 			if(readByte == -1) break;
 			
-			//문자데이타를 모니터 출력스트림으로 전달하여 출력 처리
+			//문자데이타를 확장된 모니터 출력스트림으로 전달하여 출력 처리
+			// => 모니터 출력스트림에는 출력버퍼가 존재하므로 반드시 flush() 메소드 호출
 			out.write(readByte);
-			out.flush();
+			out.flush();//출력버퍼에 존재하는 문자데이타를 출력스트림으로 전달하는 메소드
 		}
 		
 		//FileReader.close() : 파일 입력스트림을 제거하는 메소드
