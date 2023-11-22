@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -30,8 +32,8 @@ public class NotepadApp extends JFrame {
 	JTextArea textArea;
 	JMenuItem init, open, save, exit;
 	
-	//JFileChooser 클래스 : 파일을 선택하기 위한 다이얼로그를 구현한 컨테이너 클래스
-	JFileChooser openFileChooser, saveFileChooser;
+	//JFileChooser 클래스 : 파일을 선택하기 위한 파일 다이얼로그를 구현한 컨테이너 클래스
+	JFileChooser fileChooser;
 	
 	//현재 작업중인 문서파일의 경로를 저장하기 위한 필드
 	private File file;  
@@ -73,18 +75,14 @@ public class NotepadApp extends JFrame {
 		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		openFileChooser=new JFileChooser();
+		fileChooser=new JFileChooser();
 		//JFileChooser.setCurrentDirectory(File file) : 파일 다이얼로그의 기본 작업 디렉토리를
 		//변경하는 메소드
-		openFileChooser.setCurrentDirectory(new File("c:/"));
+		fileChooser.setCurrentDirectory(new File("c:/"));
 		//JFileChooser.addChoosableFileFilter(FileFilter filter) : 파일 다이얼로그로 선택 가능한
 		//파일 필터 기능을 추가하는 메소드 
 		// => 파일 이름으로 필터 기능을 제공하기 위해 FileNameExtensionFilter 객체를 생성하여 전달
-		openFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("텍스트 파일(*.txt)", "txt"));
-		
-		saveFileChooser=new JFileChooser();
-		saveFileChooser.setCurrentDirectory(new File("c:/"));
-		saveFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("텍스트 파일(*.txt)", "txt"));
+		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("텍스트 파일(*.txt)", "txt"));
 
 		//메뉴아이템을 선택할 경우 발생되는 ActionEvent를 처리하기 위해 ActionListener 객체 등록
 		init.addActionListener(new NotePadEventHandle());
@@ -107,29 +105,35 @@ public class NotepadApp extends JFrame {
 			Object eventSource=e.getSource();
 			
 			if(eventSource == init) {
-				
+				textArea.setText("");//JTextArea 컴퍼넌트 초기화
+				setTitle("제목 없음 - Java 메모장");//프레임의 제목 초기화
+				file=null;//작업중인 파일이 없도록 필드 초기화 
 			} else if(eventSource == open) {
 				//JFileChooser.showOpenDialog(Component parent) : 열기 관련 파일 다이얼로그를
 				//화면에 출력하는 메소드 - 버튼 선택에 따른 정수값 반환
-				int option=openFileChooser.showOpenDialog(NotepadApp.this);
+				int option=fileChooser.showOpenDialog(NotepadApp.this);
 				
 				if(option == JFileChooser.APPROVE_OPTION) {//파일 선택 후 [열기] 버튼을 누른 경우
 					//JFileChooser.getSelectedFile() : 선택된 파일의 경로가 저장된 File 객체를 반환하는 메소드
-					file=openFileChooser.getSelectedFile();
+					// => 파일 다이얼로그의 [파일이름]의 입력 컴퍼넌트에 문자열을 제공받아 File 객체 생성
+					file=fileChooser.getSelectedFile();
 					
+					//프레임의 제목 변경
 					setTitle(file.toString()+" - Java 메모장");
 					
 					try {
+						//확장된 파일 입력스트림을 생성하여 저장
 						BufferedReader in=new BufferedReader(new FileReader(file.getAbsoluteFile()));
 						
 						textArea.setText("");//JTextArea 컴퍼넌트 초기화
 						
 						while(true) {
-							//파일에 저장된 값을 한줄씩 제공받아 문자열로 저장
+							//확장된 파일 입력스트림으로 파일에 저장된 값을 한줄씩 제공받아 문자열로 저장
 							// => BufferedReader.readLine() : 입력스트림으로 문자열을 제공받아 반환하는 메소드
 							String text=in.readLine();
 							
-							if(text == null) break;//파일로부터 제공받을 값이 없는 경우 반복문 종료
+							//파일로부터 제공받을 문자열이 없는 경우 반복문 종료
+							if(text == null) break;
 							
 							//JTextArea 컴퍼넌트에 문자열을 추가하여 출력
 							textArea.append(text+"\n");
@@ -145,8 +149,46 @@ public class NotepadApp extends JFrame {
 					return;
 				}
 			} else if(eventSource == save) {
-				
-				
+				if(file == null) {//현재 작업중인 파일이 없는 경우
+					int option=fileChooser.showSaveDialog(NotepadApp.this);
+					
+					if(option == JFileChooser.APPROVE_OPTION) {//파일 선택 후 [저장] 버튼을 누른 경우
+						file=fileChooser.getSelectedFile();
+						
+						//선택된 파일에 확장자가 없는 경우 [txt] 확장자를 붙여 File 객체 생성
+						if(file.toString().lastIndexOf(".") == -1) {
+							file=new File(file.toString()+".txt");
+						}
+						
+						setTitle(file.toString()+" - Java 메모장");
+						
+						try {
+							//확장된 파일 출력스트림을 생성하여 저장
+							BufferedWriter out=new BufferedWriter(new FileWriter(file));
+							
+							//JTextArea 컴퍼넌트에 존재하는 모든 문자열을 제공받아 저장
+							String text=textArea.getText();
+							
+							//확장된 파일 출력스트림으로 모든 문자열을 전달하여 파일에 저장
+							out.write(text);
+							
+							out.close();
+						} catch (IOException exception) {
+							JOptionPane.showMessageDialog(NotepadApp.this, "프로그램에 문제가 발생 하였습니다.");
+						}
+					} else if(option == JFileChooser.CANCEL_OPTION) {//[취소] 버튼을 누른 경우
+						return;
+					}
+				} else {//현재 작업중인 파일이 있는 경우
+					try {
+						BufferedWriter out=new BufferedWriter(new FileWriter(file));
+						String text=textArea.getText();
+						out.write(text);
+						out.close();
+					} catch (IOException exception) {
+						JOptionPane.showMessageDialog(NotepadApp.this, "프로그램에 문제가 발생 하였습니다.");
+					}
+				}
 			} else if(eventSource == exit) {
 				System.exit(0);
 			}
