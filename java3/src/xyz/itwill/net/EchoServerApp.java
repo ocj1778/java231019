@@ -29,6 +29,7 @@ public class EchoServerApp {
 			}
 		} catch (IOException e) {
 			System.out.println("[에러]서버 네트워크에 문제가 발생 되었습니다.");
+			e.printStackTrace();
 		}
 	}
 }
