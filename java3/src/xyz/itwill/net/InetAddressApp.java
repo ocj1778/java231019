@@ -1,5 +1,8 @@
 package xyz.itwill.net;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 //네트워크(Network) : 두 대이상의 컴퓨터에서 값을 송수신할 수 있는 기능을 제공하는 환경
 
 //인터넷(Internet) : 현실에 존재하는 모든 컴퓨터들을 연결한 네트워크 통신망
@@ -59,8 +62,38 @@ package xyz.itwill.net;
 //java.net 패키지 : 네트워크 프로그램을 작성하기 위한 Java 자료형이 선언된 패키지
 
 public class InetAddressApp {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
+		//InetAddress 클래스 : 네트워크 식별자(IP 주소와 호스트 이름)를 저장하기 위한 클래스
+		//InetAddress.getLocalHost() : 현재 사용중인 컴퓨터의 네트워크 식별자가 저장된
+		//InetAddress 객체를 반환하는 정적메소드
+		// => 호스트 이름을 검색할 수 없는 경우 UnknownHostException 발생
+		//현재 사용중인 컴퓨터는 기본적으로 [127.0.0.1]의 IP 주소(LoopBack IP 주소)가 제공되며
+		//[localhost]라는 호스트 이름으로 사용
+		InetAddress myComputer=InetAddress.getLocalHost();
 		
+		//InetAddress.toString() : InetAddress 객체에 저장된 네트워크 식별자를 문자열로 변환하여 반환하는 메소드
+		System.out.println("myComputer = "+myComputer);//toString() 메소드 자동 호출
+		
+		//InetAddress.getHostName() : InetAddress 객체에 저장된 호스트 이름을 반환하는 메소드
+		System.out.println("myComputer = "+myComputer.getHostName());
+	
+		//InetAddress.getHostAddress() : InetAddress 객체에 저장된 IP 주소를 반환하는 메소드
+		System.out.println("myComputer = "+myComputer.getHostAddress());
+		System.out.println("===============================================================");
+		//InetAddress.getByName(String name) : 매개변수로 전달받은 호스트 이름의 컴퓨터에
+		//대한 네트워크 식별자가 저장된 InetAddress 객체를 반환하는 정적메소드
+		InetAddress itwill=InetAddress.getByName("www.itwill.xyz");
+		
+		System.out.println("[www.itwill.xyz] 컴퓨터의 IP 주소 = "+itwill.getHostAddress());
+		System.out.println("===============================================================");
+		//InetAddress.getAllByName(String name) : 매개변수로 전달받은 호스트 이름의 컴퓨터에
+		//대한 모든 네트워크 식별자가 저장된 InetAddress 객체 배열을 반환하는 정적메소드
+		InetAddress[] naver=InetAddress.getAllByName("www.naver.com");
+		
+		for(InetAddress address : naver) {
+			System.out.println("[www.naver.com] 컴퓨터의 IP 주소 = "+address.getHostAddress());
+		}
+		System.out.println("===============================================================");
 	}
 }
 
