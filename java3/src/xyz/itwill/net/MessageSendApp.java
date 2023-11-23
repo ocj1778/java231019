@@ -7,7 +7,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-//DatagramSocket 클래스의 DatagramPackage 클래스를 이용하여 UDP 네트워크 프로그램 작성
+//DatagramSocket 클래스의 DatagramPacket 클래스를 이용하여 UDP 네트워크 프로그램 작성
 // => 컴퓨터들이 접속을 하지 않고 데이타를 보내는 컴퓨터와 데이타를 받는 컴퓨터로 구분하여 처리
 
 //키보드로 메세지를 입력받아 다른 컴퓨터에게 전달하는 UDP 네트워크 프로그램 작성
