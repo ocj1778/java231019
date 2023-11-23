@@ -1,13 +1,15 @@
 package xyz.itwill.net;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 
 //ServerSocket 클래스와 Socket 클래스를 사용하여 TCP 네트워크 프로그램 작성
 // => 서버와 클라이언트가 소켓을 사용하여 1:1로 연결돼 데이타를 송수신하는 프로그램 
 
-//접속된 클라이언트에게 서버 컴퓨터의 현재 날짜와 시간을 전달하는 서버 프로그램 작성
+//접속된 클라이언트에게 서버 컴퓨터의 현재 날짜와 시간 정보를 전달하는 서버 프로그램 작성
 // => NTP(Network Time Protocol) Server : 날짜와 시간 정보를 제공하는 서버 컴퓨터
 public class TimeServerApp {
 	public static void main(String[] args) {
@@ -32,21 +34,34 @@ public class TimeServerApp {
 				Socket socket=ntpServer.accept();
 				//System.out.println("socket = "+socket);
 				
+				/*
+				//Socket.getOutputStream() : Socket 객체로부터 접속 컴퓨터에게 원시데이타를 
+				//전달할 수 있는 출력스트림(OutputStream 객체)을 반환하는 메소드
+				OutputStream stream=socket.getOutputStream();
+
+				//매개변수로 OutputStream 객체를 전달받아 객체를 전달할 수 있는 출력스트림
+				//(ObjectOutputStream)으로 확장
+				ObjectOutputStream out=new ObjectOutputStream(stream);
 				
+				//확장된 출력스트림을 이용하여 플렛폼의 현재 날짜와 시간정보가 저장된 Date 객체를
+				//접속 컴퓨터에게 전달
+				out.writeObject(new Date());
+				*/
+				
+				//불필요한 식별자를 제거한 명령
+				new ObjectOutputStream(socket.getOutputStream()).writeObject(new Date());
+				
+				//로그 처리 - 기록
+				//Socket.getInetAddress() : Socket 객체에 저장된 접속 컴퓨터의 네트워크 식별자가
+				//저장된 InetAddress 객체를 반환하는 메소드
+				System.out.println("[정보]클라이언트["+socket.getInetAddress().getHostAddress()
+						+"]에게 날짜와 시간정보를 제공 하였습니다.");
+				
+				//Socket.close() : 소켓을 제거하는 메소드 - 접속 컴퓨터와의 연결 해제
+				socket.close();
 			}
 		} catch (IOException e) {
 			System.out.println("[에러]서버 네트워크에 문제가 발생 되었습니다.");
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
