@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class DataInputStreamApp {
 	public static void main(String[] args) throws IOException {
-		//DataInputStream 클래스 : 원시데이타를 원하는 자료형의 값으로 변환하여 제공받을 
+		//DataInputStream 클래스 : 원시데이타를 원하는 자료형의 값으로 변환하여 제공받는 
 		//입력스트림을 생성하기 위한 클래스
 		// => DataInputStream(InputStream in) 생성자를 사용하여 객체 생성
 		DataInputStream in=new DataInputStream(new FileInputStream("c:/data/data.txt"));

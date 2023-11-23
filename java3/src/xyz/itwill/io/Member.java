@@ -3,7 +3,7 @@ package xyz.itwill.io;
 import java.io.Serializable;
 
 //객체 직렬화(Object Serialization) : 객체를 원시데이타로 변환하여 입력스트림 또는 출력스트림으로
-//전달하기 위한 기능 - 객체를 byte 배열로 변환
+//전달하기 위한 기능 - 객체를 byte 배열(원시데이타 모임)로 변환하여 전달
 
 //클래스를 객체 직렬화 처리하는 방법 - 객체 직렬화 클래스
 //1.Serializable 인터페이스를 상속받아 클래스 작성

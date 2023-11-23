@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ObjectInputStreamApp {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		//ObjectInputStream 클래스 : 원시데이타를 원하는 자료형의 객체로 변환하여 제공받을 
+		//ObjectInputStream 클래스 : 원시데이타를 원하는 자료형의 객체로 변환하여 제공받는 
 		//입력스트림을 생성하기 위한 클래스
 		// => ObjectInputStream(InputStream in) 생성자를 사용하여 객체 생성
 		ObjectInputStream in=new ObjectInputStream(new FileInputStream("c:/data/object.txt"));
