@@ -134,15 +134,3 @@ public class ChatingClientApp extends JFrame {
 		new ChatingClientApp("자바채팅");	
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
