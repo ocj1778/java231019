@@ -12,8 +12,9 @@ import java.util.Date;
 public class TimeClientApp {
 	public static void main(String[] args) throws ClassNotFoundException {
 		try {
-			//Socket 클래스 : TCP 네트워크 프로그램에서 컴퓨터와의 접속 정보를 저장하기 위한 클래스
-			// => 접속된 컴퓨터의 소켓과 연결되면 데이타를 송수신할 수 있는 입력스트림과 출력스트림이 자동 제공
+			//Socket 클래스 : TCP 네트워크 프로그램에서 컴퓨터와의 연결 정보를 저장하기 위한 클래스
+			// => 접속된 컴퓨터(서버)의 소켓과 연결되면 데이타를 송수신할 수 있는 입력스트림과
+			//출력스트림이 자동으로 생성되어 제공
 			// => Socket(String host, int port) 생성자를 사용하여 객체 생성
 			// => host 매개변수는 접속할 서버 컴퓨터의 이름 또는 IP 주소를 전달하고 port 
 			//매개변수에는 서버에서 활성화 처리한 포트번호를 전달하여 저장

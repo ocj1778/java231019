@@ -21,7 +21,8 @@ public class EchoServerApp {
 				//소켓의 입력스트림을 반환받아 대량의 문자데이타(문자열)를 제공받을 수 있는 입력스트림으로 확장
 				BufferedReader in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				
-				//확장된 입력스트림으로 클라이언트가 보내온 문자열(메세지)를 반환받아 출력				
+				//확장된 입력스트림으로 클라이언트가 보내온 문자열(메세지)를 반환받아 출력
+				// => 입력스트림에 문자열이 없는 경우 스레드가 일시 중지
 				System.out.println("["+socket.getInetAddress().getHostAddress()
 						+"]님이 보내온 메세지 = "+in.readLine());
 				

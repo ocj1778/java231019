@@ -80,7 +80,7 @@ public class InetAddressApp {
 		//InetAddress.getHostAddress() : InetAddress 객체에 저장된 IP 주소를 반환하는 메소드
 		System.out.println("myComputer = "+myComputer.getHostAddress());
 		System.out.println("===============================================================");
-		//InetAddress.getByName(String name) : 매개변수로 전달받은 호스트 이름의 컴퓨터에
+		//InetAddress.getByName(String name) : 매개변수로 전달받은 호스트 이름(IP 주소)의 컴퓨터에
 		//대한 네트워크 식별자가 저장된 InetAddress 객체를 반환하는 정적메소드
 		InetAddress itwill=InetAddress.getByName("www.itwill.xyz");
 		
@@ -96,13 +96,3 @@ public class InetAddressApp {
 		System.out.println("===============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-

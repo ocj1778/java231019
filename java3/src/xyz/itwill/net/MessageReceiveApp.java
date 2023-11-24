@@ -33,11 +33,3 @@ public class MessageReceiveApp {
 		datagramSocket.close();
 	}
 }
-
-
-
-
-
-
-
-

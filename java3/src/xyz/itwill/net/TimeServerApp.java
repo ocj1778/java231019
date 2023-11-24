@@ -6,8 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-//ServerSocket 클래스와 Socket 클래스를 사용하여 TCP 네트워크 프로그램 작성
-// => 서버와 클라이언트가 소켓을 사용하여 1:1로 연결돼 데이타를 송수신하는 프로그램 
+//TCP 네트워크 프로그램 : ServerSocket 클래스와 Socket 클래스를 사용하여 작성
+// => 클라이언트가 서버에 접속(Connection)하여 서버와 클라이언트에 만들어진 소켓을 사용해  
+//1:1로 연결되어 데이타를 송수신하는 프로그램 
 
 //접속된 클라이언트에게 서버 컴퓨터의 현재 날짜와 시간 정보를 전달하는 서버 프로그램 작성
 // => NTP(Network Time Protocol) Server : 날짜와 시간 정보를 제공하는 서버 컴퓨터
@@ -30,7 +31,7 @@ public class TimeServerApp {
 				//ServerSocket.accept() : 클라이언트가 서버에 접속되면 클라이언트와 데이타를
 				//송수신하는 Socket 객체를 반환하는 메소드
 				// => 클라이언트가 접속되기 전까지 스레드가 일시 중지되며 클라이언트가 접속되면
-				//클라이언트의 소켓와 연결과 소켓을 생성하여 반환하고 스레드 재실행
+				//클라이언트의 소켓와 연결된 소켓을 서버에 생성하여 반환하고 스레드 재실행
 				Socket socket=ntpServer.accept();
 				//System.out.println("socket = "+socket);
 				
@@ -44,7 +45,7 @@ public class TimeServerApp {
 				ObjectOutputStream out=new ObjectOutputStream(stream);
 				
 				//확장된 출력스트림을 이용하여 플렛폼의 현재 날짜와 시간정보가 저장된 Date 객체를
-				//접속 컴퓨터에게 전달
+				//접속 컴퓨터(클라리언트)에게 전달
 				out.writeObject(new Date());
 				*/
 				
@@ -62,6 +63,15 @@ public class TimeServerApp {
 			}
 		} catch (IOException e) {
 			System.out.println("[에러]서버 네트워크에 문제가 발생 되었습니다.");
+		} finally {
+			try {
+				//ServerSocket.close() : ServerSocket 객체를 제거하는 메소드 - 서버 종료
+				// => 접속된 모든 클라이언트의 접속 해제
+				ntpServer.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
