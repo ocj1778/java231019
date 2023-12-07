@@ -1,9 +1,5 @@
 package xyz.itwill.jdbc;
 
-import java.sql.DriverManager;
-
-import oracle.jdbc.driver.OracleDriver;
-
 //JDBC(Java DataBase Connectivity) : Java 프로그램을 사용하여 DBMS 서버에 접속해 SQL 명령을
 //전달하여 실행하기 위한 기능을 제공하는 Java API(인터페이스 또는 클래스)
 
@@ -30,14 +26,27 @@ import oracle.jdbc.driver.OracleDriver;
 //STUDENT 테이블에 행(학생정보)를 삽입하는 JDBC 프로그램 작성
 public class InsertStudentApp {
 	public static void main(String[] args) {
-		//1.OracleDriver 클래스를 객체로 생성하여 DriverManager 클래스에 JDBC Driver 객체로 등록
-		
-		//DriverManager 클래스 : Driver 객체를 관리하기 위한 기능을 제공하는 클래스
-		// => DriverManager 클래스에 Driver 객체를 JDBC Driver 객체로 등록해야 DBMS 서버에 접속 가능 
-		//Driver 객체 : DBMS 서버에 접속할 수 있는 기능을 제공하는 객체
-		//DriverManager.registerDriver(Driver driver) : 매개변수로 Driver 객체를 전달받아
-		//DriverManager 클래스가 관리할 수 있는 JDBC Driver 객체로 등록하는 메소드 
-		DriverManager.registerDriver(new OracleDriver());
+		try {
+			//1.OracleDriver 클래스를 객체로 생성하여 DriverManager 클래스에 JDBC Driver 객체로 등록
+			
+			//DriverManager 클래스 : Driver 객체를 관리하기 위한 기능을 제공하는 클래스
+			// => DriverManager 클래스에 Driver 객체를 JDBC Driver 객체로 등록해야 DBMS 서버에 접속 가능 
+			//Driver 객체 : DBMS 서버에 접속할 수 있는 기능을 제공하는 객체
+			//DriverManager.registerDriver(Driver driver) : 매개변수로 Driver 객체를 전달받아
+			//DriverManager 클래스가 관리할 수 있는 JDBC Driver 객체로 등록하는 메소드
+			// => 동일한 클래스로 생성된 Driver 객체가 DriverManager 클래스에 여러개 등록 가능
+			// => 불필요한 JDBC Driver 객체가 존재해 성능의 저하 발생 가능 
+			//DriverManager.registerDriver(new OracleDriver());
+			
+			//Class.forName(String className) 메소드를 호출하여 ClassLoader 프로그램을 사용해
+			//OracleDriver 클래스를 읽어 메모리에 저장
+			// => OracleDriver 클래스의 정적영역에서 OracleDriver 클래스로 객체를 생성하여
+			//DriverManager 클래스의 DBC Driver 객체로 등록 처리
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("OracleDriver 클래스를 찾을 수 없습니다.");
+		}
 	}
 }
 
