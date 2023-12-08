@@ -10,7 +10,6 @@ public class DeleteStudentApp {
 	public static void main(String[] args) {
 		Connection con=null;
 		Statement stmt=null;
-		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
