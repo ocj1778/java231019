@@ -39,30 +39,32 @@ public class InsertStudentApp {
 		Statement stmt=null;
 		try {
 			//1.OracleDriver 클래스를 객체로 생성하여 DriverManager 클래스에 JDBC Driver 객체로 등록
-			// => OracleDriver 클래스를 읽어 메모리에 저장하면 자동으로 OracleDriver 객체가
-			//생성되어 DriverManager 클래스에 JDBC Driver 객체로 등록 처리 
+			// => OracleDriver 클래스를 읽어 메모리에 저장하면 OracleDriver 객체가 생성되어
+			//DriverManager 클래스에 JDBC Driver 객체로 자동 등록 처리 
 			
 			//DriverManager 클래스 : Driver 객체를 관리하기 위한 기능을 제공하는 클래스
 			// => DriverManager 클래스에 Driver 객체를 JDBC Driver 객체로 등록해야 DBMS 서버에 접속 가능 
 			//Driver 객체 : DBMS 서버에 접속할 수 있는 기능을 제공하는 객체
-			//DriverManager.registerDriver(Driver driver) : 매개변수로 Driver 객체를 전달받아
+			//DriverManager.registerDriver(Driver driver) : 매개변수로 전달받은 Driver 객체를
 			//DriverManager 클래스가 관리할 수 있는 JDBC Driver 객체로 등록하는 정적 메소드
 			// => 동일한 클래스로 생성된 Driver 객체가 DriverManager 클래스에 여러개 등록 가능
-			// => 불필요한 JDBC Driver 객체가 존재해 성능의 저하 발생 가능 
+			// => 동일한 JDBC Driver 객체가 존재해 불필요한 자원을 차지하여 성능의 저하 발생 가능 
 			//DriverManager.registerDriver(new OracleDriver());
 			
 			//Class.forName(String className) 메소드를 호출하여 ClassLoader 프로그램을 사용해
 			//OracleDriver 클래스를 읽어 메모리에 저장
 			// => OracleDriver 클래스의 정적영역에서 OracleDriver 클래스로 객체를 생성하여
 			//DriverManager 클래스의 JDBC Driver 객체로 등록 처리
+			// => OracleDriver 클래스의 정적영역에서 DriverManager.registerDriver(new OracleDriver()); 명령 자동 실행
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			//2.DriverManager 클래스에 등록된 JDBC Driver 객체를 사용하여 DBMS 접속하여
+			//2.DriverManager 클래스에 등록된 JDBC Driver 객체를 사용하여 DBMS 서버 접속하여
 			//Connection 객체를 반환받아 저장
 			//Connection 객체 : DBMS 서버에 접속된 정보를 저장한 객체
 			//DriverManager.getConnection(String url, String username, String password)
 			// => DriverManager 클래스에 등록된 JDBC Driver 객체를 사용하여 DBMS 서버에 접속하는 정적 메소드
 			// => DBMS 서버에 정상적으로 접속된 경우 접속 정보가 저장된 Connection 객체 반환
+			// => DBMS 서버 접속이 실패한 경우 SQLException 발생하므로 예외 처리
 			// => 접속을 위한 URL 주소의 프로토콜을 사용하여 원하는 DBMS 서버 접속
 			//URL(Uniform Resource Location) : 인터넷에 존재하는 자원의 위치를 표현하는 주소
 			//형식) Protocol:ServerName:Port:Resource >> https://www.itwill.xyz:80/test/index.html
@@ -77,14 +79,17 @@ public class InsertStudentApp {
 			//3.Connection 객체로부터 SQL 명령을 DBMS 서버에 전달할 수 있는 Statement 객체를 반환받아 저장
 			//Connection.createStatement() : SQL 명령을 DBMS 서버에 전달할 수 있는 Statement 
 			//객체를 반환하는 메소드
+			// => Connection 객체에 문제가 있는 경우 SQLException 발생하므로 예외 처리
 			stmt=con.createStatement();
 			
 			//4.Statement 객체의 메소드를 호출하여 SQL 명령(INSERT,UPDATE,DELETE,SELECT 등)을
 			//DBMS 서버에 전달하여 실행하고 실행결과를 반환받아 저장
 			//Statement.executeUpdate(String sql) : DML 명령(INSERT,UPDATE,DELETE)을 전달하여 실행하는 메소드
 			// => DML 명령의 실행결과로 조작행의 갯수를 정수값으로 반환
+			// => 전달되어 실행된 DML 명령이 잘못된 경우 SQLException 발생하므로 예외 처리
 			//Statement.executeQuery(String sql) : DQL 명령(SELECT)을 전달하여 실행하는 메소드
 			// => DQL 명령의 실행결과로 검색행이 저장된 ResultSet 객체로 반환
+			// => 전달되어 실행된 DQL 명령이 잘못된 경우 SQLException 발생하므로 예외 처리
 			//String sql="insert into student values(1000,'홍길동','010-1234-5678','서울시 강남구','01/01/01')";
 			//String sql="insert into student values(2000,'임꺽정','010-7894-5612','수원시 월정구','02/05/08')";
 			String sql="insert into student values(3000,'전우치','010-1478-2589','인천시 상당구','1998-12-11')";
@@ -100,7 +105,7 @@ public class InsertStudentApp {
 			//6.JDBC 관련 객체를 모두 삭제 처리 - 객체가 생성된 순서의 반대로 삭제
 			// => Connection 객체를 삭제하여 DBMS 서버의 접속 종료
 			try {
-				//Statement.close() : Statement 객체를 삭제하는 메소드
+				//Statement.close() : Statement 객체를 삭제하는 메소드 - SQLException 발생
 				// => NullPointerException 발생 가능 - if 명령을 사용하여 예외 발생 방지
 				//NullPointerException : 참조변수에 NULL이 저장된 상태에서 메소드를 호출한 경우 발생되는 예외
 				if(stmt!=null) stmt.close();

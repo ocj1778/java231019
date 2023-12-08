@@ -19,8 +19,8 @@ public class StaticBlockApp {
 		//참조변수에 저장된 메모리 주소로 객체를 참조해 메소드 호출
 		sb.display();
 		*/
-	
-		//Class.forName(String className) : 문자열로 패키지 경로가 포함된 클래스를 매개변수로
+		
+		//Class.forName(String className) : 문자열로 표현된 패키지 경로가 포함된 클래스를 매개변수로
 		//전달받아 ClassLoader 프로그램을 사용하여 클래스를 메모리에 저장하는 정적 메소드
 		// => 메모리에 저장된 클래스의 정보가 저장된 Class 객체를 생성하여 반환 
 		// => 문자열로 전달받은 클래스가 없는 경우 ClassNotFoundExcpetion 발생되므로 반드시 예외 처리 
