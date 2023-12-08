@@ -26,7 +26,7 @@ import java.sql.Statement;
 //    classpath >> Add Jars >> 프로젝트 폴더의 Jar 파일을 선택 >> Apply And Close
 
 //STUDENT 테이블 : 학생정보를 저장하기 위핸 테이블 
-// => 학번(숫자형-PRIMARY KEY),이름(문자형),전화번호(문자형),주소(문자형),생년월일(문자형)
+// => 학번(숫자형-PRIMARY KEY),이름(문자형),전화번호(문자형),주소(문자형),생년월일(날짜형)
 //CREATE TABLE STUDENT(NO NUMBER(4) PRIMARY KEY,NAME VARCHAR2(50), PHONE VARCHAR2(20)
 //	,ADDRESS VARCHAR2(100),BIRTHDAY DATE);
 
