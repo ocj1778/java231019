@@ -25,7 +25,8 @@ import java.sql.Statement;
 // => 프로젝트 >> 마우스 오른쪽 버튼 >> Properties >> Java Build Path >> Libraries >>
 //    classpath >> Add Jars >> 프로젝트 폴더의 Jar 파일을 선택 >> Apply And Close
 
-//STUDENT 테이블 : 학번(숫자형-PRIMARY KEY),이름(문자형),전화번호(문자형),주소(문자형),생년월일(문자형)
+//STUDENT 테이블 : 학생정보를 저장하기 위핸 테이블 
+// => 학번(숫자형-PRIMARY KEY),이름(문자형),전화번호(문자형),주소(문자형),생년월일(문자형)
 //CREATE TABLE STUDENT(NO NUMBER(4) PRIMARY KEY,NAME VARCHAR2(50), PHONE VARCHAR2(20)
 //	,ADDRESS VARCHAR2(100),BIRTHDAY DATE);
 
@@ -45,7 +46,7 @@ public class InsertStudentApp {
 			// => DriverManager 클래스에 Driver 객체를 JDBC Driver 객체로 등록해야 DBMS 서버에 접속 가능 
 			//Driver 객체 : DBMS 서버에 접속할 수 있는 기능을 제공하는 객체
 			//DriverManager.registerDriver(Driver driver) : 매개변수로 Driver 객체를 전달받아
-			//DriverManager 클래스가 관리할 수 있는 JDBC Driver 객체로 등록하는 메소드
+			//DriverManager 클래스가 관리할 수 있는 JDBC Driver 객체로 등록하는 정적 메소드
 			// => 동일한 클래스로 생성된 Driver 객체가 DriverManager 클래스에 여러개 등록 가능
 			// => 불필요한 JDBC Driver 객체가 존재해 성능의 저하 발생 가능 
 			//DriverManager.registerDriver(new OracleDriver());
@@ -60,7 +61,7 @@ public class InsertStudentApp {
 			//Connection 객체를 반환받아 저장
 			//Connection 객체 : DBMS 서버에 접속된 정보를 저장한 객체
 			//DriverManager.getConnection(String url, String username, String password)
-			// => DriverManager 클래스에 등록된 JDBC Driver 객체를 사용하여 DBMS 서버에 접속하는 메소드
+			// => DriverManager 클래스에 등록된 JDBC Driver 객체를 사용하여 DBMS 서버에 접속하는 정적 메소드
 			// => DBMS 서버에 정상적으로 접속된 경우 접속 정보가 저장된 Connection 객체 반환
 			// => 접속을 위한 URL 주소의 프로토콜을 사용하여 원하는 DBMS 서버 접속
 			//URL(Uniform Resource Location) : 인터넷에 존재하는 자원의 위치를 표현하는 주소
