@@ -1,7 +1,6 @@
 package xyz.itwill.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,13 +55,18 @@ public class SelectStudentApp {
 					String name=rs.getString("name");
 					String phone=rs.getString("phone");
 					String address=rs.getString("address");
-					Date birthday=rs.getDate("birthday");
+					//Date birthday=rs.getDate("birthday");
+					//검색행의 컬럼값은 컬럼 자료형에 상관없이 getString() 메소드를 호출하여
+					//문자열로 반환받아 처리 가능
+					String birthday=rs.getString("birthday");
 					
 					System.out.println("학번 = "+no);
 					System.out.println("이름 = "+name);
 					System.out.println("전화번호 = "+phone);
 					System.out.println("주소 = "+address);
-					System.out.println("생년월일 = "+birthday);
+					//날짜형인 컬럼값을 문자열로 반환받으면 [yyyy-MM-dd HH:mm:ss] 패턴의 문자열로 반환
+					// => 날짜 또는 시간만 필요한 경우 문자열을 분리하여 사용
+					System.out.println("생년월일 = "+birthday.substring(0,10));
 					System.out.println("================================================");
 				} while(rs.next());//ResultSet 커서를 다음행으로 이동하여 처리행이 있는 경우 
 				//반복문을 실행하며 처리행이 없는 경우 반복문 종료
