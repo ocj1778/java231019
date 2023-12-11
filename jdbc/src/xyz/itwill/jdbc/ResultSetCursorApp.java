@@ -80,6 +80,7 @@ public class ResultSetCursorApp {
 		rs=stmt.executeQuery(sql);
 		//System.out.println("rs = "+rs);
 
+		/*
 		rs.absolute(2);
 
 		//ResultSet.updateXXX(String columnLabel, XXX value) : ResultSet 커서가 위치한 처리행의
@@ -90,6 +91,34 @@ public class ResultSetCursorApp {
 		//ResultSet.updateRow() : ResultSet 커서가 위치되어 컬럼값이 변경된 처리행을 테이블에
 		//적용하여 변경 처리하는 메소드 - UPDATE 명령을 전달하여 실행한 것과 동일한 결과 제공
 		rs.updateRow();
+		*/
+		
+		/*
+		rs.absolute(3);
+		
+		//ResultSet.moveToInsertRow() : ResultSet 커서가 위치한 다음행에 새로운 행을 삽입하여
+		//커서를 이동하고 기존행들은 다음행으로 차례대로 이동 처리하는 메소드
+		rs.moveToInsertRow();
+		
+		//ResultSet 커서가 위치한 삽입행의 컬럼값 변경
+		rs.updateInt("no", 4000);
+		rs.updateString("name", "일지매");
+		rs.updateString("phone", "010-6715-9181");
+		rs.updateString("address", "서울시 종로구");
+		rs.updateString("birthday", "2000-12-31");
+		
+		//ResultSet.insertRow() : ResultSet 커서가 위치한 삽입행을 테이블에 적용하여 삽입
+		//처리하는 메소드 - INSERT 명령을 전달하여 실행한 것과 동일한 결과 제공
+		rs.insertRow();
+		*/
+		
+		/*
+		rs.absolute(4);
+		
+		//ResultSet.deleteRow() : ResultSet 커서가 위치한 처리행을 테이블에 적용하여 삭제
+		//처리하는 메소드 - DELETE 명령을 전달하여 실행한 것과 동일한 결과 제공
+		rs.deleteRow();
+		*/
 		
 		rs.beforeFirst();	
 		while(rs.next()) {
