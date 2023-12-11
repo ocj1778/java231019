@@ -115,13 +115,3 @@ public class PreparedStatementApp {
  		ConnectionFactory.close(con, pstmt, rs);		
 	}
 }
-
-
-
-
-
-
-
-
-
-
