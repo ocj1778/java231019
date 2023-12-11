@@ -39,7 +39,7 @@ public class ExecuteApp {
 		boolean result=stmt.execute(sql);
 		
 		if(result) {//SELECT 명령이 전달되어 실행된 경우
-			//Statement.getUpdateCount() : Statement 객체로 전달되어 실행된 SELECT 명령의
+			//Statement.getResultSet() : Statement 객체로 전달되어 실행된 SELECT 명령의
 			//실행결과(검색행)가 저장된 ResultSet 객체를 반환하는 메소드
 			ResultSet rs=stmt.getResultSet();			
 			

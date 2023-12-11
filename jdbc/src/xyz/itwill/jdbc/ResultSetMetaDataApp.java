@@ -28,7 +28,8 @@ public class ResultSetMetaDataApp {
 		int columnCount=rsmd.getColumnCount();
 		System.out.println("검색행의 컬럼 갯수 = "+columnCount);
 		System.out.println("==============================================================");
-		for(int i=1;i<=columnCount;i++) {//검색대상의 갯수만큼 반복 처리
+		//검색대상의 갯수만큼 반복 처리 - 반복문의 제어변수는 ColumnIndex로 표현하여 사용
+		for(int i=1;i<=columnCount;i++) {
 			//ResultSetMetaData.getColumnLabel(int columnIndex) : 첨자위치(columnIndex)의
 			//컬럼명을 반환하는 메소드
 			String columnLabel=rsmd.getColumnLabel(i);

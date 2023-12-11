@@ -34,9 +34,9 @@ public class SelectStudentApp {
 			// => ResultSet 커서를 제공받으면 ResultSet 커서는 ResultSet 객체의 BOF(Before Of File)
 			//영역에 위치되도록 설정
 			//ResultSet.next() : ResultSet 커서를 다음행으로 이동하는 메소드
-			// => false 반환 : ResultSet 커서 위치에 처리행이 없는 경우 반환값 
+			// => false 반환 : ResultSet 커서가 이동한 위치에 처리행이 없는 경우 반환값 
 			//    - ResultSet 커서가 EOF(End Of File) 영역에 위치한 경우
-			// => true 반환 : ResultSet 커서 위치에 처리행이 있는 경우 반환값
+			// => true 반환 : ResultSet 커서가 이동한 위치에 처리행이 있는 경우 반환값
 			if(rs.next()) {//ResultSet 커서를 다음행으로 이동하여 처리될 행이 있는 경우 - 검색행는 있는 경우
 				//System.out.println("[메세지]검색된 학생정보가 있습니다.");
 				
