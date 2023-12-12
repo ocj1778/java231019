@@ -35,25 +35,20 @@ public class PropertiesApp {
 		//제공받아 Properties 파일의 [이름 = 값]의 문자열로 Properties 객체의 엔트리로 추가하는 메소드
 		properties.load(in);
 		
+		//Properties.get(String key) : Properties 객체에 저장된 엔트리 중에서 매개변수로 
+		//전달받은 맵키(Key)의 맵값(객체)를 반환하는 메소드
+		// => 맵값은 Object 객체로 반환하므로 반드시 명시적 객체 형변환해야만 사용 가능
+		// => Properties 객체에 저장된 엔트리의 맵값은 무조건 String 객체로만 변환하여 사용
+		String id=(String)properties.get("id");
+		String password=(String)properties.get("password");
+		String name=(String)properties.get("name");
 		
+		System.out.println("아이디 = "+id);
+		System.out.println("비밀번호 = "+password);
+		System.out.println("이름 = "+name);
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws IOException {
+		new PropertiesApp();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
