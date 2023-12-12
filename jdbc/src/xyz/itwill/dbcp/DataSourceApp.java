@@ -22,7 +22,7 @@ public class DataSourceApp {
 		//PoolDataSource.setConnectionFactoryClassName(String driver) 
 		// => Connection 객체를 생성하기 위한 JDBC Driver 클래스를 변경하는 메소드
 		pds.setConnectionFactoryClassName("oracle.jdbc.driver.OracleDriver");
-
+   
 		//PoolDataSource.setURL(String driver) 
 		// => Connection 객체를 생성하기 위한 URL 주소를 변경하는 메소드
 		pds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
