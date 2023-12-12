@@ -9,7 +9,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
 
-//Connection Pooling 기능을 제공한 클래스 - DBCP(DataBase Connection Pool) 클래스
+//Connection Pooling 기능을 제공한 클래스 - DBCP(DataBase Connection Pool)
 public final class ConnectionPool {
 	// Singleton
 	private static ConnectionPool instance;
