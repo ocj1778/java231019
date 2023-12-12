@@ -11,7 +11,7 @@ import java.sql.Statement;
 //Statement 객체 : 현재 접속중인 DBMS 서버에 SQL 명령을 전달하여 실행하기 위한 기능을 제공하는 객체
 //장점 : 하나의 Statement 객체로 다수의 SQL 명령을 전달하여 실행 가능
 //단점 : 전달되어 실행될 SQL 명령에 Java 변수값이 포함될 경우 문자열 결합 기능 사용
-// => 문자열 결합 기능을 사용하여 JDBC 프로그램을 작성하면 가독성 감소 및 유지보수의 효율성 감소
+// => 문자열 결합 기능을 사용하여 JDBC 프로그램을 작성하면 가독성 및 유지보수의 효율성 감소
 // => InSQL 해킹 기술(값 대신 부분적인 SQL 구문을 입력받아 SQL 명령에 포함시키는 해킹 기술)에 취약
 public class StatementApp {
 	public static void main(String[] args) throws NumberFormatException, IOException, SQLException {
@@ -78,6 +78,8 @@ public class StatementApp {
 
 		Statement stmt=con.createStatement();
 		
+		//이름 대신 [' or '1'='1] 형식의 문자열을 입력한 경우 입력값이 비교값이 아닌 조건식으로
+		//처리되어 조건식의 결과가 무조건 참(TRUE)으로 인식되어 모든 행이 검색 
 		String sql="select * from student where name='"+name+"' order by no";
 		ResultSet rs=stmt.executeQuery(sql);
 		

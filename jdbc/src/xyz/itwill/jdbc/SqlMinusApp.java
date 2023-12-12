@@ -52,7 +52,7 @@ public class SqlMinusApp {
 						int columnCount=rsmd.getColumnCount();
 						
 						System.out.println("====================================================================================");
-						//검색행의 컬럼명을 반환받아 출력
+						//검색행의 컬럼명을 반환받아 출력하기 위한 반복문
 						for(int i=1;i<=columnCount;i++) {
 							System.out.print(rsmd.getColumnLabel(i)+"\t");
 						}
@@ -85,7 +85,7 @@ public class SqlMinusApp {
 					}
 				} else {//INSERT,UPDATE,DELETE 명령을 전달하여 실행한 경우
 					int rows=stmt.getUpdateCount();
-					System.out.println(rows+"개의 행을 "+sql.substring(0, 6).toUpperCase()+"하였습니다.");
+					System.out.println(rows+"개의 행을 "+sql.substring(0, 6).toUpperCase()+" 하였습니다.");
 				}
 			} catch (SQLException e) {
 				//키보드로 입력받아 DBMS 서버에 전달되어 실행된 SQL 명령이 잘못된 경우에
