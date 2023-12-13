@@ -48,12 +48,13 @@ public class CallableStatementApp {
 		String sql="{call delete_student(?,?)}";
 		CallableStatement cstmt=con.prepareCall(sql);
 		
-		//CallableStatement.setInt(int parameterIndex, XXX parameterValue)
+		//CallableStatement.setXXX(int parameterIndex, XXX parameterValue)
 		// => 저장 프로시저의 IN 모드의 매개변수에 값을 전달하기 위한 메소드
+		// => XXX는 Java 자료형을 표현
 		cstmt.setInt(1, no);
 		
 		//CallableStatement.registerOutParameter(int parameterIndex, int sqlType)
-		// => 저장 프로시저의 OUT 모드의 매개변수에 저장된 값의 자료형울 제공받기 위한 메소드
+		// => 저장 프로시저의 OUT 모드의 매개변수에 저장된 값의 자료형을 제공받기 위한 메소드
 		// => sqlType 매개변수에는 DBMS 자료형을 Types 클래스의 상수를 사용하여 전달
 		cstmt.registerOutParameter(2, Types.NVARCHAR);
 		
@@ -61,7 +62,7 @@ public class CallableStatementApp {
 		cstmt.execute();
 		
 		//CallableStatement.getXXX(int parameterIndex) : 저장 프로시저의 OUT 모드의 매개변수에
-		//저장된 값을 반환하는 메소드 - XXX는 Java 자료형
+		//저장된 값을 반환하는 메소드 - XXX는 Java 자료형을 표현
 		String name=cstmt.getString(2);
 		
 		if(name==null) {//삭제된 행이 없는 경우
