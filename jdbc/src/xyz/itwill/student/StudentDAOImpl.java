@@ -1,5 +1,8 @@
 package xyz.itwill.student;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 //DAO(Data Access Object) 클래스 : 저장매체에 행을 삽입,변경,삭제,검색하는 기능을 제공하는 클래스
@@ -11,8 +14,7 @@ import java.util.List;
 
 //STUDENT 테이블에 행을 삽입,변경,삭제,검색하는 기능의 메소드를 작성하기 위한 DAO 클래스
 // => DAO 클래스의 메소드는 SQL 명령에 필요한 값(객체)을 매개변수로 전달받아 하나의 SQL 명령을
-//DBMS 서버에 전달하여 실행하고 실행결과를 Java 객체(값)으로 매핑하여 반환
-
+//DBMS 서버에 전달하여 실행하고 실행결과를 Java 객체(값)로 매핑(검색행의 컬럼값을 객체 필드에 저장)하여 반환
 public class StudentDAOImpl implements StudentDAO {
 	private static StudentDAOImpl _dao;
 	
@@ -31,8 +33,19 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public int insertStudent(StudentDTO student) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;//SQL 명령의 실행결과를 저장하기 위한 변수 - 메소드의 반환값
+
+		try {
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+
+		return rows;
 	}
 
 	//학생정보를 전달받아 STUDENT 테이블에 저장된 학생정보를 변경하고 변경행의 갯수를 반환하는 메소드
