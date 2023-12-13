@@ -90,8 +90,23 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	//학번을 전달받아 STUDENT 테이블에 저장된 학생정보를 삭제하고 삭제행의 갯수를 반환하는 메소드
 	@Override
 	public int deleteStudent(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="delete from student where no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]deleteStudent() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
 	}
 
 	//학번을 전달받아 STUDENT 테이블에 저장된 학생정보를 검색하여 반환하는 메소드
@@ -137,7 +152,35 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	// => 다중행을 검색하는 DAO 클래스의 메소드는 List 객체 반환
 	@Override
 	public List<StudentDTO> selectStudentByName(String name) {
-		return null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<StudentDTO> studentList=new ArrayList<StudentDTO>();
+		try {
+			con=getConnection();
+			
+			String sql="select no,name,phone,address,birthday from student where name=? order by no";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				StudentDTO student=new StudentDTO();
+				student.setNo(rs.getInt("no"));
+				student.setName(rs.getString("name"));
+				student.setPhone(rs.getString("phone"));
+				student.setAddress(rs.getString("address"));
+				student.setBirthday(rs.getString("birthday").substring(0,10));
+				
+				studentList.add(student);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectStudentByName() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return studentList;
 	}
 	
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
@@ -180,4 +223,32 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 		}
 		return studentList;
 	}
+	
+	/*
+	//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생의 인원수를 검색하여 반환하는 메소드
+	public int selectStudentCountByName(String name) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			con=getConnection();
+			
+			String sql="select count(*) from student where name=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectStudentList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return count;
+	}
+	*/
 }
