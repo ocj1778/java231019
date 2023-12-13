@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 //DAO(Data Access Object) 클래스 : 저장매체에 행을 삽입,변경,삭제,검색하는 기능을 제공하는 클래스
@@ -109,11 +110,10 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 			
 			rs=pstmt.executeQuery();
 			
-			//검색행이 없거나 하나인 경우를 구분하여 처리하기 위해 선택문 사용
-			// => 검색행이 없는 경우 [null] 반환
-			// => 검색행이 하나인 경우 DTO 객체 반환
+			//검색행이 하나인 경우에는 선택문 사용하여 처리
+			// => 검색행이 있는 경우 선택문의 명령으로 검색결과를 Java 객체로 변환되도록 처리
 			
-			//ResultSet 커서를 다음행으로 이동하여 처리될 행이 있는 경우 - 검색행이 있는 경우
+			//ResultSet 커서를 다음행으로 이동하여 처리될 행이 있는 경우 선택문의 명령 실행
 			if(rs.next()) {
 				//검색행을 Java 객체로 변환되도록 매핑 처리
 				// => 검색행의 컬럼값을 DTO 객체의 필드값으로 저장되도록 처리
@@ -143,7 +143,41 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
 	@Override
 	public List<StudentDTO> selectStudentList() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<StudentDTO> studentList=new ArrayList<StudentDTO>();
+		try {
+			con=getConnection();
+			
+			String sql="select no,name,phone,address,birthday from student order by no";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			//검색행이 여러개인 경우에는 반복문 사용하여 처리
+			// => 검색행이 있는 경우 반복문의 명령으로 검색결과를 Java 객체로 변환하여
+			//List 객체의 요소로 추가되도록 처리
+			
+			//ResultSet 커서를 다음행으로 이동하여 처리될 행이 있는 경우 반복문의 명령 실행
+			while(rs.next()) {
+				//검색행을 Java 객체로 변환되도록 매핑 처리
+				// => ResultSet 커서가 위치한 처리행의 컬럼값을 반환받아 객체의 필드값 변경
+				StudentDTO student=new StudentDTO();
+				student.setNo(rs.getInt("no"));
+				student.setName(rs.getString("name"));
+				student.setPhone(rs.getString("phone"));
+				student.setAddress(rs.getString("address"));
+				student.setBirthday(rs.getString("birthday").substring(0,10));
+				
+				//Java 객체를 List 객체의 요소값으로 저장되도록 추가
+				studentList.add(student);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectStudentList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return studentList;
 	}
 }
