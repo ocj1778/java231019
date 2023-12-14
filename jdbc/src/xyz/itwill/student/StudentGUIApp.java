@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -233,13 +234,15 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 				if (cmd != ADD) {//첫번째 [삽입] 버튼을 누른 경우 - NONE 상태
 					setEnable(ADD);//컴퍼넌트의 활성화 상태 변경 - ADD 상태 변경					
 				} else {//두번째 [삽입] 버튼을 누른 경우 - ADD 상태
-					initDisplay();
+					//학생정보를 입력받아 STUDENT 테이블에 삽입하여 출력 처리하는 메소드 호출
+					addStudent();
 				}
 			} else if (c == updateB) {
 				if (cmd != UPDATE && cmd != UPDATE_CHANGE) {//첫번째 [변경] 버튼을 누른 경우 - NONE 상태
 					setEnable(UPDATE);//입출력 컴퍼넌트의 활성화 상태 변경 - UPDATE 상태 변경		
 				} else if (cmd != UPDATE_CHANGE) {//두번째 [변경] 버튼을 누른 경우	- UPDATE 상태
-					setEnable(UPDATE_CHANGE);	
+					//학번을 입력받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 출력 처리하는 메소드
+					searchNoStudent();
 				} else {//세번째 [변경] 버튼을 누른 경우 - UPDATE_CHANGE 상태		
 					initDisplay();
 				}
@@ -310,7 +313,150 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			defaultTableModel.addRow(rowData);
 		}
 	}
+	
+	//JTextField 컴퍼넌트로 입력된 학생정보를 제공받아 STUDENT 테이블에 삽입하고 STUDENT
+	//테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+	// => JTextField 컴퍼넌트와 JButton 컴퍼넌트의 초기화 및 [NONE] 상태로 변경 처리
+	public void addStudent() {
+		String noString=noTF.getText();//JTextField 컴퍼넌트의 입력값을 반환받아 저장
+		
+		if(noString.equals("")) {//JTextField 컴퍼넌트에 입력된 값이 없는 경우
+			JOptionPane.showMessageDialog(this, "학번을 입력해 주세요.");
+			noTF.requestFocus();//JTextField 컴퍼넌트에 포커스(입력촛점) 제공
+			return;
+		}
+		
+		String noReg="^[1-9][0-9]{3}$";
+		if(!Pattern.matches(noReg, noString)) {//정규표현값과 입력값의 패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "학번은 4자리 숫자로만 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		int no=Integer.parseInt(noString);//문자열을 정수값으로 변환하여 저장
+		
+		//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여 반환하는
+		//DAO 클래스의 메소드 호출 - NULL(검색행 X) 또는 StudentDTO 객체(검색행 O) 중 하나를 반환
+		//선택문을 사용하여 검색된 학생정보가 있는 경우 학번 중복에 대한 처리 명령 실행
+		if(StudentDAOImpl.getDAO().selectStudentByNo(no) != null) {
+			JOptionPane.showMessageDialog(this, "이미 사용중인 학번을 입력 하였습니다.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		String name=nameTF.getText();
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String nameReg="^[가-힣]{2,5}$";
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String phone=phoneTF.getText();
+		
+		if(phone.equals("")) {
+			JOptionPane.showMessageDialog(this, "전화번호를 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
+		if(!Pattern.matches(phoneReg, phone)) {
+			JOptionPane.showMessageDialog(this, "전화번호를 형식에 맞게 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String address=addressTF.getText();
+		
+		if(address.equals("")) {
+			JOptionPane.showMessageDialog(this, "주소를 입력해 주세요.");
+			addressTF.requestFocus();
+			return;
+		}
+		
+		String birthday=birthdayTF.getText();
+		
+		if(birthday.equals("")) {
+			JOptionPane.showMessageDialog(this, "생년월일을 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if(!Pattern.matches(birthdayReg, birthday)) {
+			JOptionPane.showMessageDialog(this, "생년월일을 형식에 맞게 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		//StudentDTO 객체를 생성하여 입력값을 객체의 필드값으로 변경
+		// => DAO 클래스의 메소드를 호출할 때 StudentDTO 객체를 매개변수에 전달
+		StudentDTO student=new StudentDTO();
+		student.setNo(no);
+		student.setName(name);
+		student.setPhone(phone);
+		student.setAddress(address);
+		student.setBirthday(birthday);
+		
+		//학생정보(StudentDTO 객체)를 전달받아 STUDENT 테이블에 삽입하고 삽입행의 갯수를 
+		//반환하는 DAO 클래스의 메소드 호출
+		int rows=StudentDAOImpl.getDAO().insertStudent(student);
+		
+		JOptionPane.showMessageDialog(this, rows+"명의 학생정보를 삽입 하였습니다.");
+		
+		displayAllStudent();
+		initDisplay();
+	}
+	
+	//JTextField 컴퍼넌트로 입력된 학번을 제공받아 STUDENT 테이블에 저장된 해당 학번의 
+	//학생정보를 검색하여 JTextField 컴퍼넌트에 출력하는 메소드 - [UPDATE_CHANGE] 상태로 변경
+	public void searchNoStudent() {
+		String noString=noTF.getText();
+		
+		if(noString.equals("")) {
+			JOptionPane.showMessageDialog(this, "학번을 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		String noReg="^[1-9][0-9]{3}$";
+		if(!Pattern.matches(noReg, noString)) {
+			JOptionPane.showMessageDialog(this, "학번은 4자리 숫자로만 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		int no=Integer.parseInt(noString);
+		
+		//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여 반환하는
+		//DAO 클래스의 메소드 호출 - NULL(검색행 X) 또는 StudentDTO 객체(검색행 O) 중 하나를 반환
+		StudentDTO student=StudentDAOImpl.getDAO().selectStudentByNo(no);
+		
+		if(student == null) {//학번으로 검색된 학생정보가 없는 경우
+			JOptionPane.showMessageDialog(this, "변경할 학번의 학생정보가 없습니다.");
+			noTF.requestFocus();
+			noTF.setText("");
+			return;
+		}
+		
+		noTF.setText(student.getNo()+"");
+		nameTF.setText(student.getName());
+		phoneTF.setText(student.getPhone());
+		addressTF.setText(student.getAddress());
+		birthdayTF.setText(student.getBirthday());
+		
+		setEnable(UPDATE_CHANGE);
+	}
 }
+
 
 
 
