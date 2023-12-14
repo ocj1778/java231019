@@ -9,10 +9,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -110,6 +113,9 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		cmd = NONE;
 		initialize();
 
+		//JTable 컴퍼넌트에 STUDENT 테이블에 저장된 모든 학생정보를 검색하여 출력 처리
+		displayAllStudent();
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -256,4 +262,64 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			System.out.println("예외 발생 : " + e);
 		}		
 	}
+	
+	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+	public void displayAllStudent() {
+		//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드 호출
+		// => DAO 클래스의 메소드를 호출하여 반환되는 객체(값)을 변수에 저장
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectStudentList();
+		
+		//List.isEmpty() : List 객체에 요소가 있는 경우 [false]를 반환하고 요소가 없는 경우 
+		//[true]를 반환하는 메소드
+		if(studentList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "저장된 학생정보가 없습니다.");
+			return;
+		}
+
+		//JTable.getModel() : JTable 컴퍼넌트의 행정보가 저장된 TableModel 객체를 반환하는 메소드
+		// => DefaultTableModel 클래스로 명시적 객체 형변환하여 저장
+		//DefaultTableModel 객체 : JTable 컴퍼넌트의 행정보를 저장하기 위한 객체
+		// => 행과 열에 대한 조작 관련 기능의 메소드 제공
+		DefaultTableModel defaultTableModel=(DefaultTableModel)table.getModel();
+		
+		//DefaultTableModel.getRowCount() : DefaultTableModel 객체에 저장된 행의 갯수를 반환하는 메소드
+		//DefaultTableModel 객체에 저장된 행의 갯수만큼 실행되는 반복문
+		// => JTable 컴퍼넌트에 출력된 기존 행을 모두 삭제 처리 - 초기화
+		for(int i=defaultTableModel.getRowCount();i>0;i--) {
+			//DefaultTableModel.removeRow(int rowIndex) : DefaultTableModel 객체에 저장된
+			//행에서 매개변수로 전달받은 위치의 행을 삭제하는 메소드
+			defaultTableModel.removeRow(0);//JTable 컴퍼넌트에서 첫번째 행을 삭제
+		}
+		
+		//List 객체의 요소(StudentDTO 객체)를 차례대로 제공받아 처리하는 반복문
+		// => JTable 컴퍼넌트에 검색된 모든 학생정보를 출력 처리
+		for(StudentDTO student : studentList) {
+			//Vector 객체 생성 - JTable 컴퍼넌트에 출력될 하나의 행을 표현하기 위한 객체
+			Vector<Object> rowData=new Vector<Object>();
+			
+			//StudentDTO 객체의 필드값을 반환받아 Vector 객체의 요소로 추가
+			// => JTable 컴퍼넌트에 출력될 순서대로 필드값을 반환받아 추가
+			rowData.add(student.getNo());
+			rowData.add(student.getName());
+			rowData.add(student.getPhone());
+			rowData.add(student.getAddress());
+			rowData.add(student.getBirthday());
+			
+			//DefaultTableModel.addRow(Vector rowData) : DefaultTableModel 객체에 행을 추가하는 메소드
+			// => JTable 컴퍼넌트에 행 출력 처리
+			defaultTableModel.addRow(rowData);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
