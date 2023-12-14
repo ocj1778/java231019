@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class StudentGUIApp extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
- 
+
 	public static final int NONE = 0;
 	public static final int ADD = 1;
 	public static final int DELETE = 2;
