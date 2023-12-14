@@ -244,22 +244,26 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 					//학번을 입력받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 출력 처리하는 메소드
 					searchNoStudent();
 				} else {//세번째 [변경] 버튼을 누른 경우 - UPDATE_CHANGE 상태		
-					initDisplay();
+					//학생정보를 입력받아 STUDENT 테이블에 저장된 학생정보를 변경하여 출력 처리하는 메소드 호출
+					modifyStudent();
 				}
 			} else if (c == deleteB) {
 				if (cmd != DELETE) {//첫번째 [삭제] 버튼을 누른 경우 - NONE 상태
 					setEnable(DELETE);//입출력 컴퍼넌트의 활성화 상태 변경 - DELETE 상태 변경		
 				} else {//두번째 [삭제] 버튼을 누른 경우 - DELETE 상태
-					initDisplay();
+					//학번을 입력받아 STUDENT 테이블에 저장된 학생정보를 삭제하여 출력 처리하는 메소드 호출
+					removeStudent();
 				}
 			} else if (c == searchB) {
 				if (cmd != SEARCH) {//첫번째 [검색] 버튼을 누른 경우 - NONE 상태
 					setEnable(SEARCH);//입출력 컴퍼넌트의 활성화 상태 변경 - SEARCH 상태 변경		
 				} else {//두번째 [검색] 버튼을 누른 경우 - SEARCH 상태
-					initDisplay();
+					//이름을 입력받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 출력하는 메소드 호출
+					searchNameStudent();
 				}
 			} else if (c == cancelB) {
 				initDisplay();
+				displayAllStudent();
 			}
 		} catch (Exception e) {
 			System.out.println("예외 발생 : " + e);
@@ -447,13 +451,179 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 			return;
 		}
 		
+		//검색된 학생정보를 JTextField 컴퍼넌트에 출력 - 변경값 입력
 		noTF.setText(student.getNo()+"");
 		nameTF.setText(student.getName());
 		phoneTF.setText(student.getPhone());
 		addressTF.setText(student.getAddress());
 		birthdayTF.setText(student.getBirthday());
 		
+		//[UPDATE_CHANGE] 상태 변경 - 컴퍼넌트의 활성 또는 비활성 상태 변경
 		setEnable(UPDATE_CHANGE);
+	}
+	
+	//JTextField 컴퍼넌트로 입력된 학생정보를 제공받아 STUDENT 테이블에 저장된 학생정보를 변경
+	//하고 STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+	// => JTextField 컴퍼넌트와 JButton 컴퍼넌트의 초기화 및 [NONE] 상태로 변경 처리
+	public void modifyStudent() {
+		//JTextField 컴퍼넌트(학번)의 입력값을 반환받아 저장
+		int no=Integer.parseInt(noTF.getText());
+		
+		//JTextField 컴퍼넌트(이름,전화번호,주소,생년월일)의 입력값(변경값)을 반환받아 저장
+		String name=nameTF.getText();
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String nameReg="^[가-힣]{2,5}$";
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String phone=phoneTF.getText();
+		
+		if(phone.equals("")) {
+			JOptionPane.showMessageDialog(this, "전화번호를 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
+		if(!Pattern.matches(phoneReg, phone)) {
+			JOptionPane.showMessageDialog(this, "전화번호를 형식에 맞게 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String address=addressTF.getText();
+		
+		if(address.equals("")) {
+			JOptionPane.showMessageDialog(this, "주소를 입력해 주세요.");
+			addressTF.requestFocus();
+			return;
+		}
+		
+		String birthday=birthdayTF.getText();
+		
+		if(birthday.equals("")) {
+			JOptionPane.showMessageDialog(this, "생년월일을 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if(!Pattern.matches(birthdayReg, birthday)) {
+			JOptionPane.showMessageDialog(this, "생년월일을 형식에 맞게 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		//StudentDTO 객체를 생성하여 입력값을 객체의 필드값으로 변경
+		// => DAO 클래스의 메소드를 호출할 때 StudentDTO 객체를 매개변수에 전달
+		StudentDTO student=new StudentDTO();
+		student.setNo(no);
+		student.setName(name);
+		student.setPhone(phone);
+		student.setAddress(address);
+		student.setBirthday(birthday);
+		
+		//학생정보(StudentDTO 객체)를 전달받아 STUDENT 테이블에 저장된 학생정보를 변경하고  
+		//변경행의 갯수를 반환하는 DAO 클래스의 메소드 호출
+		int rows=StudentDAOImpl.getDAO().updateStudent(student);
+		
+		JOptionPane.showMessageDialog(this, rows+"명의 학생정보를 변경 하였습니다.");
+		
+		displayAllStudent();
+		initDisplay();
+	}
+	
+	//JTextField 컴퍼넌트로 입력된 학번을 제공받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를  
+	//삭제하고 STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+	// => JTextField 컴퍼넌트와 JButton 컴퍼넌트의 초기화 및 [NONE] 상태로 변경 처리
+	public void removeStudent() {
+		String noString=noTF.getText();
+		
+		if(noString.equals("")) {
+			JOptionPane.showMessageDialog(this, "학번을 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		String noReg="^[1-9][0-9]{3}$";
+		if(!Pattern.matches(noReg, noString)) {
+			JOptionPane.showMessageDialog(this, "학번은 4자리 숫자로만 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		int no=Integer.parseInt(noString);
+		
+		//학번을 전달받아 STUDENT 테이블에 저장된 학생정보를 삭제하고 삭제행의 갯수를 반환하는
+		//DAO 클래스의 메소드 호출
+		int rows=StudentDAOImpl.getDAO().deleteStudent(no);
+		
+		if(rows > 0) {
+			JOptionPane.showMessageDialog(this, rows+"명의 학생정보를 삭제 하였습니다.");
+			displayAllStudent();
+		} else {
+			JOptionPane.showMessageDialog(this, "삭제할 학번의 학생정보가 없습니다.");
+		}
+		
+		initDisplay();
+	}
+	
+	//JTextField 컴퍼넌트로 입력된 이름을 제공받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를  
+	//검색하여 JTable 컴퍼넌트에 출력하는 메소드
+	// => JTextField 컴퍼넌트와 JButton 컴퍼넌트의 초기화 및 [NONE] 상태로 변경 처리	
+	public void searchNameStudent() {
+		String name=nameTF.getText();
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String nameReg="^[가-힣]{2,5}$";
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 List 객체로
+		//반환하는 DAO 클래스의 메소드 호출
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectStudentByName(name);
+		
+		if(studentList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "입력된 이름의 학생정보가 없습니다.");
+			return;
+		}
+
+		DefaultTableModel defaultTableModel=(DefaultTableModel)table.getModel();
+		
+		for(int i=defaultTableModel.getRowCount();i>0;i--) {
+			defaultTableModel.removeRow(0);
+		}
+		
+		for(StudentDTO student : studentList) {
+			Vector<Object> rowData=new Vector<Object>();
+			
+			rowData.add(student.getNo());
+			rowData.add(student.getName());
+			rowData.add(student.getPhone());
+			rowData.add(student.getAddress());
+			rowData.add(student.getBirthday());
+			
+			defaultTableModel.addRow(rowData);
+		}
+		
+		initDisplay();
 	}
 }
 
