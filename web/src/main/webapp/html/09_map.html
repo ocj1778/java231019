@@ -7,6 +7,25 @@
 <body>
 	<h1>map 태그</h1>
 	<hr>
-	<img alt="이미지 링크" src="">	
+	<!-- usemap 속성 : map 태그의 이름을 속성값으로 설정 -->
+	<img alt="이미지 링크" src="/web/html/images/map.png" usemap="#favorites">
+	
+	<!-- map 태그 : 하나의 이미지에서 영역을 구분해 하이퍼링크 기능을 제공하기 위한 태그 -->
+	<!-- => 하위태그 : area 태그 -->
+	<!-- name 속성 : 태그를 구분하기 위한 이름을 속성값으로 설정 -->
+	<map name="favorites">
+		<!-- shape 속성 : 영역을 구분하기 위한 도형을 속성값으로 설정 - 속성값 : rect(기본), circle, poly 등 -->
+		<!-- coords 속성 : 영역을 구분하기 위한 도형의 좌표값을 속성값으로 설정 -->		
+		<area alt="트위터" shape="rect" coords="0,0,129,117" href="https://twitter.com" target="_blank">		
+		<area alt="페이스북" shape="rect" coords="129,0,249,117" href="https://facebook.com" target="_blank">		
+	</map>	
 </body>
 </html>
+
+
+
+
+
+
+
+
