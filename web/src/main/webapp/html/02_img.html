@@ -13,5 +13,32 @@
 	<!-- src 속성 : 출력될 이미지 파일의 경로(URL 주소)를 속성값으로 설정  -->
 	<!-- => src 속성값으로 제공된 이미지 파일이 없는 경우 404 상태코드 전달 -->
 	<img alt="다음로고" src="https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png">
+	<hr>
+	<!-- img 태그의 폭을 변경하여 출력될 이미지 크기 변경 가능 -->
+	<!-- =>  img 태그의 폭을 변경하면 높이도 자동 변경 -->
+	<img alt="코알라" src="http://localhost:8000/web/html/Koala.jpg" width="200">
+	
+	<!-- HTML 문서와 동일한 서버에 존재하는 웹자원(WebContext)은 URL 주소에서 서버 접속 관련
+	정보를 생략하여 표현 가능 - 프로토콜, 서버명, 포트번호 생략 -->
+	<!-- 절대경로 표현 방법 : 웹자원의 경로를 서버의 최상위 디렉토리를 기준으로 표현 --> 
+	<img alt="코알라" src="/web/html/Koala.jpg" width="200">
+
+	<!-- 상대경로 : 웹자원의 경로를 현재 실행중인 HTML 문서의 경로를 기준으로 표현 -->
+	<!-- <img alt="코알라" src="./Koala.jpg" width="200"> -->
+	<img alt="코알라" src="Koala.jpg" width="200">
+	
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
