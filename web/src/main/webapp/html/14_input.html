@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>input 태그</h1>
+	<hr>
+	<!-- input 태그 : 사용자로부터 문자값(파일)을 입력받기 위한 태그 - 입력태그 -->
+	<!-- type 속성 : 값(파일)을 입력받기 위한 형태를 속성값으로 설정 -->
+	<!-- name 속성 : 태그의 이름을 속성값으로 설정 -->
+	<!-- => 웹프로그램에서 전달값을 구분하기 위한 식별자로 사용 -->
+	<!-- value 속성 : 입력태그의 초기값을 속성값으로 설정 -->
+	<!-- size 속성 : 입력태그의 크기를 속성값으로 설정 -->
+	<!-- maxlength 속성 : 최대 입력 가능한 문자의 갯수를 속성값으로 설정 -->
+	<!-- autofocus 속성(HTML5) : 태그에 포커스(Focus)를 제공하는 속성 - 속성값 생략 가능 -->
+	<!-- required 속성(HTML5) : 필수 입력값을 설정하기 속성 - 속성값 생략 가능 -->
+	<!-- => required 속성이 설정된 입력태그에 입력값이 없는 경우 form 태그 미동작 -->
+	
+	<!-- type 속성값 -->
+	<!-- hidden : 입력태그를 숨겨 사용자로부터 값을 입력받아 않고 웹프로그램에 필요한 값을 전달 -->
+	<!-- text : 키보드로 문자값을 입력받아 전달 -->
+	
+	<form action="#" method="post">
+		<input type="hidden" name="num" value="1000">
+		<p>아이디 : <input type="text" name="id" size="10" maxlength="20" autofocus required value="abc123"></p>
+		
+		
+		<input type="submit" value="회원가입">	
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
