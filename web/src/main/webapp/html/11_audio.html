@@ -10,6 +10,19 @@
 	<!-- audio 태그 : 서버에 저장된 소리파일을 제공받아 재생하는 태그 -->
 	<!-- => embed 태그 : 플래시 재생, object 태그 : 멀티미디어 파일 재생 -->
 	<!-- => 웹에서 사용한 소리파일 : mp3 파일, ogg 파일 등 -->
-	<audio></audio>
+	<!-- autoplay 속성 : 자동 재생 기능을 제공하는 속성 - 속성값 생략 가능 --> 
+	<!-- controls 속성 : 재생 관련 제어판을 기능을 제공하는 속성 - 속성값 생략 가능 -->
+	<!-- loop 속성 : 반복 재생 기능을 제공하는 속성 - 속성값 생략 가능 -->
+	<!-- preload 속성 : none, metadata, auto(기본) 중 하나를 속성값으로 설정 -->
+	<!-- 
+	<audio src="/web/html/audio/horse.mp3" autoplay controls loop preload="auto"></audio>
+	-->
+	
+	<audio controls>
+		<!-- source 태그: 멀티미디어 파일을 제공하기 위한 태그 -->
+		<!-- type 속성 : 파일의 형태(MimeType)를 속성값으로 설정 --> 
+		<source src="/web/html/audio/horse.ogg" type="audio/ogg">
+		<source src="/web/html/audio/horse.mp3" type="audio/mpeg">
+	</audio>
 </body>
 </html>
