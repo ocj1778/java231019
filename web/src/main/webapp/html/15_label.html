@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>label 태그</h1>
+	<hr>
+	<!-- label 태그 : 입력태그에 포커스(Focus)를 제공하기 위한 태그 -->
+	
+	<!-- label 태그를 사용하지 않은 경우 입력태그를 직접 선택해야만 포커스 제공 -->
+	<h2>label 태그 미사용</h2>
+	<p>이름 : <input type="text" name="name"></p>
+	<p>취미 : 
+		<input type="checkbox" name="hobby" value="독서">독서&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="게임">게임&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="등산">등산&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="낚시">낚시&nbsp;&nbsp;
+	</p>
+	<hr>
+	<!-- label 태그를 사용한 경우 label 태그 범위를 선택하면 입력태그에 포커스 제공 -->
+	<h2>label 태그 사용</h2>
+	<p><label>이름 : <input type="text" name="name"></label></p>
+	<p>취미 :
+		<!-- for 속성 : 입력태그를 구분하는 식별자(id 속성값)을 속성값으로 설정 -->
+		<!-- => label 태그 범위를 선택하면 for 속성값으로 설정된 입력태그에 포커스 제공 --> 
+		<input type="checkbox" name="hobby" value="독서" id="hobby1"><label for="hobby1">독서</label>&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="게임" id="hobby2"><label for="hobby2">게임</label>&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="등산" id="hobby3"><label for="hobby3">등산</label>&nbsp;&nbsp;
+		<input type="checkbox" name="hobby" value="낚시" id="hobby4"><label for="hobby4">낚시</label>&nbsp;&nbsp;
+	</p>
+</body>
+</html>
