@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+<style>
+fieldset, div {
+	width: 500px;
+	margin: 10px 20px;
+}	
+
+li {
+	list-style-type: none;
+	margin: 10px; 
+}
+
+div {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<h1>fieldset 태그</h1>
+	<hr>
+	<!-- fieldset 태그 : 입력태그의 영역을 구분하기 위한 태그 -->
+	<!-- => 하위태그 : legend 태그, input 태그, textarea 태그, select 등 -->
+	<h2>회원가입</h2>
+	<fieldset>
+		<legend>인증정보</legend>
+		<ul>
+			<li>아이디 : <input type="text" name="id"></li>
+			<li>비밀번호 : <input type="password" name="passwd"></li>
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend>개인정보</legend>
+		<ul>
+			<li>이름 : <input type="text" name="id"></li>
+			<li>이메일 : <input type="text" name="email"></li>
+			<li>전화번호 : <input type="text" name="phone"></li>
+		</ul>
+	</fieldset>
+	<div>
+		<button type="submit">회원가입</button>
+		<button type="reset">다시입력</button>
+	</div>
+</body>
+</html>
+
+
+
+
+
