@@ -31,8 +31,8 @@
 	<!-- multipart/form-data : 사용자 입력값을 원시 데이타로 전달 - 파일을 입력받아 전달할 때 사용 --> 
 	<form action="/web/html/13_action.html" method="post" enctype="application/x-www-form-urlencoded">
 		<!-- 입력태그 : 사용자로부터 값을 입력받기 위한 태그 - input 태그, textarea 태그, select 태그 등 -->	
-		아이디 : <input type="text" name="id"><br>
-		비밀번호 : <input type="password" name="passwd"><br>
+		<p>아이디 : <input type="text" name="id"></p>
+		<p>비밀번호 : <input type="password" name="passwd"></p>
 		
 		<!-- 제출 이벤트(Submit Event)를 발생하는 태그 : input 태그, button 태그 등 -->
 		<!-- => 제출 이벤트가 발생되면 form 태그가 동작되어 action 속성값으로 설정된 URL 주소의
@@ -42,19 +42,7 @@
 		<!-- button 태그 : 버튼을 출력하는 태그 -->
 		<!-- type 속성 : button, submit, reset 중 하나를 속성값으로 설정 -->
 		<!-- => 속성값을 [submit]으로 설정한 경우 버튼을 클릭하면 제출 이벤트 발생 --> 
-		<button type="submit">로그인</button> 
+		<p><button type="submit">로그인</button></p> 
 	</form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
