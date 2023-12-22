@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<!-- style 태그 : HTML 문서에 CSS에서 제공하는 스타일 시트를 적용하기 위한 태그 -->
+<style>
+/* CSS 주석명 */	
+/*
+Selector[,Selector,...][:paduo-class] {
+	Property: Value [Value Value ...];
+	Property: Value [Value Value ...];
+	...	
+}
+*/
+
+/* 선택자(Selector) : HTML 문서에서 태그(박스모델)를 선택하기 위한 표현식 */
+/* => 선택자에 의해 선택된 태그를 엘리먼트(Element)로 표현 */
+h1 {
+	text-align: center;	
+}	
+
+/* 선택자의 엘리먼트에 동일한 스타일 적용 - 묵시적 반복 */
+p {
+	font-size: 25px;
+	color: green;
+}
+
+p:nth-child(2n) {
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<!-- CSS(Cascading Style Sheets) : HTML 문서에 모양과 서식을 제공하기 위한 스타일 시트 언어 -->
+	<!-- HTML5 태그를 사용하여 HTML 문서를 구조적으로 작성하고 CSS3를 사용하여 태그에 스타일 적용-->
+	<!-- => HTML4에서 스타일 관련 태그 및 속성이 제거되어 HTML5의 태그 정의 -->
+	<!-- => HTML 문서 작성에 대한 생산성 증가 및 유지보수의 효율성 증가 -->  
+	<h1>CSS Style</h1>
+	<hr>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+</body>
+</html>
