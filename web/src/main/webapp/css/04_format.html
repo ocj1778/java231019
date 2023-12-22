@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title
+<!-- link 태그 : 외부파일을 불러와 파일내용을 HTML 문서에 연결하는 포함하는 기능을 제공하는 태그 -->
+<!-- => CSS 파일을 불러와 HTML 문서에 연결하여 태그에 스타일 시트 적용 -->
+<!-- => CSS 파일에 설정된 스타일을 사이트를 구성하는 모든 HTML 문서에 동일하게 적용하기 
+위해 사용 - 사이트를 구성하는 모든 페이지에 일관성 있는 스타일 적용 : 유지보수의 효율성 증가 -->
+<!-- href 속성 : HTML 문서에 연결할 외부파일의 URL 주소를 속성값으로 설정 -->
+<!-- type 속성 : HTML 문서에 연결할 외부파일의 파일형태(MimeType)를 속성값으로 설정 -->
+<!-- rel 속성 : 파일 연결 관계를 속성값으로 설정 - CSS 파일을 연결하기 위해서는 [stylesheet] 속성값 사용 -->
+<!-- <link href="/web/css/04_style.css" type="text/css" rel="stylesheet"> -->
+
+<!-- style 태그를 사용하여 HTML 문서의 태그에 스타일 시트 적용 -->
+<style>
+/* link 태그 대신 @import 시스템 속성을 사용하여 CSS 파일의 작성된 스타일 시트를 HTML 문서의 태그에 적용  */
+/* => url 함수를 사용하여 HTML 문서에 적용할 스타일이 저장된 CSS 파일의 URL 주소를 설정 */
+@import url("/web/css/04_style.css");	
+	
+h2 {
+	color: skyblue;
+}	
+
+h3 {
+	color: blue;
+}
+
+h4 {
+	color: lime;
+}
+</style>
+</head>
+<body>
+	<h1>HTML 문서에 스타일 시트를 적용하는 방법</h1>
+	<hr>
+	<h2>브라우저에 출력될 아주 중요한 내용입니다.</h2>
+	<h3>브라우저에 출력될 아주 중요한 내용입니다.</h3>
+	<!-- 태그에 style 속성을 사용하여 스타일 시트 적용 - 마지막에 적용되는 스타일 시트 --> 
+	<h4 style="color: maroon;">브라우저에 출력될 아주 중요한 내용입니다.</h4>
+</body>
+</html>
