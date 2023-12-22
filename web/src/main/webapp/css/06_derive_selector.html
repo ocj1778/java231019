@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+/* 후손 선택자 : 부모 엘리먼트를 기준으로 모든 깊이의 하위 태그로 엘리먼트 선택 */
+/* 형식) 부모선택자 후손선택자 */
+#super1 div { color: purple; }	
+
+/* 자식 선택자 : 부모 엘리먼트를 기준으로 첫번째 깊이의 하위 태그로 엘리먼트 선택 */
+/* 형식) 부모선택자 > 자식선택자 */
+#super2 > div { color: gold; }	
+
+/* 필터 선택자 : 선택자에 의해 검색된 다수의 엘리먼트 중 특정 태그를 엘리먼트로 선택 */
+/* => 특정 태그를 엘리먼트로 선택하기 위해 무조건 클래스 선택자 사용  */
+/* 형식) 선택자.필터선택자 */
+#super3 div { color: orange; }
+#super3 div.choice { color: lime; }
+
+/* 형제 선택자 : 선택자에 의해 검색된 엘리먼트 다음에 위치한 같은 깊이의 태그를 엘리먼트로 선택 */
+/* 형식) 선택자 ~ 형제선택자 */
+#standard ~ p { color: fuchsia; }
+
+/* 인접 형제 선택자 : 선택자에 의해 검색된 엘리먼트 다음에 위치한 같은 깊이의 첫번째 태그를 엘리먼트로 선택 */
+/* 형식) 선택자 + 형제선택자 */
+#standard + p { color: red; }
+</style>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<p>파생 선택자 - 후손 선택자, 자식 선택자, 필터 선택자, 형제 선택자</p>
+	<hr>
+	<h2>후손 선택자</h2>
+	<div id="super1">
+		<div>사원이름</div>
+		<ul>
+			<li><div>홍길동</div></li>
+			<li><div>임꺽정</div></li>
+			<li><div>전우치</div></li>
+		</ul>
+	</div>
+	<hr>
+	<h2>자식 선택자</h2>
+	<div id="super2">
+		<div>사원이름</div>
+		<ul>
+			<li><div>홍길동</div></li>
+			<li><div>임꺽정</div></li>
+			<li><div>전우치</div></li>
+		</ul>
+	</div>
+	<hr>
+	<h2>필터 선택자</h2>
+	<div id="super3">
+		<div>사원이름</div>
+		<ul>
+			<li><div>홍길동</div></li>
+			<li><div class="choice">임꺽정</div></li>
+			<li><div>전우치</div></li>
+		</ul>
+	</div>
+	<h2>형제 선택자</h2>
+	<p id="standard">브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+</body>
+</html>
+
+
+
