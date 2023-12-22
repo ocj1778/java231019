@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+a {
+	color: orange;
+	text-decoration: none;
+}	
+
+/* 가상 선택자 : 선택자로 검색된 엘리먼트의 상태에 의해 스타일 시트 적용 */
+/* 형식) 선택자:상태 - 선택자로 검색된 엘리먼트에 따라 사용 가능한 상태 존재 */
+
+/* :link : a 태그로 설정된 URL 주소의 웹문서를 브라우저로 한번도 요청하지 않은 상태인 경우 스타일 시트 적용 */
+a:link { color: lime; }
+
+/* :visited : a 태그로 설정된 URL 주소의 웹문서를 브라우저로 한번이상 요청한 상태인 경우 스타일 시트 적용 */
+a:visited { color: red; }
+
+/* :active : 엘리먼트에 마우스 커서를 위치하여 마우스 버튼을 누르고 있는 상태인 경우 스타일 시트 적용  */
+a:active { color: green; }
+
+/* :hover : 엘리먼트에 마우스 커서가 위치한 상태인 경우 스타일 시트 적용 */
+a:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+/* :first-child : 후손 엘리먼트 중 첫번째 엘리먼트에 스타일 시트 적용 */
+ul li:first-child { color: red; }
+
+/* :last-child : 후손 엘리먼트 중 마지막 엘리먼트에 스타일 시트 적용 */
+ul li:last-child { color: green; }
+
+/* :nth-child(N) : 후손 엘리먼트 중 N번째 엘리먼트에 스타일 시트 적용 */
+ul li:nth-child(3) { color: blue; }
+
+/* :nth-child(2n) : 후손 엘리먼트 중 짝수번째 엘리먼트에 스타일 시트 적용 */
+ol li:nth-child(2n) { color: gold; }
+ol li:nth-child(even) { color: gold; }
+
+/* :nth-child(2n-1) : 후손 엘리먼트 중 홀수번째 엘리먼트에 스타일 시트 적용 */
+ol li:nth-child(2n-1) { color: silver; }
+ol li:nth-child(odd) { color: silver; }
+
+input { border: 1px solid gray; }
+input[type='text'] { border: 1px solid maroon; }
+
+/* :not(선택자) : 선택자로 검색된 엘리먼트를 제외한 나머지 엘리먼트에 스타일 시트 적용  */
+input:not([type='text']) { border: 1px solid orange; }
+
+/* :disabled : 선택자로 검색된 엘리먼트 중 비활성화 상태의 엘리먼트에 스타일 시트 적용 */
+/* :checked : 선택자로 검색된 엘리먼트(input - radio 또는 checkbox) 중 선택된 상태의 엘리먼트에 스타일 시트 적용 */
+/* :selected : 선택자로 검색된 엘리먼트(select - option) 중 선택된 상태의 엘리먼트에 스타일 시트 적용 */
+input[type='text']:disabled { border: 1px solid red; }
+
+/* :focus : 선택자로 검색된 엘리먼트(입력태그)에 포커스가 위치한 엘리먼트에 스타일 시트 적용 */
+input:focus { border: 3px double green; }
+</style>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<p>가상 선택자 : 엘리먼트의 상태에 의해 스타일 시트 적용</p>
+	<hr>
+	<a href="https://m.daum.net">다음</a>&nbsp;&nbsp;&nbsp;
+	<a href="https://www.naver.com">네이버</a>&nbsp;&nbsp;&nbsp;
+	<a href="https://www.google.com">구글</a>&nbsp;&nbsp;&nbsp;
+	<hr>
+	<ul>
+		<li>홍길동</li>	
+		<li>임꺽정</li>	
+		<li>전우치</li>	
+		<li>일지매</li>	
+		<li>장길산</li>	
+	</ul>
+	<hr>
+	<ol>
+		<li>홍길동</li>	
+		<li>임꺽정</li>	
+		<li>전우치</li>	
+		<li>일지매</li>	
+		<li>장길산</li>	
+	</ol>
+	<hr>
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>		
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name" value="홍길동" disabled></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="email" name="email"></td>
+		</tr>
+	</table>
+</body>
+</html>
