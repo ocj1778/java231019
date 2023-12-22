@@ -18,17 +18,18 @@
 	<!-- => 웹프로그램을 요청하는 방식에 따라 사용자 입력값을 전달하는 방법이 상이 -->
 	<!-- GET : 사용자 입력값을 URL 주소의 질의문자열(QueryString)으로 전달 -->
 	<!-- => 보안을 필요로 하지 않는 소량의 값을 전달할 때 사용하는 요청방식 -->
-	<!-- POST : 사용자 입력값을 리퀘스트 메세지의 몸체부(Entity Body)에 저장하여 전달
+	<!-- POST : 사용자 입력값을 리퀘스트 메세지의 몸체부(Entity Body)에 저장하여 전달 -->
 	<!-- => 보안을 필요로 하는 값을 전달하거나 대량의 값을 전달하기 위한 요청방식 -->
 	<!-- 리퀘스트 메세지(Request Message) : 클라이언트가 서버에 접속하여 웹자원(WebContext)을
 	요청한 경우 클라이언트의 정보를 담아 웹자원에게 전달하기 위한 객체 -->
 	<!-- => 머릿부(Header)와 몸체부(Entity Body)로 구성되어 있으며 GET 방식으로 웹자원을 요청한
 	경우 리퀘스트 메세지의 몸체부 미사용 -->  
-	<!-- enctype 속성 : application/x-www-form-urlencoded, multipart/form-data 중 하나를 속성값으로 설정 -->
+	<!-- enctype 속성 : application/x-www-form-urlencoded, multipart/form-data, text/plain 중 하나를 속성값으로 설정 -->
 	<!-- => 리퀘스트 메세지의 몸체부에 사용자 입력값을 저장한 파일의 형태를 표현 -->
 	<!-- => enctype 속성을 생략한 경우 application/x-www-form-urlencoded를 기본 속성값으로 사용 -->
-	<!-- application/x-www-form-urlencoded : 사용자 입력값을 인코딩 처리된 문자 데이타로 전달 --> 
-	<!-- multipart/form-data : 사용자 입력값을 원시 데이타로 전달 - 파일을 입력받아 전달할 때 사용 --> 
+	<!-- application/x-www-form-urlencoded : 사용자 입력값을 인코딩 처리된 문자 데이타의 파일로 전달 --> 
+	<!-- multipart/form-data : 사용자 입력값을 원시 데이타의 파일로 전달 - 파일을 입력받아 전달할 때 사용 --> 
+	<!-- text/plain : 사용자 입력값을 인코딩 처리하지 않은 문자 데이타의 파일로 전달 --> 
 	<form action="/web/html/13_action.html" method="post" enctype="application/x-www-form-urlencoded">
 		<!-- 입력태그 : 사용자로부터 값을 입력받기 위한 태그 - input 태그, textarea 태그, select 태그 등 -->	
 		<p>아이디 : <input type="text" name="id"></p>
@@ -37,7 +38,7 @@
 		<!-- 제출 이벤트(Submit Event)를 발생하는 태그 : input 태그, button 태그 등 -->
 		<!-- => 제출 이벤트가 발생되면 form 태그가 동작되어 action 속성값으로 설정된 URL 주소의
 		웹프로그램을 요청하며 입력태그에 입력된 값을 웹프로그램에게 전달 -->
-		<!-- => 웹프로그램의 실행결과(HTML 문서)를 응답받아 출력 - 페이지 새로 고침 -->
+		<!-- => 요청 웹프로그램의 실행결과(HTML 문서)를 응답받아 출력 - 페이지 새로 고침 -->
 		<!-- => 클라이언트 브라우저 주소창에는 요청 URL 주소로 변경 -->
 		<!-- button 태그 : 버튼을 출력하는 태그 -->
 		<!-- type 속성 : button, submit, reset 중 하나를 속성값으로 설정 -->
