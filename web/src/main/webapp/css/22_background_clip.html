@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+div {
+	width: 400px;
+	margin: 10px;
+	padding: 20px;
+	border: 10px solid red;
+	background: url(/web/css/images/bg.png) no-repeat right bottom;
+}	
+
+/* background-clip : 배경 이미지의 적용범위 관련 스타일 속성 */
+/* 속성값 : border-box(기본) - 외곽선 바깥쪽, padding-box - 외곽선 안쪽, content-box : 내용 출력 영역 */
+.clip1 { background-clip: border-box; }
+.clip2 { background-clip: padding-box; }
+.clip3 { background-clip: content-box; }
+</style>
+</head>
+<body>
+	<h1>배경 관련 스타일 속성</h1>
+	<hr>
+	<div class="clip1">
+		<p>border box</p>		
+		<p>border box</p>		
+		<p>border box</p>		
+		<p>border box</p>		
+		<p>border box</p>		
+	</div>
+	<div class="clip2">
+		<p>padding box</p>		
+		<p>padding box</p>		
+		<p>padding box</p>		
+		<p>padding box</p>		
+		<p>padding box</p>		
+	</div>
+	<div class="clip3">
+		<p>content box</p>		
+		<p>content box</p>		
+		<p>content box</p>		
+		<p>content box</p>		
+		<p>content box</p>		
+	</div>
+</body>
+</html>
