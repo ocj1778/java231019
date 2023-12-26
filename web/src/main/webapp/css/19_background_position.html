@@ -3,9 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>CSS</title>
+<style>
+div {
+	margin: 0 auto;
+	width: 50%;
+	height: 300px;
+	border: 1px solid red;
+	/* 박스모델의 폭 또는 높이보다 작은 배경 이미지를 반복 출력하지 않을 경우 배경 이미지는
+	박스모델의 왼쪽 상단을 기준으로 출력 */
+	background-image: url(/web/css/images/bg.png);
+	background-repeat: no-repeat;
+	
+	/* background-position : 배경 이미지의 출력 위치 관련 스타일 속성 */
+	/* 속성값 : px, %, 키워드(left, right, top, bottom, center) - 기본값 : left top */
+	
+	/* 배경 이미지의 출력 위치를 외쪽 상단을 기준으로 가로(X)와 세로(Y) 방향으로 이동하여 출력 */
+	/* background-position: 200px 100px; */ 
+	/* background-position: 30% 60%; */
+	/* background-position: center; */
+	background-position: right bottom;
+}	
+</style>
 </head>
 <body>
 	<h1>배경 관련 스타일 속성</h1>
 	<hr>
+	<div>오늘은 2023년 12월 26일입니다. 2023년이 몇일 남지 않았습니다.</div>
 </body>
 </html>
