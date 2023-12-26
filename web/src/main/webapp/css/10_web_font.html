@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>CSS</title>
+<!-- 구글에서 제공하는 웹폰트 사용 가능 - https://fonts.google.com 사이트 참조 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
 /* 모든 클라이언트가 동일한 글꼴을 사용하도록 웹폰트 제공 */
 /* 웹폰트(Web Font) : 웹서버에 저장된 글꼴 파일을 클라이언트에게 제공하는 기능 */
@@ -10,8 +15,22 @@
 	
 /* @font-face : 글꼴파일을 클라이언트에게 제공하기 위한 시스템 속성  */	
 @font-face {
-	
+	/* font-family : 글꼴 파일을 구분하기 위한 식별자(글꼴명)를 속성값으로 설정 */
+	font-family: "NanumGothic";
+	/* src : url 함수를 사용하여 글꼴 파일의 URL 주소를 속성값으로 설정 */
+	src: url("/web/css/fonts/NanumGothic.woff");
 }	
+
+@font-face {
+	font-family: "NanumBarunGothic";
+	src: url("/web/css/fonts/NanumBarunGothic.woff");
+}	
+
+body {
+	/* font-family: "NanumGothic"; */
+	/* font-family: "NanumBarunGothic"; */
+	font-family: 'Nanum Brush Script', cursive;
+}
 </style>
 </head>
 <body>
