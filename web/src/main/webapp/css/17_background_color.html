@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+body {
+	/* background-color : 박스모델의 배경색 관련 스타일 속성 - 색 관련 속성값 */
+	background-color: silver;
+}
+
+div {
+	margin: 0 auto;
+	width: 50%;
+	height: 150px;
+	border: 1px solid red;
+	font-size: 30px;
+	background-color: #ff0;
+}
+	
+table {
+	margin: 0 auto;
+	width: 50%;
+}
+
+th {
+	color: #fff;
+	background-color: #0c5775;
+}
+
+tr:nth-child(2n-1) {
+	background: lime;
+}
+
+tr:nth-child(2n) {
+	background: aqua;
+}
+</style>
+</head>
+<body>
+	<h1>배경 관련 스타일 속성</h1>
+	<hr>
+	<div>배경색을 설정해 보세요.</div>
+	<hr>
+	<table>
+		<tr>
+			<th>번호</th><th>이름</th><th>주소</th>
+		</tr>
+		<tr>
+			<td>1000</td><td>홍길동</td><td>서울시 강남구</td>
+		</tr>
+		<tr>
+			<td>2000</td><td>임꺽정</td><td>부산시 사하구</td>
+		</tr>
+		<tr>
+			<td>3000</td><td>전우치</td><td>수원시 팔달구</td>
+		</tr>
+		<tr>
+			<td>4000</td><td>일지매</td><td>부천시 원미구</td>
+		</tr>
+		<tr>
+			<td>5000</td><td>장길산</td><td>인천시 남동구</td>
+		</tr>
+	</table>
+</body>
+</html>
