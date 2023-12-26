@@ -14,6 +14,58 @@ div {
 /* 속성값 : ltr(왼쪽 > 오른쪽 - 기본), rtl(오른쪽 > 왼쪽) */
 .dir1 { direction: ltr; }	
 .dir2 { direction: rtl; }	
+
+.align { width: 150px; }
+/* text-align : 문장 정렬에 대한 스타일 속성 */
+/* 속성값 : left(기본), right, center, justify(양쪽) */
+.align1 { text-align: left; }
+.align2 { text-align: right; }
+.align3 { text-align: center; }
+.align4 { text-align: justify; }
+
+/* text-shadow : 문장에 그림자 효과를 제공하기 위한 스타일 속성 */
+/* 속성값 : 가로 세로 범짐 색상 */
+.shadow {
+	font-size: 30px;
+	font-weight: bold;
+	color: gray;
+	text-shadow: 3px 3px 3px #000;
+}
+
+.overflow {
+	width: 200px;
+	/* 박스모델의 폭보다 큰 태그내용(문장)은 자동 줄바꿈 처리하지 않고 그대로 출력 */
+	/* => 태그내용(문장)이 박스모델의 폭을 벗어난 상태로 출력 */
+	white-space: nowrap;
+}
+
+/* overflow :박스모델의 폭을 벗어난 문장에 대한 처리 관련 스타일 속성 */
+/* 속성값 : visiable(기본) - 출력 처리, hidden - 숨김 처리, scroll - 스크롤 처리 */
+.overflow1 { overflow: hidden; }
+.overflow2 { overflow: scroll; }
+.overflow3 {
+	overflow: hidden;
+	/* text-overflow : 숨겨진 문장에 대한 처리 관련 스타일 속성 */
+	/* 속성값 : clip(기본) - 잘라내기, ellipsis : [...] 기호를 사용하여 출력  */
+	text-overflow: ellipsis;
+}
+
+/* text-decoration : 문장에 대한 선(Line) 관련 스타일 속성 */
+/* 속성값 : none(기본), underline, line-through, overline */
+.deco1 { text-decoration: underline; }
+.deco2 { text-decoration: line-through; }
+.deco3 { text-decoration: overline; }
+
+/* text-indent : 문장 들여쓰기 관련 스타일 속성 - 문장 앞부분에 여백 제공 */
+.in1 { text-indent: 20px; }
+.in2 { text-indent: 30px; }
+.in3 { text-indent: 40px; }
+
+/* text-transform : 문장(영문자) 변형 관련 스타일 속성 */
+/* 속성값 : none(기본), uppercase, lowercase, capitalize */
+.trans1 { text-transform: uppercase; }
+.trans2 { text-transform: lowercase; }
+.trans3 { text-transform: capitalize; }
 </style>
 </head>
 <body>
@@ -21,13 +73,28 @@ div {
 	<hr>
 	<div class="dir1">브라우저에 출력될 아주 중요한 내용입니다.</div>
 	<div class="dir2">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<hr>
+	<div class="align align1">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align2">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align3">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align4">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<hr>
+	<div class="shadow">HTML5와 CSS3를 배우고 있습니다.</div>
+	<hr>
+	<div class="overflow overflow1">HTML5와 CSS3를 배우고 있습니다.</div>
+	<div class="overflow overflow2">HTML5와 CSS3를 배우고 있습니다.</div>
+	<div class="overflow overflow3">HTML5와 CSS3를 배우고 있습니다.</div>
+	<hr>
+	<div class="deco1">웹프로그램은 Servlet 또는 JSP를 사용하여 작성합니다.</div>
+	<div class="deco2">웹프로그램은 Servlet 또는 JSP를 사용하여 작성합니다.</div>
+	<div class="deco3">웹프로그램은 Servlet 또는 JSP를 사용하여 작성합니다.</div>
+	<hr>
+	<div class="in1">CSS3를 모두 배운 후 JavaScript를 공부할 예정입니다.</div>
+	<div class="in2">CSS3를 모두 배운 후 JavaScript를 공부할 예정입니다.</div>
+	<div class="in3">CSS3를 모두 배운 후 JavaScript를 공부할 예정입니다.</div>
+	<hr>
+	<div class="trans1">JavaScript를 배우고 jQuery도 배울 예정입니다.</div>
+	<div class="trans2">JavaScript를 배우고 jQuery도 배울 예정입니다.</div>
+	<div class="trans3">JavaScript를 배우고 jQuery도 배울 예정입니다.</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
