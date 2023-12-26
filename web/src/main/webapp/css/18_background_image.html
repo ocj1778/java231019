@@ -5,8 +5,25 @@
 <title>CSS</title>
 <style>
 body {
-	background-image: url();
+	/* background-image : 박스모델의 배경 이미지 관련 스타일 속성 */
+	/* 속성값 : url 함수를 사용하여 이미지 파일의 URL 주소 설정 */
+	/* 배경 이미지가 박스모델의 폭 또는 높이보다 작은 경우 가로 방향(X) 또는 세로 방향(Y)으로 
+	이미지 반복 출력 */
+	background-image: url("/web/css/images/bg-img1.png");
+	
+	/* background-repeat : 배경 이미지의 반복 관련 스타일 속성 */
+	/* 속성값 : repeat(기본), repeat-x, repeat-y, no-repeat */
+	background-repeat: no-repeat;
 }	
+
+div {
+	margin: 0 auto;
+	width: 80%;
+	height: 400px;
+	border: 1px solid red;
+	/* 배경 이미지가 박스모델의 폭 또는 높이보다 큰 경우 박스모델을 벗어난 이미지는 잘라내어 출력 */
+	background-image: url("/web/css/images/bg-img2.png");
+}
 </style>
 </head>
 <body>
