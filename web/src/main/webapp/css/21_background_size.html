@@ -9,8 +9,31 @@ div {
 	height: 350px;
 	border: 1px solid red;
 	margin: 20px;
+	/* station.jpg : 595*400 - 배경 이미지가 박스모델의 크기보다 큰 경우 이미지를 잘라내어 출력 */
 	background: url(/web/css/images/station.jpg) no-repeat;
 }	
+
+/* background-size : 배경 이미지의 크기 관련 스타일 속성 */
+/* 속성값 : auto(기본) - 배경 이미지를 그대로 출력 - 반복이 안될 경우 여백 출력 또는 이미지 잘림 */
+.bgsize1 { background-size: auto; }
+
+/* 속성값 : 배경 이미지의 폭을 px 단위로 변경 - 이미지 비율에 맞게 높이 자동 변경 */
+.bgsize2 { background-size: 300px; }
+
+/* 속성값 : 배경 이미지의 폭과 높이를 px 단위로 변경 */
+.bgsize3 { background-size: 500px 350px; }
+
+/* 속성값 : 배경 이미지의 폭을 % 단위로 변경 - 이미지 비율에 맞게 높이 자동 변경 */
+.bgsize4 { background-size: 90%; }
+
+/* 속성값 : 배경 이미지의 폭과 높이를 % 단위로 변경 */
+.bgsize5 { background-size: 100% 100%; }
+
+/* 속성값 : contain - 배경 이미지의 폭과 높이 중 차이가 작은 부분을 100%로 설정 - 차이가 큰 부분은 여백 발생 */
+.bgsize6 { background-size: contain; }
+
+/* 속성값 : cover - 배경 이미지의 폭과 높이 중 차이가 큰 부분을 100%로 설정 - 차이가 작은 부분은 잘림 발생 */
+.bgsize7 { background-size: cover; }
 </style>
 </head>
 <body>
