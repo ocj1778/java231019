@@ -3,7 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>CSS</title>
+<style>
+div {
+	margin: 20px;
+	padding: 10px;
+	border: 2px solid red;
+	text-align: center;
+}	
 
+/* display 스타일 속성값을 [none]으로 설정한 경우 박스모델 미배치 - 박스모델 미출력 */
+.on { display: inline; }
+.off { display: none; }
+
+/* visibility : 박스모델 출력 관련 스타일 속성 */
+/* 속성값 : visible(보임 처리 - 기본), hidden(숨김 처리) */
+.show { visibility: visible; }
+.hide { visibility: hidden; }
+</style>
 </head>
 <body>
 	<h1>박스모델 배치 관련 스타일 속성</h1>
@@ -13,7 +29,6 @@
 		<img alt="펜션 이미지2" src="/web/css/images/2.jpg" class="off">
 		<img alt="펜션 이미지3" src="/web/css/images/3.jpg" class="on">
 	</div>
-	
 	<div>
 		<img alt="펜션 이미지1" src="/web/css/images/1.jpg" class="show">
 		<img alt="펜션 이미지2" src="/web/css/images/2.jpg" class="hide">
