@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+div {
+	width: 200px;
+	height: 100px;
+	border: 1px solid black;
+	background: green;
+	margin: 50px;
+}
+
+/* box-shadow : 박스모델의 그림자 효과를 제공하기 위한 스타일 속성 */
+/* 속성값 : 가로 세로 범짐 확장 색상 */
+.shadow1 {
+	box-shadow: 10px 10px 5px 5px black;
+}
+
+/* inset 속성값을 사용하여 박스모델 내부로 그림자 효과 제공 */
+.shadow2 {
+	box-shadow: 10px 10px 5px 5px black inset;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 관련 스타일 속성</h1>
+	<hr>
+	<div class="shadow1"></div>
+	<div class="shadow2"></div>
+</body>
+</html>
