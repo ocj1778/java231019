@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+/* 박스모델을 출력하기 위한 영역을 제공하는 컨테이너 역활의 박스모델 */	
+#container {
+	width: 800px;
+	/* min-height : 박스모델의 최소 높이를 설정하기 위한 스타일 속성 */
+	min-height: 600px;
+	border: 1px solid red;
+}	
+
+/* 컨테이너 영역에 출력될 아이템 역활의 박스모델 */
+.box {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	border: 1px solid green;
+	
+	/* display: inline-block; */
+	
+	/* float : 컨테이너 역활의 박스모델에 아이템 역활의 박스모델을 왼쪽 또는 오른쪽 위치부터
+	차례대로 배치하기 위한 스타일 속성 */
+	/* => 아이템 역활의 박스모델이 컨테이너 역활의 박스모델에 배치될 경우 자동 줄바꿈 처리 */
+	/* => float 스타일 속성이 적용된 박스모델 다음에 위치한 박스모델에도 float 스타일 속성 적용 */
+	/* 속성값 : none(기본), left, right */
+	float: left;
+}
+
+p {
+	/* clear : float 스타일 속성으로 설정된 배치 관련 스타일을 초기화 처리하기 위한 스타일 속성 */
+	/* 속성값 : left, right, both */
+	clear: both;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<div id="container">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<p>안녕하세요.</p>
+	</div>
+</body>
+</html>
