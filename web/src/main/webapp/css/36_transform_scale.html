@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+#original {
+	margin: 20px;
+}	
+
+img {
+	border: 1px solid black;
+}
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0, 0, 255, 0.3);
+	perspective: 200px;
+	transform-style: preserve-3d;
+}	
+
+/* scale(x, y) : 박스모델을 가로와 세로 방향으로 확대(축소)하는 함수 - 단위 : 배율 */
+#scale img {
+	transform: scale(1.2, 1.2);
+}
+
+/* scalex(x) : 박스모델을 가로 방향으로 확대(축소)하는 함수 - 단위 : 배율 */
+#scalex img {
+	transform: scalex(0.8);
+}
+
+/* scaley(y) : 박스모델을 세로 방향으로 확대(축소)하는 함수 - 단위 : 배율 */
+#scaley img {
+	transform: scaley(1.2);
+}
+
+/* scalez(z) : 박스모델을 원근 방향으로 확대(축소)하는 함수 - 단위 : 배율 */
+#scalez img {
+	transform: scalez(0.8);
+}
+
+/* scale3d(x, y, z) : 박스모델을 입체적으로 확대(축소)하는 함수 - 단위 : 배율 */
+#scale3d img {
+	transform: scale3d(1.2, 1.2, 0.8);
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<hr>
+	<div id="scale" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="scalex" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="scaley" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="scalez" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="scale3d" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+</body>
+</html>
