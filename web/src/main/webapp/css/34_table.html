@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+table {
+	border: 1px solid black;
+	/* border-collapse : 박스모델의 외곽선 중첩 처리 관련 스타일 속성 */
+	/* 속성값 : separate(중첩 외곽선 구분 - 기본), collapse(중첩 외곽선 병합) */
+	border-collapse: collapse;
+}	
+
+th, td {
+	border: 1px solid black;
+	
+	/* 모든 셀(Cell)의 폭을 일정하게 변경 */
+	/* width: 200px; */
+	 
+	height: 30px;
+	
+	text-align: center;
+}
+
+/* 셀(Cell)마다 폭을 다르게 설정 - 행의 셀에 적용된 폭은 다른 행의 셀에도 동일하게 적용 */
+.num { width: 100px; }
+.name { width: 150px; }
+.address { 
+	width: 300px; 
+	text-align: left;
+	padding-left: 5px;
+}
+</style>
+</head>
+<body>
+	<h1>테이블 관련 스타일 속성</h1>
+	<hr>
+	<table>
+		<tr>
+			<!-- 셀(Cell)의 폭은 태그내용에 의해 자동 설정 -->	
+			<th>번호</th><th>이름</th><th>주소</th>
+		</tr>
+		<tr>
+			<td class="num">1000</td><td class="name">홍길동</td><td class="address">서울시 강남구 역삼동 79-11 역삼빌딩</td>
+		</tr>
+		<tr>
+			<td class="num">2000</td><td class="name">임꺽정</td class="name"><td class="address">부산시 사하구</td>
+		</tr>
+		<tr>
+			<td class="num">3000</td><td class="name">전우치</td><td class="address">광주시 광산구</td>
+		</tr>
+		<tr>
+			<td class="num">4000</td><td class="name">일지매</td><td class="address">수원시 팔달구</td>
+		</tr>
+		<tr>
+			<td class="num">5000</td class="num"><td class="name">장길산</td><td class="address">인천시 월미구</td class="address">
+		</tr>
+	</table>
+</body>
+</html>
