@@ -16,6 +16,42 @@ img {
 	float: left;
 	margin: 20px;
 	background: rgba(0, 0, 255, 0.3);
+	
+	/* perspective : Z 영역에 대한 스타일 속성 */
+	/* 속성값 : Z 영역에 대한 깊이를 px 단위로 설정 */
+	perspective: 200px;
+	
+	/* transform-style : 박스모델 변형에 대한 차원 관련 스타일 속성 */
+	/* 속성값 : flat(2차원 - 기본), preserve-3d(3차원) */
+	transform-style: preserve-3d;
+}
+
+/* transform : 박스모델 변형 관련 스타일 속성 */
+/* 속성값 : 변형 관련 함수 - translate, scale, retate, skew 등 */
+
+/* translate(x, y) : 박스모델을 가로(X)와 세로(Y) 방향으로 이동하는 함수 - 단위 : px */
+#translate img {
+	transform: translate(20px, 20px);
+}
+
+/* translatex(x) : 박스모델을 가로(X) 방향으로 이동하는 함수 - 단위 : px */
+#translatex img {
+	transform: translatex(20px);
+}
+
+/* translatey(y) : 박스모델을 세로(Y) 방향으로 이동하는 함수 - 단위 : px */
+#translatey img {
+	transform: translatey(-20px);
+}
+
+/* translatez(z) : 박스모델을 원근(Z) 방향으로 이동하는 함수 - 단위 : px */
+#translatez img {
+	transform: translatez(-20px);
+}
+
+/* translate3d(x, y, z) : 박스모델을 입체적으로 이동하는 함수 - 단위 : px */
+#translate3d img {
+	transform: translate3d(-20px, -20px, -20px);
 }
 </style>
 </head>
