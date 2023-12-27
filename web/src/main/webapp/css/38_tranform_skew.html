@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+#original {
+	margin: 20px;
+}	
+
+img {
+	border: 1px solid black;
+}
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0, 0, 255, 0.3);
+	perspective: 200px;
+	transform-style: preserve-3d;
+}
+
+/* skew(x, y) : 박스모델을 가로와 세로 방향으로 비트는 함수 - 단위 : deg */
+#skew img {
+	transform: skew(30deg, 30deg);
+}
+
+/* skewx(x) : 박스모델을 가로 방향으로 비트는 함수 - 단위 : deg */
+#skewx img {
+	transform: skewx(30deg);
+}
+
+/* skewy(y) : 박스모델을 세로 방향으로 비트는 함수 - 단위 : deg */
+#skewy img {
+	transform: skewy(30deg);
+}	
+</style>
+</head>
+<body>
+	<h1>박스모델 변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<hr>
+	<div id="skew" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="skewx" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="skewy" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+</body>
+</html>
