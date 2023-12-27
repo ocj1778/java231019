@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+#shape div {
+	width: 100px;
+	height: 100px;
+	background: red;
+	border-radius: 0;
+	
+	/* 트렌지션 효과(Transition Effect) : 시간 경과에 따른 박스모델의 스타일을 천천히 변화되는 기능 */
+	
+	/* transition-property : 트렌지션 효과를 제공하기 위한 스타일 속성을 속성값으로 설정 */
+	transition-property: background border-radius;
+	
+	/* transition-duration : 트렌지션 효과의 제공 시간을 속성값으로 설정 - 단위 : s(초) */
+	transition-duration: 3s;
+	
+	/* transition-timing-function : 트렌지션 효과가 제공되는 속도를 속성값으로 설정 */
+	/* 속성값 : linear(기본), ease-in, ease-out, ease-in-out, cubic-bezier 함수 등 */
+	/* => https://easings.net 사이트 참조 */
+	transition-timing-function: ease-in;
+	
+	/* transition-delay : 트렌지션 효과의 지연시간을 속성값으로 설정 - 단위 : s(초) */
+	transition-delay: 0.5s;
+}	
+
+#shape div:hover {
+	background: blue;
+	border-radius: 50%;
+}
+</style>
+</head>
+<body>
+	<h1>트렌지션 관련 스타일 속성</h1>
+	<hr>
+	<p>도형 위에 마우스 커서를 올려보세요.</p>
+	<div id="shape">
+		<div></div>
+	</div>
+</body>
+</html>
