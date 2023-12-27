@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+#original {
+	margin: 20px;
+}	
+
+img {
+	border: 1px solid black;
+}
+
+.image {
+	float: left;
+	margin: 20px;
+	background: rgba(0, 0, 255, 0.3);
+	perspective: 200px;
+	transform-style: preserve-3d;
+}	
+
+/* rotate(각도) : 박스모델을 가로와 세로 방향으로 회전하는 함수 - 단위 : deg */	
+#rotate img {
+	transform: rotate(45deg);
+}
+
+/* rotatex(각도) : 박스모델을 가로 방향으로 회전하는 함수 - 단위 : deg */	
+#rotatex img {
+	transform: rotatex(45deg);
+}
+
+/* rotatey(각도) : 박스모델을 세로 방향으로 회전하는 함수 - 단위 : deg */	
+#rotatey img {
+	transform: rotatey(45deg);
+}
+
+/* rotatez(각도) : 박스모델을 원근 방향으로 회전하는 함수 - 단위 : deg */	
+#rotatez img {
+	transform: rotatez(45deg);
+}
+
+/* rotatez(x, y, z, 각도) : 박스모델을 원근 방향으로 회전하는 함수 - 단위 : deg */	
+#rotate3d img {
+	transform: rotate3d(-1, 1, 2, 45deg);
+}	
+</style>
+</head>
+<body>
+	<h1>박스모델 변형 관련 스타일 속성</h1>
+	<hr>
+	<div id="original">
+		<h3>원본이미지</h3>
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<hr>
+	<div id="rotate" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="rotatex" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="rotatey" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="rotatez" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+	<div id="rotate3d" class="image">
+		<img alt="펜션 이미지" src="/web/css/images/1.jpg">
+	</div>
+</body>
+</html>
