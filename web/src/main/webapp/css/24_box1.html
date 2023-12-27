@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+/* 박스모델(BoxModel) : 문장 또는 이미지를 출력하기 위한 태그를 사용하여 만들어지는 사각형 모양의 영역 */
+div {
+	/* margin : 박스모델과 박스모델의 간격 관련 스타일 속성 */
+	/* => margin-top, margin-right, margin-bottom, margin-left */
+	/* 속성값 : px(절대값 - 고정크기), %(상대값 - 유동크기) */
+	margin-top: 15px;	
+	margin-right: 15px;	
+	margin-bottom: 15px;	
+	margin-left: 15px;
+	
+	margin: 15px 15px 15px 15px;/* top right bottom left */
+	margin: 15px 15px;/* top&bottom right&left */
+	margin: 15px;/* top&right&bottom&left */
+	
+	/* border-width : 박스모델 외곽선의 굵기 관련 스타일 속성 */
+	/* => border-width-top, border-width-right, border-width-bottom, border-width-left */
+	/* 속성값 : px, 키워드(thin, medium, thick 등) */
+	border-width: 2px;
+	
+	/* border-style : 박스모델 외곽선의 모양 관련 스타일 속성 */
+	/* => border-style-top, border-style-right, border-style-bottom, border-style-left */
+	/* => 속성값 : none(기본), solid(실선), dotted(점선), double(이중선) 등 */
+	border-style: solid;
+	
+	/* border-style : 박스모델 외곽선의 색 관련 스타일 속성 */
+	/* => border-color-top, border-color-right, border-color-bottom, border-color-left */
+	border-color: red;
+	
+	/* border : 박스모델 외관선 과련 모든 스타일 속성값을 적용할 수 있는 스타일 속성 */
+	border: 2px solid red;
+
+	/* padding : 박스모델 외곽선과 콘덴츠(Content) 영역의 간격 관련 스타일 속성 */
+	/* => padding-top, padding-right, padding-bottom, padding-left */
+	/* 속성값 : px(절대값 - 고정크기), %(상대값 - 유동크기) */	
+	padding: 10px;
+}	
+
+.size1 {
+	/* width : 박스모델의 폭 관련 스타일 속성 */
+	/* 속성값 : px(절대값 - 고정크기), %(상대값 - 유동크기) */	
+	width: 400px;
+	
+	/* width : 박스모델의 높이 관련 스타일 속성 */
+	/* 속성값 : px(절대값 - 고정크기), %(상대값 - 유동크기) */	
+	height: 50px;
+	
+	/* vertical-align : 세로 방향 정렬 관련 스타일 속성 - 높이 변경시에만 사용 */
+	/* 속성값 : top(기본), bottom, middle 등 */
+	vertical-align: middle;
+}
+
+.size2 {
+	width: 50%;
+	height: 50px;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 관련 스타일 속성</h1>
+	<hr>
+	<div class="size1">Box Model-1</div>
+	<div class="size2">Box Model-2</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
