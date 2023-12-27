@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style>
+#images img {
+	margin: 20px;
+	
+	/* opacity : 박스모델 투명도 관련 스타일 속성 */
+	/* 속성값 : 0.0(투명) ~ 1.0(불투명) */
+	opacity: 0.5;
+	
+	/* transition : 트렌지션 관련 모든 스타일 속성값을 적용할 수 있는 스타일 속성 */
+	transition: all 1s;
+}
+
+#images img:hover {
+	transform: scale(1.2, 1.2);
+	opacity: 1.0;
+}	
+
+#shape div {
+	width: 100px;
+	height: 100px;
+	background: url();
+}
+</style>
+</head>
+<body>
+	<h1>트렌지션 관련 스타일 속성</h1>
+	<hr>
+	<div id="images">
+		<img alt="펜션 이미지1" src="/web/css/images/1.jpg">
+		<img alt="펜션 이미지2" src="/web/css/images/2.jpg">
+		<img alt="펜션 이미지3" src="/web/css/images/3.jpg">
+	</div>
+	<hr>
+	<div id="shape">
+		<div></div>		
+	</div>
+</body>
+</html>
