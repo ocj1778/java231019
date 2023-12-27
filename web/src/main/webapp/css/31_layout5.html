@@ -2,9 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CSS</title>
+<style>
+/* 박스모델을 출력하기 위한 영역을 제공하는 컨테이너 역활의 박스모델 - Flex Container */	
+#container {
+	width: 800px;
+	min-height: 600px;
+	border: 1px solid red;
+	
+	/* 컨테이너 역활의 박스모델에 display 스타일 속성값으로 [flex]를 설정하면 Flex 컨테이너로
+	처리되어 아이템 역활의 박스모델을 한쪽 방향의 일정한 간격으로 자동 배치  */
+	display: flex;
+	
+	/* flex-direction : Flex 컨테이너에 Flex 아이템 배치 방향을 설정하는 스타일 속성 */
+	/* 속성값 : row(기본), column, row-reverse, column-reverse */
+	/* flex-direction: row; */
+	
+	/* flex-wrap : Flex 컨테이너에 Flex 아이템 배치시 줄바꿈에 처리에 대한 스타일 속성 */
+	/* 속성값 : nowrap(기본), wrap(아래 줄바꿈 처리), wrap-reverse(위 줄바꿈 처리) */
+	/* flex-wrap: wrap; */
+	
+	/* flex-flow : flex-direction 스타일 속성과 flex-wrap 스타일 속성을 동시에 설정하기 위한 스타일 속성 */
+	flex-flow: row wrap;
+	
+	/* justify-content : Flex 컨테이너에 Flex 아이템를 정렬하여 출력하기 위한 스타일 속성 */
+	/* 속성값 : flex-start(기본), flex-end, center, space-between, space-around, space-evenly */
+	justify-content: space-evenly;
+}	
+
+/* 컨테이너 영역에 출력될 아이템 역활의 박스모델 - Flex Item */
+.box {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	border: 1px solid green;
+}	
+</style>
 </head>
 <body>
-
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<div id="container">
+		<div class="box">홍길동</div>
+		<div class="box">임꺽정</div>
+		<div class="box">전우치</div>
+		<div class="box">일지매</div>
+		<div class="box">장길산</div>
+		<div class="box">홍경래</div>
+	</div>
 </body>
 </html>
