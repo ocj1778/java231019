@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- HTML 문서를 해석하여 실행하는 순서 -->
+<!-- => HTML 문서의 태그를 읽어 메모리에 저장(DOM Parser) - DOM Tree >> CSS로 작성된 스타일 시트를  
+DOM Tree 태그에 적용 >> JavaScript 명령 실행 >> DOM Tree의 태그를 순차적으로 브라우저에 출력(Rendering) -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<!-- script 태그에 src 속성으로 JavaScript Source File을 불러와 HTML 문서에 포함 -->
+<!-- => 웹사이트를 구성하는 모든 웹문서에게 동일한 기능(함수)를 제공하기 위해 사용 --> 
+<script src="/web/js/01_hello.js"></script>
+
+<!-- script 태그 : 스크립트 언어를 사용하여 프로그램을 작성하는 태그 -->
+<!-- => HTML 문서에 script 태그를 여러번 작성 가능하며 순차적으로 실행 -->
+<!-- type 속성 : 스크립트 언어의 파일형태(MimeType)를 속성값으로 설정 -->
+<script type="text/javascript">
+//자바스크립트의 주석문은 Java와 동일
+
+//자바스크립트는 인터프리터 방식으로 명령을 하나씩 실행하므로 명령 마지막에 ; 기호 사용
+// => 자바스크립트는 한 줄에 작성된 코드를 하나의 명령으로 인식하여 처리하므로 ; 생략 가능
+
+//자바스크립트는 객체 지향 프로그래밍 언어로 객체를 사용하여 프로그램 작성
+// => 객체의 속성(Property)와 함수(Method)를 이용하여 명령을 작성하여 실행
+
+//console 객체 : 웹브라우저 콘솔을 사용하기 위해 제공되는 내장객체
+//console.log(message) : 브라우저 콘솔에 메세지를 출력하는 메소드
+console.log("Hello, JavaScript!!!");	
+
+//window 객체 : 웹브라우저를 사용하기 위해 제공되는 내장객체
+//window.alert(message) : 메세지창(경고창)을 생성하여 메세지를 출력하는 메소드
+// => window 객체를 생략하여 메소드 호출 가능
+//window.alert("Hello, JavaScript!!!");
+//alert("Hello, JavaScript!!!");
+
+alert("head 태그에 작성된 자바스크립트 명령");
+</script>
+</head>
+<body>
+	<!-- 
+	<script type="text/javascript">
+	alert("body 태그에 작성된 자바스크립트 명령");
+	</script>
+	-->
+	
+	<h1>자바스트립트 작성</h1>
+	<hr>
+	<p>자바스크립트(JavaScript) : 웹페이지에서 발생된 이벤트를 처리하기 위한 기능을 제공하는
+	스크립트 프로그래밍 언어 - 클라이언트 브라우저에서 해석되어 실행</p>
+	<p>자바스크립트 표준 규약은 ES15(ECMAScript15)까지 정의되어 있으나 일반적으로 ES6(ECMAScript6) 
+	표준 규약을 사용하여 작성</p>
+	<hr>
+	<!-- button 태그의 type 속성값을 [button]으로 설정하면 버튼 출력 - 이벤트 미발생 -->
+	<!-- HTML 태그에 onXXX 속성은 이벤트 리스너 속성으로 이벤트 처리 명령을 속성값으로 설정 -->
+	<!-- => 이벤트 처리 명령은 자바스크립트를 사용하여 작성 -->
+	<!-- <button type="button" onclick="alert('이벤트 처리 명령 실행');">버튼을 눌러보세요.</button> -->
+	
+	<!-- 태그의 이벤트 리스너 속성값으로 자바스크립트 함수(이벤트 처리 함수)를 호출하여 사용 -->	
+	<button type="button" onclick="eventHandle();">버튼을 눌러보세요.</button>
+	
+	<script type="text/javascript">
+	alert("body 태그에 작성된 자바스크립트 명령");
+	</script>
+</body>
+</html>
