@@ -2,9 +2,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- meta 태그의 name 속성값으로 viewport 설정 -->
+<!-- => 장치의 폭 또는 브라우저 해상도가 다르기 때문에 비정상적인 출력 결과 제공 -->
+<!-- => content 속성값으로 페이지를 장치의 폭에 맞추어 출력되도록 설정 - 확대 또는 축소 가능 -->
+<!-- => 스마트기기 해상도에 맞게 태그내용이 출력되도록 설정하기 위한 속성 -->
+<meta name="viewport" content="width=device-width">
+<title>CSS</title>
+<style>
+body {
+	background: lime;
+}	
+
+/* 반응형 웹디자인 구현을 위해 박스모델 관련 크기를 유동성 구조로 설정 */
+/* => 크기 단위를 px 대신 % 또는 em 사용 */
+#container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#logo img {
+	width: 100%;
+	margin-top: 150px;
+}
+
+/* @media : 장치 또는 해상도에 따라 태그에 다른 스타일 시트를 적용하기 위한 시스템 속성 - Media Query */
+/* 형식) @media 장치 [and 조건] [and 조건] { 선택자 { 속성 : 속성값; ...} ... } */
+/* 장치 : all, screen, print, tv, aural, braille 등 */
+@media screen and (max-width:360px) {
+	body {
+		background: yellow;
+	}
+}
+
+@media screen and (min-width:361px) and (max-width:768px) {
+	body {
+		background: orange;
+	}
+}
+
+@media screen and (min-width:769px) and (max-width:1024px) {
+	body {
+		background: olive;
+	}
+}
+</style>
 </head>
 <body>
-
-</body>
+	<!-- 반응형 웹디자인 구현을 위해 페이지가 출력될 폭 제한 - 컨테이너 역활의 박스모델 -->
+	<div id="container">
+		<h1>반응형 웹디자인(Responsive Web Design)</h1>
+		<hr>
+		<p>장치 또는 해상도에 따라 다른 스타일의 페이지를 제공하기 위한 웹디자인 기법</p>
+		<hr>
+		<div id="logo">
+			<img alt="로고" src="/web/css/images/logo.png">
+		</div>
+	</div>
+</body>	
 </html>
