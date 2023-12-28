@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스트립트 변수 및 자료형</h1>
+	<hr>
+	<p>ES6(ECMAScript6)에서는 let 키워드 또는 const 키워드를 사용하여 변수 선언 가능</p>
+	
+	<script type="text/javascript">
+	/*	
+	//var 키워드로 변수를 선언한 경우 동일한 이름의 변수 선언이 가능하며 초기값 변경 가능	
+	var num=100;
+	//alert("num = "+num); 
+	
+	var num=200;//기존 변수 사용	
+	alert("num = "+num);
+	*/
+	
+	/*
+	//let 키워드로 변수를 선언한 경우 동일한 이름의 변수 선언이 불가능하며 초기값 변경 가능	
+	let num=100; 
+	//alert("num = "+num); 
+
+	//let num=200;//에러 발생
+	num=200; 
+	alert("num = "+num);
+	*/ 
+	
+	/*
+	//const 키워드로 변수를 선언한 경우 동일한 이름의 변수 선언이 불가능하며 초기값 변경 불가능	
+	const num=100;//상수 변수(Constant Variable) 
+	//alert("num = "+num);
+
+	//const num=100;//에러 발생
+	//num=200;//에러 발생 
+	alert("num = "+num);
+	*/
+	
+	/*
+	//제어문의 블럭 내부에서 선언된 var 변수는 블럭 외부에서 사용 가능하지만 let 변수와 
+	//const 변수는 블럭 외부에서 사용 불가능
+	if(true) {
+		var num1=100;//제어문의 블럭 내부 및 외부에서 사용 가능
+		let num2=200;//제어문의 블럭 내부에서만 사용 가능 - 제어문의 블럭 종료시 자동 소멸
+		const num3=300;//제어문의 블럭 내부에서만 사용 가능 - 제어문의 블럭 종료시 자동 소멸
+		
+		//alert("num1 = "+num1+", num2 = "+num2+", num3 = "+num3);
+	}
+	
+	//let 변수와 const 변수는 블럭이 종료되면 소멸되므로 변수를 사용할 경우 에러 발생
+	alert("num1 = "+num1+", num2 = "+num2+", num3 = "+num3);//에러 발생
+	*/
+	
+	/*
+	//함수 내부에 선언된 변수는 함수 종료시 무조건 소멸
+	function display() {
+		//함수 내부에 선언된 변수 - 지역변수 
+		// => 함수 내부에서만 사용 가능하며 함수가 종료되면 소멸
+		var num1=100;//함수 블럭 내부에서만 사용 가능 - 함수 블럭 종료시 자동 소멸
+		let num2=200;//함수 블럭 내부에서만 사용 가능 - 함수 블럭 종료시 자동 소멸
+		const num3=300;//함수 블럭 내부에서만 사용 가능 - 함수 블럭 종료시 자동 소멸
+		
+		//alert("num1 = "+num1+", num2 = "+num2+", num3 = "+num3);
+	}
+	
+	display();//함수 호출 - 함수 내부에 작성된 명령 실행
+	alert("num1 = "+num1+", num2 = "+num2+", num3 = "+num3);
+	*/
+	
+	
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
