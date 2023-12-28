@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>전역변수와 지역변수</h1>
+	<hr>
+	<p>전역변수(Global Variable) : 함수 외부에서 선언된 변수 - 모든 함수에서 사용 가능</p>
+	<p>지역변수(Local Variable) : 함수 내부에서 선언된 변수 - 선언된 함수에서만 사용 가능</p>
+	
+	<script type="text/javascript">
+	var globalVar=100;//전역변수
+	
+	function display1() {
+		//alert("display1 함수에서 사용하는 globalVar 변수값 = "+globalVar);
+		globalVar=200;//함수에서 전역변수에 저장된 값 변경
+		
+		//지역변수는 함수가 종료되면 자동 소멸되므로 함수 외부에서 지역변수 사용 불가능
+		var localVar=300;//지역변수
+		//alert("display1 함수에서 사용하는 localVar 변수값 = "+localVar);
+		
+		//자바스크립트는 변수를 선언하지 않아도 값을 저장하여 변수 사용 가능
+		// => 함수에서 변수를 선언하지 않고 값만 저장하여 사용한 변수는 자동으로 전역변수로 처리
+		variable=400;
+		alert("display1 함수에서 사용하는 variable 변수값 = "+variable);
+	}
+	
+	function display2() {
+		//alert("display2 함수에서 사용하는 globalVar 변수값 = "+globalVar);
+		//alert("display2 함수에서 사용하는 localVar 변수값 = "+localVar);//에러 발생
+		alert("display2 함수에서 사용하는 variable 변수값 = "+variable);
+	}	
+	
+	display1();
+	display2();
+	</script>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
