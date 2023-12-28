@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>함수의 인자</h1>
+	<hr>
+	<p>인자(Argument) : 함수에 작성된 명령을 실행하기 위해 반드시 필요한 값을 함수를 호출할
+	때 전달받아 저장하기 위한 변수 - 매개변수(Paramater)</p>
+	
+	<script type="text/javascript">
+	/*	
+	//매개변수는 var 키워드 없이 선언하며 지역변수로 처리	
+	function sum(num1, num2) {
+		alert("합계 = "+(num1+num2));
+	}	
+	
+	//매개변수의 갯수와 동일한 갯수의 값을 전달하여 함수 호출
+	//sum(10, 20);//합계 = 30
+	
+	//매개변수의 갯수보다 적은 갯수의 값을 전달하여 함수 호출 가능
+	// => 값을 전달받지 못한 매개변수는 저장값이 없으므로 [undefined]로 처리 - 비정상적인 결과 제공
+	//sum(10);//합계 = NaN
+	
+	//매개변수의 갯수보다 많은 갯수의 값을 전달하여 함수 호출 가능
+	// => 매개변수에 값을 차례대로 전달받아 저장하고 남은 값은 미사용 처리
+	sum(10, 20, 30);
+	*/
+	
+	function total() {
+		//alert("total 함수의 명령 실행");
+		
+		//arguments 객체 : 함수 호출시 전달된 모든 값을 배열 형식으로 저장하기 위한 내장객체
+		//alert(arguments);//[object Arguments]
+		//alert(arguments.length);//전달값의 갯수를 제공받아 출력
+		
+		var tot=0;
+		for(i=0;i<arguments.length;i++) {
+			tot+=arguments[i];//전달값을 변수에 누적
+		}
+		
+		alert("합계 = "+tot);
+	}
+	
+	//자바스크립트에서는 매개변수에 상관없이 함수명으로 함수 호출 가능
+	//total();
+	//total(10, 20, 30);
+	total(10, 20, 30, 40, 50);
+	</script>
+</body>
+</html>
