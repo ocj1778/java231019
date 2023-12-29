@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>클래스 자료형과 객체</h1>
+	<hr>
+	<p>ES6에서는 class 키워드로 클래스 자료형을 작성하여 객체 생성 가능 
+	- 내부적으로 클래스 함수(프로토타입)로 처리</p>
+	
+	<script type="text/javascript">
+	class Human {
+		//constructor 키워드로 생성자 함수 작성
+		constructor(num) {
+			//this 키워드를 사용한 변수에 매개변수로 전달받은 값 저장 - 프로퍼티
+			this.num=num;
+		}
+	}	
+	
+	//extends 키워드를 사용하여 부모클래스를 상속받아 자식클래스 작성 가능
+	// => 부모클래스의 프로퍼티와 메소드를 상속받아 사용 가능	
+	class Student extends Human {
+		constructor(num, name, address) {
+			//super : 부모클래스의 객체의 참조하기 위한 키워드
+			//super 키워드로 부모클래스의 생성자 함수를 호출하여 부모클래스의 객체 생성
+			super(num);
+			this.name=name;
+			this.address=address;
+		}
+		
+		//메소드 선언 - function 키워드 없이 함수 작성
+		display() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+		
+		setValue(num, name, address) {
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}
+	}
+		
+	//new 연산자로 클래스의 생성자 함수를 호출하여 객체 생성
+	// => 생성자 함수는 클래스의 이름으로 호출	
+	let	student=new Student(1000, "홍길동", "서울시 강남구");
+	//alert("클래스의 자료형 = "+typeof(Student));//클래스의 자료형 = function
+	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	student.setValue(2000, "임꺽정", "서울시 종로구");
+	student.display();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
