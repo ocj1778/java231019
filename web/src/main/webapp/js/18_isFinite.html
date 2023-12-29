@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - isFinite 함수</h1>
+	<hr>
+	<p>isFinite(value) : 매개변수로 전달받은 값이 무한수인 경우 [false]를 반환하고 유한수인 
+	경우 [true]를 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	//alert(10/4);//2.5	
+	//alert(10/3);//3.3333333333333335 - 자바스크립트는 모든 숫자값을 유한수로 표현
+	//alert(10/0);//Infinity - 무한수
+	
+	//var num1=10, num2=3;
+	var num1=10, num2=0;
+	
+	if(isFinite(num1/num2))	{
+		alert(num1/num2);
+	} else {
+		alert("0으로 나눌 수 없습니다.");
+	}
+	</script>
+</body>
+</html>
