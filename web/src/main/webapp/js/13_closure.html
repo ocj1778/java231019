@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>클로저함수(Closure Function)</h1>
+	<hr>
+	<p>클로저함수 : 내부함수를 return 명령으로 반환하여 변수에 저장해 함수 외부에서 호출하는 함수</p>
+	
+	<script type="text/javascript">
+	/*	
+	function outer() {
+		//내부함수 선언
+		function inner() {
+			alert("내부함수의 명령 실행");
+		}
+		
+		//inner();//내부함수는 선언된 함수에서만 호출 가능
+		
+		//함수명으로 내부함수를 반환
+		return inner;
+	}	
+	
+	//inner();//에러 발생
+	//outer();
+	
+	//내부함수를 반환받아 변수에 저장 
+	var closure=outer();
+	closure();//변수명으로 내부함수 호출 가능 - 클로저함수
+	*/
+		
+	function display(name) {
+		//내부함수로 익명함수를 선언하여 반환
+		return function() {
+			alert(name+"님, 안녕하세요.");
+		}
+	}	
+	
+	/*
+	var println=display("홍길동");
+	println();
+	*/
+	
+	//내부함수를 반환받아 변수에 저장하지 않고 직접 호출 - 한번만 호출 가능
+	display("홍길동")();
+	display("임꺽정")();
+	</script>
+</body>
+</html>
