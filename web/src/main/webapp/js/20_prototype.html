@@ -33,7 +33,7 @@
 		
 		//this 키워드로 변수에 함수를 저장하여 메소드 선언
 		// => 메소드에서는 this 키워드로 프로퍼티를 사용하여 필요한 명령 작성
-		// => 객체마다 메소드를 따로 저장하여 사용
+		// => 객체마다 메소드를 따로 저장하여 사용 - 메모리 사용 비효율적
 		//메소드(Method) : 객체의 행위(기능)을 함수로 표현하여 저장하기 위한 변수 - 멤버함수
 		/*
 		this.display=function() {
@@ -48,8 +48,31 @@
 		*/
 	}	
 	
-	//Student.prototype
+	//클래스 함수(프로토타입 - Prototype) 외부에서 메소드 추가
+	// => 객체에 상관없이 클래스 함수 내부에 메소드가 하나만 생성되어 사용
+	/*
+	Student.prototype.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
 	
+	Student.prototype.setValue=function(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+	}
+	*/
+	
+	//클래스 함수 내부에 다수의 메소드를 객체로 추가하여 작성
+	Student.prototype={
+		"display" : function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		},
+		"setValue" : function(num, name, address) {
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}	
+	}
 	
 	//클래스 함수(프로토타입 - Prototype)를 사용하여 객체를 생성하는 방법
 	// => new 연산자로 클래스 함수를 호출하여 객체 생성하고 생성된 객체를 변수에 저장 - 객체형 변수
@@ -67,15 +90,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
