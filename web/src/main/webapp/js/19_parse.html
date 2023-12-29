@@ -2,9 +2,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JavaScript</title>
 </head>
 <body>
-
+	<h1>내장함수 - 숫자값 변환 함수</h1>
+	<hr>
+	<p>parseInt(value) : 매개변수로 전달받은 값을 정수값으로 변환하여 반환하는 함수</p>
+	<p>parseFloat(value) : 매개변수로 전달받은 값을 실수값으로 변환하여 반환하는 함수</p>
+	
+	<script type="text/javascript">
+	/*	
+	var result=50/3;
+	//alert("결과 = "+result);//결과 = 16.666666666666668	
+	alert("결과 = "+parseInt(result));//결과 = 16
+	*/
+	
+	/*
+	//parsetInt(string[, radix]) : 매개변수로 전달받은 특정 진수의 문자값을 10진수의 정수값으로
+	//변환하여 반환하는 함수 - 진수의 매개변수에 값을 전달하지 않으면 10진수의 문자값으로 처리 
+	//alert("16진수 : 123 = 10진수 : "+parseInt("123",16)); 	
+	//alert("16진수 : abc = 10진수 : "+parseInt("abc",16)); 	
+	alert("8진수 : 123 = 10진수 : "+parseInt("123",8));
+	*/
+	
+	/*
+	var num="100";
+	//alert(num+200);//100200 - 문자값 결합
+	//alert(parseInt(num)+200);//300 - parseInt 함수를 사용하여 문자값을 정수값으로 변환
+	alert(Number(num)+200);//300 - Number 함수를 사용하여 문자값을 숫자값으로 변환
+	*/
+	
+	/*
+	var num="100abc";
+	//parseInt 함수를 사용하면 매개변수로 전달받은 문자값의 앞부분에 숫자만 잘라내어 
+	//정수값으로 변환하는 반환 가능
+	//alert(parseInt(num)+200);//300
+	
+	//Number 함수는 매개변수로 전달받은 문자값에 숫자외의 문자가 존재할 경우 NaN 상수 제공
+	//alert(Number(num)+200);//NaN	
+	*/
+	
+	var num="10.5";
+	//alert(num+20)//10.520 - 문자값 결과
+	//alert(parseFloat(num)+20)//30.5 - 산술 연산
+	alert(Number(num)+20)//30.5 - 산술 연산
+	</script>
 </body>
 </html>
