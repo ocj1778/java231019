@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내장함수 - eval 함수</h1>
+	<hr>
+	<p>eval(string) : 매개변수로 전달받은 문자값을 자바스크립트 명령으로 변환하여 실행하는 함수</p>
+	
+	<script type="text/javascript">
+	/*	
+	var text="20 + 10";
+	//alert(text);//20 + 10 => 변수에 저장된 문자값 출력
+	alert(eval(text));//30 => 변수에 저장된 문자값을 eval 함수를 사용해 자바스크립트 명령으로 변환되어 실행
+	*/
+	
+	/*
+	var operation=prompt("사칙 연산식을 입력해 주세요.");
+	alert("연산결과 = "+eval(operation));
+	*/
+	
+	var display="function() { alert('함수의 명령 실행'); }";
+	//alert("변수의 자료형 = "+typeof(display));//변수의 자료형 = string
+	//display();//변수에 저장된 값이 함수가 아니므로 함수 호출 불가능 - 에러 발생
+	
+	//함수가 문자값으로 저장된 변수를 eval 함수를 사용하여 함수로 선언할 경우 함수가 먼저
+	//선언되어지도록 앞과 뒤에 () 기호를 붙여 우선 처리되도록 작성 
+	//alert("변수의 자료형 = "+typeof(eval("("+display+")")));//변수의 자료형 = function
+	eval("("+display+")")();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
