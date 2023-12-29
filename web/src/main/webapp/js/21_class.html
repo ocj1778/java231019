@@ -31,6 +31,7 @@
 		}
 		
 		//메소드 선언 - function 키워드 없이 함수 작성
+		// => 객체와 상관없이 클래스 자료형에 하나만 생성되어 사용
 		display() {
 			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
 		}
@@ -42,37 +43,83 @@
 		}
 	}
 		
+	/*	
 	//new 연산자로 클래스의 생성자 함수를 호출하여 객체 생성
 	// => 생성자 함수는 클래스의 이름으로 호출	
 	let	student=new Student(1000, "홍길동", "서울시 강남구");
 	//alert("클래스의 자료형 = "+typeof(Student));//클래스의 자료형 = function
 	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
 	
-	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	
 	student.setValue(2000, "임꺽정", "서울시 종로구");
+	student.display();
+	*/
+	
+	let	student=new Student(1000, "홍길동", "서울시 강남구");
+	
+	/*
+	//객체의 요소(프로퍼티 또는 메소드)는 . 연산자를 사용하여 접근 가능
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	//student.display();
+	
+	//객체의 요소(프로퍼티 또는 메소드)는 [] 연산자를 사용하여 접근 가능
+	//alert("학번 = "+student["num"]+", 이름 = "+student["name"]+", 주소 = "+student["address"]);
+	student["display"]();
+	*/
+	
+	/*
+	//instanceof 연산자 : ES6에서 추가된 연산자로 변수에 저장된 객체의 클래스 자료형을 비교하여
+	//객체의 자료형이 아니면 [false]를 제공하고 객체의 자료형이 맞으면 [true]를 제공
+	//형식) 객체변수명 instanceof 클래스명 
+	//alert(student instanceof Student);//true
+	*/
+		
+	/*	
+	//in 연산자 : 객체의 프로퍼티 또는 메소드가 아닌 경우 [false]를 제공하고 객체의 프로퍼티
+	//또는 메소드인 경우 [true]를 제공
+	//형식) "요소이름" in 객체변수명	
+	//alert("num" in student);//true	
+	//alert("name" in student);//true	
+	alert("phone" in student);//false
+	*/
+	
+	/*
+	//for 구문을 사용하여 객체의 요소(프로퍼티 또는 메소드)의 이름을 차례대로 제공받아  
+	//변수에 저장하여 일괄처리 가능
+	//형식) for(변수명 in 객체변수명) { 명령; 명령; ... }
+	for(variable in student) {
+		//alert(variable);
+		
+		//alert(student.variable);//undefined
+		//변수에 저장된 요소명으로 객체의 요소에 접근하기 위해 [] 연산자 사용
+		alert(student[variable]);
+	}
+	*/
+	
+	/*
+	//with 구문을 사용하여 블럭 내부에서 객체의 요소를 변수처럼 사용할 수 있는 기능 제공
+	//형식) with(객체변수명) { 명령; 명령; ... }
+	with(student) {
+		alert("학번 = "+num+", 이름 = "+name+", 주소 = "+address);
+	}
+	*/	
+	
+	//자바스크립트는 생성된 객체에 프로퍼티 또는 메소드를 추가, 변경, 삭제 가능
+	student.phone="010-1234-5678";//객체에 프로퍼티 추가
+	//alert("전화번호 = "+student.phone);
+	
+	//객체에 저장된 메소드 변경 처리
+	student.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address+", 전화번호 = "+this.phone);
+	}
+	
+	//student.display();
+	
+	//delete(객체요소) : 객체에 저장된 프로퍼티 또는 메소드를 제거하는 함수
+	delete(student.phone);//객체의 프로퍼티 삭제
+	
+	//객체의 요소가 아닌 경우 [undefined] 자료형으로 처리
 	student.display();
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
