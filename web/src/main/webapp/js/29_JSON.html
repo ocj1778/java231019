@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>JSON 클래스 함수</h1>
+	<hr>
+	<p>JSON 관련 프로퍼티와 메소드를 제공하기 위한 클래스 함수</p>
+	
+	<script type="text/javascript">
+	//JSON 기능을 사용하여 Object 객체를 생성하여 변수에 저장	
+	var student={num:1000, name:"홍길동"};
+	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
+	
+	//Object 객체가 저장된 변수를 출력하면 자동으로 toString() 메소드 호출
+	//Object.toString() : 객체를 생성한 클래스 함수의 이름을 문자값으로 반환하는 메소드
+	//alert("student = "+student);//student = [object Object] >> Object 객체
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name);//학번 = 1000, 이름 = 홍길동
+	
+	//JSON.stringify(object) : 매개변수로 전달받은 자바스크립트 객체를 JSON 형식의 문자값으로
+	//변환하는 반환하는 메소드
+	// => REST 웹프로그램을 요청할 경우 자바스트립트 객체를 JSON 형식의 문자값으로 변환하여
+	//전달하기 위해 사용
+	var str=JSON.stringify(student);
+	//alert("변수의 자료형 = "+typeof(str));//변수의 자료형 = string
+	//alert("str = "+str);//str = {"num":1000,"name":"홍길동"}
+		
+	//JSON.parse(string) : 매개변수로 전달받은 JSON 형식의 문자값을 자바스크립트 객체로
+	//변환하는 반환하는 메소드 - eval 함수 사용 가능
+	// => REST 웹프로그램을 요청하여 JSON 형식의 문자값으로 응답 받은 경우 자바스크립트
+	//객체로 변환하여 사용
+	//var stu=JSON.parse(str);
+	var stu=eval("("+str+")");
+			
+	//alert("변수의 자료형 = "+typeof(stu));//변수의 자료형 = object
+	//alert("stu = "+stu);//stu = [object Object] >> Object 객체
+	alert("학번 = "+stu.num+", 이름 = "+stu.name);//학번 = 1000, 이름 = 홍길동
+	</script>
+</body>
+</html>
