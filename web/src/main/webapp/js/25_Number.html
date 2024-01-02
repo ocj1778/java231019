@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Number 클래스 함수</h1>
+	<hr>
+	<p>숫자값이 저장된 객체를 생성하기 위한 클래스 함수 
+		- Number 객체(클래스 함수)로 프로퍼티와 메소드 사용 가능</p>
+	
+	<script type="text/javascript">
+	/*
+	//매개변수로 전달받은 숫자값이 저장된 Number 객체를 생성하여 변수에 저장
+	//var num=new Number(100);		
+	var num=new Number("100");//매개변수에 문자값을 전달해도 숫자값으로 자동 변환되어 저장
+	//alert("변수의 자료형 = "+typeof(num));//변수의 자료형 = object
+	
+	//Number.toString() : Number 객체에 저장된 숫자값을 문자값으로 변환하여 반환하는 메소드
+	//alert("num.toString() = "+num.toString());
+	//Number 객체가 저장된 변수를 출력하면 toString() 메소드 자동 호출		
+	//alert("num = "+num);
+	
+	//Number.toString(radix) : Number 객체에 저장된 숫자값을 매개변수로 전달받은 진수 형태의
+	//문자값으로 변환하여 반환하는 메소드
+	//alert(num+"(10진수) = "+num.toString(16)+"(16진수)");		
+	//alert(num+"(10진수) = "+num.toString(8)+"(8진수)");		
+	//alert(num+"(10진수) = "+num.toString(2)+"(2진수)");	
+	
+	//Number.valueOf() : Number 객체에 저장된 숫자값을 반환하는 메소드
+	var su=num.valueOf();	
+	//alert("su = "+su);//su = 100
+	
+	//자바스크립트는 모든 값을 내부적으로 객체로 표현하여 처리
+	// => number 자료형의 변수에 저장된 숫자값은 내부적으로 Number 객체로 처리
+	// => number 자료형의 변수로 Number 클래스 함수의 프로퍼티와 메소드 사용 가능
+	alert("su.toString(2) = "+su.toString(2));
+	*/
+	
+	/*
+	//자바스트립트에서는 객체에 프로퍼티 또는 메소드를 추가,변경,삭제 가능
+	var num=new Number(100);
+	//alert("변수의 자료형 = "+typeof(num));//변수의 자료형 = object
+	//alert("num = "+num);
+	
+	//Number 객체에 메소드 추가
+	num.display=function() {
+		alert("Number 객체의 display() 메소드 호출");
+	}
+	
+	num.display();//메소드 호출 가능
+	*/
+	
+	/*
+	var num=100;
+	//alert("변수의 자료형 = "+typeof(num));//변수의 자료형 = number
+	//alert("num = "+num);
+	
+	//number 자료형의 변수에는 메소드 추가 불가능
+	num.display=function() {
+		alert("Number 객체의 display() 메소드 호출");
+	}
+	
+	num.display();//메소드 호출 불가능 - 에러 발생
+	*/
+	
+	var num=12.3456789;
+	//alert("num = "+num);
+	
+	/*
+	//Number.toFixed(digits) : Number 객체에 저장된 숫자값에서 매개변수로 전달받은 소숫점
+	//자릿수(0~20)까지 잘라낸 문자값으로 변환하여 반환하는 메소드
+	// => 매개변수로 전달받은 소숫점 자릿수 뒤의 값을 이용하여 반올림 처리
+	//alert("num.toFixed(0) = "+num.toFixed(0));//num.toFixed(0) = 12
+	//alert("num.toFixed(1) = "+num.toFixed(1));//num.toFixed(1) = 12.3
+	alert("num.toFixed(2) = "+num.toFixed(2));//num.toFixed(1) = 12.35
+	*/
+	
+	/*
+	var num="100";
+	//alert("연산결과 = "+(num+200));//연산결과 =  100200 - 문자값 결합
+	
+	//Number(string) : 매개변수로 전달받은 문자값을 숫자값으로 변환하여 반환하는 함수
+	alert("연산결과 = "+(Number(num)+200));//연산결과 = 300
+	*/
+	
+	alert("자바스크립트에서 표현 가능한 최대 숫자값 = "+Number.MAX_VALUE);
+	alert("자바스크립트에서 표현 가능한 최소 숫자값 = "+Number.MIN_VALUE);
+	</script>	
+</body>
+</html>
