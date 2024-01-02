@@ -82,22 +82,72 @@
 	alert("num2 = "+num2);
 	*/
 	
+	/*
+	//Object 객체를 생성하여 변수에 저장
+	var student={num:1000, name:"홍길동"};
+	//alert("학번 = "+student.num+", 이름 = "+student.name);
+	//alert("학번 = "+student["num"]+", 이름 = "+student["name"]);
 	
+	//구조분해할당을 사용하여 Object 객체의 요소값을 제공받아 변수에 저장
+	// => 변수의 이름이 반드시 요소의 이름과 동일해야 요소값이 변수에 저장
+	//형식) var {변수명, 변수명, ...} = Object
+	//var {num, name}=student;
+	//alert("학번 = "+num+", 이름 = "+name);
+	
+	//변수의 이름이 요소의 이름과 다른 경우 요소가 변수에 저장되지 않아 [undefined] 자료형으로 처리
+	//var {number, irum}=student;
+	//alert("학번 = "+number+", 이름 = "+irum);
+	
+	//변수의 이름이 요소의 이름과 다른 경우에도 변수에 요소값 저장 가능
+	//var {num:number, name:irum}=student;
+	//형식) var {요소명:변수명, 요소명:변수명, ...} = Object
+	alert("학번 = "+number+", 이름 = "+irum);
+	*/
+	
+	/*
+	var {num:number, name:irum}={num:1000, name:"홍길동"};
+	alert("학번 = "+number+", 이름 = "+irum);
+	*/
+	
+	var people=[{name:"홍길동", subject:"JAVA", grade:"초급"}
+		, {name:"임꺽정", subject:"JSP", grade:"중급"}
+		, {name:"전우치", subject:"SPRING", grade:"고급"}];
+	
+	/*
+	for(i=0;i<people.length;i++) {
+		//alert(people[i]);//[object Object]
+		
+		alert("이름 = "+people[i].name+", 과목명 = "+people[i].subject+", 등급 = "+people[i].grade);
+	}
+	*/
+	
+	/*
+	for(object of people) {
+		alert("이름 = "+object.name+", 과목명 = "+object.subject+", 등급 = "+object.grade);
+	}
+	*/
+	
+	/*
+	//of 연산자를 사용해 Array 객체의 요소값(Object 객체)을 차례대로 제공받아 구조분해할당
+	//기능을 사용해 변수에 저장  
+	for({name, subject, grade} of people) {
+		alert("이름 = "+name+", 과목명 = "+subject+", 등급 = "+grade);
+	}
+	*/
+	
+	/*
+	//Object 객체를 전달받아 매개변수에 저장	
+	function display(object) {
+		alert("학번 = "+object.num+", 이름 = "+object.name);
+	}
+	*/
+	
+	//Object 객체를 전달받아 구조분해할당 기능을 사용하여 변수에 저장
+	function display({num, name}) {
+		alert("학번 = "+num+", 이름 = "+name);
+	}
+	
+	display({num:1000, name:"홍길동"});
 	</script>	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
