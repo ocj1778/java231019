@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>구조분해할당(Destructuring Assignment)</h1>
+	<hr>
+	<p>구조분해할당 : Object 객체 또는 Array 객체의 요소를 해제하여 요소값을 개별적인 변수에 
+		저장하여 제공하는 기능 - ES6</p>
+	
+	<script type="text/javascript">
+	/*	
+	var array=["홍길동","임꺽정","전우치"];
+	//alert(array);
+	
+	//Array 객체의 요소값을 변수에 저장
+	//var one=array[0];
+	//var two=array[1];
+	//var three=array[2];
+		
+	//구조분해할당을 사용하여 Array 객체의 요소값을 차례대로 제공받아 변수에 저장
+	//형식) var [변수명, 변수명, ...] = Array	
+	var [one,two,three]=array;
+		
+	alert("one = "+one+", two = "+two+", three = "+three);
+	*/
+	
+	/*
+	//var [one,two,three]=["홍길동","임꺽정","전우치"];
+	//Array 객체를 분리 할당할 경우 할당 받을 값이 없을 때 변수에 저장될 기본값 설정 가능
+	//var [one,two,three="일지매"]=["홍길동","임꺽정","전우치"];
+	var [one,two,three="일지매"]=["홍길동","임꺽정"];
+
+	alert("one = "+one+", two = "+two+", three = "+three);
+	*/
+	
+	/*
+	//함수 선언시 매개변수에 전달되어 저장될 값이 없는 경우 매개변수에 저장될 기본값 설정 가능
+	function sum(num1=10, num2=20) {
+		return num1+num2;
+	}
+	
+	//alert("합계 = "+sum(100,200));
+	//alert("합계 = "+sum(100));
+	alert("합계 = "+sum());
+	*/
+	
+	/*
+	var [num1, num2]=[10, 20];
+	alert("num1 = "+num1+", num2 = "+num2);//num1 = 10, num2 = 20
+	
+	//두 변수값을 바꾸어 저장
+	var [num1, num2]=[num2, num1];
+	alert("num1 = "+num1+", num2 = "+num2);//num1 = 20, num2 = 10
+	*/
+	
+	//Array 객체를 반환하는 함수
+	function returnArray() {
+		return [10, 20, 30];
+	}
+	
+	/*
+	//함수를 호출하여 반환되는 Array 객체를 변수에 저장
+	var array=returnArray();
+	alert(array[0]+", "+array[1]+", "+array[2]);
+	*/
+	
+	/*
+	//함수를 호출하여 반환되는 Array 객체의 요소값을 개별적으로 변수에 저장
+	//var [num1, num2, num3]=returnArray();
+	//alert(num1+", "+num2+", "+num3);
+	
+	//반환되는 Array 객체의 필요한 요소값만 변수에 저장 가능
+	//var [num1, , num2]=returnArray();
+	//alert(num1+", "+num2);
+	
+	//... 연산자(전개 연산자)를 사용하여 할당된 나머지 요소값들을 Array 객체로 전달받아 변수에 저장
+	var [num1, ... num2]=returnArray();
+	//alert("num1 = "+num1);
+	alert("num2 = "+num2);
+	*/
+	
+	
+	</script>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
