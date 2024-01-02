@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Array 클래스 함수</h1>
+	<hr>
+	<p>다수의 값을 요소에 저장할 객체를 생성하기 위한 클래스 함수 
+		- Array 객체로 프로퍼티와 메소드 사용 가능</p>
+	
+	<script type="text/javascript">
+	/*	
+	//요소가 하나도 없는 Array 객체 생성 - Empty Array	
+	var array=new Array();
+	
+	//Array.length : Array 객체에 저장된 요소의 갯수를 저장한 프로퍼티
+	//alert(array.length);
+		
+	//Array.toString() : Array 객체에 저장된 모든 요소값을 문자값으로 반환하는 메소드
+	//alert(array.toString());
+
+	//Array 객체가 저장된 변수를 출력할 경우 변수에 저장된 Array 객체로 toString() 메소드를 
+	//자동 호출하여 반환값을 출력
+	alert(array);
+	*/
+	
+	/*	
+	//Array(size) : 매개변수로 전달받은 숫자값의 갯수만큼 요소를 가진 Array 객체 생성
+	// => Array 객체의 요소에는 자동으로 [null] 저장	
+	var array=new Array(5);
+	//alert(array.length);
+	alert(array);
+	*/
+	
+	//Array(value, value, ...) : 매개변수로 2개이상의 값을 전달받아 요소값으로 저장된 Array 객체 생성
+	// => 매개변수로 전달받은 값의 갯수만큼 요소를 가진 Array 객체 생성
+	var array=new Array(10, 20, 30);
+	//alert(array.length);
+	//alert(array);
+	
+	//Array 객체의 요소는 첨자(Index - 0부터 1씩 증가되는 숫자값)를 사용하여 구분
+	// => Array 객체의 요소는 [] 연산자에 첨자를 사용하여 표현
+	//alert("array[0] = "+array[0]+", array[1] = "+array[1]+", array[2] = "+array[2]);
+	
+	//Array 객체의 요소를 표현하는 첨자가 범위를 벗어난 경우 [undefined] 자료형으로 처리
+	//alert("array[3] = "+array[3]);
+	
+	//Array 객체는 JSON 기능을 사용하여 표현 가능 - []
+	//var array=[];//Empty Array
+	//alert(array.length);
+	
+	//JSON 기능을 사용하여 Array 객체를 생성하여 Array 객체의 요소에 초기값 저장
+	var array=[10, 20, 30];
+	
+	/*
+	//for 구분을 사용해 첨자로 표현하여 Array 객체 일괄 처리
+	for(i=0;i<array.length;i++) {
+		alert("array["+i+"] = "+array[i]);
+	}
+	*/
+	
+	/*
+	//in 연산자로 Array 객체의 첨자를 차례대로 제공받아 변수에 저장하여 Array 객체 일괄 처리 - ES6
+	for(index in array) {
+		alert("array["+index+"] = "+array[index]);
+	}
+	*/
+	
+	/*
+	//of 연산자로 Array 객체의 요소값을 차례대로 제공받아 변수에 저장하여 Array 객체 일괄 처리 - ES6
+	for(value of array) {
+		alert(value);
+	}
+	*/
+	
+	/*
+	//Array.forEach(callback(element[, index][, array])) : Array 객체를 일괄 처리하기 위한 메소드
+	// => forEach 메소드의 매개변수에 함수(콜백함수)를 전달하여 요소의 갯수만큼 자동 호출하며  
+	//함수의 매개변수로 전달받은 값을 사용하여 일괄 처리 명령 작성
+	// => 콜백함수의 매개변수에는 처리 중의 요소의 값과 첨자, Array 객체가 저장되어 콜백함수에서 사용
+	array.forEach(function(elt, i) {
+		alert("array["+i+"] = "+elt);
+	});
+	*/
+	
+	
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
