@@ -23,15 +23,15 @@
 	//JSON.stringify(object) : 매개변수로 전달받은 자바스크립트 객체를 JSON 형식의 문자값으로
 	//변환하는 반환하는 메소드
 	// => REST 웹프로그램을 요청할 경우 자바스트립트 객체를 JSON 형식의 문자값으로 변환하여
-	//전달하기 위해 사용
+	//REST 웹프로그램에게 전달하기 위해 사용
 	var str=JSON.stringify(student);
 	//alert("변수의 자료형 = "+typeof(str));//변수의 자료형 = string
 	//alert("str = "+str);//str = {"num":1000,"name":"홍길동"}
 		
 	//JSON.parse(string) : 매개변수로 전달받은 JSON 형식의 문자값을 자바스크립트 객체로
 	//변환하는 반환하는 메소드 - eval 함수 사용 가능
-	// => REST 웹프로그램을 요청하여 JSON 형식의 문자값으로 응답 받은 경우 자바스크립트
-	//객체로 변환하여 사용
+	// => REST 웹프로그램을 요청하여 JSON 형식의 문자값으로 응답하면 JSON 형식의 문자값을 
+	//자바스크립트 객체로 변환하여 사용
 	//var stu=JSON.parse(str);
 	var stu=eval("("+str+")");
 			
