@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - location 객체</h1>
+	<hr>
+	<p>location 객체 : 브라우저에서 URL 주소를 입력하는 영역을 객체로 표현하여 프로퍼티와 메소드를 제공하는 객체</p>
+	
+	<script type="text/javascript">
+	//location.toString() : URL 주소를 입력하는 영역(location 객체)의 URL 주소를 반환하는 메소드
+	// => location 객체를 출력할 경우 toString() 메소드 자동 호출
+	//alert(location);//http://localhost:8000/web/js/32_location.html
+	
+	/*
+	setTimeout(function() { 
+		location.href='https://www.daum.net' 
+	}, 3000);
+	*/
+
+	/*
+	//location.href : location 객체의 URL 주소를 변경하여 웹프로그램을 요청하기 위한 정보를 
+	//저장한 프로퍼티
+	// => location 객체의 href 속성값을 변경하면 브라우저 주소 영역의 URL 주소가 변경되며 변경된
+	//URL 주소의 웹프로그램을 요청하여 실행결과를 응답받아 출력 처리 - 하이퍼링크 기능을 사용한 페이지 이동
+	setTimeout(() => location.href='https://www.daum.net' , 3000);
+	*/
+	
+	//ocation.reload() : 브라우저로 요청한 현재 URL 주소의 웹프로그램을 재요청하여 실행결과를
+	//응답받아 출력 처리하는 메소드 - 페이지 새로고침 
+	setInterval(() => location.reload(), 1000);	
+	</script>
+</body>
+</html>
