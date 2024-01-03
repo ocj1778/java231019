@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체(태그) 삭제</h1>
+	<hr>
+	<p>DOM Tree의 DOM 객체(Element 객체)를 삭제하여 태그가 출력되지 않도록 처리</p>
+	<hr>
+	<h2>엘리먼트-1</h2>
+	<h2 id="remove">엘리먼트-2</h2>
+	<h2>엘리먼트-3</h2>
+	
+	<script type="text/javascript">
+	var h2E=document.getElementById("remove");
+	
+	/*
+	//Element.removeChild(oldElement) : Element 객체의 자식 Element 객체를 삭제하는 메소드
+	// => DOM Tree의 DOM 객체(Element 객체)를 삭제하여 출력되지 않도록 처리
+	document.body.removeChild(h2E);
+	*/
+	
+	//Element.parentElement : Element 객체의 부모 Element 엘리먼트 객체를 저장한 프로퍼티
+	h2E.parentElement.removeChild(h2E);		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
