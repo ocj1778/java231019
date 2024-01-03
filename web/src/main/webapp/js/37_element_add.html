@@ -30,16 +30,27 @@
 	//매개변수로 전달받은 Element 객체의 DOM Tree의 DOM 객체로 추가
 	// => 브라우저에 Element 객체의 태그 출력
 	document.body.appendChild(h2E);	
+	
+	var imgE=document.createElement("img");//<img>
+	
+	//Element.attributeName : Element 객체로 태그속성을 표현하여 태그의 속성에 속성값 저장 가능
+	imgE.src="/web/js/images/Koala.jpg";//<img src="/web/js/images/Koala.jpg">
+	
+	//Element.setAttribute(attributeName, attributeValue) : Element 객체의 태그에 태그 속성값을
+	//변경하는 메소드 - 태그 속성이 없는 경우 태그 속성 추가
+	//Element.getAttribute(attributeName) : Element 객체의 태그에 태그 속성값을 반환하는 메소드
+	//Element.removeAttribute(attributeName) : Element 객체의 태그에서 태그 속성을 삭제하는 메소드
+	imgE.setAttribute("width", "300");//<img src="/web/js/images/Koala.jpg" width="300">
+	
+	//태그의 id 속성값으로 DOM Tree에서 DOM 객체(Element 객체)를 반홚받아 저장
+	var divE=document.getElementById("imageDiv");//<div id="imageDiv"></div>
+	//Element 객체의 마지막 자식 엘리먼트 객체로 추가 - DOM Tree에서 DOM 객체로 추가하여 출력
+	divE.appendChild(imgE);//<div id="imageDiv"><img src="/web/js/images/Koala.jpg" width="300"></div>
+	
+	var hrE=document.createElement("hr");//<hr>
+	//Element.insertBefore(newElement, before) : DOM Tree의 DOM 객체(Element 객체 - before) 전에
+	//새로운 Element 객체를 삽입하는 메소드
+	document.body.insertBefore(hrE, h2E);
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
