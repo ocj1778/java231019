@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<script type="text/javascript">
+function loaded() {
+	alert("동적인 페이지 구현을 위한 HTML 태그 조작 명령 실행");
+}	
+
+/*
+//자바스트립트 객체에 이벤트 리스너 속성을 요소로 추가하여 이벤트 처리 함수 저장(등록)
+// => 자바스크립트 객체에서 해당 이벤트가 발생될 경우 등록된 이벤트 처리 함수 호출
+window.onload=function() {
+	alert("동적인 페이지 구현을 위한 HTML 태그 조작 명령 실행");
+}
+*/
+</script>
+</head>
+<!-- body 태그에 onload 이벤트 리스너 속성에 이벤트 처리 함수를 호출하는 명령을 등록 -->
+<!-- => onload 이벤트 : 태그가 DOM Tree의 DOM 객체로 저장된 경우 발생되는 이벤트 -->
+<!-- => body 태그의 자식태그를 DOM Tree의 DOM 객체로 제공받아 사용 가능 -->
+<!-- <body onload="loaded();"> -->
+<body>
+	<h1>DOM(Document Object Model) - onload Event Listener</h1>
+	<hr>
+	<p>DOM 객체 : document 객체를 기반으로 제공되는 HTML 태그에 대한 자바스크립트 객체
+	- Node 객체(Element 객체)</p>
+	<p>브라우저로 웹프로그램을 요청하여 실행결과를 응답받아 브라우저(document 객체)에 출력</p>
+	<p>브라우저는 브라우저 엔진으로 응답받은 HTML 문서를 읽어 DOM Parser를 사용해 HTML 문서의
+	태그를 DOM Tree로 생성하여 CSS 스타일을 적용해 브라우저에 출력 처리</p>
+	<p>자바스크립트를 사용해 태그에서 이벤트가 발생할 경우 DOM Tree에 존재하는 태그(DOM 객체)를
+	 조작하여 동적인 페이지 구현 가능 - DHTML(Dynamic HTML)</p>
+	<p>반드시 DOM Tree가 완성돼야 동적인 페이지 구현 가능 - onload 이벤트 리스너 속성 사용</p>
+
+	<!-- body 태그의 마지막 자식태그로 script 태그를 선언하면 onload 이벤트 리스너 속성을 
+	사용하지 않아도  DOM Tree의 DOM 객체를 사용 가능 -->	
+	<script type="text/javascript">
+	alert("동적인 페이지 구현을 위한 HTML 태그 조작 명령 실행");
+	</script>   
+</body>
+</html>
