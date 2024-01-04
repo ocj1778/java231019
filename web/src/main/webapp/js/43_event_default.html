@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>이벤트(Event) - 기본 이벤트 처리</h1>
+	<hr>
+	<p>HTML 태그 중에서 특정 이벤트에 대한 처리 기능을 제공하는 태그 존재
+	- a 태그, input 태그, form 태그 등</p>
+	<hr>
+	<button type="button" id="btn">다음(Daum)으로 이동</button>
+	<hr>
+	<!-- a 태그는 클릭 이벤트가 발생될 경우 href 속성값으로 설정된 URL 주소의 웹프로그램을
+	요청하여 실행결과를 응답받아 출력 처리 - 하이퍼링크 기능을 사용한 페이지 이동 -->
+	<!-- => a 태그는 클릭 이벤트에 대한 이벤트 처리 함수를 등록하지 않아도 페이지 이동 처리 -->
+	<a href="https://www.naver.com" id="naver"><button type="button">네이버(Naver)로 이동</button></a>
+	
+	<script>
+	document.getElementById("btn").onclick=function() {
+		location.href="https://www.daum.net";
+	}	
+	
+	document.getElementById("naver").onclick=function() {
+		//event 객체 : 태그에서 발생된 이벤트 관련 정보를 저장한 객체
+		// => 이벤트 처리 함수가 호출되면 자동 생성되며 이벤트 처리 함수가 종료되면 자동 소멸
+		//event.preventDefault() : 태그에 설정된 기본 이벤트 명령을 취소하는 메소드
+		event.preventDefault();
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
