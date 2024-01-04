@@ -7,7 +7,7 @@
 <body>
 	<h1>DOM(Document Object Model) - Element 객체(태그) 추가</h1>
 	<hr>
-	<p>Element 객체를 생성하여 DOM Tree의 DOM 객체로 추가해 새로운 태그로 출력 처리</p>
+	<p>Element 객체를 생성하여 DOM 트리의 DOM 객체로 추가해 새로운 태그로 출력 처리</p>
 	<hr>
 	<div id="imageDiv"></div>
 	
@@ -27,8 +27,7 @@
 	h2E.appendChild(h2T);//<h2>h2 태그에 의해 출력되는 내용</h2>
 	
 	//document.body : HTML 문서의 body 태그를 자바스트립트 객체로 표현
-	//매개변수로 전달받은 Element 객체의 DOM Tree의 DOM 객체로 추가
-	// => 브라우저에 Element 객체의 태그 출력
+	//매개변수로 전달받은 Element 객체의 DOM Tree의 DOM 객체로 추가하여 브라우저에 태그 출력
 	document.body.appendChild(h2E);	
 	
 	var imgE=document.createElement("img");//<img>
