@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style>
+#displayDiv {
+	width: 600px;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid red;
+}	
+
+ul li {
+	width: 400px;
+	margin: 10px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	border: 1px solid blue;
+	list-style-type: none;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - this</h1>
+	<hr>
+	<p>이벤트 처리 함수에서 이벤트가 발생된 Element 객체(태그)를 표현하기 위해 this 키워드 사용</p>
+	<hr>
+	<div id="displayDiv">이벤트 처리</div>
+	<hr>
+	<ul>
+		<li>메뉴-1</li>
+		<li>메뉴-2</li>
+		<li>메뉴-3</li>
+	</ul>
+	
+	<script>
+	document.getElementById("displayDiv").onclick=function() {
+		//alert("태그에서 클릭 이벤트가 발생 하였습니다.");
+		
+		//Element 객체에 태그 속성과 속성값 추가
+		//document.getElementById("displayDiv").style="color: green;";
+		
+		//this 키워드를 사용하여 이벤트가 발생된 Element 객체를 제공받아 태그 속성과 속성값 추가
+		this.style="color: green;";
+	}	
+	
+	var liList=document.getElementsByTagName("li");
+	
+	/*
+	liList.item(0).onclick=function() {
+		//liList.item(0).style="color: orange;";
+		this.style="color: orange;";
+	}
+	
+	liList.item(1).onclick=function() {
+		//liList.item(1).style="color: orange;";
+		this.style="color: orange;";
+	}
+	
+	liList.item(2).onclick=function() {
+		//liList.item(2).style="color: orange;";
+		this.style="color: orange;";
+	}
+	*/
+	
+	for(i=0;i<liList.length;i++) {//i 변수에 3이 저장되면 반복문 종료
+		//반복문에서 Element 객체에 이벤트 처리 함수 등록
+		liList.item(i).onclick=function() {
+			//반복문 종료후 태그에서 이벤트가 발생되면 실행되는 명령 - i 변수에 [3] 저장
+			// => liList.item(3) - null >> [null]로 프로퍼티 또는 메소드를 사용하면 에러 발생 
+			//liList.item(i).style="color: orange;";//에러 발생
+			
+			this.style="color: orange;";
+		}
+	}
+	</script>
+</body>
+</html>
