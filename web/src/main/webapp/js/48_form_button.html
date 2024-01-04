@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>form 태그 관련 이벤트 - 입력페이지</h1>
+	<hr>
+	<!-- <form action="48_form_action.html" method="post" name="loginForm"> -->
+	<form name="loginForm">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<!-- 제출 이벤트가 발생되는 태그가 없으므로 form 태그 미동작 -->
+			<!-- => 자바스크립트를 사용하여 제출 이벤트 발생 가능 -->	
+			<td colspan="2"><button type="button" id="loginBtn">로그인</button></td>
+		</tr>
+	</table>			
+	</form>			
+	
+	<script>
+	loginForm.id.focus();
+
+	//Element 객체(button 태그)를 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 입력태그의 입력값을 제공받아 검증하고 정상적인 입력값만
+	//존재할 경우 제출 이벤트를 발생하여 form 태그가 동작되도록 설정
+	document.getElementById("loginBtn").onclick=function() {
+		if(loginForm.id.value=="") {
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			return;//이벤트 처리 함수 종료
+		}
+		
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		
+		if(!idReg.test(loginForm.id.value)) {
+			alert("아이디는 영문자로 시작되는 영문자, 숫자, 일부 특수문자로 6~20 범위의 문자로만 작성 가능합니다.");
+			loginForm.id.focus();
+			return;
+		}
+		
+		if(loginForm.passwd.value=="") {
+			alert("비밀번호를 입력해 주세요.");
+			loginForm.passwd.focus();
+			return;
+		}
+		
+		//Element 객체(form 태그)로 태그 속성과 속성값 변경(추가) 가능
+		// => 변수값에 따라 form 태그로 다른 웹프로그램을 요청할 때 사용
+		loginForm.action="48_form_action.html";
+		loginForm.mothod="post";
+		
+		//모든 입력값에 대한 검증이 성공한 경우 제출 이벤트를 발생하여 form 태그가 동작되도록 설정
+		//HTMLFormElement.submit() : Element 객체(form 태그)로 제출 이벤트를 발생하는 메소드
+		loginForm.submit(); 
+	}
+	</script>
+</body>
+</html>
