@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style>
+div {
+	border: 1px solid black;
+	padding: 30px;
+	text-align: center;
+}	
+
+#red { background-color: red; }
+#green { background-color: green; }
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - 이벤트 리스너(Event Listener)</h1>
+	<hr>
+	<!-- 태그의 이벤트 리스너 속성의 속성값으로 다수의 이벤트 처리 함수 호출 가능 -->
+	<button type="button" onclick="eventHandleOne(); eventHandleTwo();"> 이벤트 버튼-1</button>
+	<button type="button" id="btn2"> 이벤트 버튼-2</button>
+	<button type="button" id="btn3"> 이벤트 버튼-3</button>
+	<hr>
+	<div id="red">
+		<div id="green"></div>
+	</div>
+	
+	<script>
+	function eventHandleOne() {
+		alert("eventHandleOne 함수의 명령 실행");
+	}
+	
+	function eventHandleTwo() {
+		alert("eventHandleTwo 함수의 명령 실행");
+	}	
+	
+	//Element 객체의 이벤트 리스너 속성에는 이벤트 처리 함수를 하나만 등록 가능
+	document.getElementById("btn2").onclick=eventHandleOne;
+	document.getElementById("btn2").onclick=eventHandleTwo;
+	
+	//Element 객체로 addEventListener() 메소드를 호출하면 다수의 이벤트 처리 함수 등록 가능
+	document.getElementById("btn3").addEventListener("click", eventHandleOne);
+	document.getElementById("btn3").addEventListener("click", eventHandleTwo);
+	
+	//Element.addEventListener(eventName, callback[, useCapture]) 메소드로 이벤트 처리 함수 등록
+	// => useCapture 매개변수에 전달되는 값에 따라 캐쳐링 단계에서 콜백함수가 호출되거나
+	//버블링 단계에서 콜백함수가 호출되어 이벤트 처리 명령이 실행되도록 설정
+	// => useCapture 매개변수에 [false]를 전달하면 버블링 단계에서 콜백함수를 호출하여 이벤트 처리  
+	//명령을 실행하고 [true]를 전달하면 캡쳐링 단계에서 콜백함수를 호출하여 이벤트 처리 명령 실행
+	// => useCapture 매개변수에 논리값을 전달하지 않으면 기본값으로 [false] 사용
+	document.getElementById("red").addEventListener("click",function() {
+		//event.currentTarget : 이벤트가 발생된 태그의 Element 객체가 저장된 프로퍼티
+		var tag=event.currentTarget.tagName;
+		var id=event.currentTarget.getAttribute("id");
+		//event.type : 태그에서 발생된 이벤트의 종류를 저장한 프로퍼티
+		alert("캡쳐링 단계 = "+tag+" 태그("+id+")에서 "+event.type+"의 이벤트 발생");
+	}, true);
+	
+	document.getElementById("green").addEventListener("click",function() {
+		var tag=event.currentTarget.tagName;
+		var id=event.currentTarget.getAttribute("id");
+		alert("버블링 단계 = "+tag+" 태그("+id+")에서 "+event.type+"의 이벤트 발생");
+		event.stopPropagation();
+	}, false);
+	
+	document.getElementById("red").addEventListener("click",function() {
+		var tag=event.currentTarget.tagName;
+		var id=event.currentTarget.getAttribute("id");
+		alert("버블링 단계 = "+tag+" 태그("+id+")에서 "+event.type+"의 이벤트 발생");
+	}, false);
+	</script>
+</body>
+</html>
