@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>쿠키(Cookie)</h1>
+	<hr>
+	<p>쿠키 : 서버와 클라이언트의 연결 지속성을 제공하기 위해 클라이언트에 저장되는 문자값</p>
+	<p>클라이언트에서 접속한 서버의 이름을 이용하여 다수의 쿠키를 클라이언트에 저장하고 
+		서버의 웹프로그램을	요청할 때 클라이언트에 저장된 모든 쿠키 전달</p>
+	<hr>
+	<form name="cookieForm">
+		아이디 : <input type="text" name="id">&nbsp;&nbsp;
+		<button type="button" id="saveBtn">입력 아이디 저장</button>&nbsp;&nbsp;
+		<button type="button" id="useBtn">저장 아이디 사용</button>&nbsp;&nbsp;
+		<button type="button" id="removeBtn">저장 아이디 삭제</button>&nbsp;&nbsp;
+	</form>	
+		
+	<script>
+	//클라이언트에 쿠키를 저장(변경)하는 함수
+	// => 쿠키에는 필요한 정보를 이름과 값으로 묶어서 저장 - 이름=값
+	// => 쿠키에 필요한 정보는 ; 기호를 사용해 구분해 저장
+	// => 쿠키의 필수 정보로 쿠키명과 쿠키값을 묶어서 저장	
+	// => 쿠키의 선택 정보로 적용범위, 도메인, 유지시간 등을 저장 - 선택 정보를 저장하지 않을 경우 기본값 사용
+	//함수의 매개변수로 쿠키명, 쿠키값, 적용범위, 유지시간을 제공받아 쿠키 정보로 사용
+	function setCookie(name, value, path, expires) {
+		var sc="";//쿠키를 저장하기 위한 변수
+		
+		//쿠키변수에 쿠키명과 쿠키값을 묶어서 저장
+		// => 쿠키값은 영문자, 숫자, 일부 특수문자로만 작성 가능
+		// => 영문자, 숫자, 일부 특수문자를 제외한 문자는 부호화 처리하면 쿠키값으로 사용 가능
+		sc+=name+"="+encodeURIComponent(value)+";";
+		
+		//쿠키변수에 [path] 이름으로 쿠키의 적용범위를 묶어서 저장
+		sc+="path="+path+";";
+		
+		//클라이언트의 현재 날짜와 시간이 저장된 Date 객체를 생성하여 변수에 저장
+		var date=new Date();
+		//Date.setDate(number) : Date 객체에 저장된 날짜와 시간 중 [일]을 변경하는 메소드 
+		date.setDate(date.getDate()+expires);
+		
+		//쿠키변수에 [expires] 이름으로 쿠키의 유지시간을 묶어서 저장
+		//Date.toUTCString() : Date 객체에 저장된 날짜와 시간을 협정 세계시(UTC)의 문자값으로
+		//변환하여 반환하는 메소드
+		sc+="expires="+date.toUTCString()+";";
+		
+		//document.cookie : 쿠키를 저장하기 위한 객체
+		document.cookie=sc;//클라이언트에 쿠키(문자값) 저장
+	}	
+	
+	//클라이언트에 저장된 쿠키의 쿠키값을 반환하는 함수
+	// => 클라이언트에 저장된 쿠키 중 매개변수로 전달받은 이름의 쿠키값 반환
+	function getCookie(name) {
+		//클라이언트에 저장된 쿠키를 ; 기호로 분리하여 변수에 저장
+		var gc=document.cookie.split(";");//변수에는 Array 객체 저장
+		
+		for(i=0;i<gc.length;i++) {
+			//Array 객체의 요소값을 = 기호로 분리하여 첫번째 요소값(이름)이 매개변수로 
+			//전달받은 문자값(쿠키명)과 동일한 경우 두번째 요소값(쿠키값)을 반환			
+			if(gc[i].split("=")[0]==name) {
+				return gc[i].split("=")[1];
+			}
+		}
+		
+		//매개변수로 전달받은 쿠키명의 쿠키값이 없는 경우 null 반환
+		return null;
+	}
+	
+	//[입력 아이디 저장] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 입력태그의 입력값(아이디)를 반환받아 클라이언트의 쿠키로 저장
+	document.getElementById("saveBtn").onclick=function() {
+		var id=cookieForm.id.value;//입력태그의 입력값을 변수에 저장
+		
+		if(id=="") {
+			alert("아이디를 입력해 주세요.");
+			return;
+		}
+		
+		//입력값을 클라이언트의 쿠키에 하루동안 저장
+		setCookie("id", id, "/", 1);
+		
+		//입력태그의 입력값 초기화
+		cookieForm.id.value="";
+	}
+	
+	//[저장 아이디 사용] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 클라이언트의 쿠키로 저장된 쿠키값(아이디)을 반환받아 입력태그에 출력
+	document.getElementById("useBtn").onclick=function() {
+		var id=getCookie("id");
+		
+		if(id==null) {
+			alert("쿠키에 저장된 아이디가 없습니다.");
+			return;
+		}
+		
+		//입력태그의 입력값 변경
+		cookieForm.id.value=id;
+	}	
+	
+	//[저장 아이디 삭제] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 클라이언트의 쿠키를 삭제 처리
+	document.getElementById("removeBtn").onclick=function() {
+		//쿠키의 유지시간을 과거로 변경하면 쿠키 자동 삭제
+		setCookie("id", "", "/", -1);
+	}
+	</script>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
