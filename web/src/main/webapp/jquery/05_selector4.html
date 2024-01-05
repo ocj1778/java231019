@@ -2,9 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="email"></td>
+		</tr>
+	</table>
+	
+	<script>
+	//속성 선택자 : 태그의 속성 또는 속성값을 비교하여 태그를 검색하여 제공하는 선택자	
+	$("input[type]").css("border","2px solid green");	
+	$("input[type='password']").css("color","red");	
+	$("input[name='email']").css("color","blue");	
+	</script>
 </body>
 </html>

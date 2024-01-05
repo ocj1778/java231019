@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>each 메소드</h1>
+	<hr>
+	<h3>each 메소드 호출-1</h3>
+	<h3>each 메소드 호출-2</h3>
+	<h3>each 메소드 호출-3</h3>
+	<h3>each 메소드 호출-4</h3>
+	<h3>each 메소드 호출-5</h3>
+	
+	<script>
+	//선택자에 의해 다수의 태그가 검색되면 태그의 갯수만큼 jQuery 객체를 생성하여 메소드 호출
+	// => 묵시적 반복 : 검색된 태그를 모두 jQuery 객체로 생성하여 메소드를 반복적으로 호출
+	// => 검색된 모든 태그에 동일한 메소드로 태그에 필요한 기능 구현
+	//$("h3").css("color","red");
+	
+	/*
+	//선택자로 검색된 다수의 태그를 구분하여 메소드 호출 - 태그에 다른 기능 구현
+	$("h3").eq(0).css("color","red");	
+	$("h3").eq(1).css("color","green");	
+	$("h3").eq(2).css("color","blue");	
+	$("h3").eq(3).css("color","orange");	
+	$("h3").eq(4).css("color","lime");
+	*/
+	
+	var color=["red","green","blue","orange","lime"];
+	
+	/*
+	//$(selector).size() :  선택자로 검색된 태그의 갯수를 반환하는 메소드
+	// => jQuery 3.0 이상에서는 size() 메소드 대신 length 프로퍼티를 사용하여 태그의 갯수를 제공받아 사용
+	for(i=0;i<$("h3").length;i++) {
+		$("h3").eq(i).css("color", color[i]);
+	}
+	*/
+	
+	//$(selector).each(callback([index][, element])) : 선택자로 검색된 태그의 갯수만큼 콜백함수를
+	//반복적으로 호출하는 메소드 - 명시적 반복
+	// => 콜백함수에 매개변수를 작성하면 검색된 태그의 첨자와 태그의 Element 객체가 자동으로
+	//저장되어 콜백함수에서 사용 가능 	
+	$("h3").each(function(index, element) {
+		//$("h3").eq(index).css("color", color[index]);
+		
+		//jQuery 함수의 매개변수에 선택자 대신 Element 객체를 전달받아 jQuery 객체로 생성하여
+		//메소드 호출 가능 
+		//$(element).css("color", color[index]);
+		
+		//this : 콜백함수에 처리중인 태그의 Element 객체를 표현하기 위한 키워드
+		// => this : 자바스크립트의 Element 객체, $(this) : jQuery 객체
+		$(this).css("color", color[index]);
+	});	
+	</script>
+</body>
+</html>
