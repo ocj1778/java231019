@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<!-- script 태그를 사용하여 jQuery 라이브러리 파일을 HTML 문서에 포함해야만 jQuery 기능 사용 가능 -->
+<!-- => https://www.jquery.com 사이트 참조 -->
+
+<!-- jQuery 라이브러리 파일을 다운로드 받아 현재 서버의 자원으로 저장하여 HTML 문서에 포함 -->
+<!-- => 1.X : IE9 이하, 2.X 또는 3.X : IE10 이상 -->
+<!-- => 미압축파일(uncompressed) : 라이브러리 파일 변경 가능, 압축파일(compressed) : 라이브러리 파일 변경 불가능  --> 
+<!-- <script type="text/javascript" src="jquery-3.7.1.min.js"></script> -->
+
+<!-- CDN 서버에 저장된 jQuery 라이브러리 파일을 제공받아 HTML 문서에 포함 -->
+<!-- CDN(Contents Delivery Network) Server : 대량의 콘텐트를 빠르고 안정적으로 제공하기 위한 서버 -->
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+//jQuery 라이브러리를 사용하기 위해서는 CSS 선택자로 DOM 트리에서 DOM 객체를 검색하여
+//jQuery 객체로 생성한 후 jQuery 객체로 메소드를 호출하여 필요한 기능 구현
+// => HTML 문서의 모든 태그가 DOM 트리에 DOM 객체로 저장되어 있어야만 jQuery 객체 생성 가능
+
+/*
+window.onload=function() {
+	alert("window.onload 이벤트 리스너 속성으로 등록된 명령 실행-1");
+}
+
+window.onload=function() {
+	alert("window.onload 이벤트 리스너 속성으로 등록된 명령 실행-2");
+}
+*/
+
+//jQuery 객체를 생성하여 메소드를 호출하는 방법
+//jQuery(selector|object|tag).method(value, value, ...);
+
+/*
+//jQuery(document).ready(callback) : document 객체가 준비(완성)되면 콜백함수를 호출하는 메소드
+// => document 객체가 준비된 상태는 HTML 문서의 모든 태그가 DOM 트리에 DOM 객체로 저장된 상태를 표현
+// => window.onload 이벤트 리스너 속성보다 가독성도 빠르며 객체의 메소드이므로 여러번 호출 가능
+jQuery(document).ready(function() {
+	alert("document 객체가 준비된 상태인 경우 시행될 명령-1");
+});
+
+jQuery(document).ready(function() {
+	alert("document 객체가 준비된 상태인 경우 시행될 명령-2");
+});
+*/
+
+/*
+jQuery(document).ready(function() {
+	jQuery("div").css("color","red");
+});
+*/
+</script>
+</head>
+<body>
+	<h1>jQuery 사용</h1>
+	<hr>
+	<p>jQuery : 태그에 대한 이벤트 처리, 태그 조작 및 AJAX 기능을 제공하는 자바스크립트 라이브러리</p>
+	<hr>
+	<div>Hello, jQuery!!!</div>
+	<div>Hello, jQuery!!!</div>
+	<div>Hello, jQuery!!!</div>
+	
+	<script>
+	//script 태그를 body 태그의 마지막 자식태그로 작성하면 document 객체가 준비된 상태와 
+	//동일하므로 jQuery(document).ready() 메소드를 호출하지 않아도 jQuery 기능 사용 가능
+	//jQuery("div").css("color","red");
+	
+	//jQuery 함수명 대신 $ 기호를 사용하여 jQuery 객체 생성 가능
+	$("div").css("color","red");	
+	</script>
+</body>
+</html>

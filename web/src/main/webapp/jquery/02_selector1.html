@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<h2 class="item">jQuery Selector-1</h2>
+	<h2 id="tag">jQuery Selector-2</h2>
+	<h3 class="item">jQuery Selector-3</h3>
+	<p>jQuery Selector-4</p>
+	
+	<script>
+	//태그 선택자 : 태그명으로 태그를 검색하여 제공하기 위한 선택자
+	// => DOM 트리에서 DOM 객체(태그 - Element 객체)를 찾아 jQuery 객체로 생성한 후 메소드 호출
+	// => 다수의 DOM 객체가 검색될 경우 묵시적 반복에 의해 jQuery 객체가 여러개 생성돼 메소드 호출
+	$("h2").css("color","yellow");	
+	
+	//클래스 선택자 : 태그의 class 속성값으로 태그를 검색하여 제공하기 위한 선택자
+	// => 클래스 선택자는 태그 선택자와 구분하기 위해 [.] 기호로 시작
+	$(".item").css("color","orange");
+	
+	//아이디 선택자 : 태그의 id 속성값으로 태그를 검색하여 제공하기 위한 선택자
+	// => 아이디 선택자는 태그 선택자와 구분하기 위해 [#] 기호로 시작
+	$("#tag").css("color","green");
+	
+	//선택자로 검색된 태그의 jQuery 객체로 메소드를 순차적으로 호출 가능 - 메소드 체인(Method Chain)
+	$("p").css("font-size","30px").css("color","red");
+	
+	//jQuery 객체로 메소드를 호출할 때 매개변수에 값 대신 Object 객체를 전달하여 호출 가능
+	// => Object 객체의 요소를 사용하여 메소드에 필요한 다수의 값을 전달하기 위해 사용
+	$("p").css({"font-size":"30px", "color":"red"});
+	</script>
+</body>
+</html>
