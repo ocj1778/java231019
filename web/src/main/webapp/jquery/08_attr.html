@@ -8,5 +8,26 @@
 <body>
 	<h1>attr 메소드</h1>
 	<hr>
+	<div id="imgDiv" data-value="KoalaImage">
+		<img alt="코알라" src="/web/jquery/images/Koala.jpg" width="200" id="img">
+	</div>
+	
+	<script>
+	//$(selector).attr(name) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의 태그 속성값을
+	//반환하는 메소드	 	
+	//alert("data-value 태그 속성값 = "+$("#imgDiv").attr("data-value"));//data-value 태그 속성값 = KoalaImage
+	//alert("src 태그 속성값 = "+$("#img").attr("src"));//src 태그 속성값 = /web/jquery/images/Koala.jpg
+	
+	/*
+	//$(selector).attr(name, value) : 태그에서 매개변수로 전달받은 이름의 태그 속성의 속성값을
+	//매개변수로 전달받은 값으로 변경하는 메소드 	
+	$("#img").attr("src", "/web/jquery/images/Penguins.jpg");
+	$("#img").attr("width", "300");
+	*/
+	
+	//$(selector).attr(object) 메소드를 호출하여 선택자로 검색된 태그의 태그 속성을 JSON 
+	//기능으로 표현된 Object 객체의 요소값으로 태그의 속성값 변경 가능
+	$("#img").attr({"src":"/web/jquery/images/Penguins.jpg", "width":"300"});
+	</script>
 </body>
 </html>
