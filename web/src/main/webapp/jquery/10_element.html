@@ -13,7 +13,38 @@
 	<div id="imageList2"></div>
 	<hr>
 	<div id="imageList3">
-		
+		<img alt="숫자이미지" src="/web/jquery/images/1.png" width="200" id="img1">	
+		<img alt="숫자이미지" src="/web/jquery/images/2.png" width="200" id="img2">	
+		<img alt="숫자이미지" src="/web/jquery/images/3.png" width="200" id="img3">	
 	</div>
+	
+	<script>
+	//jQuery 함수의 매개변수에 선택자 대신 HTML 태그를 전달받아 Element 객체로 만든 후 jQuery  
+	//객체로 생성하여 메소드 호출 가능 - 태그 생성 
+
+	//$(selector).appendTo(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 마지막 자식태그로 이동하는 메소드 - 태그를 생성하여 DOM 트리로 이동
+	$("<img src='/web/jquery/images/1.png' width='200'>").appendTo("#imageList1");
+	$("<img src='/web/jquery/images/2.png' width='200'>").appendTo("#imageList1");
+
+	//$(selector).prependTo(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 첫번째 자식태그로 이동하는 메소드 - 태그를 생성하여 DOM 트리로 이동
+	$("<img src='/web/jquery/images/3.png' width='200'>").prependTo("#imageList1");
+	$("<img src='/web/jquery/images/4.png' width='200'>").prependTo("#imageList1");
+	
+	
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
