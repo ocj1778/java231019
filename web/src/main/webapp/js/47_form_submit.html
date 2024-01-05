@@ -36,13 +36,13 @@
 	</form>			
 	
 	<script>
-	//form 태그와 입력태그는 태그의 name 속성값으로 자바스트립트 객체로 표현하여 사용 가능
+	//form 태그와 입력태그는 태그의 name 속성값으로 Element 객체로 표현하여 사용 가능
 	// => document 객체 생략 가능	
 	//alert(document.loginForm);//[object HTMLFormElement]
 	//alert(document.loginForm.id);//[object HTMLInputElement]
 	
 	//HTMLInputElement.focus() : Element 객체(입력태그)에 포커스를 제공하는 메소드
-	loginForm.id.focus();
+	loginForm.id.focus();//아이디 입력태그에 포커스 위치
 	
 	//Element 객체(form 태그)에서 제출 이벤트가 발생된 경우 호출될 이벤트 처리 함수 등록
 	// => 이벤트 처리 함수에서는 입력태그의 입력값을 제공받아 검증하고 비정상적인 입력값이
@@ -60,14 +60,15 @@
 			
 			//이벤트 처리 함수에서 return 명령을 사용해 [false]를 반환하면 이벤트 처리 함수를
 			//종료하면서 태그의 기본 이벤트 명령을 취소하고 이벤트 전달 중지
-			return false;
+			// => return 명령으로 event 객체로 preventDefault() 메소드와 stopPropagation() 메소드 자동 호출
+			return false; 
 		}
 		
-		//자바스크립트에서는 [/정규표현식/g] 형식으로 작성하면 RegExp 객체로 표현하여 사용 가능
+		//자바스크립트에서는 [/정규표현식/g] 형식으로 작성해서 RegExp 객체로 생성하여 사용
 		//RegExp 객체 : 정규표현식을 저장한 객체로 프로퍼티와 메소드 제공하는 객체
 		var idReg=/^[a-zA-Z]\w{5,19}$/g;
 		
-		//RegExp.test(input) : RegExp 객체에 저장되 정규표현식과 매개변수로 전달받은 입력값의
+		//RegExp.test(input) : RegExp 객체에 저장된 정규표현식과 매개변수로 전달받은 입력값의
 		//패턴이 일치하지 않으면 [false]를 반환하고 일치하면 [true]를 반환하는 메소드
 		if(!idReg.test(loginForm.id.value)) {//입력태그의 입력값이 정규표현식의 패턴과 일치하지 않는 경우
 			alert("아이디는 영문자로 시작되는 영문자, 숫자, 일부 특수문자로 6~20 범위의 문자로만 작성 가능합니다.");
