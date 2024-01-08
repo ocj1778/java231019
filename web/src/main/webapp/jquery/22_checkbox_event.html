@@ -2,9 +2,71 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+#terms {
+	width: 400px;
+	margin: 0 auto;
+	padding: 5px 10px;
+	border: 1px solid black;
+}	
+
+h3 {
+	text-align: center;
+}
+
+#agree {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;	
+}
+
+#agree div {
+	margin: 10px;
+}
+</style>
 </head>
 <body>
-
+	<h1>Checkbox Event</h1>
+	<hr>
+	<div id="terms">
+		<h3>약관</h3>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+		<p>무슨 내용인지 이해할 수 없는 어려운 내용입니다.</p>
+	</div>
+	
+	<div id="agree">
+	<form action="21_form_event.html" method="post" id="termsForm">
+		<div>
+			<input type="checkbox" name="agreeCheck" id="agreeCheck" value="0">
+			약관에 동의해 주세요.
+		</div>	
+		<button type="submit" id="btn">다음</button>
+		<div id="message" style="color: red;"></div>	
+	</form>			
+	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
