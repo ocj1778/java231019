@@ -54,6 +54,42 @@ h3 {
 		<div id="message" style="color: red;"></div>	
 	</form>			
 	</div>
+	
+	<script>
+	//선택자로 검색된 태그를 비활성 처리되도록 태그 속성 추가	
+	$("#btn").attr("disabled","disabled");
+	
+	//$(selector).change(callback) : 선택자로 검색된 태그(입력태그)의 입력값이 변경되는 이벤트가
+	//발생될 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
+	$("#agreeCheck").change(function() {
+		//약관 동의 여부에 대한 상태값을 저장하기 위한 변수
+		// => 0 : 약관 미동의, 1 : 약관 동의
+		var check=0;
+		
+		//$(selector).is(status) : 선택자로 검색된 태그(입력태그)의 상태를 비교하여 [false]
+		//또는 [true]를 반환하는 메소드
+		// => input 태그(type 속성값 - checkbox 또는 radio)와 select 태그(option 태그)에서만 사용 가능
+		if($(this).is(":checked")) {//이벤트가 발생된 태그(checkbox 또는 radio)가 선택상태(checked)인 경우
+			check=1;
+			//$(selector).removeAttr(name) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의
+			//태그 속성을 삭제하는 메소드
+			$("#btn").removeAttr("disabled");
+		} else {
+			check=0;
+			$("#btn").attr("disabled","disabled");
+		}
+		
+		//입력태그의 입력값 변경
+		$(this).val(check);
+	});	
+	
+	$("#termsForm").submit(function() {
+		if($("#agreeCheck").val()==0) {//약관을 동의하지 않은 경우
+			$("#message").text("약관을 읽고 반드시 동의해 주세요.");
+			return false;//form 태그 미동작
+		}
+	});	
+	</script>
 </body>
 </html>
 
