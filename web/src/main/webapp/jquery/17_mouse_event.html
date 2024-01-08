@@ -33,8 +33,61 @@ div {
 	<p>mousemove : 브라우저에서 마우스가 움직이는 동안 발생되는 이벤트</p>
 	<p>contextmenu : 브라우저에서 마우스 오른쪽 버튼을 누르면 발생되는 이벤트</p>
 	<hr>
-	<div class="mystyle">마우스 이벤트</div>
+	<!-- <div class="mystyle">마우스 이벤트</div> -->
+	<div>마우스 이벤트-1</div>
+	<div>마우스 이벤트-2</div>
+	<div>마우스 이벤트-3</div>
+	<div>마우스 이벤트-4</div>
+	<div>마우스 이벤트-5</div>
 	
-	<script></script>
+	<script>
+	/*
+	$("div").click(function() {
+		if($(this).attr("class")!="mystyle") {
+			//$(selector).addClass(name) : 선택자로 검색된 태그에 매개변수로 전달받은 이름의  
+			//class 속성에 속성값을 추가하는 메소드
+			$(this).addClass("mystyle");
+		} else {
+			//$(selector).removeClass(name) : 선택자로 검색된 태그에 매개변수로 전달받은 이름의  
+			//class 속성의 속성값을 삭제하는 메소드
+			$(this).removeClass("mystyle");
+		}
+		
+		//$(selector).toggleClass(name) : 선택자로 검색된 태그에 매개변수로 전달받은 이름의  
+		//class 속성의 속성값을 없으면 추가하고 class 속성값이 있으면 삭제하는 메소드
+		$(this).toggleClass("mystyle");
+	});		
+	*/
+	
+	/*
+	$("div").dblclick(function() {
+		$(this).toggleClass("mystyle");
+	});
+	*/
+
+	/*
+	$("div").mouseover(function() {
+		$(this).addClass("mystyle");
+	});
+	
+	$("div").mouseout(function() {
+		$(this).removeClass("mystyle");
+	});
+	*/
+	
+	//$(selector).hover(callback1, callback2) : 선택자로 검색된 태그에 마우스 커서가 진입한
+	//경우 첫번째 매개변수로 전달된 콜백함수를 호출하고 마우스 커서가 벗어난 경우 매개변수로
+	//전달된 두번째 콜백함수를 호출하는 메소드
+	$("div").hover(function() {
+		$(this).addClass("mystyle");
+	}, function() {
+		$(this).removeClass("mystyle");
+	});
+	
+	$(document).contextmenu(function() {
+		alert("마우스 오른쪽 버튼 사용 금지");
+		return false;
+	});
+	</script>
 </body>
 </html>
