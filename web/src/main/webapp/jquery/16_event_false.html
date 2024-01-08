@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+div {
+	width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+	border: 3px solid blue;
+}	
+
+a, a:visited {
+	text-decoration: none;
+	padding: 10px;
+	border: 3px solid red;
+}
+</style>
+</head>
+<body>
+	<h1>jQuery Event Handle</h1>
+	<hr>
+	<div>
+		<!-- a 태그는 클릭 이벤트가 발생하면 href 속성값으로 브라우저의 URL 주소를 변경하여
+		새로운 웹프로그램을 요청하고 실행결과를 응답받아 출력 -->
+		<!-- => a 태그는 클릭 이벤트가 발생하면 태그에 기본적으로 등록된 페이지를 이동하는 명령 실행 -->	
+		<a href="https://www.daum.net">다음(Daum)으로 이동</a>
+	</div>
+	
+	<script>
+	$("div").click(function() {
+		$(this).css("background", "aqua");
+		$(this).find("a").css("background", "white");
+	});	
+	
+	$("div").find("a").click(function() {
+		$(this).css("background", "yellow");
+		
+		/*
+		event.preventDefault();//태그에 등록된 기본 이벤트 명령 실행 취소
+		event.stopPropagation();//태그의 이벤트 전달 중지
+		*/
+		
+		//이벤트 처리 함수에서 [false]를 반환하면 태그에 등록된 기본 이벤트 명령 실행을 취소
+		//하고 이벤트 전달을 중지하며 이벤트 처리 함수 종료
+		return false;
+	});	
+	</script>
+</body>
+</html>
