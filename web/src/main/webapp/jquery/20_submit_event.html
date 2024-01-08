@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+fieldset {
+	width: 800px;
+	margin: 0 auto;
+}	
+
+legend {
+	font-size: 1.2em;
+}
+
+#joinForm ul li {
+	list-style-type: none;
+	margin: 15px 0;
+}
+
+#joinForm label {
+	width: 100px;
+	text-align: right;
+	float: left;
+	margin-right: 10px;
+}
+
+#btnFs {
+	text-align: center;
+}
+
+.error {
+	color: red;
+	margin-left: 10px;
+}
+</style>
+</head>
+<body>
+	<h1>Form Event</h1>
+	<hr>
+	<form action="20_submit_event.html" method="post" id="joinForm">
+	<fieldset>
+		<legend>회원가입정보</legend>
+		<ul>
+			<li>
+				<label for="id">아이디</label>
+				<input type="text" name="id" id="id">
+				<span id="idMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="passwd">비밀번호</label>
+				<input type="password" name="passwd" id="passwd">
+				<span id="passwdMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="name">이름</label>
+				<input type="text" name="name" id="name">
+				<span id="nameMsg" class="error"></span>
+			</li>
+			<li>
+				<label for="email">이메일</label>
+				<input type="text" name="email" id="email">
+				<span id="emailMsg" class="error"></span>
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset id="btnFs">
+		<button type="submit" id="submitBtn">회원가입</button>
+		<button type="reset" id="resetBtn">다시작성</button>
+	</fieldset>	
+	</form>
+</body>
+</html>
