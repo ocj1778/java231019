@@ -76,6 +76,7 @@ legend {
 	
 	//$(selector).submit(callback) : 선택자로 검색된 태그(form 태그)에서 제출 이벤트(Submit Event)가 
 	//발생될 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
+	// => [회원가입] 버튼을 클릭한 경우 제출 이벤트 발생
 	// => form 태그에서 제출 이벤트가 발생될 경우 이벤트 처리 함수에서는 입력태그의 입력값을  
 	//검증하고 검증이 실패된 경우 제출 이벤트를 취소해 form 태그가 동작되지 않도록 명령 작성 
 	$("#joinForm").submit(function() {
@@ -120,23 +121,28 @@ legend {
 		return result;
 	});	
 	
-	
+	//$(selector).blur(callback) : 선택자로 검색된 태그(입력태그)의 입력 포커스가 다른 태그로
+	//이동하는 이벤트가 발생한 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
+	// => $(selector).focusout(callback) 메소드와 동일
 	$("#id").blur(function() {
-		
+		var idReg=/[a-zA-z]\w{5,19}$/g;
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 입력해 주세요.");
+			return;
+		} else if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("6~20자의 영문자 , 숫자와 특수기호(_)만 사용 가능합니다.");
+			return;
+		}
+		$("#idMsg").text("");		
 	});	
+	
+	//[다시작성] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => [다시작성] 버튼을 클릭한 경우 초기화 이벤트(Reset Event)가 발생되어 입력태그의 입력값 초기화
+	// => 이벤트 처리 함수에서는 에러 메세지 초기화 처리
+	$("#resetBtn").click(function() {
+		$(".error").text("");
+		$("#id").focus();
+	});
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
