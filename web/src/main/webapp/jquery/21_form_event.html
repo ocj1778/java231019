@@ -39,7 +39,7 @@ legend {
 <body>
 	<h1>Form Event</h1>
 	<hr>
-	<form action="20_submit_event.html" method="post" id="joinForm">
+	<form action="21_form_event.html" method="post" id="joinForm">
 	<fieldset>
 		<legend>회원가입정보</legend>
 		<ul>
@@ -66,21 +66,18 @@ legend {
 		</ul>
 	</fieldset>
 	<fieldset id="btnFs">
-		<button type="submit" id="submitBtn">회원가입</button>
-		<button type="reset" id="resetBtn">다시작성</button>
+		<button type="button" id="submitBtn">회원가입</button>
+		<button type="button" id="resetBtn">다시작성</button>
 	</fieldset>	
 	</form>
 	
 	<script>
 	$("#id").focus();
 	
-	//$(selector).submit(callback) : 선택자로 검색된 태그(form 태그)에서 제출 이벤트(Submit Event)가 
-	//발생될 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
-	// => [회원가입] 버튼을 클릭한 경우 제출 이벤트 발생
-	// => form 태그에서 제출 이벤트가 발생될 경우 이벤트 처리 함수에서는 입력태그의 입력값을  
-	//검증하고 검증이 실패된 경우 제출 이벤트를 취소해 form 태그가 동작되지 않도록 명령 작성 
-	$("#joinForm").submit(function() {
-		//에러 메소드를 출력하는 모든 태그의 태그내용을 초기화 처리
+	//[회원가입] 버튼을 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 입력태그의 입력값을 검증하고 검증이 성공한 경우 form 태그로
+	//제출 이벤트(Submit Event)를 발생시켜 form 태그 동작 - 검증 실패시 이벤트 처리 함수 종료
+	$("#submitBtn").click(function() {
 		$(".error").text("");
 		
 		//입력값 검증 결과를 저장하기 위한 변수
@@ -90,11 +87,6 @@ legend {
 		var idReg=/[a-zA-z]\w{5,19}$/g;
 		if($("#id").val()=="") {
 			$("#idMsg").text("아이디를 입력해 주세요.");
-
-			//제출 이벤트를 취소해 form 태그가 동작되지 않도록 실행하는 명령
-			// => return 명령에 의해 이벤트 처리 함수가 종료되어 다른 입력값에 대한 검증 불가능
-			//return false;
-			
 			result=false;
 		} else if(!idReg.test($("#id").val())) {
 			$("#idMsg").text("6~20자의 영문자 , 숫자와 특수기호(_)만 사용 가능합니다.");
@@ -116,30 +108,22 @@ legend {
 			result=false;
 		}
 		
-		//result 변수에 저장된 논리값이 [false]인 경우 제출 이벤트를 취소해 form 태그가 
-		//동작되지 않도록 실행
-		return result;
-	});	
-	
-	//$(selector).blur(callback) : 선택자로 검색된 태그(입력태그)의 입력 포커스가 다른 태그로
-	//이동하는 이벤트가 발생한 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
-	// => $(selector).focusout(callback) 메소드와 동일
-	$("#id").blur(function() {
-		var idReg=/[a-zA-z]\w{5,19}$/g;
-		if($("#id").val()=="") {
-			$("#idMsg").text("아이디를 입력해 주세요.");
-			return;
-		} else if(!idReg.test($("#id").val())) {
-			$("#idMsg").text("6~20자의 영문자 , 숫자와 특수기호(_)만 사용 가능합니다.");
-			return;
-		}
-		$("#idMsg").text("");		
-	});	
+		//result 변수에 [false]가 저장된 경우 검증이 실패 하였으므로 이벤트 처리 함수 종료
+		// => 제출 이벤트가 발생되지 않아 form 미동작
+		if(!result) return;
+		
+		//result 변수에 [true]가 저장된 경우 검증이 성공 하였으므로 제출 이벤트 발생
+		// => 제출 이벤트가 발생되어 form 태그가 동작되어 웹프로그램 요청
+		$("#joinForm").submit();
+	});
 	
 	//[다시작성] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
-	// => [다시작성] 버튼을 클릭한 경우 초기화 이벤트(Reset Event)가 발생되어 입력태그의 입력값 초기화
-	// => 이벤트 처리 함수에서는 에러 메세지 초기화 처리
+	// => 이벤트 처리 함수에서는 입력태그의 입력값 및 에러 메세지 초기화 처리
 	$("#resetBtn").click(function() {
+		//$(selector).reset() : 선택자로 검색된 태그(입력태그)의 입력값을 초기화 처리하는 메소드
+		// => form 태그가 여러개 검색되어 jQuery 객체로 제공될 수 있으므로 첨자를 [0]으로
+		//설정해 첫번째 form 태그의 입력태그를 초기화 처리
+		$("#joinForm")[0].reset();
 		$(".error").text("");
 		$("#id").focus();
 	});
