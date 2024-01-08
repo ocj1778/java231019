@@ -70,5 +70,55 @@ legend {
 		<button type="reset" id="resetBtn">다시작성</button>
 	</fieldset>	
 	</form>
+	
+	<script>
+	$("#id").focus();
+	
+	//$(selector).submit(callback) : 선택자로 검색된 태그(form 태그)에서 제출 이벤트(Submit Event)가 
+	//발생될 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
+	// => form 태그에서 제출 이벤트가 발생될 경우 이벤트 처리 함수에서는 입력태그의 입력값을  
+	//검증하고 검증이 실패된 경우 제출 이벤트를 취소해 form 태그가 동작되지 않도록 명령 작성 
+	$("#joinForm").submit(function() {
+		//에러 메소드를 출력하는 모든 태그의 태그내용을 초기화 처리
+		$(".error").text("");
+		
+		//입력값 검증 결과를 저장하기 위한 변수
+		// => false : 검증 실행, true : 검증 성공
+		var result=true;
+		
+		var idReg=/[a-zA-z]\w{5,19}$/g;
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 입력해 주세요.");
+
+			//제출 이벤트를 취소해 form 태그가 동작되지 않도록 실행하는 명령
+			// => return 명령에 의해 이벤트 처리 함수가 종료되어 다른 입력값에 대한 검증 불가능
+			//return false;
+			
+			result=false;
+		} else if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("6~20자의 영문자 , 숫자와 특수기호(_)만 사용 가능합니다.");
+			result=false;
+		}
+		
+		if($("#passwd").val()=="") {
+			$("#passwdMsg").text("비밀번호를 입력해 주세요.");
+			result=false;
+		} 
+		
+		if($("#name").val()=="") {
+			$("#nameMsg").text("이름을 입력해 주세요.");
+			result=false;
+		}
+		
+		if($("#email").val()=="") {
+			$("#emailMsg").text("이메일을 입력해 주세요.");
+			result=false;
+		}
+		
+		//result 변수에 저장된 논리값이 [false]인 경우 제출 이벤트를 취소해 form 태그가 
+		//동작되지 않도록 실행
+		return result;
+	});	
+	</script>
 </body>
 </html>
