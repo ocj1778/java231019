@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+div {
+	width: 350px;
+	margin: 0 auto;
+	padding: 50px;
+	font-size: 1.2em;
+	text-align: center;
+	border: 1px solid black;
+}	
+</style>
+</head>
+<body>
+	<h1>jQuery Event Handle</h1>
+	<hr>
+	<div>마우스를 클릭하거나 이동해 보세요.</div>
+	
+	<script>
+	/*
+	//선택자로 검색된 태그에서 클릭 이벤트가 발생된 경우 콜백함수 호출 - 단축형
+	$("div").click(function() {
+		$(this).css("color","red");
+	});	
+	
+	//$(selector).mouseover(callback) : 선택자로 검색된 태그에 마우스 커서가 진입한 경우
+	//콜백함수(이벤트 처리 함수)를 호출하는 메소드	
+	$("div").mouseover(function()  {
+		$(this).css("background","yellow");
+	});
+	
+	//$(selector).mouseout(callback) : 선택자로 검색된 태그에서 마우스 커서가 벗어날 경우
+	//콜백함수(이벤트 처리 함수)를 호출하는 메소드	
+	$("div").mouseout(function()  {
+		$(this).css({"color":"black", "background":"white"});
+	});	
+	*/
+	
+	/*
+	//$(selector).on(event, callback) : 선택자로 검색된 태그에서 발생된 이벤트에 대한 
+	//이벤트 처리 함수를 등록하는 메소드 - 일반형
+	$("div").on("click", function() {
+		$(this).css("color","red");
+	});
+	*/
+	
+	//선택자로 검색된 태그에서 발생되는 다수의 이벤트에 대한 이벤트 처리 함수를 등록할 경우 
+	//on() 메소드를 호출하여 사용하는 것을 권장
+	// => on() 메소드의 매개변수에는 JSON 형식으로 표현된 Object 객체를 전달하여 속성명으로
+	//이벤트명을 표현하고 속성값으로 이벤트 처리 함수 등록
+	$("div").on({
+		"click":function() {
+			$(this).css("color","red");
+		}, 
+		"mouseover":function()  {
+			$(this).css("background","yellow");
+		},
+		"mouseout":function()  {
+			$(this).css({"color":"black", "background":"white"});
+		}
+	});
+	</script>
+</body>
+</html>
