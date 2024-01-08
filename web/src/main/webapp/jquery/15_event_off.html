@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>jQuery Event Handle</h1>
+	<hr>
+	<button type="button" id="eventOn">이벤트 처리 함수 등록 버튼</button>
+	<button type="button" id="eventOff">이벤트 처리 함수 제거 버튼</button>
+	<hr>
+	<button type="button" id="btn">버튼을 눌러보세요.</button>
+	<div id="displayDiv"></div>
+	
+	<script>
+	/*	
+	$("#btn").click(function() {
+		$("#displayDiv").text("이벤트 처리 함수의 명령 실행");
+	});
+	*/
+	
+	$("#eventOn").click(function() {
+		$("#displayDiv").text("이벤트 처리 함수 등록 성공");
+		
+		//이벤트 처리 함수에서 태그의 이벤트에 대한 이벤트 처리 함수 등록 가능
+		$("#btn").click(function() {
+			$("#displayDiv").text("이벤트 처리 함수의 명령 실행");
+		});
+	});	
+	
+	$("#eventOff").click(function() {
+		$("#displayDiv").text("이벤트 처리 함수 제거 성공");
+		
+		//$(selector).off(event) : 선택자로 검색된 태그에서 매개변수로 전달받은 이벤트에 
+		//등록된 이벤트 처리 함수를 삭제하는 메소드
+		$("#btn").off("click");
+	});
+	</script>
+</body>
+</html>
