@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+ul li {
+	font-size: 1.2em;
+	margin: 10px;
+}	
+
+div {
+	font-size: 1.5em;
+	color: green;
+}
+
+#menu {
+	font-weight: bold;
+	color: red;
+}
+</style>
+</head>
+<body>
+	<h1>jQuery Event Handle</h1>
+	<hr>
+	<h2>점심 메뉴를 선택해 주세요.</h2>
+	<ul>
+		<li>가정식 백반</li>
+		<li>짜장면</li>
+		<li>짬뽕</li>
+		<li>설렁탕</li>
+		<li>순대국</li>
+		<li>삼계탕</li>
+		<li>쌀국수</li>
+		<li>돈까스</li>
+	</ul>
+	<div>선택한 점심 메뉴는 <span id="menu">???</span>입니다.</div>	
+	
+	<script>
+	$("ul li").click(function() {
+		//이벤트 처리 함수에서는 this 키워드를 사용해 이벤트가 발생된 태그(Element 객체)를 표현 
+		var choice=$(this).text();//이벤트가 발생된 태그의 태그내용을 반환받아 변수에 저장
+		
+		//선택자로 검색된 태그의 태그내용 변경
+		$("#menu").text(choice);
+	});	
+	</script>
+</body>
+</html>
