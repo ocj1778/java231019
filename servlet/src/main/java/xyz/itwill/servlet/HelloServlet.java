@@ -59,8 +59,7 @@ public class HelloServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		//5.클라이언트 요청에 대한 처리 명령을 작성하고 처리결과로 응답파일을 생성
-		// => 클라이언트 요청에 대한 처리 명령에 필요한 값은 HttpServletRequest 객체로부터
-		//제공받아 사용
+		// => 클라이언트 요청에 대한 처리 명령에 필요한 값은 HttpServletRequest 객체로부터 제공받아 사용
 		//PrintWriter.println(Object obj) : 매개변수로 전달받은 모든 형태의 값을 문자열로
 		//변환하여 출력스트림으로 전달하는 메소드 - 응답파일 생성
 		out.println("<!DOCTYPE html>");
