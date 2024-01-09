@@ -70,7 +70,7 @@ public class HelloServlet extends HttpServlet {
 		out.println("<title>Servlet</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>서브릿(Servlet)</h1>");
+		out.println("<h1>서블릿(Servlet)</h1>");
 		out.println("<hr>");
 		out.println("<p>Hello, Servlet!!!</p>");
 		out.println("</body>");

@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- web.xml : 웹프로젝트가 WAS 프로그램에 의해 웹자원(WebContext)으로 변환될 때 필요한 정보를
+제공하기 위한 환경설정파일 - XSD 파일(XML Schema Description)에 선언된 태그(엘리먼트)만 사용 가능  -->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>servlet</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
+	<!-- display-name : 프로젝트 이름을 설정하기 위한 엘리먼트 -->  	
+	<display-name>servlet</display-name>
+	
+	<!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 엘리먼트 -->
+	<!-- => servlet-name 엘리먼트와 servlet-class 엘리먼트를 반드시 자식 엘리먼트로 작성 -->
+	<servlet>
+		<!-- servlet-name : 서블릿을 구분하기 위한 이름(고유값)을 설정하기 위한 엘리먼트 -->
+		<servlet-name>hello</servlet-name>
+		<!-- servlet-class : 서블릿으로 등록될 서블릿 클래스를 설정하기 위한 엘리먼트 -->
+		<servlet-class>xyz.itwill.servlet.HelloServlet</servlet-class>
+	</servlet>
+	
+	<!-- servlet-mapping : 서블릿의 요청 URL 주소를 매핑 설정하기 위한 엘리먼트 -->
+	<!-- => servlet-name 엘리먼트와 url-pattern 엘리먼트를 반드시 자식 엘리먼트로 작성 -->
+	<servlet-mapping>
+		<!-- servlet-name : 요청 URL 주소로 실행될 서블릿의 이름을 설정하기 위한 엘리먼트 -->
+		<servlet-name>hello</servlet-name>
+		<!-- url-pattern : 서블릿을 요청하기 위한 URL 패턴을 설정하기 위한 엘리먼트 -->
+		<url-pattern>/hello.itwill</url-pattern>
+	</servlet-mapping>
+	
+	<!-- welcome-file-list : welcome-file 엘리먼트 목록을 설정하기 위한 엘리먼트 -->
+	<welcome-file-list>
+		<!-- welcome-file : 클라이언트가 서버에 접속하여 웹프로그램을 요청하지 않은 경우 기본적으로 실행되어
+		응답할 웹프로그램(웹문서)의 이름을 설정한 엘리먼트 - 순차적으로 적용 -->
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
 </web-app>
