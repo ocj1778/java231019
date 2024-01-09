@@ -4,9 +4,43 @@
 <meta charset="UTF-8">
 <title>jQuery</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+#box {
+	width: 150px;
+	height: 150px;
+	background: orange;
+	margin-bottom: 20px;
+	position: relative;
+	top: 0;
+	left: 0;
+}	
+</style>
 </head>
 <body>
 	<h1>Effect - animate</h1>
 	<hr>
+	<select id="easing">
+		<option selected>linear</option>
+		<option>easeInCubic</option>
+		<option>easeOutCubic</option>
+		<option>easeInBack</option>
+		<option>easeOutBack</option>
+		<option>easeInElastic</option>
+		<option>easeOutElastic</option>
+	</select>
+	<hr>
+	<div id="box"></div>
+	<button type="button" id="left">◀</button>
+	<button type="button" id="left">▶</button>
+	
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
