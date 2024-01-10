@@ -103,7 +103,7 @@ public class JoinServlet extends HttpServlet {
 		out.println("<meta charset='utf-8'>");
 		out.println("<title>Servlet</title>");
 		out.println("</head>");
-		out.println("<body>");
+		out.println("<body>"); 
 		out.println("<h1>회원가입확인</h1>");
 		out.println("<hr>");
 		out.println("<p>아이디 = "+id+"</p>");
