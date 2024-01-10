@@ -119,6 +119,7 @@ public class JoinServlet extends HttpServlet {
 				out.println(",");
 			}
 		} 
+		out.println("</p>");
 		out.println("<p>직업 = "+job+"</p>");
 		//전달값의 엔터(Enter)를 <br> 태그로 변환해야만 줄바꿈 처리되어 출력
 		out.println("<p>자기소개 = <br>"+profile.replace("\n", "<br>")+"</p>");
