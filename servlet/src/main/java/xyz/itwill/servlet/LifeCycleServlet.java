@@ -3,6 +3,7 @@ package xyz.itwill.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,9 +27,36 @@ public class LifeCycleServlet extends HttpServlet {
 	private String name;
 	
 	//서블릿 클래스로 객체를 생성하기 위한 생성자(Constructor)
+	// => 객체를 생성하면서 실행될 초기화 명령 작성 - 필드 초기화
 	public LifeCycleServlet() {
 		System.out.println("### LifeCycleServlet 클래스의 기본 생성자 호출 - 객체 생성 ###");
-		name="홍길동";
+		//name="홍길동";
+	}
+	
+	//서블릿 객체가 생성된 후 WAS 프로그램에 의해 자동으로 1번만 호출되는 메소드
+	// => 객체를 생성한 후 실행될 초기화 명령 작성 - 필드 초기화
+	//생성자 대신 init() 메소드를 사용하여 초기화 처리 명령을 작성하는 이유
+	// => init() 메소드는 매개변수로 ServletConfig 객체를 제공받아 사용 가능
+	//ServletConfig 객체 : 웹자원을 생성하기 위한 환경설정 관련 정보를 저장한 객체
+	// => [web.xml] 파일에서 제공되는 값을 얻어와 init() 메소드에서 사용 가능 - 유지보수의 효율성 증가 
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("### LifeCycleServlet 클래스의 init() 메소드 호출 ###");
+		//name="홍길동";
+		
+		//ServletConfig.getServletContext() : ServletContext 객체를 반환하는 메소드
+		// => ServletContext 객체 : 웹자원(WebContext)을 관리하기 위한 객체 - WAS 프로그램
+		//ServletContext.getInitParameter(String name) : [web.xml] 파일의 context-param 엘리먼트로
+		//제공되는 값을 매개변수로 전달된 이름으로 얻어와 반환하는 메소드
+		name=config.getServletContext().getInitParameter("name");
+	}
+	
+	//서블릿 객체가 소멸되기 전에 WAS 프로그램에 의해 자동으로 1번만 호출되는 메소드
+	// => WAS 프로그램이 종료되면 서블릿 객체는 WAS 프로그램에 의해 소멸 처리
+	// => 객체 소멸 전 실행될 마무리 명령 작성
+	@Override
+	public void destroy() {
+		System.out.println("### LifeCycleServlet 클래스의 destroy() 메소드 호출 ###");
 	}
 	
 	//클라이언트가 서블릿을 요청할 때마다 WAS 프로그램에 의해 자동 호출되는 메소드 

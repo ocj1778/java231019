@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- 사용자에게 회원정보를 입력받아 처리페이지(join.itwill)를 POST 방식으로 요청하여
+입력값을 전달하는 HTML 문서 - 입력페이지 -->
+<!-- => form 태그를 이용하여 서블릿을 POST 방식으로 요청한 경우 사용자 입력값을 리퀘스트
+메세지 몸체부(Body)에 저장하여 전달 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<style type="text/css">
+h1 {
+	text-align: center;
+}
+
+fieldset {
+	width: 800px;
+	margin: 10px auto;
+}
+
+legend {
+	font-size: 1.2em;
+}
+
+#joinForm ul li {
+	list-style-type: none;
+	margin: 15px 0;
+}
+
+#joinForm label {
+	width: 150px;
+	text-align: right;
+	float: left;
+	margin-right: 10px;
+}
+
+#btnFs {
+	text-align: center;
+}
+
+.error {
+	color: red;
+	margin-left: 10px;
+}
+</style>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<hr>
+	<!-- form 태그 : 웹프로그램을 요청할 때 사용자로부터 입력받은 값을 전달하기 위한 태그 -->
+	<!-- action 속성 : form 태그를 사용하여 요청할 웹프로그램의 URL 주소를 속성값으로 설정 -->
+	<!-- => action 속성을 생략한 경우 현재 브라우저의 URL 주소의 웹프로그램 요청 -->
+	<!-- method 속성 : 웹프로그램 요청방식(GET or POST)을 속성값으로 설정 -->
+	<!-- => method 속성을 생략한 경우 웹프로그램은 GET 방식으로 요청 -->
+	<!-- GET : 입력값을 URL 주소의 질의문자열(QueryString)로 변환하여 전달 -->
+	<!-- => 소용량의 보안이 필요없는 값을 전달하기 위해 사용하는 요청방식  -->
+	<!-- POST : 입력값을 리퀘스트 메세지의 몸체부에 저장하여 전달 -->
+	<!-- => 대용량의 값 또는 보안을 필요로 하는 값을 전달하기 위해 사용하는 요청방식  -->
+	<!-- 웹프로그램 요청시 전달되는 값은 이름과 값을 하나로 묶어서 전달 - 이름=값&이름=값&... -->
+	<form action="join.itwill" method="post" id="joinForm">
+	<fieldset>
+		<legend>회원가입정보</legend>
+		<ul>
+			<li>
+				<label>아이디</label>
+				<input type="text" name="id" id="id"><br>
+				<label>&nbsp;</label>
+				<span id="idMsg" class="error"></span>
+			</li>
+			<li>
+				<label>비밀번호</label>
+				<input type="password" name="passwd" id="passwd"><br>
+				<label>&nbsp;</label>
+				<span id="passwdMsg" class="error"></span>
+			</li>
+			<li>
+				<label>비밀번호 확인</label>
+				<input type="password" name="repasswd" id="repasswd"><br>
+				<label>&nbsp;</label>
+				<span id="repasswdMsg" class="error"></span>
+			</li>						
+			<li>
+				<label>이름</label>
+				<input type="text" name="name" id="name"><br>
+				<label>&nbsp;</label>
+				<span id="nameMsg" class="error"></span>
+			</li>
+			<li>
+				<label>이메일</label>
+				<input type="text" name="email" id="email"><br>
+				<label>&nbsp;</label>
+				<span id="emailMsg" class="error"></span>
+			</li>
+			<li>
+				<label>성별</label>
+				<input type="radio" name="gender" class="gender" value="남자">남자&nbsp;&nbsp;
+				<input type="radio" name="gender" class="gender" value="여자">여자<br>
+				<label>&nbsp;</label>
+				<span id="genderMsg" class="error"></span>
+			</li>
+			<li>
+				<label>취미</label>
+				<input type="checkbox" name="hobby" class="hobby" value="등산">등산&nbsp;&nbsp;
+				<input type="checkbox" name="hobby" class="hobby" value="낚시">낚시&nbsp;&nbsp;
+				<input type="checkbox" name="hobby" class="hobby" value="여행">여행&nbsp;&nbsp;
+				<input type="checkbox" name="hobby" class="hobby" value="독서">독서<br>
+				<label>&nbsp;</label>
+				<span id="hobbyMsg" class="error"></span>
+			</li>
+			<li>
+				<label>직업</label>
+				<select name="job">
+					<option value="회사원" selected="selected">&nbsp;회사원&nbsp;</option>
+					<option value="주부">&nbsp;주부&nbsp;</option>
+					<option value="학생">&nbsp;학생&nbsp;</option>
+				</select>
+			</li>
+			<li>
+				<label>자기소개</label>
+				<textarea rows="4" cols="80" name="profile" id="profile"></textarea><br>
+				<label>&nbsp;</label>
+				<span id="profileMsg" class="error"></span>
+			</li>
+		</ul>
+	</fieldset>
+	<fieldset id="btnFs">
+		<button type="button" id="submitBtn">회원가입</button>
+		<button type="button" id="resetBtn">다시작성</button>
+	</fieldset>
+	</form>
+	
+	<script type="text/javascript">
+	$("#id").focus();
+	
+	
+	$("#submitBtn").click(function() {
+		var result=true;
+		
+		$(".error").text("");
+		
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			result=false;
+		} else if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("아이디는 6~20자의 영문자,숫자,특수기호(_)로만 작성 가능합니다.");
+			result=false;
+		}
+		
+		var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
+		if($("#passwd").val()=="") {
+			$("#passwdMsg").text("비밀번호를 반드시 입력해 주세요.");
+			result=false;
+		} else if(!passwdReg.test($("#passwd").val())) {
+			$("#passwdMsg").text("비밀번호는 6~20자의 영문자,숫자,특수문자가 1번 이상 포함해야만 됩니다.");
+			result=false;
+		}
+		
+		if($("#passwd").val()=="") {
+			$("#repasswdMsg").text("비밀번호 확인를 반드시 입력해 주세요.");
+			result=false;
+		} else if($("#passwd").val()!=$("#repasswd").val()) {
+			$("#repasswdMsg").text("비밀번호가 맞지 않습니다.다시 입력해 주세요.");
+			result=false;
+		}
+		
+		if($("#name").val()=="") {
+			$("#nameMsg").text("이름을 반드시 입력해 주세요.");
+			result=false;
+		}
+		
+		var emailReg=/^([a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+)*$/g;
+		if($("#email").val()=="") {
+			$("#emailMsg").text("이메일을 반드시 입력해 주세요.");
+			result=false;
+		} else if(!emailReg.test($("#email").val())) {
+			$("#emailMsg").text("이메일을 형식에 맞게 입력해 주세요.");
+			result=false;
+		}
+	
+		if($(".gender").filter(":checked").length==0) {
+			$("#genderMsg").text("성별을 반드시 선택해 주세요.");
+			result=false;
+		}	
+		
+		if($(".hobby").filter(":checked").length==0) {
+			$("#hobbyMsg").text("취미를 반드시 선택해 주세요.");
+			result=false;
+		}
+		
+		if($("#profile").val()=="") {
+			$("#profileMsg").text("자기소개를 반드시 입력해 주세요.");
+			result=false;
+		}
+		
+		if(!result) return;
+		
+		$("#joinForm").submit();
+	});
+	
+	$("#resetBtn").click(function() {
+		$("#joinForm")[0].reset();
+		$("#id").focus();
+		$(".error").text("");
+	});
+	</script>
+</body>
+</html>
