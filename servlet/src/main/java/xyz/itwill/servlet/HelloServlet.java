@@ -8,23 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//Servlet : Server+let 합성어로 웹서버에서 실행하는 간단한 프로그램 - Java Web Program
+//Servlet : Server+let 합성어로 웹서버에서 실행하는 간단한 프로그램(SSL : Server Script Language) - Java Web Program
 // => Servlet 프로그램은 클라이언트 요청으로 WAS(Web Application Server)에 의해 실행되며
 //실행결과로 HTML 문서(XML 문서)를 동적으로 생성하여 클라이언트 응답
 //WAS(Web Application Server) : 웹프로그램을 관리하기 위한 프로그램 - 객체의 생성, 사용, 소멸
-// => Apache Tomcat : Web Server(요청과 응답) + Web Container(서블릿 관리 - WAS)
+// => Web Server(요청과 응답) + Web Container(서블릿 관리 - WAS) - Apache Tomcat
 
 //서블릿 프로그램을 작성하는 방법
 //1.HttpServlet 클래스를 상속받은 자식클래스 작성 - 서블릿 클래스
-// => 서블릿 프로그램을 작성하기 위해서는 JavaEE 라이브러리(Apache Tomcat 라이브러리)가 프로젝트 빌드
+// => 서블릿 프로그램을 작성하기 위해서는 JavaEE 라이브러리(Apache Tomcat 라이브러리)가 프로젝트 빌드 처리
 // => HttpServlet 클래스를 상속받은 자식클래스는 객체 직렬화 클래스로 serialVersionUID 필드를
 //선언하는 것을 권장
 public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//2.doGet() 메소드 또는 doPost() 메소드를 오버라이드 선언
+	//2.doGet() 메소드 또는 doPost() 메소드를 오버라이드 선언 - 요청 처리 메소드
 	// => 클라이언트 요청에 대한 처리와 처리결과를 웹문서로 생성하는 명령을 작성하는 메소드
-	// => 요청 처리 메소드 : WAS 프로그램에 의해 자동 호출되는 메소드
+	// => 요청 처리 메소드는 WAS 프로그램에 의해 자동 호출되는 메소드
 	// => doGet() : 클라이언트가 서블릿을 GET 방식으로 요청한 경우 호출되는 메소드
 	// => doPost() : 클라이언트가 서블릿을 POST 방식으로 요청한 경우 호출되는 메소드
 	//doGet() 메소드 또는 doPost() 메소드 대신 service() 메소드를 오버라이드 선언 가능
