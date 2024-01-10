@@ -2,7 +2,7 @@
 <!-- 사용자에게 회원정보를 입력받아 처리페이지(join.itwill)를 POST 방식으로 요청하여
 입력값을 전달하는 HTML 문서 - 입력페이지 -->
 <!-- => form 태그를 이용하여 서블릿을 POST 방식으로 요청한 경우 사용자 입력값을 리퀘스트
-메세지 몸체부(Body)에 저장하여 전달 -->
+메세지 몸체부(Entity Body)에 저장하여 전달 -->
 <html>
 <head>
 <meta charset="UTF-8">
@@ -56,8 +56,8 @@ legend {
 	<!-- => 소용량의 보안이 필요없는 값을 전달하기 위해 사용하는 요청방식  -->
 	<!-- POST : 입력값을 리퀘스트 메세지의 몸체부에 저장하여 전달 -->
 	<!-- => 대용량의 값 또는 보안을 필요로 하는 값을 전달하기 위해 사용하는 요청방식  -->
-	<!-- 웹프로그램 요청시 전달되는 값은 이름과 값을 하나로 묶어서 전달 - 이름=값&이름=값&... -->
-	<form action="join.itwill" method="post" id="joinForm">
+	<!-- form 태그로 웹프로그램을 요청할 때 입력값을 이름(입력태그의 name 속성값)과 묶어서 전달 - 이름=값 -->
+	<form action="/servlet/join.itwill" method="post" id="joinForm">
 	<fieldset>
 		<legend>회원가입정보</legend>
 		<ul>
@@ -131,7 +131,6 @@ legend {
 	
 	<script type="text/javascript">
 	$("#id").focus();
-	
 	
 	$("#submitBtn").click(function() {
 		var result=true;
