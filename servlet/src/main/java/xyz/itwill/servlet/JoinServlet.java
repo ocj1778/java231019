@@ -47,7 +47,7 @@ public class JoinServlet extends HttpServlet {
 			return;
 			*/
 			
-			//클라이언트에서 HTML 문서에 자바스트립트를 저장하여 응답 처리
+			//클라이언트에게 HTML 문서에 자바스트립트를 저장하여 응답 처리
 			// => 경고창을 사용하여 메세지 출력 후 원하는 페이지로 이동 처리
 			out.println("<script>");
 			out.println("alert('비정상적인 방법으로 페이지를 요청 하였습니다.');");
