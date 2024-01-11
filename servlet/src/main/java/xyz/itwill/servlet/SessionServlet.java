@@ -72,22 +72,31 @@ public class SessionServlet extends HttpServlet {
 		
 		//HttpSession.setAttribute(String attributeName, Object attributeValue)
 		// => HttpSession 객체(세션)에 연결 지속성을 제공하기 위한 값(객체)를 저장하기 위한 메소드
-		// => 매개변수에는 값(객체)를 구분하기 위한 속성명과 연결 지속성을 제공하기 위한 속성값 전달
+		// => 매개변수에는 속성값(객체)를 구분하기 위한 속성명과 연결 지속성을 제공하기 위한 속성값 전달
 		// => 매개변수로 전달받은 속성명과 같은 이름의 속성값이 세션에 이미 저장되어 있는 경우 덮어씌우기 - 속성값 변경
 		// => 동일 클라이언트는 같은 세션을 사용하므로 모든 웹프로그램에게 객체를 저장하여 제공 - 객체 공유
-		session.setAttribute("now ", new Date());
+		session.setAttribute("now", new Date());
 		
+		//HttpSession.getAttribute(String attributeName) : 매개변수로 전달받은 이름으로
+		//HttpSession 객체(세션)에 저장된 속성값(객체)을 반환하는 메소드
+		// => HttpSession 객체에 저장된 모든 속성값은 Object 객체로 반환되므로 반드시 명시적
+		//객체 형변환 사용
+		// => 매개변수로 전달받은 속성명의 속성값이 없는 경우 [null] 반환
+		Date now=(Date)session.getAttribute("now");
+		out.println("<p>세션에 저장된 속성값(객체) = "+now+"</p>");
+		
+		//HttpSession.removeAttribute(String attributeName) : 매개변수로 전달받은 이름으로
+		//HttpSession 객체(세션)에 저장된 속성값(객체)을  삭제하는 메소드
+		session.removeAttribute("now");
+		
+		//HttpSession.invalidate() : 바인딩된 세션을 언바인딩 처리한 후 삭제하는 메소드
+		session.invalidate();
+		
+		//HttpSession 객체를 언바인딩 처리한 후 HttpSession 객체를 사용하면 IllegalStateException 발생
+		//session.setAttribute("now", new Date());
+
 		out.println("</body>");
 		out.println("</html>");
 	}
 
 }
-
-
-
-
-
-
-
-
-
