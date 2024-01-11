@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- 사용자로부터 값과 파일을 입력받아 처리페이지(upload.itwill)를 POST 방식으로 요청하여
+입력값과 입력파일을 전달하는 HTML 문서 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet</title>
+</head>
+<body>
+	<h1>파일 업로드</h1>
+	<hr>
+	<!-- 웹프로그램 요청시 사용자로부터 입력받은 파일을 전달하기 위해 form 태그 사용 -->
+	<!-- => 사용자로부터 입력된 파일을 웹프로그램에게 전달하기 위해 form 태그의 method 
+	속성값을 반드시 [post]로 설정하고 enctype 속성값을 [multipart/form-data] 설정 -->
+	<form action="upload.itwill" method="post" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<td>올린이</td>
+			<td><input type="text" name="uploader"></td>
+		</tr>
+		<tr>
+			<td>파일-1</td>
+			<td><input type="file" name="fileone"></td>
+		</tr>
+		<tr>
+			<td>파일-2</td>
+			<td><input type="file" name="filetwo"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit">제출</button></td>
+		</tr>
+	</table>	
+	</form>
+	</body>
+</html>
