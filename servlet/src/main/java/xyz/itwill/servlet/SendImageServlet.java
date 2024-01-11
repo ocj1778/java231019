@@ -37,7 +37,7 @@ public class SendImageServlet extends HttpServlet {
 		FileInputStream in=new FileInputStream(imageFilePath);
 		
 		//입력스트림으로 원시데이타를 읽어와 출력스트림에게 전달 - 반복 처리
-		// => 서버에 저장된 이미지 파일을 클라이언트에게 전달하기 위한 응답파일로 생성
+		// => 서버에 저장된 이미지 파일을 클라이언트에게 전달하기 위한 응답파일로 생성 - 파일 복사
 		while(true) {
 			int readByte=in.read();
 			if(readByte==-1) break;

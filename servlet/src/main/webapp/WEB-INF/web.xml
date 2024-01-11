@@ -19,7 +19,7 @@
 	<error-page>
 		<!-- error-code : 에러코드를 설정하기 위한 엘리먼트 -->
 		<error-code>400</error-code>
-		<!-- location : 에러페이지의 URL 주소를 설정하기 위한 엘리먼트 -->
+		<!-- location : 에러페이지의 자원경로(ContextPath)를 설정하기 위한 엘리먼트 -->
 		<location>/error.html</location>
 	</error-page>
 	
