@@ -48,7 +48,7 @@ public class FileUploadServlet extends HttpServlet {
 		/*
 		request.setCharacterEncoding("utf-8");
 
-		//[multipart/form-data] 형태로 전달되는 문자값은 HttpServletRequest 객체의 
+		//[multipart/form-data] 형태로 전달되는 입력값은 HttpServletRequest 객체의 
 		//getParameter() 메소드를 호출하여 반환 불가능
 		String uploader=request.getParameter("uploader");
 		*/
@@ -64,11 +64,11 @@ public class FileUploadServlet extends HttpServlet {
 		//cos 라이브러리의 MultipartRequest 클래스로 객체 생성
 		// => MultipartRequest 객체 : [multipart/form-data] 형태로 전달되는 문자값 및 파일을 
 		//처리하는 기능을 제공하는 객체
-		// => MultipartRequest 객체를 생성하면 모든 전달파일을 제공받아 서버 디렉토리에 저장 - 무조건인 파일 업로드
+		// => MultipartRequest 객체를 생성하면 모든 전달파일을 자동으로 서버 디렉토리에 저장 - 무조건인 파일 업로드
 		// => MultipartRequest(HttpServletRequest request, String saveDirectory[, int maxPostSize]
 		//[, String encoding][, FileRenamePolicy policy]) 생성자를 이용하여 객체 생성
 		// => request : 요청정보가 저장된 HttpServletRequest(ServletRequest) 객체 전달
-		// => saveDirectory : 전달파일을 저장할 서버 디렉토리의 파일 시스템 경로
+		// => saveDirectory : 전달파일을 저장할 서버 디렉토리의 파일 시스템 경로 - 업로드 디렉토리
 		// => maxPostSize : 전달파일의 용량을 제한하기 위한 크기(Byte) 전달 - 생략시 무제한을 기본값으로 사용
 		// => encoding : 전달값을 제공받기 위한 문자형태를 전달 - 생략시 서유럽어를 기본값으로 사용
 		// => policy : FileRenamePolicy 객체를 전달 - 생략시 기존 파일 덮어씌우기
