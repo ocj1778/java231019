@@ -3,6 +3,7 @@ package xyz.itwill.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,33 +57,24 @@ public class DataSourceServlet extends HttpServlet {
 			out.println("<h3>Connection 객체 제공 후</h3>");
 			//DataSource.getNumIdle() : DataSource 객체에 저장된 다수의 Connection 객체 중
 			//대기상태의 Connection 객체의 갯수를 반환하는 메소드
-			out.println("<p>Idel Connection Number = "+dataSource.getNumIdle()+"</p>");
+			out.println("<p>Idle Connection Number = "+dataSource.getNumIdle()+"</p>");
 			//DataSource.getNumActive() : DataSource 객체에 저장된 다수의 Connection 객체 중
 			//사용상태의 Connection 객체의 갯수를 반환하는 메소드
-			out.println("<p>Idel Connection Number = "+dataSource.getNumActive()+"</p>");
+			out.println("<p>Active Connection Number = "+dataSource.getNumActive()+"</p>");
 			out.println("<hr>");
-			//Connection 객체 제거
+			//Connection 객체 제거 - DataSource 객체에서 Connection 객체를 대기상태로 변경 처리
 			con.close();
 			out.println("<h3>Connection 객체 제거 후</h3>");
-			out.println("<p>Idel Connection Number = "+dataSource.getNumIdle()+"</p>");
-			out.println("<p>Idel Connection Number = "+dataSource.getNumActive()+"</p>");
-			out.println("");
-			
+			out.println("<p>Idle Connection Number = "+dataSource.getNumIdle()+"</p>");
+			out.println("<p>Active Connection Number = "+dataSource.getNumActive()+"</p>");
+
+			//DataSource.close() : DataSource 객체를 제거하는 메소드
+			// => DataSource 객체에 의해 관리되는 모든 Connection 객체도 제거
+			dataSource.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		out.println("</body>");
+		out.println("</html>");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
