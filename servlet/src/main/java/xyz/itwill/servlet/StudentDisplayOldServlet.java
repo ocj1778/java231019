@@ -3,6 +3,7 @@ package xyz.itwill.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,18 +30,22 @@ public class StudentDisplayOldServlet extends HttpServlet {
 		try {
 			//1.OracleDriver 클래스를 읽어 메모리에 저장
 			// => OracleDriver 객체가 생성되어 DriverManager 클래스의 JDBC Driver 객체로 자동 등록
-			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			//2.DriverManager 클래스에 등록된 JDBC Driver 객체로 DBMS 서버에 접속하여 접속정보가
 			//저장된 Connection 객체를 반환받아 저장
-			
+			String url="jdbc:oracle:thin:@localhost:1521:xe";
+			String username="scott";
+			String password="tiger";
+			con=DriverManager.getConnection(url, username, password);
 			
 			//3.Connection 객체로부터 SQL 명령이 저장된 PreparedStatement 객체를 반환받아 저장
-			
+			String sql="select no,name,phone,address,birthday from student order by no";
+			pstmt=con.prepareStatement(sql);
 			
 			//4.PreparedStatement 객체에 저장된 SQL 명령을 DBMS 서버에 전달하여 실행한 후 
 			//실행결과를 반환받아 저장
-			
+			rs=pstmt.executeQuery();			
 			
 			//5.반환받은 결과를 HTML 문서로 만들어 응답 처리
 			out.println("<!DOCTYPE html>");
@@ -62,8 +67,15 @@ public class StudentDisplayOldServlet extends HttpServlet {
 			out.println("</tr>");
 			//ResultSet 객체에 저장된 모든 행을 차례대로 제공받아 처리행의 컬럼값을 HTML 태그로
 			//만들어 응답파일에 전달 - 반복문 사용
-			
-			
+			while(rs.next()) {
+				out.println("<tr>");
+				out.println("<td align='center'>"+rs.getInt("no")+"</td>");
+				out.println("<td align='center'>"+rs.getString("name")+"</td>");
+				out.println("<td align='center'>"+rs.getString("phone")+"</td>");
+				out.println("<td align='center'>"+rs.getString("address")+"</td>");
+				out.println("<td align='center'>"+rs.getString("birthday").substring(0, 10)+"</td>");
+				out.println("</tr>");
+			}
 			out.println("</table>");
 			out.println("</body>");
 			out.println("</html>");
@@ -73,25 +85,11 @@ public class StudentDisplayOldServlet extends HttpServlet {
 			System.out.println("[에러]JDBC 관련 오류 = "+e.getMessage());
 		} finally {
 			//6.JDBC 관련 객체 제거
-			
-			
+			try {
+				if(rs!=null) rs.close();	
+				if(pstmt!=null) pstmt.close();	
+				if(con!=null) con.close();	
+			} catch (SQLException e) {}
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
