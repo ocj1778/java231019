@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//클라이언트에게 쿠키를 전달하여 저장하고 처리결과를 HTML 문서로 응답하는 서블릿
-// => 서블릿에서 쿠키를 생성하여 클라이언트에게 전달하면 클라이언트는 전달된 쿠키를 저장
 //쿠키(Cookie) : 서버(웹프로그램)와 클라이언트(브라우저)의 연결 지속성을 제공하기 위한 정보를
 //클라이언트에 저장하는 문자값
 // => 클라이언트에는 접속 서버의 정보를 식별자로 하여 다수의 쿠키 저장
+
+//클라이언트에게 쿠키를 전달하여 저장하고 처리결과를 HTML 문서로 응답하는 서블릿
+//=> 서블릿에서 쿠키를 생성하여 클라이언트에게 전달하면 클라이언트는 전달된 쿠키를 저장
 @WebServlet("/create.itwill")
 public class CookieCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

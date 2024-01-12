@@ -36,7 +36,6 @@ public class CookieUseServlet extends HttpServlet {
 		out.println("<hr>");
 		if(cookies == null) {//클라이언트로부터 전달받은 쿠키가 없는 경우
 			out.println("<p>네 안에 쿠키 없다.</p>");
-
 		} else {
 			String id="";
 			String count="";

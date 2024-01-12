@@ -14,13 +14,14 @@ import javax.servlet.http.HttpSession;
 //세션(Session) : 서버(웹프로그램)와 클라이언트(브라우저)의 연결 지속성을 제공하기 위한 정보를
 //서버에 저장하는 객체 - WAS 프로그램에 의해 관리
 // => 보안 관련 정보(권한)를 세션에 저장하여 사용할 목적으로 이용
-// => 세션을 구분하기 위한 식별자(SessionId)를 이용해 클라이언트의 세션을 구분하여 웹프로그램에게 제공
-//세션 바인딩(Session Binding) : 연속 지속성을 제공하기 위한 객체가 저장된 세션을 웹프로그램에서
-//사용할 수 있도록 결합하는 작업 - WAS 프로그램
+// => 세션을 구분하기 위한 식별자(SessionId)를 이용해 클라이언트의 세션을 구분하여 웹프로그램에서 
+//사용할 수 있도록 제공 - 세션 바인딩
+//세션 바인딩(Session Binding) : 연결 지속성을 제공하기 위한 객체가 저장된 세션을 웹프로그램에서
+//사용할 수 있도록 결합하는 작업 - WAS 프로그램에 의해 관리
 
 //클라이언트로부터 [JSESSIONID]라는 이름의 쿠키값을 제공받지 못한 경우 서버에 새로운 세션을
 //생성하여 바인딩 처리하고 생성된 세션의 식별자(SessionId)를 클라이언트에게 [JSESSIONID]라는
-//이름의 쿠키값으로 전달하여 클라이언트에 저장 - 웹프로그램을 최초로 요청한 경우
+//이름의 쿠키값으로 전달하여 클라이언트에 저장 - 웹프로그램을 최초로 요청한 경우의 바인딩 처리
 // => [JSESSIONID]라는 이름의 쿠키는 클라이언트 브라우저가 종료되면 소멸
 //클라이언트로부터 [JSESSIONID]라는 이름의 쿠키값을 제공받은 경우 세션 트랙킹하여 바인딩 처리
 // => 세션 트랙킹이 실패된 경우 새로운 세션을 생성하여 바인딩 처리 
@@ -36,8 +37,7 @@ public class SessionServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		
-		//HttpServletRequest.getSession() : 바인딩 처리되어 제공된 세션을 HttpSession 객체로
-		//반환하는 메소드
+		//HttpServletRequest.getSession() : 바인딩 처리된 세션을 HttpSession 객체로 반환하는 메소드
 		// => 새로운 세션을 생성하여 바인딩하거나 기존 세션을 트레킹하여 바인딩 처리 
 		//HttpSession 객체 : 연결 지속성을 제공하는 값(객체)을 저장하기 위한 객체 - 세션
 		HttpSession session=request.getSession();
@@ -72,12 +72,13 @@ public class SessionServlet extends HttpServlet {
 		
 		//HttpSession.setAttribute(String attributeName, Object attributeValue)
 		// => HttpSession 객체(세션)에 연결 지속성을 제공하기 위한 값(객체)를 저장하기 위한 메소드
-		// => 매개변수에는 속성값(객체)를 구분하기 위한 속성명과 연결 지속성을 제공하기 위한 속성값 전달
+		// => 매개변수에는 속성값를 구분하기 위한 속성명과 연결 지속성을 제공하기 위한 객체를 속성값으로 전달
 		// => 매개변수로 전달받은 속성명과 같은 이름의 속성값이 세션에 이미 저장되어 있는 경우 덮어씌우기 - 속성값 변경
-		// => 동일 클라이언트는 같은 세션을 사용하므로 모든 웹프로그램에게 객체를 저장하여 제공 - 객체 공유
+		// => 동일 클라이언트는 같은 세션을 바인딩하여 사용하므로 모든 웹프로그램은 세션에  
+		//저장된 속성값을 객체로 반환받아 사용 가능 - 객체 공유
 		session.setAttribute("now", new Date());
 		
-		//HttpSession.getAttribute(String attributeName) : 매개변수로 전달받은 이름으로
+		//HttpSession.getAttribute(String attributeName) : 매개변수로 전달받은 속성명으로
 		//HttpSession 객체(세션)에 저장된 속성값(객체)을 반환하는 메소드
 		// => HttpSession 객체에 저장된 모든 속성값은 Object 객체로 반환되므로 반드시 명시적
 		//객체 형변환 사용
@@ -85,11 +86,11 @@ public class SessionServlet extends HttpServlet {
 		Date now=(Date)session.getAttribute("now");
 		out.println("<p>세션에 저장된 속성값(객체) = "+now+"</p>");
 		
-		//HttpSession.removeAttribute(String attributeName) : 매개변수로 전달받은 이름으로
+		//HttpSession.removeAttribute(String attributeName) : 매개변수로 전달받은 속성명으로
 		//HttpSession 객체(세션)에 저장된 속성값(객체)을  삭제하는 메소드
 		session.removeAttribute("now");
 		
-		//HttpSession.invalidate() : 바인딩된 세션을 언바인딩 처리한 후 삭제하는 메소드
+		//HttpSession.invalidate() : 바인딩된 세션을 언바인딩 처리한 후 세션을 삭제하는 메소드
 		session.invalidate();
 		
 		//HttpSession 객체를 언바인딩 처리한 후 HttpSession 객체를 사용하면 IllegalStateException 발생
