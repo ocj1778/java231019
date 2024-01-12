@@ -15,7 +15,7 @@
 	<!-- 객체 생성에 필요한 필드값을 속성(필드명)과 속성값(필드값)을 사용하여 설정 - 필드값 변경 -->
 	<Resource name="jdbc/oracle" auth="Container" 
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		type="javax.jdbc.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+		type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
 		url="jdbc:oracle:thin:@localhost:1521:xe" username="scott" password="tiger"
 		initialSize="10" maxIdle="10" maxTotal="15"/>
 </Context>
