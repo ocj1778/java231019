@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-//JNDI(Java Naming Directory Interface) : WAS 프로그램에 실행될 때 생성되어 WAS 디렉토리에 저장 
-//되는 객체를 웹프로그램에서 필요한 경우 WAS 프로그램에 의해 관리되는 객체의 이름을 사용하여  
-//객체를 반환받아 사용하기 위한 서비스
-// => WAS 프로그램에 의해 생성되어 WAS 디렉토리에 저장될 객체의 정보는 [src/main/webapp/META-INF/context.xml] 
+//JNDI(Java Naming Directory Interface) : WAS 프로그램이 실행될 때 객체를 생성하여 WAS 프로그램에 
+//의해 관리되는 객체를 웹프로그램에서 필요한 경우 객체의 이름으로 반환받아 사용하기 위한 서비스
+// => WAS 프로그램에 의해 생성되어 저장될 객체의 정보는 [src/main/webapp/META-INF/context.xml] 
 //파일의 엘리먼트(태그)를 이용하여 제공
 
 //WAS 프로그램에 의해 생성된 DataSource 객체를 제공받아 DataSource 객체에 저장된 Connection 객체를
@@ -52,26 +51,12 @@ public class JndiServlet extends HttpServlet {
 			out.println("<p>Connection = "+con+"</p>");
 			out.println("</body>");
 			out.println("</html>");
+
+			con.close();
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
