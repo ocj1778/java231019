@@ -49,7 +49,7 @@ public class GuestDAO extends JdbcDAO {
 	}
 	
 	//게시글(방명록)을 전달받아 GUEST 테이블에 저장된 행을 변경하고 변경행의 갯수를 반환하는 메소드
-	public int UpdateGuest(GuestDTO guest) {
+	public int updateGuest(GuestDTO guest) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		int rows=0;
