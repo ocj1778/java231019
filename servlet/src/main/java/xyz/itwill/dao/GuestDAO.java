@@ -141,7 +141,7 @@ public class GuestDAO extends JdbcDAO {
 			while(rs.next()) {
 				GuestDTO guest=new GuestDTO();
 				guest.setNum(rs.getInt("num"));
-				guest.setWriter(rs.getString("wrtier"));
+				guest.setWriter(rs.getString("writer"));
 				guest.setSubject(rs.getString("subject"));
 				guest.setContent(rs.getString("content"));
 				guest.setRegdate(rs.getString("regdate"));
