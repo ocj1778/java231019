@@ -149,7 +149,7 @@ public class GuestDAO extends JdbcDAO {
 				guestList.add(guest);
 			}
 		} catch (SQLException e) {
-			System.out.println("[에러]selectGuest() 메소드의 SQL 오류 = "+e.getMessage());
+			System.out.println("[에러]selectGuestList() 메소드의 SQL 오류 = "+e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
 		}
