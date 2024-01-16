@@ -43,7 +43,11 @@
 	<%-- 자바스크립트 자동 완성 기능(Javascript Content Assist)을 제공받기 위해 이클립스에 
 	Tern 플러그인 설치 --%>
 	<%-- Help >> Install New Software... >> Work with : http://oss.opensagres.fr/tern.repository/1.2.1
-	>> 플러그인 목록 전체 체크 >> Next >> Next >> 라이센스 동의 >> finish --%>	
+	>> 플러그인 목록 전체 체크 >> Next >> Next >> 라이센스 동의 >> finish --%>
+	
+	<%-- Tern 플러그인을 프로젝트에서 사용하기 위해 웹프로젝트를 Tern 프로젝트로 변환 --%>
+	<%-- => 프로젝트 >> 오른쪽 버튼 클릭(메뉴) >> Configure >> Convert to Tern Project
+	>> Modules : Browser와 jQuery 선택 >> Apply And Close --%>	
 	<script type="text/javascript">
 	setInterval(function() {
 		location.reload();
