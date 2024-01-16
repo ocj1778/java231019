@@ -25,7 +25,7 @@ public class GuestDAO extends JdbcDAO {
 		return _dao;
 	}
 	
-	//게시글(방명록)을 전달받아 GUEST 테이블에 삽입하고 삽입행의 갯수를 반환하는 메소드
+	//게시글(GuestDTO 객체)을 전달받아 GUEST 테이블의 행으로 삽입하고 삽입행의 갯수(int)를 반환하는 메소드
 	public int insertGuest(GuestDTO guest) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -48,7 +48,7 @@ public class GuestDAO extends JdbcDAO {
 		return rows;
 	}
 	
-	//게시글(방명록)을 전달받아 GUEST 테이블에 저장된 행을 변경하고 변경행의 갯수를 반환하는 메소드
+	//게시글(GuestDTO 객체)을 전달받아 GUEST 테이블에 저장된 행을 변경하고 변경행의 갯수(int)를 반환하는 메소드
 	public int updateGuest(GuestDTO guest) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -72,7 +72,7 @@ public class GuestDAO extends JdbcDAO {
 		return rows; 
 	}
 	
-	//게시글(방명록)의 글번호를 전달받아 GUEST 테이블에 저장된 행을 삭제하고 삭제행의 갯수를 반환하는 메소드
+	//게시글의 글번호(int)를 전달받아 GUEST 테이블에 저장된 행을 삭제하고 삭제행의 갯수(int)를 반환하는 메소드
 	public int deleteGuest(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -93,7 +93,7 @@ public class GuestDAO extends JdbcDAO {
 		return rows; 
 	}
 	
-	//게시글(방명록)의 글번호를 전달받아 GUEST 테이블에 저장된 행을 검색하여 게시글(DTO 객체)를 반환하는 메소드
+	//게시글의 글번호(int)를 전달받아 GUEST 테이블에 저장된 행을 검색하여 게시글(GuestDTO 객체)를 반환하는 메소드
 	public GuestDTO selectGuest(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -124,7 +124,7 @@ public class GuestDAO extends JdbcDAO {
 		return guest;
 	}
 	
-	//GUEST 테이블에 저장된 모든 행을 검색하여 모든 게시글들(List 객체)을 반환하는 메소드
+	//GUEST 테이블에 저장된 모든 행을 검색하여 모든 게시글(List 객체 - 요소 : GuestDTO 객체)을 반환하는 메소드
 	public List<GuestDTO> selectGuestList() {
 		Connection con=null;
 		PreparedStatement pstmt=null;

@@ -1,10 +1,10 @@
 package xyz.itwill.dto;
 
-//게시글(방명록)을 저장하기 위한 GUEST 테이블 생성 
+//게시글을 저장하기 위한 GUEST 테이블 생성 
 //create table guest(num number primary key, writer varchar2(50), subject varchar2(200)
 //	    , content varchar2(1000), regdate date);
 
-//게시글(방명록)의 글번호를 제공하기 위한 시퀀스 생성 
+//게시글의 글번호를 제공하기 위한 시퀀스 생성 
 //create sequence guest_seq;
 
 /*
@@ -14,10 +14,10 @@ NUM     NOT NULL NUMBER         - 게시글(방명록) 번호 : 시퀸스로 제
 WRITER           VARCHAR2(50)   - 게시글(방명록) 작성자 : 사용자 입력값을 전달받아 저장   
 SUBJECT          VARCHAR2(200)  - 게시글(방명록) 제목 : 사용자 입력값을 전달받아 저장
 CONTENT          VARCHAR2(1000) - 게시글(방명록) 내용 : 사용자 입력값을 전달받아 저장
-REGDATE          DATE           - 게시글(방명록) 작성날짜 : DBMS의 현재 날짜와 시간을 제공받아 저장
+REGDATE          DATE           - 게시글(방명록) 작성날짜 : DBMS 서버의 현재 날짜와 시간을 제공받아 저장
 */
 
-//GUEST 테이블의 행을 표현하기 위한 DTO 클래스
+//GUEST 테이블의 행(게시글)을 표현하기 위한 DTO 클래스
 public class GuestDTO {
 	private int num;
 	private String writer;
