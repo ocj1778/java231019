@@ -9,7 +9,7 @@
 <body>
 	<h1>지시어(Directive)</h1>
 	<hr>
-	<p>page Directive : JSP 문서에 필요한 정보를 제공하도록 지시
+	<p>page Directive : JSP 문서에 필요한 정보가 포함되도록 제공하도록 지시
 	- &lt;%@page 속성="속성값" 속성="속성값" ... %&gt;</p>
 	<p>include Directive : JSP 문서에 외부파일의 소스코드(SourceCode)를 포함하도록 지시
 	- &lt;%@include file="URL" %&gt;</p>
