@@ -6,7 +6,7 @@
   <error-page>
   	<!-- exception-type : JSP 문서 실행시 발생될 예외를 설정하기 위한 엘리먼트 -->
   	<exception-type>java.lang.NullPointerException</exception-type>
-  	<!-- exception-type : 예외가 발생될 경우 응답될 JSP 문서의 컨텍스트 경로 설정하기 위한 엘리먼트 -->
+  	<!-- exception-type : 예외가 발생될 경우 응답될 JSP 문서의 컨텍스트 경로를 설정하기 위한 엘리먼트 -->
   	<location>/error/page_error.jsp</location>
   </error-page>
   
