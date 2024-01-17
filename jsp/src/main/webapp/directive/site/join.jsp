@@ -13,7 +13,7 @@
 	</div>
 	
 	<div id="content">
-		<h2>회원가입 페이지 - 회원정보 입력</h2>	
+		<h2>회원가입페이지 - 회원정보 입력</h2>	
 	</div>
 	
 	<div id="footer">
