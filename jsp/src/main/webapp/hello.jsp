@@ -6,11 +6,15 @@
 서블릿 클래스를 컴파일하여 객체로 생성한 후 요청 처리 메소드를 호출해 요청에 대한 응답파일을 
 동적으로 생성하여 클라이언트에게 응답 --%>
 <%-- => JSP 문서에 대한 서블릿 클래스가 이미 생성되어 있는 경우 서블릿 객체로 요청 처리 메소드 호출 --%>
-<%-- => JSP 문서가 변경된 후 클라이언트가 요청하면 JSP 문서를 다시 서블릿 클래스로 생성하여
+<%-- => JSP 문서가 변경된 후 클라이언트가 JSP 문서를 다시 요청하면 서블릿 클래스로 새로 생성하여
 컴파일 후 객체를 생성해 요청 처리 메소드 호출 --%>
 <%
+	//서버의 현재 날짜와 시간을 저장한 Date 객체 생성
 	Date now=new Date();
+	//날짜와 시간의 패턴정보를 저장한 SimpleDateFormat 객체 생성
 	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+	//SimpleDateFormat 객체로 format() 메소드를 호출하여 매개변수로 전달받은 Date 객체를
+	//SimpleDateFormat 객체에 저장된 날짜와 시간 패턴의 문자열로 변환하여 반환받아 저장 
 	String displayNow=dateFormat.format(now);
 %>
 <!DOCTYPE html>
