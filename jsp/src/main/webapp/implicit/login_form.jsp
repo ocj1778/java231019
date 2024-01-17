@@ -9,7 +9,7 @@
 <title>JSP</title>
 </head>
 <body>
-	<%
+	<%--
 		//request.getParameter(String name) : JSP 문서를 요청할 때 전달된 값을 반환하는 메소드
 		// => 매개변수로 전달받은 이름으로 값을 구분하여 반환
 		// => 매개변수로 전달받은 이름의 전달값이 없는 경우 null 반환
@@ -18,6 +18,28 @@
 		if(msg==null) {//전달값이 없는 경우
 			msg="";//표현식(Expression)으로 인해 [null] 문자열이 출력되는 방지
 		}
+	--%>
+	<%
+		//session.getAttribute(String attributeName) : JSP 문서에 바인딩된 session 객체에서 
+		//매개변수로 전달받은 이름의 속성값을 객체로 반환하는 메소드
+		// => 매개변수로 전달받은 이름의 속성값이 없는 경우 [null] 반환
+		// => 속성값이 Object 객체로 반환되므로 반드시 명시적 객체 형변환하여 사용
+		String msg=(String)session.getAttribute("msg");
+		if(msg==null) {//속성값이 없는 경우
+			msg="";
+		} else {
+			//session.removeAttribute(String attributeName) : JSP 문서에 바인딩된 session 객체에서 
+			//매개변수로 전달받은 이름의 속성값을 삭제하는 메소드
+			// => 다른 JSP 문서에 세션에 저장된 속성값을 사용하지 못하도록 삭제
+			session.removeAttribute("msg");
+		}
+		
+		String id=(String)session.getAttribute("id");
+		if(id==null) {
+			id="";
+		} else {
+			session.removeAttribute("id");
+		}
 	%>
 	<h1>로그인</h1>
 	<hr>
@@ -25,7 +47,7 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id"></td>
+			<td><input type="text" name="id" value="<%=id%>"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
