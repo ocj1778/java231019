@@ -9,6 +9,16 @@
 <title>JSP</title>
 </head>
 <body>
+	<%
+		//request.getParameter(String name) : JSP 문서를 요청할 때 전달된 값을 반환하는 메소드
+		// => 매개변수로 전달받은 이름으로 값을 구분하여 반환
+		// => 매개변수로 전달받은 이름의 전달값이 없는 경우 null 반환
+		//[login_action.jsp] 문서로부터 전달받은 에러메세지를 반환받아 저장
+		String msg=request.getParameter("msg");
+		if(msg==null) {//전달값이 없는 경우
+			msg="";//표현식(Expression)으로 인해 [null] 문자열이 출력되는 방지
+		}
+	%>
 	<h1>로그인</h1>
 	<hr>
 	<form action="login_action.jsp" method="post" name="loginForm">
@@ -26,7 +36,7 @@
 		</tr>
 	</table>	
 	</form>
-	<p id="message" style="color: red;"></p>
+	<p id="message" style="color: red;"><%=msg %></p>
 	
 	<script type="text/javascript">
 	loginForm.id.focus();
