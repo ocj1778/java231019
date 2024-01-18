@@ -11,7 +11,7 @@
 <body>
 	<%--
 		//request.getParameter(String name) : JSP 문서를 요청할 때 전달된 값을 반환하는 메소드
-		// => 매개변수로 전달받은 이름으로 값을 구분하여 반환
+		// => 매개변수로 전달받은 이름으로 값을 구분하여 전달값을 문자열(String 객체)로 반환
 		// => 매개변수로 전달받은 이름의 전달값이 없는 경우 null 반환
 		//[login_action.jsp] 문서로부터 전달받은 에러메세지를 반환받아 저장
 		String msg=request.getParameter("msg");

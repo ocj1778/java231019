@@ -39,6 +39,14 @@
 		return;
 		*/
 		
+		/*
+		out.println("<script type='text/javascript'>");
+		out.println("alert('비정상적인 방법으로 페이지를 요청 하였습니다.');");
+		out.println("location.href='login_form.jsp';");
+		out.println("</script>");
+		return;
+		*/
+		
 		//session.setAttribute(String attributeName, Object attributeValue) : JSP 문서에 바인딩된
 		//session 객체에 매개변수로 전달받은 이름과 값(객체)를 속성명과 속성값으로 저장하는 메소드
 		session.setAttribute("msg", "비정상적인 방법으로 페이지를 요청 하였습니다.");
