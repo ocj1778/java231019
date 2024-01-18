@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	//String header="/action/include/header.jspf";
-	//String header="/action/include/header.jsp";
+	String header="/action/include/header.jsp";
 
 	String category=request.getParameter("category");
 	
@@ -10,19 +10,8 @@
 		category="main";
 	}
 	
-	String headerFilePath="";
-	if(category.equals("main")) {
-		headerFilePath="/action/include/header_main.jsp";
-	} else if(category.equals("mail")) {
-		headerFilePath="/action/include/header_mail.jsp";
-	} else if(category.equals("blog")) {
-		headerFilePath="/action/include/header_blog.jsp";
-	} else if(category.equals("cafe")) {
-		headerFilePath="/action/include/header_cafe.jsp";
-	} else {
-		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-	}
+	//전달값을 이용하여 페이지 몸체부에 포함될 JSP 문서의 경로를 생성하여 저장
+	String contentPath="/action/include/"+category+".jsp";
 %>
 <!DOCTYPE html>
 <html>
@@ -64,11 +53,14 @@
 	<jsp:include page="<%=header %>"/>
 	
 	<%-- 페이지 몸체부(Content) --%>
+	<%-- 
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	<p>메인 페이지의 내용이 출력됩니다.</p>
+	--%>
+	<jsp:include page="<%=contentPath %>"/>
 	
 	<%-- 페이지 꼬릿부(Footer) --%>
 	<%-- 
