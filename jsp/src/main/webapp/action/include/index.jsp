@@ -12,6 +12,17 @@
 	
 	//전달값을 이용하여 페이지 몸체부에 포함될 JSP 문서의 경로를 생성하여 저장
 	String contentPath="/action/include/"+category+".jsp";
+	
+	String master="";
+	if(category.equals("main")) {
+		master="홍길동(main@itwill.xyz)";
+	} else if(category.equals("mail")) {
+		master="임꺽정(mail@itwill.xyz)";
+	} else if(category.equals("blog")) {
+		master="전우치(blog@itwill.xyz)";
+	} else if(category.equals("cafe")) {
+		master="일지매(cafe@itwill.xyz)";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -60,14 +71,17 @@
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	<p>메인 페이지의 내용이 출력됩니다.</p>
 	--%>
+	<%-- JSP 문서를 요청할 때 전달되는 값에 따라 서버 다른 JSP 문서의 실행결과 포함 --%>
 	<jsp:include page="<%=contentPath %>"/>
 	
 	<%-- 페이지 꼬릿부(Footer) --%>
 	<%-- 
 	<hr>
 	<p>Copyright © itwill Corp. All rights reserved.</p>
+	<p>관리자 : 홍길동(abc@itwill.xyz)</p>
 	--%>
-	<%@include file="/action/include/footer.jspf" %>
+	<%-- <%@include file="/action/include/footer.jspf" %> --%>
+	<jsp:include page="/action/include/footer.jsp"></jsp:include>
 </body>
 </html>
 
