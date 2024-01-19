@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.itwill.dto.StudentDTO;
@@ -57,8 +58,13 @@ public class StudentDAO extends JdbcDAO {
 		try {
 			con=getConnection();
 			
-			String sql="";
+			String sql="update student set name=?,phone=?,address=?,birthday=? where no=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, student.getName());
+			pstmt.setString(2, student.getPhone());
+			pstmt.setString(3, student.getAddress());
+			pstmt.setString(4, student.getBirthday());
+			pstmt.setInt(5, student.getNo());
 			
 			rows=pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -77,8 +83,9 @@ public class StudentDAO extends JdbcDAO {
 		try {
 			con=getConnection();
 			
-			String sql="";
+			String sql="delete from student where no=?";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, no);
 			
 			rows=pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -122,6 +129,33 @@ public class StudentDAO extends JdbcDAO {
 	
 	//STUDENT 테이블의 저장된 모든 행을 검색하여 학생정보목록(List 객체 - 요소 : StudentDTO 객체)을 반환하는 메소드
 	public List<StudentDTO> selectStudentList() {
-		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<StudentDTO> studentList=new ArrayList<StudentDTO>();
+		try {
+			con=getConnection();
+			
+			String sql="select no,name,phone,address,birthday from student order by no";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				StudentDTO student=new StudentDTO();
+				student.setNo(rs.getInt("no"));
+				student.setName(rs.getString("name"));
+				student.setPhone(rs.getString("phone"));
+				student.setAddress(rs.getString("address"));
+				student.setBirthday(rs.getString("birthday"));
+				
+				studentList.add(student);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectStudentList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return studentList;
 	}
 }
