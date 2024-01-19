@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- STUDENT 테이블에 저장된 모든 학생정보를 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
+<%-- => [학생추가] 태그를 클릭한 경우 [insertFormStudent.jsp] 문서를 요청하여 페이지 이동 --%>
 <%
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
 	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
@@ -19,7 +20,7 @@
 	<table align="center" cellspacing="0" cellpadding="1" width="800">
 		<tr align="right">
 			<td>
-				<input type="button" value="학생추가">
+				<input type="button" value="학생추가" onclick="location.href='insertFormStudent.jsp';">
 			</td>
 		</tr>
 	</table>
