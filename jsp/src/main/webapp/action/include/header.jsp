@@ -8,7 +8,7 @@
 <hr>
 --%>
 
-<h1><a href="<%=request.getContextPath() %>/action/include/index.jsp">로고</a></h1>
+<h1><a href="<%=request.getContextPath() %>/action/include/index.jsp?category=main">로고</a></h1>
 <a href="<%=request.getContextPath() %>/action/include/index.jsp?category=mail">메일(Mail)</a>&nbsp;&nbsp;
 <a href="<%=request.getContextPath() %>/action/include/index.jsp?category=blog">블로그(Blog)</a>&nbsp;&nbsp;
 <a href="<%=request.getContextPath() %>/action/include/index.jsp?category=cafe">카페(Cafe)</a>&nbsp;&nbsp;

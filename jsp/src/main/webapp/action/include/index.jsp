@@ -12,7 +12,7 @@
 		category="main";
 	}
 	
-	//전달값을 이용하여 페이지 몸체부에 포함될 JSP 문서의 경로를 생성하여 저장
+	//전달값을 이용하여 페이지 몸체부에 포함될 JSP 문서의 컨테스트 경로를 생성하여 저장
 	String contentPath="/action/include/"+category+".jsp";
 	
 	String master="";
@@ -42,12 +42,13 @@
 	<hr>
 	--%>
 	<%-- include Directive : 외부파일(JSPF)의 소스코드를 JSP 문서에 포함하는 지시어 --%>
-	<%-- => CSL(HTML, CSS, JavaScript) 및 SSL(Java - Script Element)로 구성된 소스코드 포함 - 정적포함 --%>
-	<%-- => JSP 문서를 요청한 경우 include Directive의 file 속성값으로 설정된 외부파일의 
+	<%-- => CSL(HTML, CSS, JavaScript) 및 SSL(Java - Script Element)로 구성된 소스코드 포함 --%>
+	<%-- => 외부파일의 소스코드를 포함하므로 정적 포함  --%>
+	<%-- JSP 문서를 요청한 경우 include Directive의 file 속성값으로 설정된 외부파일의 
 	소스코드를 요청 JSP 문서에 포함하고 실행된 결과를 클라이언트에게 전달하여 응답 --%>
 	<%-- => include Directive의 file 속성값으로 설정된 외부파일의 내용이 변경될 경우 JSP 문서가
 	변경되는 것과 동일하므로 JSP 문서를 서블릿으로 다시 생성하여 실행 --%>
-	<%-- include Directive의 file 속성값으로 표현식(Expression) 사용 불가능 --%>
+	<%-- include Directive의 file 속성값으로 표현식(Expression) 사용 불가능 - 에러 발생 --%>
 	<%-- => include Directive의 file 속성값으로 설정된 외부파일의 소스코드만 포함 가능 --%>
 	<%-- <%@include file="/action/include/header.jspf" %> --%>
 	
@@ -91,5 +92,19 @@
 	<jsp:include page="/action/include/footer.jsp">
 		<jsp:param value="<%=master%>" name="master"/>
 	</jsp:include>
+	
+	<%
+		if(request.getAttribute("errorCode")!=null) {
+			//클라이언트에게 에러코드 전달
+			response.sendError((Integer)request.getAttribute("errorCode"));
+			return;
+		}
+	%>	
 </body>
 </html>
+
+
+
+
+
+
