@@ -4,7 +4,7 @@ package xyz.itwill.bean;
 // => useBean 태그에 의해 WAS 프로그램이 생성하는 객체로 전달값을 객체 필드에 저장 가능
 // => 전달값을 객체 필드에 저장하기 위해서는 전달값의 이름과 같은 이름으로 필드 선언
 
-//전달값을 이용하여 회원정보를 저장하기 위한 클래스 - JavaBean >> DTO 객체
+//전달값을 이용하여 회원정보를 저장하기 위한 클래스 - JavaBean >> DTO 
 public class HewonBean {
 	private String name;
 	private String phone;
