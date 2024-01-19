@@ -2,7 +2,9 @@ package xyz.itwill.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import xyz.itwill.dto.StudentDTO;
 
@@ -88,21 +90,38 @@ public class StudentDAO extends JdbcDAO {
 	}
 	
 	//학번(int)을 전달받아 STUDENT 테이블에 저장된 행을 검색하여 학생정보(StudentDTO 객체)로 반환하는 메소드
-	
+	public StudentDTO selectStudent(int no) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StudentDTO student=null;
+		try {
+			con=getConnection();
+			
+			String sql="select no,name,phone,address,birthday from student where no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				student=new StudentDTO();
+				student.setNo(rs.getInt("no"));
+				student.setName(rs.getString("name"));
+				student.setPhone(rs.getString("phone"));
+				student.setAddress(rs.getString("address"));
+				student.setBirthday(rs.getString("birthday"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectStudent() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return student;
+	}
 	
 	//STUDENT 테이블의 저장된 모든 행을 검색하여 학생정보목록(List 객체 - 요소 : StudentDTO 객체)을 반환하는 메소드
-	
-	
+	public List<StudentDTO> selectStudentList() {
+		
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
