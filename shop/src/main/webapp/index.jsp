@@ -33,7 +33,7 @@
 	</div>
 	
 	<div id="content">
-		<%-- <jsp:include page="<%=contentFilePath%>"/> --%>
+		<jsp:include page="<%=contentFilePath%>"/>
 	</div>
 	
 	<div id="footer">
