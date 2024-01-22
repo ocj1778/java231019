@@ -30,7 +30,7 @@
 	request.setAttribute("hewon", hewon);
 --%>
 
-<%-- setProperty Tag : useBean 태그로 제공된 객체 필드의 필드값을 변경하는 태그 --%>
+<%-- setProperty Tag : useBean 태그로 제공된 객체의 필드에 필드값을 변경하는 태그 --%>
 <%-- => useBean 태그에 종속된 태그 --%>
 <%-- => 객체 필드에 대한 Setter 메소드를 호출하여 필드값을 변경하는 기능과 동일 --%>
 <%-- 형식) <jsp:setProperty name="식별자" property="필드명" value="변경값"></jsp:setProperty> --%>
@@ -42,7 +42,7 @@ Setter 메소드가 없는 경우 에러 발생 --%>
 <%-- <jsp:setProperty name="hewon" property="name" value="홍길동"/> --%>
 <%-- hewon.setName("홍길동"); --%>
 
-<%-- setProperty 태그에 value 속성을 생략하면 JSP 문서 요청시 전달값을 값을 반환받아 필드값으로 변경 --%>
+<%-- setProperty 태그에 value 속성을 생략하면 JSP 문서 요청시 전달값을 반환받아 필드값으로 변경 --%>
 <%-- => JSP 문서 요청시 전달되는 값의 이름과 setProperty 태그의 property 속성값(필드명)이 
 반드시 동일해야만 전달값을 반환받아 필드값으로 변경 가능 --%>
 <%-- 
