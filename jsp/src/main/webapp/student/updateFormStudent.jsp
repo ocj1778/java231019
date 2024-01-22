@@ -1,9 +1,31 @@
+<%@page import="xyz.itwill.dto.StudentDTO"%>
+<%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 학생번호를 전달받아 STUDENT 테이블에 저장된 학생정보를 검색하여 입력태그의 초기값으로
 출력하고 변경값 입력받기 위한 JSP 문서 --%>
 <%-- => [학생변경] 태그를 클릭한 경우 [updateStudent.jsp] 문서를 요청하여 페이지 이동 - 입력값(학생정보) 전달 --%>
 <%-- => [학생목록] 태그를 클릭한 경우 [displayStudent.jsp] 문서를 요청하여 페이지 이동 --%>
+<%
+	//전달값이 없는 경우에 대한 응답 처리 - 비정상적인 요청 
+	if(request.getParameter("no")==null) {
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		return;
+	}
+		
+	//전달값을 반환받아 변수에 저장	
+	int no=Integer.parseInt(request.getParameter("no"));
+	
+	//학생번호를 전달받아 STUDENT 테이블에 저장된 행을 검색하여 학생정보(StudentDTO 객체)를
+	//반환하는 StudentDAO 클래스의 메소드 호출
+	StudentDTO student=StudentDAO.getDAO().selectStudent(no);
+	
+	//검색된 학생정보가 없는 경우에 대한 응답 처리 - 비정상적인 요청
+	if(student==null) {
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		return;
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
