@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div id="header">
-		<%-- <jsp:include page="/header_main.jsp"/> --%>
+		<jsp:include page="/header_main.jsp"/>
 	</div>
 	
 	<div id="content">
