@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap');
+
+body {
+	margin: 0 auto;
+	width: 95%;		
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+#header {
+	margin: 5px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+#logo {
+	text-align: center;
+	font-size: 2.5em;
+	letter-spacing: 30px;
+	margin-bottom: 25px;	
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+#profile {
+	margin-top: 5px;
+	text-align: right;	
+}
+
+#header h1 {
+	text-align: center;		
+}
+
+#menu {
+	font-size: 1.2em;
+	text-align: center;
+	word-spacing: 100px;
+	letter-spacing: 10px;
+	font-weight: bold;	
+}
+
+#menu a:hover {
+	color: orange;
+}
+
+#content {
+	margin: 5px;
+	padding: 10px;
+	min-height: 700px;
+	border: 1px solid black;	
+	text-align: center;
+}
+
+#footer {
+	margin: 5px;
+	height: 50px;
+	border: 1px solid black;	
+	text-align: center;
+}
