@@ -55,7 +55,7 @@
 	<script type="text/javascript">
 	function removeConfirm(no) {
 		if(confirm("학생정보를 정말로 삭제 하시겠습니까?")) {
-			location.href="removeStudent.jsp?no="+no;
+			location.href="deleteStudent.jsp?no="+no;
 		}
 	}
 	</script>
