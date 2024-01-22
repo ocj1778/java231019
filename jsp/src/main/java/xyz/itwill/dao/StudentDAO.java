@@ -33,7 +33,7 @@ public class StudentDAO extends JdbcDAO {
 		try {
 			con=getConnection();
 			
-			String sql="insert into student valeus(?,?,?,?,?)";
+			String sql="insert into student values(?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, student.getNo());
 			pstmt.setString(2, student.getName());

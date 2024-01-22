@@ -6,7 +6,7 @@
 <%-- STUDENT 테이블에 저장된 모든 학생정보를 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
 <%-- => [학생추가] 태그를 클릭한 경우 [insertFormStudent.jsp] 문서를 요청하여 페이지 이동 --%>
 <%
-	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
+	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
 	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
