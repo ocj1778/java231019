@@ -5,6 +5,8 @@
     pageEncoding="UTF-8"%>
 <%-- STUDENT 테이블에 저장된 모든 학생정보를 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
 <%-- => [학생추가] 태그를 클릭한 경우 [insertFormStudent.jsp] 문서를 요청하여 페이지 이동 --%>
+<%-- => 학생정보의 [변경] 태그를 클릭한 경우 [updateFormStudent.jsp] 문서를 요청하여 페이지 이동 - 학생번호 전달 --%>
+<%-- => 학생정보의 [삭제] 태그를 클릭한 경우 [removeStudent.jsp] 문서를 요청하여 페이지 이동 - 학생번호 전달 --%>
 <%
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
 	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
@@ -43,11 +45,19 @@
 			<td width="150"><%=student.getPhone() %></td>				
 			<td width="250"><%=student.getAddress() %></td>				
 			<td width="100"><%=student.getBirthday().substring(0, 10) %></td>				
-			<td width="50"><input type="button" value="삭제"></td>		
+			<td width="50"><input type="button" value="삭제" onclick="removeConfirm(<%=student.getNo()%>);"></td>		
 			<td width="50"><input type="button" value="변경" 
 				onclick="location.href='updateFormStudent.jsp?no=<%=student.getNo()%>';"></td>		
 		</tr>	
 		<% } %>
 	</table>
+	
+	<script type="text/javascript">
+	function removeConfirm(no) {
+		if(confirm("학생정보를 정말로 삭제 하시겠습니까?")) {
+			location.href="removeStudent.jsp?no="+no;
+		}
+	}
+	</script>
 </body>
 </html>
