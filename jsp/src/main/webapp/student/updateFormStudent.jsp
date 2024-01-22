@@ -70,7 +70,7 @@
 		</tr>
 		<tr height="40">
 			<td width="200" colspan="2" align="center">
-				<input type="button" value="학생변경">
+				<input type="button" value="학생변경" onclick="submitCheck();">
 				<input type="reset" value="초기화">
 				<input type="button" value="학생목록" onclick="location.href='displayStudent.jsp';">
 			</td>
