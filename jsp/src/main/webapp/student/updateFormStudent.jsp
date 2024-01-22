@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 학생번호를 전달받아 STUDENT 테이블에 저장된 학생정보를 검색하여 입력태그의 초기값으로
+출력하고 변경값 입력받기 위한 JSP 문서 --%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

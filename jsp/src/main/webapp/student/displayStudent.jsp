@@ -44,7 +44,8 @@
 			<td width="250"><%=student.getAddress() %></td>				
 			<td width="100"><%=student.getBirthday().substring(0, 10) %></td>				
 			<td width="50"><input type="button" value="삭제"></td>		
-			<td width="50"><input type="button" value="변경"></td>		
+			<td width="50"><input type="button" value="변경" 
+				onclick="location.href='updateFormStudent.jsp?no=<%=student.getNo()%>';"></td>		
 		</tr>	
 		<% } %>
 	</table>

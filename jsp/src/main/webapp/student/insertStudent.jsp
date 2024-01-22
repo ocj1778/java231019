@@ -45,7 +45,6 @@
 		return;
 	}
 	
-	
 	//학생정보를 전달받아 STUDENT 테이블의 행으로 삽입하고 삽입행의 갯수를 반환하는 StudentDAO 클래스의 메소드 호출
 	StudentDAO.getDAO().insertStudent(student);
 	
