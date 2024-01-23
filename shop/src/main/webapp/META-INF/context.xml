@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- context.xml : WAS 프로그램이 실행될 때 생성되어 저장될 객체 정보를 제공하기 위한 파일 -->
+
+<!-- Context : context.xml 문서의 최상위 엘리먼트 - Resource 엘리먼트를 자식 엘리먼트로 설정 -->
+<Context>
+	<!-- Resource : WAS 프로그램에 의해 생성될 객체 관련 정보를 제공하는 엘리먼트 -->
+	<!-- => 객체 관련 정보를 Resource 엘리먼트의 속성과 속성값으로 제공 -->
+	<!-- name 속성 : WAS 프로그램에 의해 생성될 객체의 이름을 속성값으로 설정 -->
+	<!--  => 웹프로그램에서 WAS 프로그램에 의해 관리하는 객체를 제공받기 위해 사용하는 이름 -->
+	<!-- auth 속성 : 객체를 생성하기 위한 사용자 이름을 속성값으로 설정 - 로그 -->
+	<!-- factory 속성 : 객체를 생성하여 반환하기 위한 Factory 클래스를 속성값으로 설정 -->
+	<!-- => factory 속성 대신 class 속성의 속성값(객체를 생성하기 위한 클래스)을 사용 가능 -->
+	<!-- type 속성 : 객체의 자료형을 속성값으로 설정 - 객체를 반환받기 위한 자료형(클래스 or 인터페이스) -->
+	<!-- 객체 생성에 필요한 필드값을 속성(필드명)과 속성값(필드값)을 사용하여 설정 - 필드값 변경 -->
+	<Resource name="jdbc/oracle" auth="Container" 
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe" username="scott" password="tiger"
+		initialSize="10" maxIdle="10" maxTotal="15"/>
+</Context>
