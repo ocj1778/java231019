@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--  --%>    
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [아이디 중복 검사] 태그를 클릭한 경우 새창을 열어 [/member/id_check.jsp] 문서를 요청 - 아이디 전달 --%>
+<%-- => [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달  --%>    
 <style type="text/css">
 fieldset {
 	text-align: left;
@@ -200,4 +202,39 @@ $("#join").submit(function() {
 	
 	return submitResult;
 });
+
+$("#idCheck").click(function() {
+	//아이디 관련 에러메세지가 보여지지 않도록 설정
+	$("#idMsg").css("display","none");
+	$("#idRegMsg").css("display","none");
+	
+	var idReg=/^[a-zA-Z]\w{5,19}$/g;
+	if($("#id").val()=="") {
+		$("#idMsg").css("display","block");
+		return;
+	} else if(!idReg.test($("#id").val())) {
+		$("#idRegMsg").css("display","block");
+		return;
+	}
+	
+	//새창(팝업창)을 실행하여 [/member/id_check.jsp] 문서 요청
+	window.open("<%=request.getContextPath()%>/member/id_check.jsp?id="+$("#id").val()
+			,"idCheck", "width=450, height=130, left=700, top=400");
+});
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
