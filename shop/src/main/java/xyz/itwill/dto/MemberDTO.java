@@ -13,7 +13,7 @@ create sequence member_seq;
 이름            널?       유형            
 ------------- -------- ------------- 
 MEMBER_NUM    NOT NULL NUMBER        - 회원번호 : 시퀸스의 증가값(PRIMARY KEY)     
-ID                     VARCHAR2(3)   - 아이디 : 사용자 입력값   
+ID                     VARCHAR2(30)   - 아이디 : 사용자 입력값   
 PASSWD                 VARCHAR2(200) - 비밀번호 : 사용자 입력값(암호화 처리)
 NAME                   VARCHAR2(30)  - 이름 : 사용자 입력값   
 EMAIL                  VARCHAR2(50)  - 이메일 : 사용자 입력값
