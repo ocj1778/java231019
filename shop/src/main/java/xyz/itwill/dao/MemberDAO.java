@@ -100,22 +100,3 @@ public class MemberDAO extends JdbcDAO {
 		return member;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
