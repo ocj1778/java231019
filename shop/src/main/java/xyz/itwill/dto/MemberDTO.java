@@ -1,7 +1,7 @@
 package xyz.itwill.dto;
 
 /*
-create table member(member_num number primary key, id varchar2(3) unique, passwd varchar2(200)
+create table member(member_num number primary key, id varchar2(30) unique, passwd varchar2(200)
 	    , name varchar2(30), email varchar2(50), mobile varchar2(20), zipcode varchar2(10)
 	    , address1 varchar2(200), address2 varchar2(100), join_date date, update_date date
 	    , last_login date, member_status number(1));
