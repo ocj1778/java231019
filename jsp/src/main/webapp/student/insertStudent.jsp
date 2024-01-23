@@ -7,8 +7,11 @@
 <%
 	//JSP 문서를 GET 방식으로 요청한 경우에 대한 응답 처리 - 비정상적인 요청
 	if(request.getMethod().equals("GET")) {
-		session.setAttribute("message", "비정상적인 방법으로 페이지 요청 하였습니다.");
-		response.sendRedirect("insertFormStudent.jsp");
+		//session.setAttribute("message", "비정상적인 방법으로 페이지 요청 하였습니다.");
+		//response.sendRedirect("insertFormStudent.jsp");
+		//return;
+		
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		return;
 	}
 
@@ -31,7 +34,7 @@
 	student.setBirthday(birthday);
 	
 	//문제점)전달받은 학생번호가 STUDENT 테이블에 저장된 학생정보의 학생번호와 중복될 경우 
-	//SQL 오류 발생 - 에러 발생
+	//PRIMARY KEY 제약조건에 의해 SQL 오류 발생 - 500 에러 발생
 	//해결법) 전달받은 학생번호가 STUDENT 테이블에 저장된 학생정보의 학생번호와 중복될 경우 
 	//[insertFormStudent.jsp] 문서를 요청할 수 있는 URL 주소를 전달하여 응답 처리
 	
@@ -51,10 +54,3 @@
 	//클라이언트에게 URL 주소를 전달하여 응답
 	response.sendRedirect("displayStudent.jsp");
 %>
-
-
-
-
-
-
-
