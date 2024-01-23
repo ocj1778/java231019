@@ -17,8 +17,9 @@
 		return;
 	}
 
-	//POST 방식으로 요청하여 전달된 값에 대한 캐릭터셋을 변경
-	request.setCharacterEncoding("utf-8");
+	//POST 방식으로 요청하여 전달된 값에 대한 캐릭터셋을 변경 - 미실행
+	// => 요청 JSP 문서(index.jsp)에서 전달값에 대한 캐릭터셋 변경
+	//request.setCharacterEncoding("utf-8");
 	
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");
@@ -49,16 +50,3 @@
 	//페이지 이동
 	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=member&worker=member_login");
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-
