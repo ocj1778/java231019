@@ -48,8 +48,8 @@ div {
 		<script type="text/javascript">
 		function selectId() {
 			//opener 객체 : 팝업창을 실행한 부모창을 표현하기 위한 자바스트립트 객체
-			opener.join.id.value="<%=id%>";//아이디 입력태그의 입력값 변경
-			opener.join.idCheckResult.value="1";//[아이디 중복 검사] 기능에 대한 입력태그의 입력값 변경
+			opener.join.id.value="<%=id%>";//부모창에 입력태그(아이디)의 입력값 변경
+			opener.join.idCheckResult.value="1";//부모창에 입력태그(아이디 중복 검사 실행 여부)의 입력값 변경
 			window.close();//창닫기 - 팝업창 종료
 		}
 		</script>
@@ -82,20 +82,7 @@ div {
 			
 			checkForm.submit();
 		}
-		</script>	
-	<% } %>
+		</script>
+	<% } %>		
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
