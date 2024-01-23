@@ -52,6 +52,9 @@ legend {
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/index.jsp?group=member&worker=member_join_action" method="post">
+<%-- [아이디 중복 검사] 기능 실행 여부를 저장하기 위한 입력태그 --%>
+<%-- => 0 : [아이디 중복 검사] 기능 미실행, 1 : [아이디 중복 검사] 기능 실행 --%>
+<input type="hidden" id="idCheckResult" value="0">
 <fieldset>
 	<legend>회원가입 정보</legend>
 	<ul>
