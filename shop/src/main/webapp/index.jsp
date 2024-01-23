@@ -34,6 +34,13 @@
 	
 	<div id="content">
 		<jsp:include page="<%=contentFilePath%>"/>
+		<% 
+			String returnUrl=(String)request.getAttribute("returnUrl");
+			if(returnUrl!=null) { 		
+				response.sendRedirect(returnUrl);
+				return;
+			} 
+		%>
 	</div>
 	
 	<div id="footer">
