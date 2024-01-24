@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//session 객체에 저장된 권한 관련 정보의 속성값을 객체로 반환받아 저장
+	//session 객체에 저장된 권한 관련 속성값을 객체로 반환받아 저장
 	// => null 반환 : 속성값이 없는 경우 - 비로그인 상태의 사용자
 	// => MemberDTO 객체 반환 : 속성값이 있는 경우 - 로그인 상태의 사용자
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");

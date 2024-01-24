@@ -35,6 +35,7 @@
 	MemberDAO.getDAO().updateLastLogin(member.getMemberNum());
 	
 	//인증 성공 - 로그인 처리 : 권한 관련 정보가 저장된 객체를 session 객체의 속성값으로 저장
+	// => session 객체에 로그인 사용자의 정보(회원정보 - MemberDTO 객체)를 속성값으로 저장
 	//session.setAttribute("loginMemberNum", member.getMemberNum());
 	session.setAttribute("loginMember", MemberDAO.getDAO().selectMemberByNum(member.getMemberNum()));
 	
