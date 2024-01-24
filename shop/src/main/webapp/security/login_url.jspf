@@ -1,6 +1,10 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 비로그인 상태의 사용자가 JSP 문서를 요청한 경우 로그인 입력페이지를 요청하기 위한 URL 
+주소를 전달하여 응답하는 코드가 작성된 JSPF 파일 - 요청 URL 주소 전달 --%> 
+<%-- => include Directive의 page 속성값으로 사용하기 위한 파일 --%>      
 <%     
 	//session 객체에 저장된 권한 관련 속성값을 MemberDTO 객체로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
