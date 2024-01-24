@@ -57,10 +57,10 @@ public class MemberDAO extends JdbcDAO {
 	//회원번호를 전달받아 MEMBER 테이블에 저장된 행의 마지막 로그인 날짜를 변경하고 변경행의 갯수를 반환하는 메소드
 
 	
-	//회원번호를 전달받아 MEMBER 테이블에 저장된 행을 검색하여 회원정보를 반환하는 메소드
+	//회원번호를 전달받아 MEMBER 테이블에 저장된 단일행을 검색하여 회원정보를 반환하는 메소드
 
 	
-	//아이디를 전달받아 MEMBER 테이블에 저장된 행을 검색하여 회원정보를 반환하는 메소드
+	//아이디를 전달받아 MEMBER 테이블에 저장된 단일행을 검색하여 회원정보를 반환하는 메소드
 	public MemberDTO selectMemberById(String id) {
 		Connection con=null;
 		PreparedStatement pstmt=null;

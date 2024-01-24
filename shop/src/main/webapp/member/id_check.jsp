@@ -2,10 +2,11 @@
 <%@page import="xyz.itwill.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 아이디를 전달받아 MEMBER 테이블의 저장된 행의 아이디와 비교하여 중복 결과값을 응답하는 JSP 문서 --%>
+<%-- 아이디를 전달받아 MEMBER 테이블의 저장된 행의 아이디와 비교하여 중복 결과를 응답하는 JSP 문서 --%>
 <%-- => 아이디 미중복 : 아이디 사용 가능 메세지 출력하고 [아이디 사용] 태그를 클릭하면 부모창의
-입력태그에 입력값을 변경하고 팝업창 종료 --%>
-<%-- => 아이디 중복 : 아이디 사용 불가능 메세지 출력하고 아이디를 입력받아 현재 JSP 문서(id_check.jsp) 요청 - 입력값 전달 --%>
+입력태그에 입력값을 변경한 후 팝업창 종료 --%>
+<%-- => 아이디 중복 : 아이디 사용 불가능 메세지 출력하고 아이디를 입력받아 현재 JSP 문서(id_check.jsp)
+요청 - 입력값(아이디) 전달 --%>
 <%
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");

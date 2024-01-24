@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 //웹프로그램 작성에 필요한 기능을 제공하기 위한 클래스
 public class Utility {
-	//문자열(비밀번호)을 전달받아 암호화 처리하여 반환하는 메소드
+	//문자열(비밀번호)을 전달받아 암호화 처리하여 반환하는 정적 메소드
 	public static String encrypt(String passwd) {
 		String encryptPasswd="";//암호화 처리된 문자열을 저장하기 위한 변수
 		try {

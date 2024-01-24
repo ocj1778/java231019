@@ -8,7 +8,7 @@
 <%
 	//JSP 문서를 GET 방식으로 요청한 경우에 대한 응답 처리 - 비정상적인 요청
 	if(request.getMethod().equals("GET")) {
-		//요청 JSP 문서에서 URL 주소를 전달하므로 페이지 이동 불가능
+		//클라이언트가 아닌 요청 JSP 문서에게 URL 주소를 전달하므로 페이지 이동 불가능
 		//response.sendRedirect(request.getContextPath()+"/error/error_400.jsp");
 		//return;
 		
@@ -24,7 +24,7 @@
 	
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");
-	//반환받은 비밀번호를 암호화 처리한 후 변수에 저장
+	//전달받은 비밀번호를 암호화 처리한 후 변수에 저장
 	String passwd=Utility.encrypt(request.getParameter("passwd"));
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
