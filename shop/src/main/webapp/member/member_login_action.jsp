@@ -30,26 +30,13 @@
 		return;
 	}
 	
+	//회원번호를 전달받아 MEMBER 테이블에 저장된 행의 마지막 로그인 날짜(LAST_LOGIN 컬럼)를  
+	//변경하고 변경행의 갯수를 반환하는 MemberDAO 클래스의 메소드 호출
+	MemberDAO.getDAO().updateLastLogin(member.getMemberNum());
+	
 	//인증 성공 - 로그인 처리 : 권한 관련 정보가 저장된 객체를 session 객체의 속성값으로 저장
 	//session.setAttribute("loginMemberNum", member.getMemberNum());
-	session.setAttribute("loginMember", member);
+	session.setAttribute("loginMember", MemberDAO.getDAO().selectMemberByNum(member.getMemberNum()));
 	
 	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=main&worker=main_page");
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -55,10 +55,66 @@ public class MemberDAO extends JdbcDAO {
 	
 	
 	//회원번호를 전달받아 MEMBER 테이블에 저장된 행의 마지막 로그인 날짜를 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateLastLogin(int memberNum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set last_login=sysdate where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateLastLogin() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 
 	
 	//회원번호를 전달받아 MEMBER 테이블에 저장된 단일행을 검색하여 회원정보를 반환하는 메소드
-
+	public MemberDTO selectMemberByNum(int memberNum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		MemberDTO member=null;
+		try {
+			con=getConnection();
+			
+			String sql="select member_num,id,passwd,name,email,mobile,zipcode,address1,address2"
+					+",join_date,update_date,last_login,member_status from member where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, memberNum);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				member=new MemberDTO();
+				member.setMemberNum(rs.getInt("member_num"));
+				member.setId(rs.getString("id"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setMobile(rs.getString("mobile"));
+				member.setZipcode(rs.getString("zipcode"));
+				member.setAddress1(rs.getString("address1"));
+				member.setAddress2(rs.getString("address2"));
+				member.setJoinDate(rs.getString("join_date"));
+				member.setUpdateDate(rs.getString("update_date"));
+				member.setLastLogin(rs.getString("last_login"));
+				member.setMemberStatus(rs.getInt("member_status"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectMemberByNum() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return member;
+	}
 	
 	//아이디를 전달받아 MEMBER 테이블에 저장된 단일행을 검색하여 회원정보를 반환하는 메소드
 	public MemberDTO selectMemberById(String id) {
