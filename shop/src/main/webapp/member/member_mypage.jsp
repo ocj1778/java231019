@@ -24,7 +24,7 @@
 }
 
 #link {
-	font-size: 1.em;
+	font-size: 1.1em;
 }
 
 #link a:hover {
