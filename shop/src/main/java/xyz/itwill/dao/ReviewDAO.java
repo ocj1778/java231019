@@ -22,11 +22,11 @@ public class ReviewDAO extends JdbcDAO {
 	
 	//검색정보(검색대상과 검색단어)를 전달받아 REVIEW 테이블에 저장된 게시글 중 검색대상의 
 	//컬럼에 검색단어가 포함된 게시글의 갯수를 검색하여 반환하는 메소드
-	public int selectReviewSearchCount(String search, String keyword) {
+	public int selectTotalReview(String search, String keyword) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		int searchCount=0;
+		int totalCount=0;
 		try {
 			con=getConnection();
 			
@@ -45,14 +45,14 @@ public class ReviewDAO extends JdbcDAO {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				searchCount=rs.getInt(1);
+				totalCount=rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectReviewSearchCount() 메소드의 SQL 오류 = "+e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
 		}
-		return searchCount;
+		return totalCount;
 	}
 }
 
