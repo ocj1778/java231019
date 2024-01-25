@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%-- 로그인 상태의 사용자 정보(회원정보)를 전달하여 응답하는 JSP 문서 --%>
 <%-- => 로그인 상태의 사용자만 요청 가능한 JSP 문서 --%>
+<%-- => [회원정보변경] 태그를 클릭한 경우 [/member/password_confirm.jsp] 문서를 요청하여 페이지 이동 - 페이지 이동 관련 값 전달 --%>
+<%-- => [회원탈퇴] 태그를 클릭한 경우 [/member/password_confirm.jsp] 문서를 요청하여 페이지 이동 - 페이지 이동 관련 값 전달 --%>
 <%--
 	//session 객체에 저장된 권한 관련 속성값을 MemberDTO 객체로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
