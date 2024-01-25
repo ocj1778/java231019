@@ -11,6 +11,13 @@
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=error&worker=error_400");
 		return;
 	}
+	
+	String message=(String)session.getAttribute("message");
+	if(message==null) {
+		message="";
+	} else {
+		session.removeAttribute("message");
+	}
 %>
 <% if(action.equals("modify")) { %>
 	<p>회원정보변경을 위해 비밀번호를 입력해 주세요.</p>
@@ -21,7 +28,7 @@
 	<input type="password" name="passwd" id="passwd">
 	<button type="button" id="submitBtn">입력완료</button>
 </form>
-<p id="message" style="color: red;"></p>
+<p id="message" style="color: red;"><%=message %></p>
 
 <script type="text/javascript">
 $("#passwd").focus();
