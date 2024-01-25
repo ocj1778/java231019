@@ -13,11 +13,10 @@
 		<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=member_login">로그인</a>&nbsp;&nbsp;
 		<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=member_join">회원가입</a>&nbsp;&nbsp;
 	<% } else { %>
-		<%=loginMember.getName() %>님, 환영합니다.&nbsp;&nbsp;	
+		<span style="font-weight: bold;">[<%=loginMember.getName() %>님, 환영합니다.]</span>&nbsp;&nbsp;	
 		<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=member_logout_action">로그아웃</a>&nbsp;&nbsp;
-		<% if(loginMember.getMemberStatus()==1) {//로그인 사용자가 일반 사용자인 경우 %>
-			<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=member_mypage">내정보</a>&nbsp;&nbsp;
-		<% } else if(loginMember.getMemberStatus()==9) {//로그인 사용자가 관리자인 경우 %>
+		<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=member_mypage">내정보</a>&nbsp;&nbsp;
+		<% if(loginMember.getMemberStatus()==9) {//로그인 사용자가 관리자인 경우 %>
 			<a href="<%=request.getContextPath()%>/index.jsp?group=admin&worker=admin_main">관리자</a>&nbsp;&nbsp;
 		<% } %>
 	<% } %>

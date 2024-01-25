@@ -7,7 +7,7 @@
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
 
 	if(loginMember==null) {
-		//request.getRequestURI() : 요청 URL 주소에서 JSP 문서의 경로를 반환하는 메소드
+		//request.getRequestURI() : 요청 URL 주소에서 JSP 문서의 경로(URI)를 반환하는 메소드
 		String requestURI=request.getRequestURI();
 		//System.out.println("requestURI = "+requestURI);//requestURI = /shop/index.jsp
 				
