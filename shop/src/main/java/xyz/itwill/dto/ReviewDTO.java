@@ -152,11 +152,11 @@ public class ReviewDTO {
 		this.reviewIp = reviewIp;
 	}
 
-	public int getReview_status() {
-		return review_status;
+	public int getReviewStatus() {
+		return reviewStatus;
 	}
 
-	public void setReview_status(int review_status) {
-		this.review_status = review_status;
+	public void setReviewStatus(int reviewStatus) {
+		this.reviewStatus = reviewStatus;
 	}
 }
