@@ -20,6 +20,15 @@
 	margin: 0 auto;
 	text-align: left;
 }
+
+#link {
+	font-size: 1.em;
+}
+
+#link a:hover {
+	color: white;
+	background: black;
+}
 </style>    
 <h1>내정보</h1>
 <div id="detail">
@@ -32,20 +41,7 @@
 	<p>마지막 로그인 날짜 = <%=loginMember.getLastLogin() %></p>	
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="link">
+	<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=password_confirm&action=modify">[회원정보변경]</a>&nbsp;&nbsp;
+	<a href="<%=request.getContextPath()%>/index.jsp?group=member&worker=password_confirm&action=remove">[회원탈퇴]</a>&nbsp;&nbsp;
+</div>
