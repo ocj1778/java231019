@@ -42,7 +42,7 @@ public class ReviewDTO {
 	private int restep;
 	private int relevel;
 	private String reviewIp;
-	private int review_status;
+	private int reviewStatus;
 	
 	public ReviewDTO() {
 		// TODO Auto-generated constructor stub
