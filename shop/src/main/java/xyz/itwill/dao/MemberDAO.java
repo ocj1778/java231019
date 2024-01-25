@@ -101,7 +101,28 @@ public class MemberDAO extends JdbcDAO {
 		return rows;
 	}
 
-	
+	//회원정보를 전달받아 MEMBER 테이블에 저장된 행의 회원상태를 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateMemberStatus(MemberDTO member) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set member_status=? where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, member.getMemberStatus());
+			pstmt.setInt(2, member.getMemberNum());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateMemberStatus() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+		
 	//회원번호를 전달받아 MEMBER 테이블에 저장된 단일행을 검색하여 회원정보를 반환하는 메소드
 	public MemberDTO selectMemberByNum(int memberNum) {
 		Connection con=null;
