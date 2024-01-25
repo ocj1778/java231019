@@ -19,6 +19,7 @@
 	String passwd=request.getParameter("passwd");
 	if(passwd==null || passwd.equals("")) {//전달값(비밀번호)이 없는 경우
 		//현재 로그인 사용자의 비밀번호를 변수에 저장 - 기존 비밀번호 유지
+		passwd=loginMember.getPasswd();
 	} else {//전달값(비밀번호)이 있는 경우
 		//전달값을 암호화 처리하여 변수에 저장 - 전달된 비밀번호로 변경
 		passwd=Utility.encrypt(passwd);

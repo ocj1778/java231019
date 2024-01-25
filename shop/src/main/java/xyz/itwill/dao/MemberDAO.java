@@ -60,7 +60,7 @@ public class MemberDAO extends JdbcDAO {
 			con=getConnection();
 			
 			String sql="update member set passwd=?,name=?,email=?,mobile=?,zipcode=?"
-					+ ",address1=?,address2=?,update_date=sysdate where memberNum=?";
+					+ ",address1=?,address2=?,update_date=sysdate where member_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, member.getPasswd());
 			pstmt.setString(2, member.getName());
