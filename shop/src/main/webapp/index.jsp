@@ -20,6 +20,11 @@
 	
 	//전달값을 사용하여 페이지 몸체부에 포함될 JSP 문서의 컨텍스트 경로를 생성하여 저장
 	String contentFilePath="/"+group+"/"+worker+".jsp";
+	
+	String headerFilePath="/header_main.jsp";
+	if(group.equals("admin")) {
+		headerFilePath="/header_admin.jsp";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +36,8 @@
 </head>
 <body>
 	<div id="header">
-		<jsp:include page="/header_main.jsp"/>
+		<%-- <jsp:include page="/header_main.jsp"/> --%>
+		<jsp:include page="<%=headerFilePath %>"/>
 	</div>
 	
 	<div id="content">
