@@ -74,6 +74,7 @@ legend {
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/index.jsp?group=member&worker=member_modify_action" method="post">
+<input type="hidden" name="memberNum" value="<%=loginMember.getMemberNum()%>">
 <fieldset>
 	<legend>회원정보</legend>
 	<ul>
@@ -148,7 +149,7 @@ $("#join").submit(function() {
 	$(".error").css("display","none");
 
 	var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
-	if(!passwdReg.test($("#passwd").val())) {
+	if($("#passwd").val()!="" && !passwdReg.test($("#passwd").val())) {
 		$("#passwdRegMsg").css("display","block");
 		submitResult=false;
 	} 

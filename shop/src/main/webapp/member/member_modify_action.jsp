@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.dao.MemberDAO"%>
 <%@page import="xyz.itwill.util.Utility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,6 +14,7 @@
 	}
 
 	//전달값을 반환받아 저장
+	int memberNum=Integer.parseInt(request.getParameter("memberNum"));
 	String id=request.getParameter("id");
 	String passwd=request.getParameter("passwd");
 	if(passwd==null || passwd.equals("")) {//전달값(비밀번호)이 없는 경우
@@ -31,6 +33,7 @@
 	
 	//MemberDTO 객체를 생성하여 전달값으로 필드값 변경
 	MemberDTO member=new MemberDTO();
+	member.setMemberNum(memberNum);
 	member.setId(id);
 	member.setPasswd(passwd);
 	member.setName(name);
@@ -42,18 +45,11 @@
 	
 	//회원정보를 전달받아 MEMBER 테이블에 저장된 행을 변경하고 변경행의 갯수를 반환하는 
 	//MemberDAO 클래스의 메소드 호출
+	MemberDAO.getDAO().updateMember(member);
 	
+	//session 객체에 저장된 권한 관련 속성값(회원정보 - MemberDTO 객체) 변경
+	session.setAttribute("loginMember", MemberDAO.getDAO().selectMemberByNum(memberNum));
 	
 	//페이지 이동
 	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=member&worker=member_mypage");
 %> 
-
-
-
-
-
-
-
-
-
-
