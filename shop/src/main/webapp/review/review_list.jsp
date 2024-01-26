@@ -147,6 +147,10 @@ td {
 }
 </style>
 
+<h1>제품후기</h1>
+<div id="review_list">
+	<div id="review_title">제품후기목록(<%=totalReview %>)</div>
+</div>
 
 
 

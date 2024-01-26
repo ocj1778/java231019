@@ -74,19 +74,21 @@ public class ReviewDAO extends JdbcDAO {
 			if(keyword.equals("")) {//검색 기능을 사용하지 않은 경우
 				String sql="select * from (select rownum rn, temp.* from (select review_num"
 					+ ", review_member, name, review_subject, review_content, review_image"
-					+ ", review_register, review_update, review_count, ref, restep, review_ip"
-					+ ", review_status from review join member on review_member=member_num"
-					+ " order by ref desc, restep) temp) where rn between ? and ?";
+					+ ", review_register, review_update, review_readcount, review_ref, review_restep"
+					+ ", review_level, review_ip, review_status from review join member"
+					+ " on review_member=member_num order by ref desc, restep) temp)"
+					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
 				pstmt.setInt(2, endRow);
 			} else {//검색 기능을 사용한 경우
 				String sql="select * from (select rownum rn, temp.* from (select review_num"
 					+ ", review_member, name, review_subject, review_content, review_image"
-					+ ", review_register, review_update, review_count, ref, restep, relevel"
-					+ ", review_ip, review_status from review join member on review_member"
-					+ "=member_num where "+search+" like '%'||?||'%' and review_status=1"
-					+ " order by ref desc, restep) temp) where rn between ? and ?";
+					+ ", review_register, review_update, review_readcount, review_ref, review_restep"
+					+ ", review_level, review_ip, review_status from review join member"
+					+ " on review_member=member_num where "+search+" like '%'||?||'%'"
+					+ " and review_status=1 order by ref desc, restep) temp)"
+					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				pstmt.setInt(2, startRow);
@@ -105,10 +107,10 @@ public class ReviewDAO extends JdbcDAO {
 				review.setReviewImage(rs.getString("review_image"));
 				review.setReviewRegister(rs.getString("review_register"));
 				review.setReviewUpdate(rs.getString("review_update"));
-				review.setReviewCount(rs.getInt("review_count"));
-				review.setRef(rs.getInt("ref"));
-				review.setRestep(rs.getInt("restep"));
-				review.setRelevel(rs.getInt("relevel"));
+				review.setReviewReadcount(rs.getInt("review_readcount"));
+				review.setReviewRef(rs.getInt("review_ref"));
+				review.setReviewRestep(rs.getInt("review_restep"));
+				review.setReviewRelevel(rs.getInt("review_relevel"));
 				review.setReviewIp(rs.getString("review_ip"));
 				review.setReviewStatus(rs.getInt("review_status"));
 				
