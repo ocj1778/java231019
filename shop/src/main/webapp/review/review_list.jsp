@@ -150,6 +150,87 @@ td {
 <h1>제품후기</h1>
 <div id="review_list">
 	<div id="review_title">제품후기목록(<%=totalReview %>)</div>
+	
+	<div style="text-align: right;">
+		게시글갯수 : 
+		<select id="reviewCount">
+			<option value="10" <% if(pageSize==10) { %> selected <% } %>>&nbsp;10개&nbsp;</option>	
+			<option value="20" <% if(pageSize==20) { %> selected <% } %>>&nbsp;20개&nbsp;</option>	
+			<option value="50" <% if(pageSize==50) { %> selected <% } %>>&nbsp;50개&nbsp;</option>	
+			<option value="100" <% if(pageSize==100) { %> selected <% } %>>&nbsp;100개&nbsp;</option>	
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		<% if(loginMember!=null) {//로그인 상태의 사용자가 JSP 문서를 요청한 경우 %>
+			<button type="button" id="writeBtn">글쓰기</button>
+		<% } %>
+	</div>
+	
+	<%-- 게시글 목록 출력 --%>
+	<table>
+		<tr>
+			<th width="100">글번호</th>
+			<th width="500">제목</th>
+			<th width="100">작성자</th>
+			<th width="100">조회수</th>
+			<th width="200">작성일</th>
+		</tr>
+		
+		<% if(totalReview==0) { %>
+			<tr>
+				<td colspan="5">검색된 게시글이 없습니다.</td>
+			</tr>
+		<% } else { %>
+			<%-- List 객체의 요소(ReviewDTO 객체)를 차례대로 제공받아 저장하여 처리하기 위한 반복문 --%>
+			<% for(ReviewDTO review : reviewList) { %>
+			<tr>
+				<%-- 게시글의 글번호가 아닌게시글의 일련번호 출력 --%>
+				<td><%=displayNum %></td>
+				<% displayNum--; %><%-- 게시글 일련번호를 1씩 감소하여 저장 --%>
+				
+				<%-- 제목 --%>
+				<td class="subject">
+					<%-- 게시글이 답글인 경우에 대한 응답 처리 --%>
+					<% if(review.getReviewRestep() != 0) {//답글인 경우 %>
+						<%-- 게시글(답글)의 깊이를 제공받아 왼쪽 여백 설정 --%>
+						<span style="margin-left: <%=review.getReviewRelevel()*20%>px;">┗[답글]</span>
+					<% } %>
+				
+					<%-- 게시글 상태를 비교하여 제목과 링크를 구분해 응답 처리 --%>
+					<% if(review.getReviewStatus()==1) {//일반 게시글인 경우 %>
+						<a href="#"><%=review.getReviewSubject() %></a>
+					<% } else if(review.getReviewStatus()==2) {//비밀 게시글인 경우 %>
+						<span class="subject_hidden">비밀글</span>
+						<%-- 로그인 상태의 사용자가 게시글 작성자인 경우 또는 로그인 상태의 
+						사용자가 관리자인 경우 제목과 링크 제공 --%>
+						<% if(loginMember.getMemberNum()==review.getReviewMember() 
+							|| loginMember.getMemberStatus()==9) { %>
+							<a href="#"><%=review.getReviewSubject() %></a>
+						<% } else { %>
+							게시글 작성자 또는 관리자만 확인 가능합니다.						
+						<% } %>	
+					<% } else if(review.getReviewStatus()==0) {//삭제 게시글인 경우 %>
+						<span class="subject_hidden">삭제글</span>
+						게시글 작성자 또는 관리자에 의해 삭제된 게시글입니다.	
+					<% } %>
+				</td>
+				
+				<% if(review.getReviewStatus()!=0) {//삭제 게시글이 아닌 경우 %>				
+					<%-- 작성자 출력 --%>
+
+								
+					<%-- 조회수 출력 --%>
+					
+								
+					<%-- 작성일 출력 --%>			
+				<% } else {//삭제글인 경우 %>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				<% } %>
+			</tr>	
+			<% } %>
+		<% } %>
+	</table>
 </div>
 
 

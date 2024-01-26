@@ -75,8 +75,8 @@ public class ReviewDAO extends JdbcDAO {
 				String sql="select * from (select rownum rn, temp.* from (select review_num"
 					+ ", review_member, name, review_subject, review_content, review_image"
 					+ ", review_register, review_update, review_readcount, review_ref, review_restep"
-					+ ", review_level, review_ip, review_status from review join member"
-					+ " on review_member=member_num order by ref desc, restep) temp)"
+					+ ", review_relevel, review_ip, review_status from review join member"
+					+ " on review_member=member_num order by review_ref desc, review_restep) temp)"
 					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
@@ -85,9 +85,9 @@ public class ReviewDAO extends JdbcDAO {
 				String sql="select * from (select rownum rn, temp.* from (select review_num"
 					+ ", review_member, name, review_subject, review_content, review_image"
 					+ ", review_register, review_update, review_readcount, review_ref, review_restep"
-					+ ", review_level, review_ip, review_status from review join member"
+					+ ", review_relevel, review_ip, review_status from review join member"
 					+ " on review_member=member_num where "+search+" like '%'||?||'%'"
-					+ " and review_status=1 order by ref desc, restep) temp)"
+					+ " and review_status=1 order by review_ref desc, review_restep) temp)"
 					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
