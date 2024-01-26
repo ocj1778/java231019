@@ -86,7 +86,66 @@
 	// => 검색된 게시글의 총갯수가 91개인 경우 >> 1Page : 91, 2Page : 81, 3Page, 71
 	int displayNum=totalReview-(pageNum-1)*pageSize;
 %>
+<style type="text/css">
+#review_list {
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+}
 
+#review_title {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+table {
+	margin: 5px auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th {
+	border: 1px solid black;
+	background: black;
+	color: white;
+}
+
+td {
+	border: 1px solid black;
+	text-align: center;	
+}
+
+.subject {
+	text-align: left;
+	padding: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#review_list a:hover {
+	text-decoration: none; 
+	color: blue;
+	font-weight: bold;
+}
+
+.subject_hidden {
+	background: black;
+	color: white;
+	font-size: 14px;
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
+#page_list {
+	font-size: 1.1em;
+	margin: 10px;
+}
+
+#page_list a:hover {
+	font-size: 1.3em;
+}
+</style>
 
 
 
