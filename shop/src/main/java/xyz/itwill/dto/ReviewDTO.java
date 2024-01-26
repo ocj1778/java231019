@@ -35,7 +35,7 @@ public class ReviewDTO {
 	private String reviewSubject;
 	private String reviewContent;
 	private String reviewImage;
-	private String reviewRegdate;
+	private String reviewRegister;
 	private String reviewUpdate;
 	private int reviewCount;
 	private int ref;
@@ -96,12 +96,12 @@ public class ReviewDTO {
 		this.reviewImage = reviewImage;
 	}
 
-	public String getReviewRegdate() {
-		return reviewRegdate;
+	public String getReviewRegister() {
+		return reviewRegister;
 	}
 
-	public void setReviewRegdate(String reviewRegdate) {
-		this.reviewRegdate = reviewRegdate;
+	public void setReviewRegister(String reviewRegister) {
+		this.reviewRegister = reviewRegister;
 	}
 
 	public String getReviewUpdate() {
