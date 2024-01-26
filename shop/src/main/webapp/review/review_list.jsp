@@ -1,3 +1,8 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="xyz.itwill.dto.MemberDTO"%>
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -66,7 +71,20 @@
 	//페이징 처리 관련 정보(시작 행번호와 종료 행번호)와 게시글 검색 기능 관련 정보(검색대상과
 	//검색단어)를 전달받아 REVIEW 테이블에 저장된 행을 검색하여 게시글 목록을 반환하는 ReviewDAO 
 	//클래스의 메소드 호출
+	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
 	
+	//session 객체에 저장된 권한 관련 속성값을 반환받아 저장
+	// => 로그인 상태의 사용자에게만 글쓰기 권한 제공
+	// => 게시글이 비밀글인 경우 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우에만 권한 제공
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+	
+	//서버 시스템의 현재 날짜를 제공받아 저장
+	// => 게시글 작성날짜와 비교하여 게시글 작성날짜를 다르게 출력되도록 응답 처리
+	String currentDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+	
+	//페이지에 출력될 게시글의 일련번호 시작값을 계산하여 저장
+	// => 검색된 게시글의 총갯수가 91개인 경우 >> 1Page : 91, 2Page : 81, 3Page, 71
+	int displayNum=totalReview-(pageNum-1)*pageSize;
 %>
 
 
