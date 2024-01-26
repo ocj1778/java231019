@@ -13,10 +13,10 @@ create sequence review_seq;
 이름              널?       유형             
 --------------- -------- -------------- 
 REVIEW_NUM      NOT NULL NUMBER         - 글번호 : 시퀸스의 다음값         
-REVIEW_MEMBER            NUMBER         - 작성자 : 로그인 사용자 번호
+REVIEW_MEMBER            NUMBER         - 작성자 : 로그인 사용자의 회원번호
 REVIEW_SUBJECT           VARCHAR2(500)  - 제목 : 사용자 입력값  
 REVIEW_CONTENT           VARCHAR2(4000) - 내용 : 사용자 입력값 
-REVIEW_IMAGE             VARCHAR2(100)  - 이미지 파일의 이름 : 사용자 입력값
+REVIEW_IMAGE             VARCHAR2(100)  - 이미지 파일의 경로 : 사용자 입력값
 REVIEW_REGISTER          DATE           - 작성날짜 : 시스템의 현재 날짜와 시간
 REVIEW_UPDATE            DATE           - 변경날짜 : 시스템의 현재 날짜와 시간
 REVIEW_COUNT             NUMBER         - 조회수 : 0 >> 게시글 조회 누적수
