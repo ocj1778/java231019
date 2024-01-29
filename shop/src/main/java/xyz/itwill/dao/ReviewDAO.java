@@ -26,7 +26,7 @@ public class ReviewDAO extends JdbcDAO {
 	
 	//검색정보(검색대상과 검색단어)를 전달받아 REVIEW 테이블에 저장된 게시글 중 검색대상의 
 	//컬럼에 검색단어가 포함된 게시글의 갯수를 검색하여 반환하는 메소드
-	// => 검색 기능을 사용하지 않을 경우 REVIEW 테이블에 저장된 모든 게시글의 갯수를 검색하반환
+	// => 검색 기능을 사용하지 않을 경우 REVIEW 테이블에 저장된 모든 게시글의 갯수를 검색하여 반환
 	public int selectTotalReview(String search, String keyword) {
 		Connection con=null;
 		PreparedStatement pstmt=null;

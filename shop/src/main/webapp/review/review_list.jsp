@@ -149,6 +149,7 @@ td {
 
 <h1>제품후기</h1>
 <div id="review_list">
+	<%-- 검색된 게시글 총갯수 출력 --%>
 	<div id="review_title">제품후기목록(<%=totalReview %>)</div>
 	
 	<div style="text-align: right;">
@@ -160,7 +161,7 @@ td {
 			<option value="100" <% if(pageSize==100) { %> selected <% } %>>&nbsp;100개&nbsp;</option>	
 		</select>
 		&nbsp;&nbsp;&nbsp;
-		<% if(loginMember!=null) {//로그인 상태의 사용자가 JSP 문서를 요청한 경우 %>
+		<% if(loginMember!=null) {//로그인 상태의 사용자가 JSP 문서(review_list.jsp)를 요청한 경우 %>
 			<button type="button" id="writeBtn">글쓰기</button>
 		<% } %>
 	</div>
@@ -175,15 +176,15 @@ td {
 			<th width="200">작성일</th>
 		</tr>
 		
-		<% if(totalReview==0) { %>
+		<% if(totalReview==0) {//검색된 게시글이 없는 경우 %>
 			<tr>
 				<td colspan="5">검색된 게시글이 없습니다.</td>
 			</tr>
-		<% } else { %>
+		<% } else {//검색된 게시글이 있는 경우 %>
 			<%-- List 객체의 요소(ReviewDTO 객체)를 차례대로 제공받아 저장하여 처리하기 위한 반복문 --%>
 			<% for(ReviewDTO review : reviewList) { %>
 			<tr>
-				<%-- 게시글의 글번호가 아닌게시글의 일련번호 출력 --%>
+				<%-- 게시글의 글번호가 아닌 게시글의 일련번호 출력 --%>
 				<td><%=displayNum %></td>
 				<% displayNum--; %><%-- 게시글 일련번호를 1씩 감소하여 저장 --%>
 				
@@ -202,8 +203,8 @@ td {
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자인 경우 또는 로그인 상태의 
 						사용자가 관리자인 경우 제목과 링크 제공 --%>
-						<% if(loginMember.getMemberNum()==review.getReviewMember() 
-							|| loginMember.getMemberStatus()==9) { %>
+						<% if(loginMember!=null && (loginMember.getMemberNum()==review.getReviewMember() 
+							|| loginMember.getMemberStatus()==9)) { %>
 							<a href="#"><%=review.getReviewSubject() %></a>
 						<% } else { %>
 							게시글 작성자 또는 관리자만 확인 가능합니다.						
@@ -215,13 +216,22 @@ td {
 				</td>
 				
 				<% if(review.getReviewStatus()!=0) {//삭제 게시글이 아닌 경우 %>				
-					<%-- 작성자 출력 --%>
-
+					<%-- 작성자(회원이름) 출력 --%>
+					<td><%=review.getReviewName() %></td>
 								
 					<%-- 조회수 출력 --%>
-					
+					<td><%=review.getReviewReadcount() %></td>
 								
-					<%-- 작성일 출력 --%>			
+					<%-- 작성일 출력 : 오늘 작성된 게시글인 경우 시간만 출력하고 오늘 작성된
+					게시글이 아닌 경우 날짜와 시간 출력 --%>	
+					<td>
+						<%-- 오늘 작성된 게시글인 경우 --%>
+						<% if(currentDate.equals(review.getReviewRegister().substring(0, 10))) { %>
+							<%=review.getReviewRegister().substring(11) %>
+						<% } else { %>
+							<%=review.getReviewRegister() %>
+						<% } %>
+					</td>		
 				<% } else {//삭제글인 경우 %>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -231,6 +241,25 @@ td {
 			<% } %>
 		<% } %>
 	</table>
+	
+	<%-- 페이지번호 출력 및 링크 제공 --%>
+	<div id="page_list">
+		<% for(int i=1;i<=totalPage;i++) { %>
+			<a href="#">[<%=i %>]</a>
+		<% } %>
+	</div>
+	
+	<%-- 사용자로부터 검색 관련 정보를 입력받기 위한 태그 출력 --%>
+	<form action="<%=request.getContextPath() %>/index.jsp?group=review&worker=review_list" method="post">
+		<%-- select 태그를 사용하여 검색대상을 선택해 전달 - 전달값은 반드시 컬럼명으로 설정 --%>
+		<select name="search">
+			<option value="name" selected>&nbsp;작성자&nbsp;</option>
+			<option value="review_subject">&nbsp;제목&nbsp;</option>
+			<option value="review_content">&nbsp;내용&nbsp;</option>
+		</select>
+		<input type="text" name="keyword">
+		<button type="submit">검색</button>
+	</form>
 </div>
 
 
