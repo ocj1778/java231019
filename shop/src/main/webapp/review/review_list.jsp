@@ -9,7 +9,7 @@
 <%-- REVIEW 테이블에 저장된 행을 검색하여 게시글 목록을 전달하여 응답하는 JSP 문서 --%>
 <%-- => 게시글을 페이지 단위로 구분하여 검색해 출력 처리되도록 작성 - 페이징 처리 --%>
 <%-- => [페이지번호] 태그를 클릭한 경우 [/review/review_list.jsp] 문서를 요청하여 페이지 이동 
-- 페이지번호, 게시글갯수, 검색대상, 검색단어 전달 --%>
+- 페이지번호, 게시글갯수, 검색대상, 검색단어 전달(검색기능을 유지하기 위해 검색대상과 검색단어 전달) --%>
 <%-- => [게시글갯수] 태그의 입력값을 변경한 경우 [/review/review_list.jsp] 문서를 요청하여 페이지 이동 
 - 페이지번호, 게시글갯수, 검색대상, 검색단어 전달 --%>
 <%-- => [검색] 태그를 클릭한 경우 [/review/review_list.jsp] 문서를 요청하여 페이지 이동 
@@ -297,14 +297,27 @@ td {
 	<form action="<%=request.getContextPath() %>/index.jsp?group=review&worker=review_list" method="post">
 		<%-- select 태그를 사용하여 검색대상을 선택해 전달 - 전달값은 반드시 컬럼명으로 설정 --%>
 		<select name="search">
-			<option value="name" selected>&nbsp;작성자&nbsp;</option>
-			<option value="review_subject">&nbsp;제목&nbsp;</option>
-			<option value="review_content">&nbsp;내용&nbsp;</option>
+			<option value="name" <% if(search.equals("name")) { %>  selected <% } %>>&nbsp;작성자&nbsp;</option>
+			<option value="review_subject" <% if(search.equals("review_subject")) { %>  selected <% } %>>&nbsp;제목&nbsp;</option>
+			<option value="review_content" <% if(search.equals("review_content")) { %>  selected <% } %>>&nbsp;내용&nbsp;</option>
 		</select>
-		<input type="text" name="keyword">
+		<input type="text" name="keyword" value="<%=keyword%>">
 		<button type="submit">검색</button>
 	</form>
 </div>
+
+<script type="text/javascript">
+$("#reviewCount").change(function() {
+	//alert($("#reviewCount").val());
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list"
+		+"&pageNum=<%=pageNum%>&pageSize="+$("#reviewCount").val()
+		+"&search=<%=search%>&keyword=<%=keyword%>";
+});
+
+$("#writeBtn").click(function() {
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_write";	
+});
+</script>
 
 
 
