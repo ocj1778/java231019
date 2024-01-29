@@ -318,14 +318,3 @@ $("#writeBtn").click(function() {
 	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_write";	
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
