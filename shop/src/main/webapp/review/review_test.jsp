@@ -15,16 +15,16 @@
 		review.setReviewIp("192.168.13.31");//IP 주소 변경
 		review.setReviewStatus(1);//글상태 변경
 		
-		
+		ReviewDAO.getDAO().insertReview(review);
 	}
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JSP</title>
 </head>
 <body>
-
+	<h1>500개의 테스트 게시글을 삽입 하였습니다.</h1>
 </body>
 </html>
