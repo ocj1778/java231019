@@ -123,6 +123,36 @@ public class ReviewDAO extends JdbcDAO {
 		}
 		return reviewList;
 	}
+	
+	//REVIEW_SEQ 시퀸스의 다음값(정수값)을 검색하여 반환하는 메소드
+	public int selectReivewNextNum() {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int nextNum=0;
+		try {
+			con=getConnection();
+			
+			String sql="select review_seq.nextval from dual";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nextNum=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectReivewNextNum() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return nextNum;
+	}
+	
+	//게시글을 전달받아 REVIEW 테이블에 행으로 삽입하고 삽입행의 갯수를 반환하는 메소드
+	public int insertReview(ReviewDTO review) {
+		
+	}
 }
 
 
