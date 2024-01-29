@@ -48,7 +48,7 @@ td {
 
 <%-- 파일(리뷰 이미지)을 입력받아 전달하기 위해 form 태그의 enctype 속성값을 반드시 [multipart/form-date]로 설정 --%>
 <form action="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_writer_action"
-	method="post" enctype="multipart/form-date" id="reviewForm">
+	method="post" enctype="multipart/form-data" id="reviewForm">
 	<input type="hidden" name="ref" value="<%=ref %>">
 	<input type="hidden" name="restep" value="<%=restep %>">
 	<input type="hidden" name="relevel" value="<%=relevel %>">
