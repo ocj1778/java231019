@@ -151,7 +151,32 @@ public class ReviewDAO extends JdbcDAO {
 	
 	//게시글을 전달받아 REVIEW 테이블에 행으로 삽입하고 삽입행의 갯수를 반환하는 메소드
 	public int insertReview(ReviewDTO review) {
-		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="insert into review values(?,?,?,?,?,sysdate,null,0,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, review.getReviewNum());
+			pstmt.setInt(2, review.getReviewMember());
+			pstmt.setString(3, review.getReviewSubject());
+			pstmt.setString(4, review.getReviewContent());
+			pstmt.setString(5, review.getReviewImage());
+			pstmt.setInt(6, review.getReviewRef());
+			pstmt.setInt(7, review.getReviewRestep());
+			pstmt.setInt(8, review.getReviewRelevel());
+			pstmt.setString(9, review.getReviewIp());
+			pstmt.setInt(10, review.getReviewStatus());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]insertReview() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
 	}
 }
 
