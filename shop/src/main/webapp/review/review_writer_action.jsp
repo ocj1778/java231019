@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -36,12 +37,20 @@
 	String search=multipartRequest.getParameter("search");
 	String keyword=multipartRequest.getParameter("keyword");
 	
-	String reviewSubject=multipartRequest.getParameter("reviewSubject");
+	//사용자로부터 입력받아 전달된 값에 태그 관련 문자값이 존재할 경우 웹프로그램 실행시 문제 발생
+	// => XSS(Cross Site Scripting) 공격 : 사용자가 악의적인 스크립트를 입력하여 페이지가  
+	//깨지거나 다른 사용자의 사용을 방해 또는 개인정보를 특정 사이트로 전송하는 공격
+	//String reviewSubject=multipartRequest.getParameter("reviewSubject");
+	//	
+	String reviewSubject=Utility.stripTag(multipartRequest.getParameter("reviewSubject"));
+	
 	int reviewStatus=1;//전달값이 없는 경우 - 일반글
 	if(multipartRequest.getParameter("reviewSecret")!=null) {//전달값이 있는 경우 - 비밀글
 		reviewStatus=Integer.parseInt(multipartRequest.getParameter("reviewSecret"));
 	}
-	String reviewContent=multipartRequest.getParameter("reviewContent");
+	
+	String reviewContent=Utility.stripTag(multipartRequest.getParameter("reviewContent"));
+	
 	//서버 디렉토리에 업로드되어 저장된 파일명을 반환받아 컨텍스트 경로를 저장
 	String reviewImage=null;
 	if(multipartRequest.getFilesystemName("reviewImage")!=null) {//업로드 파일이 있는 경우	
