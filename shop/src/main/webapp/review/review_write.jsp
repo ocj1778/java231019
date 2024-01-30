@@ -15,7 +15,7 @@
 	//전달값을 반환받아 저장 - 전달값이 없는 경우(새글) 변수에 초기값 저장
 	String ref="0", restep="0", relevel="0";
 	String pageNum="1", pageSize="10", search="", keyword="";
-	if(request.getParameter("ref")!=null) {//전달값이 있는 경우 - 답글
+	if(request.getParameter("ref")!=null) {//전달값이 있는 경우 - 답글인 경우 부모글의 정보를 변수에 저장
 		//부모글 관련 정보를 반환받아 저장
 		ref=request.getParameter("ref");
 		restep=request.getParameter("restep");

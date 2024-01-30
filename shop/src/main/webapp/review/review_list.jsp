@@ -46,7 +46,7 @@
 	// => 검색 기능을 사용하지 않을 경우 REVIEW 테이블에 저장된 모든 게시글의 갯수를 반환
 	int totalReview=ReviewDAO.getDAO().selectTotalReview(search, keyword);//검색된 게시글의 총갯수
 	
-	//전체 페이지의 갯수를 계산하여 저장
+	//전체 페이지의 총갯수를 계산하여 저장
 	//int totalPage=totalReview/pageSize+totalReview%pageSize==0?0:1;
 	int totalPage=(int)Math.ceil((double)totalReview/pageSize);//페이지의 총갯수
  
@@ -270,7 +270,6 @@ td {
 	
 		<%-- 이전 페이지블럭이 있는 경우에만 링크 제공 --%>
 		<% if(startPage>blockSize) { %>
-			
 			<a href="<%=responseUrl%>&pageNum=<%=startPage-blockSize%>">[이전]</a>
 		<% } else { %>	
 			[이전]
