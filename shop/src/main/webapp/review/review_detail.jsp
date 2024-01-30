@@ -103,10 +103,47 @@ td {
 	<h1>제품후기</h1>
 	<table>
 		<tr>
-			
+			<th>작성자</th>
+			<td>
+				<%=review.getReviewName() %>
+				<%-- 로그인 상태의 사용자가 관리자인 경우 클라이언트의 IP 주소 출력 --%>
+				<% if(loginMember!=null && loginMember.getMemberStatus()==9) { %>
+					[<%=review.getReviewIp() %>]				
+				<% } %>
+			</td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td><%=review.getReviewRegister() %></td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td><%=review.getReviewRegister() %></td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td class="subject">
+				<% if(review.getReviewStatus()==2) {//검색된 게시글이 비밀글인 경우 %>
+					[비밀글]
+				<% } %>
+				<%=review.getReviewRegister() %>
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td class="content">
+				<%=review.getReviewContent().replace("\n", "<br>")%>
+				<br>
+				<% if(review.getReviewImage()!=null) { %>
+					<img src="<%=request.getContextPath()%>/<%=review.getReviewImage()%>" width="200">
+				<% } %>
+			</td>
 		</tr>
 	</table>
 </div>
+
+
+
 
 
 
