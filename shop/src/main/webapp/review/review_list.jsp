@@ -197,15 +197,20 @@ td {
 					<% } %>
 				
 					<%-- 게시글 상태를 비교하여 제목과 링크를 구분해 응답 처리 --%>
+					<%
+						String url=request.getContextPath()+"/index.jsp?group=review&worker=review_detail"
+							+"&reviewNum="+review.getReviewNum()+"&pageNum="+pageNum+"&pageSize="+pageSize
+							+"&search="+search+"&keyword="+keyword;
+					%>
 					<% if(review.getReviewStatus()==1) {//일반 게시글인 경우 %>
-						<a href="#"><%=review.getReviewSubject() %></a>
+						<a href="<%=url%>"><%=review.getReviewSubject() %></a>
 					<% } else if(review.getReviewStatus()==2) {//비밀 게시글인 경우 %>
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자인 경우 또는 로그인 상태의 
 						사용자가 관리자인 경우 제목과 링크 제공 --%>
 						<% if(loginMember!=null && (loginMember.getMemberNum()==review.getReviewMember() 
 							|| loginMember.getMemberStatus()==9)) { %>
-							<a href="#"><%=review.getReviewSubject() %></a>
+							<a href="<%=url%>"><%=review.getReviewSubject() %></a>
 						<% } else { %>
 							게시글 작성자 또는 관리자만 확인 가능합니다.						
 						<% } %>	

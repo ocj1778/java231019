@@ -55,6 +55,11 @@ public class Utility {
 		//문자열을 모두 검색하여 매개변수로 전달받은 문자열로 변경하여 반환하는 메소드
 		return matcher.replaceAll("");//입력값에서 HTML 태그를 검색하여 삭제하여 반환
 	}
+	
+	//문자열을 전달받아 태그 관련 문자를 회피문자로 변경하여 반환하는 메소드
+	public static String escapeTag(String source) {
+		return source.replace("<", "&lt;").replace(">", "&gt;");
+	}
 }
 
 
