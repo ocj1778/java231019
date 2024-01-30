@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -56,18 +57,45 @@
 	String reviewIp=request.getRemoteAddr();
 	//System.out.println("reviewIp = "+reviewIp);
 	
+	//새글과 답글을 구분하여 REVIEW 테이블의 컬럼값으로 저장될 변수값 변경
+	// => [review_write.jsp] 문서에서 hidden 타입의 전달값을 저장한 ref, restep, relevel 변수값 변경
+	// => 새글인 경우 변수에 [0]이 저장되어 있고 답글인 경우 변수에 부모글의 전달값이 저장
+	if(ref==0) {//새글인 경우
+		//REVIEW 테이블의 REVIEW_REF 컬럼에는 시퀸스의 다음값(nextNum 변수값)을 저장하고
+		//REVIEW_RESTEP 컬럼과 REVIEW_RELEVEL 컬럼에는 restep 변수값(0)과 relevel 변수값(0) 저장  
+		ref=nextNum;
+	} else {//답글인 경우
+		//REVIEW 테이블에 저장된 게시글 중에서 REVIEW_REF 컬럼값이 ref 변수값(부모글)과 같은
+		//게시글에서 REVIEW_RESTEP 컬럼값이 restep 변수값(부모글)보다 큰 게시글의 REVIEW_RESTEP 
+		//컬럼값 1 증가되도록 변경 처리
+		// => 새로운 답글이 기존 답글보다 먼저 검색되도록 기존 답글순서를 증가
+		//부모글 관련 정보를 전달받아 REVIEW 테이블에 저장된 행에서 REVIEW_REF 컬럼값과 REVIEW_RESTEP 
+		//컬럼값을 비교하여 REVIEW_RESTEP 컬럼값이 1 증가되도록 변경하는 ReviewDAO 클래스의 메소드 호출
+		ReviewDAO.getDAO().updateReviewReStep(ref, restep);
+		
+		//REVIEW 테이블의 REVIEW_REF 컬럼에는 ref 변수값(부모글)을 저장하고 REVIEW_RESTEP 컬럼과
+		//REVIEW_RELEVEL 컬럼에는 restep 변수값(부모글)과 relevel 변수값(부모글)을 1 증가하여 저장
+		restep++;
+		relevel++;
+	}
+	
+	//ReviewDTO 객체를 생성하여 변수값(전달값)으로 필드값 변경
+	ReviewDTO review=new ReviewDTO();
+	review.setReviewNum(nextNum);//시퀸스 객체의 다음값으로 필드값 변경
+	review.setReviewMember(loginMember.getMemberNum());//로그인 회원정보의 회원번호로 필드값 변경
+	review.setReviewSubject(reviewSubject);
+	review.setReviewContent(reviewContent);
+	review.setReviewImage(reviewImage);
+	review.setReviewRef(ref);
+	review.setReviewRestep(restep);
+	review.setReviewRelevel(relevel);
+	review.setReviewIp(reviewIp);
+	review.setReviewStatus(reviewStatus);
+	
+	//게시글을 전달받아 REVIEW 테이블의 행으로 삽입하고 삽입행의 갯수를 반환하는 ReviewDAO 클래스의 메소드 호출
+	ReviewDAO.getDAO().insertReview(review);
+	
+	//페이지 이동 - 검색 및 페이징 처리 관련 값 전달
+	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=review&worker=review_list"
+		+"&pageNum="+pageNum+"&pageSize="+pageSize+"&search="+search+"&keyword="+keyword);
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
