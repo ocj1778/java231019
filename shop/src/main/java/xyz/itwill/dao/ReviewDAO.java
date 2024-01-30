@@ -203,7 +203,49 @@ public class ReviewDAO extends JdbcDAO {
 		return rows;
 	}
 	
-	
+	//글번호를 전달받아 REVIEW 테이블의 단일행을 검색하여 게시글(ReviewDTO 객체)을 반환하는 메소드
+	public ReviewDTO selectReviewByNum(int reviewNum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ReviewDTO review=null;
+		try {
+			con=getConnection();
+			
+			String sql="select review_num,review_member,name review_name,review_subject"
+			+",review_content,review_image,review_register,review_update,review_readcount"
+			+",review_ref,review_restep,review_relevel,review_ip,review_status"
+			+" from review join member on review.review_member=member.member_num" 
+			+" where review_num=? and review_status<>0";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, reviewNum);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				review=new ReviewDTO();
+				review.setReviewNum(rs.getInt("review_num"));
+				review.setReviewMember(rs.getInt("review_member"));
+				review.setReviewName(rs.getString("review_name"));
+				review.setReviewSubject(rs.getString("review_subject"));
+				review.setReviewContent(rs.getString("review_content"));
+				review.setReviewImage(rs.getString("review_image"));
+				review.setReviewRegister(rs.getString("review_register"));
+				review.setReviewUpdate(rs.getString("review_update"));
+				review.setReviewReadcount(rs.getInt("review_readcount"));
+				review.setReviewRef(rs.getInt("review_ref"));
+				review.setReviewRestep(rs.getInt("review_restep"));
+				review.setReviewRelevel(rs.getInt("review_relevel"));
+				review.setReviewIp(rs.getString("review_ip"));
+				review.setReviewStatus(rs.getInt("review_status"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectReviewByNum() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return review;
+	}
 }
 
 
