@@ -54,10 +54,59 @@
 		}
 	}
 	
-	
+	//글번호를 전달받아 REVIEW 테이블의 저장된 행의 게시글 조회수가 1 증가되도록 변경하고 
+	//변경행의 갯수를 반환하는 ReviewDAO 클래스의 메소드 호출
+	ReviewDAO.getDAO().updateReviewReadCount(reviewNum);
 %>
+<style type="text/css">
+#review_detail {
+	width: 500px;
+	margin: 0 auto;
+}
 
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
 
+th, td {
+	border: 1px solid black;
+	padding: 5px;	
+}
+
+th {
+	width: 100px;
+	background: black;
+	color: white;
+}
+
+td {
+	width: 400px;
+}
+
+.subject, .content {
+	text-align: left;
+}
+
+.content {
+	height: 300px;
+	vertical-align: middle;
+}
+
+#review_menu {
+	text-align: right;
+	margin: 5px;
+}
+</style>
+
+<div id="review_detail">
+	<h1>제품후기</h1>
+	<table>
+		<tr>
+			
+		</tr>
+	</table>
+</div>
 
 
 

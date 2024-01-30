@@ -246,6 +246,29 @@ public class ReviewDAO extends JdbcDAO {
 		}
 		return review;
 	}
+	
+	//글번호를 전달받아 REVIEW 테이블의 저장된 행의 게시글 조회수가 1 증가되도록 변경하고 
+	//변경행의 갯수를 반환하는 메소드
+	public int updateReviewReadCount(int reviewNum) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update review set review_readcount=review_readcount+1"
+					+ " where review_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, reviewNum);
+						
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateReviewReadCount() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 
