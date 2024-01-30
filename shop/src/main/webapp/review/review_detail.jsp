@@ -1,3 +1,6 @@
+<%@page import="xyz.itwill.dto.MemberDTO"%>
+<%@page import="xyz.itwill.dao.ReviewDAO"%>
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 글번호를 전달받아 REVIEW 테이블에 저장된 행을 검색하여 응답하는 JSP 문서 --%>
@@ -28,6 +31,29 @@
 	
 	//글번호를 전달받아 REVIEW 테이블의 단일행을 검색하여 게시글(ReviewDTO 객체)을 반환하는 
 	//ReviewDAO 클래스의 메소드 호출
+	ReviewDTO review=ReviewDAO.getDAO().selectReviewByNum(reviewNum);
+	
+	//검색된 게시글이 없는 경우에 대한 응답 처리 - 비정상적인 요청
+	if(review==null) {
+		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=error&worker=error_400");
+		return;
+	}
+	
+	//session 객체에 저장된 권한 관련 속성값을 반환받아 저장
+	// => 검색된 게시글이 비밀글인 경우 권한을 확인하기 위해 필요
+	// => 권한에 따른 태그 출력을 위해 필요
+	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
+	
+	if(review.getReviewStatus()==2) {//검색된 게시글이 비밀글인 경우
+		//JSP 문서를 요청한 사용자가 비로그인 상태의 사용자이거나 로그인 상태의 사용자가
+		//게시글 작성자 및 관리자가 아닌 경우에 대한 응답 처리 - 비정상적인 요청
+		if(loginMember==null || loginMember.getMemberNum()!=review.getReviewMember()
+				&& loginMember.getMemberStatus()!=9) {
+			request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=error&worker=error_400");
+			return;
+		}
+	}
+	
 	
 %>
 
