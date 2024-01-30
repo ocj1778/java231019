@@ -43,8 +43,9 @@
 	}
 	String reviewContent=multipartRequest.getParameter("reviewContent");
 	//서버 디렉토리에 업로드되어 저장된 파일명을 반환받아 컨텍스트 경로를 저장
+	String reviewImage=null;
 	if(multipartRequest.getFilesystemName("reviewImage")!=null) {//업로드 파일이 있는 경우	
-		String reviewImage="/review_images/"+multipartRequest.getFilesystemName("reviewImage");
+		reviewImage="/review_images/"+multipartRequest.getFilesystemName("reviewImage");
 	}
 	
 	//REVIEW_SEQ 시퀸스의 다음값을 검색하여 반환하는 ReviewDAO 클래스의 메소드 호출
