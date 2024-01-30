@@ -101,6 +101,8 @@ td {
 
 <div id="review_detail">
 	<h1>제품후기</h1>
+	
+	<%-- 검색된 게시글 출력 --%>
 	<table>
 		<tr>
 			<th>작성자</th>
@@ -117,8 +119,8 @@ td {
 			<td><%=review.getReviewRegister() %></td>
 		</tr>
 		<tr>
-			<th>작성일</th>
-			<td><%=review.getReviewRegister() %></td>
+			<th>조회수</th>
+			<td><%=review.getReviewReadcount()+1 %></td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -126,7 +128,7 @@ td {
 				<% if(review.getReviewStatus()==2) {//검색된 게시글이 비밀글인 경우 %>
 					[비밀글]
 				<% } %>
-				<%=review.getReviewRegister() %>
+				<%=review.getReviewSubject() %>
 			</td>
 		</tr>
 		<tr>
@@ -140,7 +142,45 @@ td {
 			</td>
 		</tr>
 	</table>
+	
+	<%-- 태그를 출력하여 링크 제공 --%>
+	<div id="review_menu">
+		<%-- 로그인 상태의 사용자 중 게시글 작성자이거나 관리자인 경우에만 태그를 출력하여 링크 제공 --%>
+		<% if(loginMember!=null && (loginMember.getMemberNum()==review.getReviewMember()
+			|| loginMember.getMemberStatus()==9)) { %>
+			<button type="button" id="modifyBtn">글변경</button>
+			<button type="button" id="removeBtn">글삭제</button>
+		<% } %>
+		
+		<%-- 로그인 상태의 사용자인 경우에만 태그를 출력하여 링크 제공 --%>
+		<% if(loginMember!=null) { %>
+			<button type="button" id="replyBtn">답글쓰기</button>
+		<% } %>
+		
+		<button type="button" id="listBtn">글목록</button>
+	</div>
 </div>
+
+<script type="text/javascript">
+$("#modifyBtn").click(function() {
+	
+});
+
+$("#removeBtn").click(function() {
+	
+});
+
+$("#replyBtn").click(function() {
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_write"
+		+"&ref=<%=review.getReviewRef()%>&restep=<%=review.getReviewRestep()%>&relevel=<%=review.getReviewRelevel()%>"	
+		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
+});
+
+$("#listBtn").click(function() {
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list"
+		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
+});
+</script>
 
 
 
