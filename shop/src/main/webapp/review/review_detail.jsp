@@ -8,7 +8,7 @@
 <%-- => [글변경] 태그를 클릭한 경우 [/review/review_modify.jsp] 문서를 요청하여 페이지 이동 
 - 글번호, 페이지번호, 게시글갯수, 검색대상, 검색단어 전달 --%>
 <%-- => [글삭제] 태그를 클릭한 경우 [/review/review_remove_action.jsp] 문서를 요청하여 페이지 이동 
-- 글번호 전달 --%>
+- 글번호, 페이지번호, 게시글갯수, 검색대상, 검색단어 전달 --%>
 <%-- => [답글쓰기] 태그를 클릭한 경우 [/review/review_write.jsp] 문서를 요청하여 페이지 이동 
 - 답글그룹, 답글순서, 답글깊이, 페이지번호, 게시글갯수, 검색대상, 검색단어 전달 --%>
 <%-- => [글목록] 태그를 클릭한 경우 [/review/review_list.jsp] 문서를 요청하여 페이지 이동 
@@ -169,7 +169,11 @@ $("#modifyBtn").click(function() {
 });
 
 $("#removeBtn").click(function() {
-
+	if(confirm("게시글을 정말로 삭제 하시겠습니까?")) {
+		location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_remove_action"
+			+"&reviewNum=<%=review.getReviewNum()%>&pageNum=<%=pageNum%>"
+			+"&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
+	}
 });
 
 $("#replyBtn").click(function() {
@@ -183,17 +187,3 @@ $("#listBtn").click(function() {
 		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
