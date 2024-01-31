@@ -34,7 +34,7 @@
 	}	
 	
 	//로그인 상태의 사용자가 게시글 작성자 및 관리자가 아닌 경우에 대한 응답 처리 - 비정상적인 요청
-	if(loginMember.getMemberNum()!=review.getReviewNum() && loginMember.getMemberStatus()!=9) {
+	if(loginMember.getMemberNum()!=review.getReviewMember() && loginMember.getMemberStatus()!=9) {
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=error&worker=error_400");
 		return;
 	}
