@@ -82,10 +82,10 @@ td {
 		<tr>
 			<th>이미지파일</th>
 			<td>
-				<input type="file" name="reviewImage">
+				<input type="file" name="reviewImage"><br><br>
 				<% if(review.getReviewImage()!=null) { %>
-					<img src="<%=request.getContextPath()%>/<%=review.getReviewImage()%>" width="200">
 					<div style="color: red;">이미지를 변경할 경우에만 파일을 입력해 주세요.</div>
+					<img src="<%=request.getContextPath()%>/<%=review.getReviewImage()%>" width="200">
 				<% } %>
 			</td>
 		</tr>
