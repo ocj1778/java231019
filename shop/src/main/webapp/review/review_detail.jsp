@@ -163,11 +163,12 @@ td {
 
 <script type="text/javascript">
 $("#modifyBtn").click(function() {
-	
+	location.href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_modify"
+		+"&reviewNum=<%=review.getReviewNum()%>&pageNum=<%=pageNum%>"
+		+"&pageSize=<%=pageSize%>&search=<%=search%>&keyword=<%=keyword%>";	
 });
 
 $("#removeBtn").click(function() {
-	
 });
 
 $("#replyBtn").click(function() {

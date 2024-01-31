@@ -188,7 +188,7 @@ td {
 				<td><%=displayNum %></td>
 				<% displayNum--; %><%-- 게시글 일련번호를 1씩 감소하여 저장 --%>
 				
-				<%-- 제목 --%>
+				<%-- 제목 출력 --%>
 				<td class="subject">
 					<%-- 게시글이 답글인 경우에 대한 응답 처리 --%>
 					<% if(review.getReviewRestep() != 0) {//답글인 경우 %>
