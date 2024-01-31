@@ -121,17 +121,3 @@ $("#resetBtn").click(function() {
 	$("#message").text("");
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

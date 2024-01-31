@@ -27,11 +27,11 @@
 			, 20*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 	
 	//전달값을 반환받아 저장
-	int reviewNum=Integer.parseInt(request.getParameter("reviewNum"));
-	String pageNum=request.getParameter("pageNum");
-	String pageSize=request.getParameter("pageSize");
-	String search=request.getParameter("search");
-	String keyword=request.getParameter("keyword");
+	int reviewNum=Integer.parseInt(multipartRequest.getParameter("reviewNum"));
+	String pageNum=multipartRequest.getParameter("pageNum");
+	String pageSize=multipartRequest.getParameter("pageSize");
+	String search=multipartRequest.getParameter("search");
+	String keyword=multipartRequest.getParameter("keyword");
 	String reviewSubject=Utility.escapeTag(multipartRequest.getParameter("reviewSubject"));
 	int reviewStatus=1;//전달값이 없는 경우 - 일반글
 	if(multipartRequest.getParameter("reviewSecret")!=null) {//전달값이 있는 경우 - 비밀글
@@ -42,6 +42,8 @@
 	//서버 디렉토리에 업로드되어 저장된 파일명을 반환받아 컨텍스트 경로를 저장
 	String reviewImage=multipartRequest.getFilesystemName("reviewImage");
 	if(reviewImage!=null) {//업로드 파일이 있는 경우
+		reviewImage="/review_images/"+reviewImage;
+	
 		//REVIEW 테이블에 저장된 행(게시글)의 이미지 파일의 경로(REVIEW_IMAGE 컬럼값)을 반환받아 저장
 		String removeReviewImage=ReviewDAO.getDAO().selectReviewByNum(reviewNum).getReviewImage();
 		if(removeReviewImage!=null) {//서버 디렉터리에 이미지 파일이 있는 경우
@@ -60,22 +62,9 @@
 	
 	//게시글을 전달받아 REVIEW 테이블의 저장된 행의 컬럼값을 변경하고 변경행의 갯수를 반환하는
 	//ReviewDAO 클래스의 메소드 호출
-		
+	ReviewDAO.getDAO().updateReview(review);	
 	
 	//페이지 이동
 	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?group=review&worker=review_detail"
 		+"&reviewNum="+reviewNum+"&pageNum="+pageNum+"&pageSize="+pageSize+"&search="+search+"&keyword="+keyword);
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-

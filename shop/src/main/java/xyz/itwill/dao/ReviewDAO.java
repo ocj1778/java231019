@@ -269,23 +269,41 @@ public class ReviewDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//게시글을 전달받아 REVIEW 테이블의 저장된 행의 컬럼값을 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateReview(ReviewDTO review) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			//사용자가 이미지 파일을 입력하지 않은 경우 - 이미지 파일 미변경(기존 이미지 파일 사용)
+			if(review.getReviewImage()==null) {
+				String sql="update review set review_subject=?,review_content=?"
+						+ ",review_status=? where review_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, review.getReviewSubject());
+				pstmt.setString(2, review.getReviewContent());
+				pstmt.setInt(3, review.getReviewStatus());
+				pstmt.setInt(4, review.getReviewNum());
+			} else {//사용자가 이미지 파일을 입력하지 않은 경우 - 이미지 파일 변경
+				String sql="update review set review_subject=?,review_content=?,review_image=?"
+						+ ",review_status=? where review_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, review.getReviewSubject());
+				pstmt.setString(2, review.getReviewContent());
+				pstmt.setString(3, review.getReviewImage());
+				pstmt.setInt(4, review.getReviewStatus());
+				pstmt.setInt(5, review.getReviewNum());
+			}			
+				
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateReview() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;		
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
