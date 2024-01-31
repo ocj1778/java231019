@@ -61,21 +61,3 @@ public class Utility {
 		return source.replace("<", "&lt;").replace(">", "&gt;");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
