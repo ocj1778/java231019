@@ -281,7 +281,7 @@ public class ReviewDAO extends JdbcDAO {
 			//사용자가 이미지 파일을 입력하지 않은 경우 - 이미지 파일 미변경(기존 이미지 파일 사용)
 			if(review.getReviewImage()==null) {
 				String sql="update review set review_subject=?,review_content=?"
-						+ ",review_status=? where review_num=?";
+						+ ",review_status=?,review_update=sysdate where review_num=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, review.getReviewSubject());
 				pstmt.setString(2, review.getReviewContent());
@@ -289,7 +289,7 @@ public class ReviewDAO extends JdbcDAO {
 				pstmt.setInt(4, review.getReviewNum());
 			} else {//사용자가 이미지 파일을 입력하지 않은 경우 - 이미지 파일 변경
 				String sql="update review set review_subject=?,review_content=?,review_image=?"
-						+ ",review_status=? where review_num=?";
+						+ ",review_status=?,review_update=sysdate where review_num=?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, review.getReviewSubject());
 				pstmt.setString(2, review.getReviewContent());
