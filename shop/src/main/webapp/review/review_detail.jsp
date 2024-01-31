@@ -169,6 +169,7 @@ $("#modifyBtn").click(function() {
 });
 
 $("#removeBtn").click(function() {
+
 });
 
 $("#replyBtn").click(function() {
