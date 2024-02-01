@@ -24,6 +24,7 @@
 	padding: 5px;
 	font-size: medium;
 	border: 2px dashed black;
+	display: none;
 }
 </style>
 </head>
@@ -33,14 +34,41 @@
 	<div id="newsList">
 		<div id="newsHeader">오늘의 뉴스</div>
 		<div id="newContents">
+			<%-- 
 			<ol>
-				<li>뉴스제목-1[언론사-1]</li>
-				<li>뉴스제목-2[언론사-2]</li>
-				<li>뉴스제목-3[언론사-3]</li>
-				<li>뉴스제목-4[언론사-4]</li>
-				<li>뉴스제목-5[언론사-5]</li>
+				<li>박명수 "父 돈 없던 시절 용돈 60만 원 주셔, 지금 천배로 효도 중"[뉴스엔]</li>
+				<li>'브랜딩인성수동' 김지은, 1인2역 도전 "영혼 체인지 매력적이라 출연"[뉴스1]</li>
+				<li>"한국 치킨 먹고 싶어"…'아가일' 매튜 본 감독, '킹스맨' 시리즈 이어 韓 공략[OSEN]</li>
+				<li>이희준 "배우-제작진 전화번호 '살인자'라 저장했다" 폭소[뉴스엔]</li>
+				<li>살인자인가 단죄자인가… 제목처럼 아리송한 '살인자O난감'[일간스포츠]</li>
 			</ol>
+			--%>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	document.getElementById("newsList").onmouseover=function() {
+		var xhr=new X
+		
+		
+		document.getElementById("newContents").style="display: block;";
+	}
+	
+	document.getElementById("newsList").onmouseout=function() {
+		document.getElementById("newContents").style="display: none;";
+	}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
