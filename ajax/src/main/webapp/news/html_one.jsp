@@ -66,7 +66,7 @@
 	}
 	
 	document.getElementById("newsList").onmouseout=function() {
-		document.getElementById("newContents").style="display: none;";
+		document.getElementById("newsContents").style="display: none;";
 	}
 	</script>
 </body>
