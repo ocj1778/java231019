@@ -20,7 +20,7 @@
 	border: 2px solid black;
 }
 
-#newContents {
+#newsContents {
 	padding: 5px;
 	font-size: medium;
 	border: 2px dashed black;
