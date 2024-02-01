@@ -38,7 +38,7 @@
 	
 	<script type="text/javascript">
 	//[입력완료(GET)] 태그를 클릭한 경우 AJAX 엔진을 사용하여 [data_two.jsp] 문서를 GET 방식으로 
-	//요청하여 응답결과를 제공받아 태그 변경 처리
+	//요청하여 응답결과를 제공받아 태그내용 변경
 	// => [data_two.jsp] 문서를 요청할 때 입력태그의 입력값 전달
 	document.getElementById("getBtn").onclick=function() {
 		//입력태그의 입력값을 반환받아 저장
@@ -87,17 +87,55 @@
 		// => GET 방식으로 요청한 경우 send() 메소드의 매개변수에는 [null]을 전달하여 호출
 		xhr.send(null);
 	}
+	
+	//[입력완료(POST)] 태그를 클릭한 경우 AJAX 엔진을 사용하여 [data_two.jsp] 문서를 POST 방식으로 
+	//요청하여 응답결과를 제공받아 태그내용 변경
+	// => [data_two.jsp] 문서를 요청할 때 입력태그의 입력값 전달
+	document.getElementById("postBtn").onclick=function() {
+		var id=document.getElementById("id").value;
+		if(id=="") {
+			document.getElementById("display").innerHTML="아이디를 입력해 주세요.";
+			return;
+		}
+		
+		var name=document.getElementById("name").value;
+		if(name=="") {
+			document.getElementById("display").innerHTML="이름을 입력해 주세요.";
+			return;
+		}
+		
+		document.getElementById("id").value="";
+		document.getElementById("name").value="";
+		
+		var xhr=new XMLHttpRequest();
+		
+		xhr.onreadystatechange=function() {
+			if(xhr.readyState==4) {
+				if(xhr.status==200) {
+					document.getElementById("display").innerHTML=xhr.responseText;
+				} else {
+					alert("에러코드 = "+xhr.status);
+				}
+			}	
+		}
+		
+		xhr.open("post", "data_two.jsp");
+
+		//XMLHttpRequest 객체로 open() 메소드로 설정된 웹프로그램 요청
+		// => POST 방식으로 요청한 경우 send() 메소드의 매개변수에 [이름=값&이름=값&...]
+		//형식의 문자값으로 입력값을 전달하여 메소드 호출
+		//문제점)전달값이 [multipart/form-data] 형식으로 전달되므로 AJAX 엔진으로 요청한
+		//웹프로그램에서 request 객체로 전달값을 반환받아 사용 불가능
+		//해결법)전달값이 [application/x-www-form-urlencoded] 형식으로 전달되도록 리퀘스트
+		//머릿부(Header)의 정보 변경
+		//XMLHttpRequest.setRequestHeader(header,value) : XMLHttpRequest 객체로 웹프로그램을
+		//요청하기 전에 리퀘스트 메세지 머릿부의 정보를 변경하는 메소드
+		// => 리퀘스트 메세지 몸체부에 저장되어 전달되는 값을 문자데이타로 전달되도록 변경
+		// => XMLHttpRequest 객체로 open() 메소드 호출 후 변경 가능
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+		xhr.send("id="+id+"&name="+name);//리퀘스트 메세지 몸체부에 입력값을 저장하여 전달
+	}
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
