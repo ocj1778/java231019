@@ -33,7 +33,7 @@
 	<hr>
 	<div id="newsList">
 		<div id="newsHeader">오늘의 뉴스</div>
-		<div id="newContents">
+		<div id="newsContents">
 			<%-- 
 			<ol>
 				<li>박명수 "父 돈 없던 시절 용돈 60만 원 주셔, 지금 천배로 효도 중"[뉴스엔]</li>
@@ -48,10 +48,21 @@
 	
 	<script type="text/javascript">
 	document.getElementById("newsList").onmouseover=function() {
-		var xhr=new X
+		var xhr=new XMLHttpRequest();
 		
+		xhr.onreadystatechange=function() {
+			if(xhr.readyState==4) {
+				if(xhr.status==200) {
+					document.getElementById("newsContents").innerHTML=xhr.responseText;
+					document.getElementById("newsContents").style="display: block;";
+				} else {
+					alert("에러코드 = "+xhr.status);
+				}
+			}
+		}
 		
-		document.getElementById("newContents").style="display: block;";
+		xhr.open("get", "html_two.jsp");
+		xhr.send(null);
 	}
 	
 	document.getElementById("newsList").onmouseout=function() {
