@@ -45,7 +45,30 @@
 		xhr.onreadystatechange=function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					//XMLHttpRequest 객체에 저장된 실행결과(XML)를 제공받아 변수에 저장
+					//XMLHttpRequest.responseXML : 웹프로그램 요청에 대한 실행결과(XML 문서)를 
+					//XMLDocument 객체로 저장한 객체 속성(Property)
+					var xmlDoc=xhr.responseXML;
+					//alert(xmlDoc);//[object XMLDocument]
 					
+					//Document.getElementsByTagName(tagName) : Document 객체(Element 객체)에서
+					//태그명으로 DOM 객체를 검색하여 NodeList 객체(HTMLCollection 객체)로 반환하는 메소드
+					var newsList=xmlDoc.getElementsByTagName("news");
+					//alert(newsList);//[object HTMLCollection]
+					//alert(newsList.length);
+					
+					var html="<ol>";
+					for(i=0;i<newsList.length;i++) {
+						//newsList.item(index) : newsList 객체에서 매개변수로 전달받은 첨자위치의
+						//요소값(Element 객체)을 반환하는 메소드
+						var news=newsList.item(i);
+						
+						var title=news.getElementsByTagName("title").item(0).firstChild.nodeValue;
+						var publisher=news.getElementsByTagName("publisher").item(0).firstChild.nodeValue;
+						
+						html+="<li>"+title+"["+publisher+"]</li>";
+					}
+					html+="</ol>";
 					
 					document.getElementById("newsContents").innerHTML=html;
 					document.getElementById("newsContents").style="display: block;";
