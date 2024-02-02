@@ -76,7 +76,7 @@
 			}	
 		}
 		
-		//XMLHttpRequest 객체로 [data_two.jsp] 문서를 [GET] 방식으로 요청하도록 환경설정
+		//XMLHttpRequest 객체로 [data_two.jsp] 문서를 [GET] 방식으로 요청하도록 설정
 		// => GET 방식으로 웹프로그램을 요청한 경우 질의문자열(QueryString)을 이용하여 값 전달
 		//문제점)일부 브라우저에서는 질의문자열에 URL 주소로 표현 불가능한 문자가 존재할 경우 400 에러코드 발생
 		//해결법)입력값을 부호화 처리하여 질의문자열로 전달
@@ -119,6 +119,7 @@
 			}	
 		}
 		
+		//XMLHttpRequest 객체로 [data_two.jsp] 문서를 [POST] 방식으로 요청하도록 설정
 		xhr.open("post", "data_two.jsp");
 
 		//XMLHttpRequest 객체로 open() 메소드로 설정된 웹프로그램 요청

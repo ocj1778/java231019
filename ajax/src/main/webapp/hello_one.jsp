@@ -44,7 +44,7 @@
 	var xhr=null;
 
 	//DOM 트리에서 태그를 검색하여 Element 객체로 반환받아 클릭 이벤트가 발생될 경우 호출될 
-	//이벤트 처리 함수 등록 - AJAX 기능을 사용하여 태그내용 변경
+	//이벤트 처리 함수 등록 - AJAX 기능을 사용해 다른 웹프로그램의 실행결과를 제공받아 태그내용 변경
 	document.getElementById("btn1").onclick=function() {
 		//XMLHttpRequest 객체를 생성하여 전역변수에 저장 - 준비상태에 자동으로 [0] 저장
 		xhr=new XMLHttpRequest();
