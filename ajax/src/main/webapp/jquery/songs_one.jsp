@@ -21,7 +21,17 @@
 		url: "songs_two.jsp",
 		dataType: "json",
 		success: function(obj) {
-			alert(obj);
+			//alert(obj);//[object Object]
+			
+			$("#now").html(obj.now);
+			
+			var html="<ol>";
+			$(obj.songs).each(function() {
+				html+="<li><b>"+this.title+"</b>["+this.singer+"]</li>";
+			});
+			html+="</ol>";
+			
+			$("#songList").html(html);
 		},
 		error: function(xhr) {
 			alert("에러코드 = "+xhr.status);
@@ -30,19 +40,3 @@
 	</script>	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
