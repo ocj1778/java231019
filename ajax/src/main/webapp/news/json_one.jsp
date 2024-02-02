@@ -46,9 +46,26 @@
 		xhr.onreadystatechange=function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
+					//eval(text) : 매개변수로 전달받은 문자값을 JavaScript 명령으로 변환하여 실행하는 함수
+					//XMLHttpRequest 객체에 저장된 응답결과(JSON 형식의 문자값)를 JavaScript 객체로 변환하여 저장
+					//var result=eval("("+xhr.responseText+")");
 					
+					//JSON.parse(json) : 매개변수로 전달받은 JSON 형식의 문자값를 JavaScript 
+					//객체로 변환하여 반환하는 메소드
+					var result=JSON.parse(xhr.responseText);
+					//alert(result);//[object Object],[object Object],[object Object],[object Object],[object Object] - Array 객체
 					
-					//document.getElementById("newsContents").innerHTML=html;
+					var html="<ol>";
+					for(i=0;i<result.length;i++) {
+						//var title=result[i]["title"];
+						var title=result[i].title;
+						var publisher=result[i].publisher;
+						
+						html+="<li>"+title+"["+publisher+"]</li>";
+					}
+					html+="</ol>";
+					
+					document.getElementById("newsContents").innerHTML=html;
 					document.getElementById("newsContents").style="display: block;";
 				} else {
 					alert("에러코드 = "+xhr.status);
