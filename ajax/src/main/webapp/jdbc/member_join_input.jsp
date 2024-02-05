@@ -81,6 +81,10 @@
 	</form>
 
 	<script type="text/javascript">
+	//아이디 중복 검증에 대한 결과값을 저장하기 위한 전역변수
+	// => false : 아이디 중복에 의한 사용 불가능, true : 아이디 미중복에 의한 사용 가능
+	var idCheckResult=false;
+	
 	$("#id").focus();
 	
 	$("#joinForm").submit(function() {
@@ -98,6 +102,9 @@
 			validResult=false;
 		} else if(!idReg.test(id)) {
 			$("#idValidMsg").show();
+			validResult=false;
+		} else if(!idCheckResult) {//아이디가 중복된 경우
+			$("#idDuplMsg").show();
 			validResult=false;
 		}
 		
@@ -132,6 +139,25 @@
 		}
 		
 		return validResult;		
+	});
+	
+	//입력태그(아이디)에서 키보드를 누르는 이벤트가 발생된 경우 호출된 이벤트 처리 함수 등록
+	$("#id").keyup(function() {
+		var id=$(this).val();
+		if(id.length < 6) return;
+		
+		$.ajax({
+			type: "get",
+			url: "member_id_check.jsp",
+			data: "id="+id,
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
 	});
 	</script>
 </body>
