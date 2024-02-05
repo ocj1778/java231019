@@ -29,6 +29,7 @@
 	font-size: 16px;
 	background: rgba(255, 255, 255, 1);
 	z-index: 999;
+	display: none;
 }
 
 #choice {
@@ -51,6 +52,33 @@
 		</div>
 	</div>
 	
+	<script type="text/javascript">
+	$("#keyword").focus();
+	
+	//입력태그에서 키보드를 눌렀다 띈 경우에 호출될 이벤트 처리 함수 등록
+	$("#keyword").keyup(function() {
+		var keyword=$("#keyword").val();
+		//alert(keyword);
+		
+		if(keyword=="") {//입력태그에 입력값이 없는 경우
+			$("#suggestDiv").hide();
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "<%=request.getContextPath()%>/jdbc/suggest_two.jsp",
+			data: {"keyword":keyword},
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
+	</script>
 </body>
 </html>
 
