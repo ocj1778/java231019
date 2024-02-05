@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- AJAX 엔진을 사용하여 [xsl_two.jsp] 문서를 요청하여 실행결과를 XML 데이타를 응답받아
-태그내용을 변경하여 응답하는 JSP 문서 --%>
+태그내용을 변경하여 응답하는 JSP 문서 - 동기식 통신을 이용하여 요청과 응답 --%>
 <%-- AJAX 엔진을 사용하여 XSL 문서(books.xsl)를 요청해 응답받은 XSLT 데이타로 XML 데이타를 
-HTML 태그로 변경 --%>
+HTML 태그로 변경 - 비동기식 통신을 이용하여 요청과 응답 --%>
 <!DOCTYPE html>
 <html>
 <head>
