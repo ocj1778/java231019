@@ -164,6 +164,22 @@
 			}
 		});
 	});
+	
+	//입력태그(아이디)에서 포커스가 다른 태그로 이동하는 이벤트가 발생된 경우 호출된 이벤트 처리 함수 등록
+	$("#id").blur(function() {
+		var id=$("#id").val();
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(id=="") {
+			$("#idNullMsg").show();
+			validResult=false;
+		} else if(!idReg.test(id)) {
+			$("#idValidMsg").show();
+			validResult=false;
+		} else if(!idCheckResult) {//아이디가 중복된 경우
+			$("#idDuplMsg").show();
+			validResult=false;
+		}
+	});
 	</script>
 </body>
 </html>
