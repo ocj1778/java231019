@@ -143,6 +143,8 @@
 	
 	//입력태그(아이디)에서 키보드를 누르는 이벤트가 발생된 경우 호출된 이벤트 처리 함수 등록
 	$("#id").keyup(function() {
+		idCheckResult=false;
+		
 		var id=$(this).val();
 		if(id.length < 6) return;
 		
@@ -152,7 +154,10 @@
 			data: "id="+id,
 			dataType: "xml",
 			success: function(xmlDoc) {
-				
+				var code=$(xmlDoc).find("code").text();
+				if(code=="possible") {
+					idCheckResult=true;
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
@@ -162,20 +167,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

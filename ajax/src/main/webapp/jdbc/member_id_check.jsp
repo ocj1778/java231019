@@ -8,6 +8,7 @@ XML 데이타로 응답하는 JSP 문서 --%>
 <%
 	String id=request.getParameter("id");
 
+	//비정상적인 요청에 대한 응답 처리
 	if(id==null || id.equals("")) {
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		return;
@@ -21,6 +22,6 @@ XML 데이타로 응답하는 JSP 문서 --%>
 	<% if(ajaxMember!=null) {//아이디로 검색된 회원정보가 있는 경우 - 아이디 중복(아이디 불가능) %>
 	<code>impossible</code>
 	<% } else {//아이디로 검색된 회원정보가 없는 경우 - 아이디 미중복(아이디 가능) %>
-	<coode>possible</coode>
+	<code>possible</code>
 	<% } %>
 </result>
