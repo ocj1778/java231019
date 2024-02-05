@@ -48,7 +48,20 @@
 		$("#name").val("");
 		$("#email").val("");
 		
-		
+		//AJAX 엔진을 사용하여 [search_id_two.jsp] 문서를 요청하여 실행결과를 XML 데이타로 
+		//받아 태그내용을 변경하여 출력 처리
+		$.ajax({
+			type: "post",
+			url: "<%=request.getContextPath()%>/jdbc/search_id_two.jsp",
+			data: "name="+name+"&email="+email,
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
 	});
 	</script>
 </body>
