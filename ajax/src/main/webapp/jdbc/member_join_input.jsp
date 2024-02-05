@@ -82,6 +82,57 @@
 
 	<script type="text/javascript">
 	$("#id").focus();
+	
+	$("#joinForm").submit(function() {
+		//메세지 관련 엘리먼트가 출력되지 않도록 숨김 처리
+		$(".msg").hide();
+		
+		//검증 결과를 저장하기 위한 변수
+		// => false : 검증 실패 - form 태그 실행 취소, true : 검증 성공 - form 태그 실행
+		var validResult=true;
+		
+		var id=$("#id").val();
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(id=="") {
+			$("#idNullMsg").show();
+			validResult=false;
+		} else if(!idReg.test(id)) {
+			$("#idValidMsg").show();
+			validResult=false;
+		}
+		
+		var passwd=$("#passwd").val();
+		var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
+		if(passwd=="") {
+			$("#passwdNullMsg").show();
+			validResult=false;
+		} else if(!idReg.test(passwd)) {
+			$("#passwdValidMsg").show();
+			validResult=false;
+		}
+		
+		var name=$("#name").val();
+		var nameReg=/^[가-힣]{2,10}$/g;
+		if(name=="") {
+			$("#nameNullMsg").show();
+			validResult=false;
+		} else if(!nameReg.test(name)) {
+			$("#nameValidMsg").show();
+			validResult=false;
+		}
+		
+		var email=$("#email").val();
+		var emailReg=/^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+(\.[-a-zA-Z0-9]+)+)*$/g;
+		if(email=="") {
+			$("#emailNullMsg").show();
+			validResult=false;
+		} else if(!emailReg.test(email)) {
+			$("#emailValidMsg").show();
+			validResult=false;
+		}
+		
+		return validResult;		
+	});
 	</script>
 </body>
 </html>
