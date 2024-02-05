@@ -3,8 +3,7 @@
 <%-- AJAX 엔진을 사용하여 [json_two.jsp] 문서를 요청해 실행결과를 JSON 형식의 데이타로 응답받아
 태그내용을 변경하여 응답하는 JSP 문서 --%>
 <%-- => JSON 형식의 데이타를 제공받아 HTML 태그로 변환하여 페이지 변경 - 파싱(Parsing) 처리 --%>
-<%-- JSON(JavsScript Object Notation) : JavaScript 객체 표현 방식으로 값을 제공하기 위한 
-구조적인 데이타 표현 방식 --%>        
+<%-- JSON(JavsScript Object Notation) : JavaScript 객체로 값을 제공하기 위한 구조적인 데이타 표현 방식 --%>        
 <!DOCTYPE html>
 <html>
 <head>
