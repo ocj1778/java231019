@@ -113,7 +113,7 @@
 		if(passwd=="") {
 			$("#passwdNullMsg").show();
 			validResult=false;
-		} else if(!idReg.test(passwd)) {
+		} else if(!passwdReg.test(passwd)) {
 			$("#passwdValidMsg").show();
 			validResult=false;
 		}
