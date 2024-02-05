@@ -39,7 +39,7 @@
 <body>
 	<h1>회원가입</h1>
 	<hr>
-	<form action="<%=request.getContextPath()%>/jdbc/memeber_join_action.jsp" method="post" id="joinForm">
+	<form action="<%=request.getContextPath()%>/jdbc/member_join_action.jsp" method="post" id="joinForm">
 	<table>
 		<tr>
 			<td class="title">아이디</td>
