@@ -15,12 +15,12 @@
 	AjaxCommentDTO ajaxComment=AjaxCommentDAO.getDAO().selectAjaxComment(num);
 %>
 <% if(ajaxComment!=null) {//검색된 댓글정보가 있는 경우 %>
-	{
-		"code":"success", "data":{"num":<%=ajaxComment.getNum() %>
-			,"writer":"<%=Utility.toJSON(ajaxComment.getWriter()) %>"
-			,"content":"<%=Utility.toJSON(ajaxComment.getContent()) %>"
-			,"regdate":"<%=ajaxComment.getRegdate() %>"}
-	}
+{
+	"code":"success", "data":{"num":<%=ajaxComment.getNum() %>
+		,"writer":"<%=Utility.toJSON(ajaxComment.getWriter()) %>"
+		,"content":"<%=Utility.toJSON(ajaxComment.getContent()) %>"
+		,"regdate":"<%=ajaxComment.getRegdate() %>"}
+}
 <% } else {//검색된 댓글정보가 없는 경우 %>
-	{"code":"empty"}
+{"code":"empty"}
 <% } %>
