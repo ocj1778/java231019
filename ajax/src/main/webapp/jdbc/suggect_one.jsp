@@ -48,7 +48,7 @@
 		
 		<%-- 제시어를 제공받아 출력하기 위한 태그 --%>
 		<div id="suggestDiv">
-			<div id="suggectList"></div>
+			<div id="suggestList"></div>
 		</div>
 	</div>
 	
@@ -71,7 +71,27 @@
 			data: {"keyword":keyword},
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
+				//alert(code);
 				
+				if(code=="success") {//검색된 제시어가 있는 경우
+					var data=$(xmlDoc).find("data").text();
+					//alert(data);//JSON 형식의 문자값
+					
+					//JSON 형식의 문자값을 Javascript 객체로 변환하여 저장 
+					var suggestList=JSON.parse(data);
+					
+					var html="";
+					$(suggestList).each(function() {
+						html+="<a href='"+this.url+"' target='_blank'>"+this.word+"</a><br>";
+					});
+					
+					$("#suggestList").html(html);
+					
+					$("#suggestDiv").show();
+				} else {//검색된 제시어가 없는 경우
+					$("#suggestDiv").hide();
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
@@ -81,16 +101,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

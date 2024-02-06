@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%-- 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [회원가입] 태그를 클릭한 경우 [member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
-<%-- => form 태그를 사용하여 [member_join_action.jsp] 문서를 요청하기 전에 입력값에 대한 검증 --%>
+<%-- => form 태그를 사용하여 [member_join_action.jsp] 문서를 요청하기 전에 입력값에 대한 검증 - 입력검증, 패턴검증, 중복검증 등 --%>
 <%-- => 아이디에 대한 중복 검증은 AJAX 엔진을 사용하여 처리 --%>   
 <!DOCTYPE html>
 <html>
@@ -141,7 +141,7 @@
 		return validResult;		
 	});
 	
-	//입력태그(아이디)에서 키보드를 누르는 이벤트가 발생된 경우 호출된 이벤트 처리 함수 등록
+	//입력태그(아이디)에서 키보드를 눌렸다 띄는 이벤트가 발생된 경우 호출된 이벤트 처리 함수 등록
 	$("#id").keyup(function() {
 		idCheckResult=false;
 		

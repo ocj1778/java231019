@@ -54,7 +54,7 @@
 			type: "post",
 			url: "<%=request.getContextPath()%>/jdbc/search_id_two.jsp",
 			//data: "name="+name+"&email="+email,
-			//요청 웹프로그램에게 전달할 값들을 Object 객체로 속성값으로 표현하여 전달 가능 - JSON  
+			//Object 객체(JSON)의 속성명과 속성값으로 요청 웹프로그램에게 값 전달 가능   
 			data: {"name":name, "email":email},
 			dataType: "xml",
 			success: function(xmlDoc) {
@@ -74,15 +74,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

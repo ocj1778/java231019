@@ -19,7 +19,8 @@
 <result>
 	<% if(suggestList!=null && !suggestList.isEmpty()) {//검색된 행이 있는 경우 %>
 	<code>success</code>
-	<%-- List 객체의 요소값을 data 엘리먼트(JSON - Array 객체)로 변환하여 응답 처리 --%>
+	<%-- List 객체를 data 엘리먼트(JSON - Array 객체)로 변환하여 응답 처리 --%>
+	<%-- => List 객체의 요소값(SuggestDTO 객체)를 Object 객체로 변환 --%>
 	<data><![CDATA[
 		[
 		<% for(int i=0;i<suggestList.size();i++) { %>
