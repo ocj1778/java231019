@@ -167,7 +167,7 @@ h1 {
 						html+=this.content.replace(/\n/g,"<br>")+"<br>";//댓글태그에 내용 포함
 						html+="("+this.regdate+")<br>";//댓글태그에 작성날짜 포함
 						html+="<button type='button' onclick='modifyComment("+this.num+");'>댓글변경</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
-						html+="<button type='button'>댓글삭제</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
+						html+="<button type='button' onclick='removeComment("+this.num+");'>댓글삭제</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
 						html+="</div>";
 						
 						//댓글목록태그의 댓글태그를 마지막 자식태그로 추가하여 출력 처리
@@ -251,6 +251,7 @@ h1 {
 		
 		init();
 		
+		//댓글변경태그를 보여지도록 처리하고 댓글태그의 마지막 자식태그로 이동 처리
 		$("#comment_modify").show().appendTo("#comment_"+num);
 		
 		$.ajax({
@@ -316,6 +317,47 @@ h1 {
 	// => 댓글변경태그 및 댓글삭제태그를 초기화 처리하는 함수 호출
 	$("#modify_cancel_btn").click(init);
 	
+	
+	//댓글태그의 [댓글삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 댓글삭제태그를 댓글태그의 자식태그로 이동하여 출력하고 입력태그의 입력값을 변경 처리
+	function removeComment(num) {
+		init();
+		
+		//댓글삭제태그를 보여지도록 처리하고 댓글태그의 마지막 자식태그로 이동 처리
+		$("#comment_remove").show().appendTo("#comment_"+num);
+		
+		//댓글삭제태그에 입력태그의 입력값 변경
+		$("#remove_num").val(num);
+	}
+	
+	//댓글삭제태그의 [삭제] 태그를 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => AJAX 엔진으로 [comment_remove.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아 
+	//처리 - 입력태그의 입력값(댓글번호) 전달
+	$("#remove_btn").click(function() {
+		var num=$("#remove_num").val();
+		
+		$.ajax({
+			type: "get",
+			url: "<%=request.getContextPath()%>/comment/comment_remove.jsp",
+			data: {"num":num},
+			dataType: "json",
+			success: function(result) {
+				if(result.code=="success") {
+					init();
+					displayComment();
+				} else {
+					alert("댓글 삭제 실패");
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
+	
+	//댓글삭제태그의 [취소] 태그를 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => 댓글변경태그 및 댓글삭제태그를 초기화 처리하는 함수 호출
+	$("#remove_cancel_btn").click(init);
 	</script>
 </body>
 </html>
