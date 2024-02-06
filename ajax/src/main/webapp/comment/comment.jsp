@@ -183,7 +183,7 @@ h1 {
 		});
 	}
 	
-	//[댓글등록] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	//[댓글등록] 태그를 클릭한 경우 호출될 이벤트 처리 함수 등록
 	// => AJAX 엔진으로 [comment_add.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아 
 	//처리 - 입력태그의 입력값(작성자와 내용) 전달
 	$("#add_btn").click(function() {
@@ -272,6 +272,50 @@ h1 {
 			}
 		});
 	}
+	
+	//댓글변경태그의 [변경] 태그를 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => AJAX 엔진으로 [comment_modify.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아 
+	//처리 - 입력태그의 입력값(댓글번호, 작성자, 내용) 전달	
+	$("#modify_btn").click(function() {
+		var num=$("#modify_num").val();
+		
+		var writer=$("#modify_writer").val();
+		if(writer=="") {
+			$("#modify_message").html("작성자를 입력해 주세요.");
+			$("#modify_writer").focus();
+			return;
+		}
+		
+		var content=$("#modify_content").val();
+		if(content=="") {
+			$("#modify_message").html("내용을 입력해 주세요.");
+			$("#modify_content").focus();
+			return;
+		}
+				
+		$.ajax({
+			type: "post",
+			url: "<%=request.getContextPath()%>/comment/comment_modify.jsp",
+			data: {"num":num, "writer":writer, "content":content},
+			dataType: "json",
+			success: function(result) {
+				if(result.code=="success") {
+					init();
+					displayComment();
+				} else {
+					alert("댓글 변경 실패");
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
+	
+	//댓글변경태그의 [취소] 태그를 클릭한 경우 호출될 이벤트 처리 함수 등록
+	// => 댓글변경태그 및 댓글삭제태그를 초기화 처리하는 함수 호출
+	$("#modify_cancel_btn").click(init);
+	
 	</script>
 </body>
 </html>
