@@ -245,7 +245,7 @@ h1 {
 	//댓글태그의 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
 	// => 댓글변경태그를 댓글태그의 자식태그로 이동하여 출력하고 AJAX 엔진을 사용하여 
 	//[comment_get.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아 입력태그의 
-	//입력값으로 변경 처리 - 댓글번호 전달
+	//입력값으로 출력 처리 - 댓글번호 전달
 	function modifyComment(num) {
 		//alert(num);
 		
@@ -257,9 +257,15 @@ h1 {
 			type: "get",
 			url: "<%=request.getContextPath()%>/comment/comment_get.jsp",
 			data: {"num":num},
-			dataType: "json"
+			dataType: "json",
 			success: function(result) {
-				
+				if(result.code=="success") {
+					$("#modify_num").val(result.data.num)
+					$("#modify_writer").val(result.data.writer)
+					$("#modify_content").val(result.data.content)
+				} else {
+					init();
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
