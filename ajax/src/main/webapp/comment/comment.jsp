@@ -3,7 +3,9 @@
 <%-- 댓글정보를 입력 받거나 댓글 목록이 출력되도록 응답하는 JSP 문서 --%>
 <%-- => AJAX 엔진으로 [comment_list.jsp] 문서를 요청하여 댓글 목록을 응답받아 출력 처리 --%>
 <%-- => [댓글등록] 태그를 클릭한 경우 AJAX 엔진으로 [comment_add.jsp] 문서를 요청하여 댓글을 
-삽입 처리하고 실행결과를 응답받아 처리 - 입력태그의 입력값 전달 --%>    
+삽입 처리하고 실행결과를 응답받아 처리 - 입력태그의 입력값 전달 --%>
+<%-- => 댓글태그의 [댓글변경] 태그를 클릭한 경우 댓글변경태그를 댓글태그의 자식태그로 이동하여 출력 처리 --%>    
+<%-- => 댓글태그의 [댓글삭제] 태그를 클릭한 경우 댓글삭제태그를 댓글태그의 자식태그로 이동하여 출력 처리 --%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,7 +166,7 @@ h1 {
 						html+="<b>["+this.writer+"]</b><br>";//댓글태그에 작성자 포함
 						html+=this.content.replace(/\n/g,"<br>")+"<br>";//댓글태그에 내용 포함
 						html+="("+this.regdate+")<br>";//댓글태그에 작성날짜 포함
-						html+="<button type='button'>댓글변경</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
+						html+="<button type='button' onclick='modifyComment("+this.num+");'>댓글변경</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
 						html+="<button type='button'>댓글삭제</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
 						html+="</div>";
 						
@@ -220,6 +222,50 @@ h1 {
 			}
 		});
 	});
+
+	//댓글변경태그와 댓글삭제태그를 초기화 처리하기 위한 함수
+	function init() {
+		//댓글변경태그를 숨김 처리하고 document 객체의 마지막 자식태그로 이동 처리
+		$("#comment_modify").hide().appendTo(document.documentElement);
+		
+		//댓글변경태그의 입력태그 초기화
+		$("#modify_num").val("");
+		$("#modify_writer").val("");
+		$("#modify_content").val("");
+		//댓글변경태그의 메세지태그 초기화
+		$("#modify_message").html("");
+		
+		//댓글삭제태그를 숨김 처리하고 document 객체의 마지막 자식태그로 이동 처리
+		$("#comment_remove").hide().appendTo(document.documentElement);
+		
+		//댓글삭제태그의 입력태그 초기화
+		$("#remove_num").val("");
+	}
+	
+	//댓글태그의 [댓글변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 댓글변경태그를 댓글태그의 자식태그로 이동하여 출력하고 AJAX 엔진을 사용하여 
+	//[comment_get.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아 입력태그의 
+	//입력값으로 변경 처리 - 글번호 전달
+	function modifyComment(num) {
+		//alert(num);
+		
+		init();
+		
+		$("#comment_modify").show().appendTo("#comment_"+num);
+		
+		$.ajax({
+			type: "get",
+			url: "<%=request.getContextPath()%>/comment/comment_get.jsp",
+			data: {"num":num},
+			dataType: "json"
+			success: function(result) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	}
 	</script>
 </body>
 </html>
