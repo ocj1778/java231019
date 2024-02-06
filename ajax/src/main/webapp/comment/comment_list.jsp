@@ -14,6 +14,8 @@
 {
 	"code":"success",
 	"data":[
+	<%-- JSON 데이타로 응답할 경우 표현 불가능한 문자값이 있는 경우 200 에러코드 발생 --%>
+	<%-- => 표현 불가능한 문자값을 회피문자로 변환하여 응답 처리  --%>
 	<% for(int i=0;i<ajaxCommentList.size();i++) { %>
 		<% if(i>0) { %> , <% } %>
 		{"num":<%=ajaxCommentList.get(i).getNum() %>
