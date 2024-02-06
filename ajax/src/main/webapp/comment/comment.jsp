@@ -156,7 +156,24 @@ h1 {
 				//댓글목록태그에 출력된 기존 댓글들을 삭제 처리 - 초기화
 				$("#comment_list").children().remove();
 				
-				
+				if(result.code=="success") {//검색된 댓글정보가 있는 경우
+					//Array 객체의 요소값를 차례대로 제공받아 반복 처리
+					$(result.data).each(function() {
+						//Array 객체의 요소값(Object 객체)를 HTML 태그(div)로 변환
+						var html="<div class='comment' id='comment_"+this.num+"'>";//댓글태그
+						html+="<b>["+this.writer+"]</b><br>";//댓글태그에 작성자 포함
+						html+=this.content.replace(/\n/g,"<br>")+"<br>";//댓글태그에 내용 포함
+						html+="("+this.regdate+")<br>";//댓글태그에 작성날짜 포함
+						html+="<button type='button'>댓글변경</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
+						html+="<button type='button'>댓글삭제</button>&nbsp;";//댓글태그에 댓글변경 버튼 포함
+						html+="</div>";
+						
+						//댓글목록태그의 댓글태그를 마지막 자식태그로 추가하여 출력 처리
+						$("#comment_list").append(html);
+					});
+				} else {//검색된 댓글정보가 없는 경우
+					$("#comment_list").html("<div class='no_comment'>"+result.message+"</div>");
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드(displayComment) = "+xhr.status);
