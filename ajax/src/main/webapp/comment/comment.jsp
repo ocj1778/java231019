@@ -141,5 +141,18 @@ h1 {
 			<button type="button" id="remove_cancel_btn">취소</button>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
