@@ -204,12 +204,16 @@ h1 {
 		$("#add_message").html("");
 		
 		$.ajax({
-			type: "post"
+			type: "post",
 			url: "<%=request.getContextPath()%>/comment/comment_add.jsp",
 			data: {"writer":writer, "content":content},
 			dataType: "json",
 			success: function(result) {
-				
+				if(result.code=="success") {
+					displayComment();//댓글목록을 검색하여 출력
+				} else {
+					alert("댓글 삽입 실패");
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
