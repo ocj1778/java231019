@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dao.AjaxCommentDAO"%>
 <%@page import="xyz.itwill.dto.AjaxCommentDTO"%>
 <%@page import="java.util.List"%>
@@ -16,8 +17,8 @@
 	<% for(int i=0;i<ajaxCommentList.size();i++) { %>
 		<% if(i>0) { %> , <% } %>
 		{"num":<%=ajaxCommentList.get(i).getNum() %>
-		, "writer":"<%=ajaxCommentList.get(i).getWriter() %>"
-		, "content":"<%=ajaxCommentList.get(i).getContent() %>"
+		, "writer":"<%=Utility.toJSON(ajaxCommentList.get(i).getWriter()) %>"
+		, "content":"<%=Utility.toJSON(ajaxCommentList.get(i).getContent()) %>"
 		, "regdate":"<%=ajaxCommentList.get(i).getRegdate() %>"}
 	<% } %>	
 	]

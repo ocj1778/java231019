@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dao.AjaxCommentDAO"%>
 <%@page import="xyz.itwill.dto.AjaxCommentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,8 +13,8 @@ JSON 데이타로 응답하는 JSP 문서 --%>
 
 	request.setCharacterEncoding("utf-8");
 	
-	String writer=request.getParameter("writer");
-	String content=request.getParameter("content");
+	String writer=Utility.escapeTag(request.getParameter("writer"));
+	String content=Utility.escapeTag(request.getParameter("content"));
 	
 	AjaxCommentDTO ajaxComment=new AjaxCommentDTO();
 	ajaxComment.setWriter(writer);
