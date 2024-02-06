@@ -143,10 +143,33 @@ h1 {
 	</div>
 	
 	<script type="text/javascript">
+	displayComment();
 	
+	//AJAX 엔진으로 [comment_list.jsp] 문서를 요청하여 실행결과를 JSON 데이타로 응답받아
+	//HTML 태그로 변환하여 댓글목록태그의 태그내용을 변경하는 함수
+	function displayComment() {
+		$.ajax({
+			type: "get",
+			url: "<%=request.getContextPath()%>/comment/comment_list.jsp",
+			dataType: "json",
+			success: function(result) {
+				//댓글목록태그에 출력된 기존 댓글들을 삭제 처리 - 초기화
+				$("#comment_list").children().remove();
+				
+				
+			},
+			error: function(xhr) {
+				alert("에러코드(displayComment) = "+xhr.status);
+			}
+		});
+	}
 	</script>
 </body>
 </html>
+
+
+
+
 
 
 
