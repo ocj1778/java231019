@@ -8,9 +8,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AJAX</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-
+	<h1>RSS Reader</h1>
+	<hr>
+	<div id="display"></div>
+	
+	<script type="text/javascript">
+	$.ajax({
+		type: "get",
+		
+		url: "https://www.yonhapnewstv.co.kr/category/news/culture/feed/",
+		dataType: "xml",
+		success: function(xmlDoc) {
+			var channelTitle=$(xmlDoc).find("channel").children("title").text();
+			
+			var html="<h2>"+channelTitle+"</h2>";
+			html+="<ul>";
+			$(xmlDoc).find("item").each(function() {
+				var title=$(this).find("title").text();//뉴스제목
+				var link=$(this).find("link").text();//뉴스링크
+				var date;//작성날짜
+				if($(this).find("pubDate").length!=0) {
+					date=$(this).find("pubDate").text();
+				} else {
+					date=$(this).find("dc\\:date").text();
+				}
+				html+="<li><a href='"+link+"' target='+blank'>"+title+"["+date+"]</a></li>";
+			});
+			html+="</ul>";
+			
+			$("#display").html(html);
+		},
+		error: function(xhr) {
+			alert("에러코드 = "+xhr.status);
+		}
+	});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
