@@ -37,7 +37,8 @@
 			//Method.getResponseBodyAsString() : 요청에 대한 실행결과가 저장된 리퀘스트 메세지
 			//몸체부의 결과값을 문자열로 변환하여 반환하는 메소드
 			// => 결과값을 원하는 문자형태(캐릭터셋)으로 변환하여 저장
-			String result=new String(method.getResponseBodyAsString().getBytes("8859_1"), "utf-8");
+			//String result=new String(method.getResponseBodyAsString().getBytes("8859_1"), "utf-8");
+			String result=method.getResponseBodyAsString();
 			
 			//클라이언트(AJAX 엔진)에게 응답결과에 대한 문서형태(MimeType)를 전달하여 응답 처리
 			response.setContentType("text/xml;charset=utf-8");
