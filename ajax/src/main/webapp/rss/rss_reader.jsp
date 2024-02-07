@@ -19,8 +19,15 @@
 	<script type="text/javascript">
 	$.ajax({
 		type: "get",
+		//문제점)형재 실행중인 웹프로그램과 동일한 서버의 웹프로그램은 AJAX 엔진을 사용하여 
+		//요청해 응답받아 처리 가능하지만 다른 서버의 웹프로그램은 AJAX 엔진을 사용하여
+		//요청할 경우 에러(에러코드 : 0) 발생
+		//url: "https://www.yonhapnewstv.co.kr/category/news/culture/feed/",
 		
-		url: "https://www.yonhapnewstv.co.kr/category/news/culture/feed/",
+		//해결법)프록시 기능을 제공하는 웹프로그램을 사용하여 다른 서버의 웹프로그램을 요청해
+		//실행결과를 응답받아 처리 - AJAX 엔진을 사용하여 프록시 기능을 제공하는 웹프로그램 요청
+		url: "<%=request.getContextPath()%>/rss/rss_proxy.jsp",
+		
 		dataType: "xml",
 		success: function(xmlDoc) {
 			var channelTitle=$(xmlDoc).find("channel").children("title").text();
