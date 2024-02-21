@@ -82,9 +82,9 @@ public class ControllerServlet extends HttpServlet {
 		} else if(command.equals("/remove.do")) {
 			//action=new RemoveModel();
 		} else if(command.equals("/error.do")) {
-			//action=new ErrorModel();
+			action=new ErrorModel();
 		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
-			//action=new ErrorModel();
+			action=new ErrorModel();
 		}
 		
 		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 처리 
