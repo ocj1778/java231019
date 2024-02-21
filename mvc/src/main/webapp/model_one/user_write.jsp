@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 [user_write_action.jsp] 문서를 요청하여 페이지 이동 - 입력값(회원정보) 전달 --%>
+<%-- => [로그인] 태그를 클릭한 경우 [user_login.jsp] 문서를 요청하여 페이지 이동 --%>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>MVC</title>
