@@ -2,11 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 비로그인 사용자인 경우 - 사용자로부터 인증정보를 입력받기 위한 JSP 문서 --%>
-<%-- => [로그인] 태그를 클릭한 경우 [user_login_action.jsp] 문서를 요청하여 페이지 이동 - 입력값(인증정보) 전달 --%>
+<%-- => [로그인] 태그를 클릭한 경우 [/login.do] 페이지를 요청하여 페이지 이동 - 입력값(인증정보) 전달 --%>
 <%-- 로그인 사용자인 경우 - 환영메세지를 응답하기 위한 JSP 문서 --%>
-<%-- => [회원목록] 태그를 클릭한 경우 [user_list.jsp] 문서를 요청하여 페이지 이동 --%>
-<%-- => [로그아웃] 태그를 클릭한 경우 [user_logout_action.jsp] 문서를 요청하여 페이지 이동 --%>
-<%-- => [회원등록] 태그를 클릭한 경우 [user_write.jsp] 문서를 요청하여 페이지 이동 - 관리자에게만 태그 제공 --%>
+<%-- => [회원목록] 태그를 클릭한 경우 [/list.do] 문서를 요청하여 페이지 이동 --%>
+<%-- => [로그아웃] 태그를 클릭한 경우 [/logout.do] 문서를 요청하여 페이지 이동 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 [/writeform.do] 문서를 요청하여 페이지 이동 - 관리자에게만 태그 제공 --%>
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
@@ -30,7 +30,7 @@
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="css/user.css" type="text/css">
+<link rel=stylesheet href="<%=request.getContextPath()%>/model_two/css/user.css" type="text/css">
 <script language="JavaScript">
 function userLogin() {
 	if ( f.userid.value == "" ) {
@@ -44,7 +44,7 @@ function userLogin() {
 		return;
 	}	
 	
-	f.action = "user_login_action.jsp";
+	f.action = "<%=request.getContextPath()%>/login.do";
 	f.submit();
 }
 </script>
@@ -109,10 +109,10 @@ function userLogin() {
 		  <table width=590 border=0 cellpadding=0 cellspacing=0>
 			  <tr>
 				<td align=center>
-					<button type="button" onclick="location.href='user_list.jsp';">회원목록</button>
-					<button type="button" onclick="location.href='user_logout_action.jsp';">로그아웃</button>
+					<button type="button" onclick="location.href='<%=request.getContextPath()%>/list.do';">회원목록</button>
+					<button type="button" onclick="location.href='<%=request.getContextPath()%>/logout.do';">로그아웃</button>
 					<% if(loginUserinfo.getStatus()==9) { %>
-						<button type="button" onclick="location.href='user_write.jsp';">회원등록</button>
+						<button type="button" onclick="location.href='<%=request.getContextPath()%>/writeform.do';">회원등록</button>
 					<% } %>
 				</td>
 			  </tr>
