@@ -63,7 +63,7 @@ public class ControllerServlet extends HttpServlet {
 		//클라이언트의 요청정보를 비교하여 요청을 처리하기 위한 모델 역활의 클래스로 객체를
 		//생성하여 인터페이스 참조변수에 저장
 		if(command.equals("/loginform.do")) {
-			//action=new LoginFormModel();
+			action=new LoginFormModel();
 		} else if(command.equals("/login.do")) {
 			//action=new LoginModel();
 		} else if(command.equals("/logout.do")) {
