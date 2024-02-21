@@ -53,21 +53,53 @@ public class ControllerServlet extends HttpServlet {
 		// => [/modifyform.do] - ModifyFormModel 클래스 
 		// => [/modify.do]     - ModifyModel 클래스 
 		// => [/remove.do]     - RemoveModel 클래스 
-		// => [/error.do]      - ErrorModel 클래스 
+		// => [/error.do]      - ErrorModel 클래스
+		
+		//모델 역활의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
+		// => 인터페이스로 생성된 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)의
+		//객체 저장 가능
+		Action action=null;
+		
+		//클라이언트의 요청정보를 비교하여 요청을 처리하기 위한 모델 역활의 클래스로 객체를
+		//생성하여 인터페이스 참조변수에 저장
+		if(command.equals("/loginform.do")) {
+			//action=new LoginFormModel();
+		} else if(command.equals("/login.do")) {
+			//action=new LoginModel();
+		} else if(command.equals("/logout.do")) {
+			//action=new LogoutModel();
+		} else if(command.equals("/writeform.do")) {
+			//action=new WriteFormModel();
+		} else if(command.equals("/write.do")) {
+			//action=new WriteModel();
+		} else if(command.equals("/list.do")) {
+			//action=new ListModel();
+		} else if(command.equals("/view.do")) {
+			//action=new ViewModel();
+		} else if(command.equals("/modifyform.do")) {
+			//action=new ModifyFormModel();
+		} else if(command.equals("/modify.do")) {
+			//action=new ModifyModel();
+		} else if(command.equals("/remove.do")) {
+			//action=new RemoveModel();
+		} else if(command.equals("/error.do")) {
+			//action=new ErrorModel();
+		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
+			//action=new ErrorModel();
+		}
+		
+		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 처리 
+		//메소드를 호출하여 요청을 처리하고 뷰 관련 정보(ActionForward 객체)를 반환받아 저장
+		// => 메소드 오버라이드에 의한 다형성
+		ActionForward actionForward=action.execute(request, response);
+		
+		//4.뷰 관련 정보가 저장된 ActionForward 객체를 이용하여 응답 처리
+		if(actionForward.isForward()) {//ActionForward 객체의 forward 필드값이 [true]인 경우
+			//JSP 문서로 포워드 이동하여 JSP 문서의 실행결과(HTML)로 클라이언트에게 응답 처리
+			request.getRequestDispatcher(actionForward.getPath()).forward(request, response);
+		} else {//ActionForward 객체의 forward 필드값이 [false]인 경우
+			//서블릿(컨트롤러)에서 URL 주소(/XXX.do)로 클라이언트에게 응답 처리
+			response.sendRedirect(actionForward.getPath());
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
