@@ -5,14 +5,12 @@
 <%-- => [회원등록] 태그를 클릭한 경우 [/write.do] 주소를 요청하여 페이지 이동 - 입력값(회원정보) 전달 --%>
 <%-- => [로그인] 태그를 클릭한 경우 [/loginform.do] 주소를 요청하여 페이지 이동 --%>
 <%
-	String message=(String)session.getAttribute("message");
+	String message=(String)request.getAttribute("message");
 	if(message==null) {
 		message="";
-	} else {
-		session.removeAttribute("message");
 	}
 	
-	UserinfoDTO userinfo=(UserinfoDTO)session.getAttribute("userinfo");
+	UserinfoDTO userinfo=(UserinfoDTO)request.getAttribute("userinfo");
 	if(userinfo==null) {
 		userinfo=new UserinfoDTO();
 		userinfo.setUserid("");
@@ -20,8 +18,6 @@
 		userinfo.setName("");
 		userinfo.setEmail("");
 		userinfo.setStatus(1);
-	} else {
-		session.removeAttribute("userinfo");
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
