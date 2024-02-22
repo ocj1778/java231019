@@ -21,7 +21,7 @@ public class LoginModel implements Action {
 		ActionForward actionForward=new ActionForward();
 		try {
 			if(request.getMethod().equals("GET")) {//비정상적인 요청인 경우
-				throw new Exception();//인위적 예외 발생
+				throw new Exception("비정상적인 요청 - GET 방식 요청");//인위적 예외 발생
 			}
 			
 			//서블릿(컨트롤러) 요청시 전달된 값을 반환받아 저장
@@ -38,7 +38,7 @@ public class LoginModel implements Action {
 			
 			//HttpServletRequest.getSession() : 바인딩 처리된 HttpSession 객체를 반환하는 메소드
 			HttpSession session=request.getSession();
-			//Session Scope : 같은 세션이 바인된 모든 웹프로그램에서 속성값을 객체로 반환받아 사용 가능
+			//Session Scope : 같은 세션이 바인딩된 모든 웹프로그램에서 속성값을 객체로 반환받아 사용 가능
 			// => 브라우저가 종료되면 클라이언트의 정보로 바인딩된 세션을 자동으로 삭제 처리 
 			session.setAttribute("loginUserinfo", UserinfoService.getService().getUserinfo(userid));
 			
