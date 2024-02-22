@@ -10,18 +10,14 @@
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
-	String message=(String)session.getAttribute("message");
+	String message=(String)request.getAttribute("message");
 	if(message==null) {
 		message="";
-	} else {
-		session.removeAttribute("message");
 	}
 	
-	String userid=(String)session.getAttribute("userid");
+	String userid=(String)request.getAttribute("userid");
 	if(userid==null) {
 		userid="";
-	} else {
-		session.removeAttribute("userid");
 	}
 %>
     
