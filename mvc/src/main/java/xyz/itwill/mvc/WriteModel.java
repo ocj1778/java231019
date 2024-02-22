@@ -11,7 +11,7 @@ import xyz.itwill.exception.ExistsUserinfoException;
 import xyz.itwill.service.UserinfoService;
 
 //클라이언트가 [/write.do]로 요청한 경우 객체로 생성될 모델 역활의 클래스
-// => 회원정보를 전달받아 USEINFO 테이블의 행으로 삽입하고 [/loginform.do] 주소로 리다이렉트
+// => 회원정보를 전달받아 USERINFO 테이블의 행으로 삽입하고 [/loginform.do] 주소로 리다이렉트
 //이동하기 위해 정보가 저장된 ActionForward 객체 반환
 public class WriteModel implements Action {
 
@@ -40,7 +40,7 @@ public class WriteModel implements Action {
 			userinfo.setEmail(email);
 			userinfo.setStatus(status);
 			
-			//UserinfoService 클래스의 addUserinfo() 메소드를 호출하여 회원등록 처리
+			//UserinfoService 클래스의 addUserinfo() 메소드를 호출하여 회원정보 등록 처리
 			// => 전달받은 회원정보의 아이디가 USEINFO 테이블에 저장된 행의 아이디와 중복될
 			//경우 ExistsUserinfoException 발생
 			UserinfoService.getService().addUserinfo(userinfo);
