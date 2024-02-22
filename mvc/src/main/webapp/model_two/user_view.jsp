@@ -1,5 +1,4 @@
-﻿<%@page import="xyz.itwill.dao.UserinfoModelOneDAO"%>
-<%@page import="xyz.itwill.dto.UserinfoDTO"%>
+﻿<%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- request 객체의 속성값(회원정보)를 객체로 제공받아 응답하는 JSP 문서 --%>
