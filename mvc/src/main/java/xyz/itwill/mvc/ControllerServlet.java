@@ -73,7 +73,7 @@ public class ControllerServlet extends HttpServlet {
 		} else if(command.equals("/list.do")) {
 			action=new ListModel();
 		} else if(command.equals("/view.do")) {
-			//action=new ViewModel();
+			action=new ViewModel();
 		} else if(command.equals("/modifyform.do")) {
 			//action=new ModifyFormModel();
 		} else if(command.equals("/modify.do")) {
