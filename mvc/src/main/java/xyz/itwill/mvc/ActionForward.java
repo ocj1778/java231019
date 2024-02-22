@@ -2,6 +2,7 @@ package xyz.itwill.mvc;
 
 //뷰(View) 관련 정보를 저장하기 위한 클래스
 public class ActionForward {
+	//페이지 이동 방식 정보를 저장하기 위한 필드
 	// => false : 리다이렉트 이동, true : 포워드 이동
 	//리다이렉트 이동 : 클라이언트에게 URL 주소(/XXX.do)를 전달하여 재요청해 응답되도록 처리
 	// => 클라이언트 브라우저의 요청 URL 주소 변경

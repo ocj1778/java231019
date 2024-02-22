@@ -2,8 +2,8 @@
 <%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 아이디를 전달받아 USERINFO 테이블에 저장된 행을 검색하여 회원정보를 입력태그의 입력값으로
-출력하고 사용자로부터 변경값을 입력받기 위한 JSP 문서 --%>
+<%-- 아이디를 전달받아 USERINFO 테이블에 저장된 행을 검색하여 제공된 회원정보를 입력태그의 
+입력값으로 출력하고 사용자로부터 변경값을 입력받기 위한 JSP 문서 --%>
 <%-- => 관리자만 요청 가능한 JSP 문서 --%>
 <%-- => [수정] 태그를 클릭한 경우 [user_modify_action.jsp] 문서를 요청하여 페이지 이동 - 입력값(회원정보) 전달 --%>    
 <%-- => [목록] 태그를 클릭한 경우 [user_list.jsp] 문서를 요청하여 페이지 이동 --%>

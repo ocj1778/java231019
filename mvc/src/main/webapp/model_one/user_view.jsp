@@ -2,7 +2,7 @@
 <%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 아이디를 전달받아 USERINFO 테이블에 저장된 행을 검색하여 회원정보를 응답하는 JSP 문서 --%>
+<%-- 아이디를 전달받아 USERINFO 테이블에 저장된 행을 검색하여 회원정보를 제공받아 응답하는 JSP 문서 --%>
 <%-- => 로그인 상태의 사용자만 요청 가능한 JSP 문서 --%>
 <%-- => [수정] 태그를 클릭한 경우 [user_modify.jsp] 문서를 요청하여 페이지 이동 - 아이디 전달 --%>    
 <%-- => [삭제] 태그를 클릭한 경우 [user_remove_action.jsp] 문서를 요청하여 페이지 이동 - 아이디 전달 --%>    
