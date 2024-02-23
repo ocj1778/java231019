@@ -5,7 +5,12 @@
 	<!-- servlet : 클래스를 서블릿로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<servlet-name>controller</servlet-name>
-		<servlet-class>xyz.itwill.mvc.ControllerServlet</servlet-class>	
+		<servlet-class>xyz.itwill.mvc.ControllerServlet</servlet-class>
+		<!-- load-on-startup : 클라이언트 요청 없이 서블릿 클래스를 객체로 생성하기 위한 엘리먼트 -->
+		<!-- => WAS 프로그램이 실행될 때 서블릿 클래스를 객체로 미리 생성 -->
+		<!-- => 서블릿 객체가 생성된 후 자동으로 init() 메소드를 자동 호출하여 초기화 처리 -->
+		<!-- => 엘리먼트의 값은 0 이상의 정수값으로 설정하며 정수값이 작을수록 먼저 객체로 생성 -->
+		<load-on-startup>1</load-on-startup>	
 	</servlet>
 	
 	<!-- servlet-mapping : 서블릿에 URL 패턴을 등록하기 위한 엘리먼트 -->

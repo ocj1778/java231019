@@ -1,7 +1,10 @@
 package xyz.itwill.mvc;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +25,38 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//다수의 엔트리(Entry)를 저장할 수 있는 Map 객체를 저장하기 위한 필드
+	// => 하나의 엔트리는 요청정보(Key - String)와 모델객체(Value - Action)를 사용하여 생성
+	private Map<String, Action> actionMap=new HashMap<String, Action>();
+	
+	//서블릿 클래스가 객체로 생성된 후 가장 먼저 한번만 호출하는 메소드 - 초기화 작업
+	// => 클라이언트가 서블릿을 최초로 요청한 경우 서블릿 클래스를 객체로 한번만 생성
+	// => [web.xml] 파일에서 servlet 엘리먼트의 하위 엘리먼트(load-on-startup)를 설정하면  
+	//WAS 프로그램이 실행될 때 서블릿 클래스를 객체로 미리 생성 가능
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		//System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
+		
+		//Map 객체에 엔트리 추가
+		// => 모델 객체를 하나만 생성하여 제공 - 메모리 효율 증가
+		actionMap.put("/loginform.do", new LoginFormModel());
+		actionMap.put("/login.do", new LoginModel());
+		actionMap.put("/logout.do", new LogoutModel());
+		actionMap.put("/writeform.do", new WriteFormModel());
+		actionMap.put("/write.do", new WriteModel());
+		actionMap.put("/list.do", new ListModel());
+		actionMap.put("/view.do", new ViewModel());
+		actionMap.put("/modifyform.do", new ModifyFormModel());
+		actionMap.put("/modify.do", new ModifyModel());
+		actionMap.put("/rmeove.do", new RemoveModel());
+		actionMap.put("/error.do", new ErrorModel());
+	}
+	
+	//클라이언트가 서블릿을 요청할 때마다 자동 호출되는 메소드
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("ControllerServlet 클래스의 service() 메소드 호출");
+
 		//2.클라이언트의 요청 분석 : 요청 URL 주소 이용 - http://localhost:8000/mvc/XXX.do
 		//HttpServletRequest.getRequestURI() : 요청 URL 주소에서 URI 주소를 반환하는 메소드
 		String requestURI=request.getRequestURI();
@@ -54,6 +87,7 @@ public class ControllerServlet extends HttpServlet {
 		// => [/remove.do]     - RemoveModel 클래스 
 		// => [/error.do]      - ErrorModel 클래스
 		
+		/*
 		//모델 역활의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
 		// => 참조변수에는 인터페이스를 상속받은 모든 자식클래스(모델)의 객체 저장 가능
 		Action action=null;
@@ -89,6 +123,17 @@ public class ControllerServlet extends HttpServlet {
 		//인터페이스 참조변수로 추상메소드를 호출하면 묵시적 객체 형변환에 의해 참조변수에  
 		//저장된 모델 객체의 오버라이드 선언된 요청 처리 메소드를 호출하여 요청을 처리하고 
 		//뷰 관련 정보(ActionForward 객체)를 반환받아 저장 - 메소드 오버라이드에 의한 다형성
+		ActionForward actionForward=action.execute(request, response);
+		*/
+		
+		//Map 객체에 저장된 엔트리에서 요청정보(Key)를 이용하여 모델객체(Value)를 반환받아 저장
+		// => 가독성 증가
+		Action action=actionMap.get(command);
+		if(action==null) {
+			action=new ErrorModel();
+		}
+		//모델 객체로 요청 처리 메소드를 호출하여 클라이언트의 요청을 처리하고 뷰 관련 정보를 
+		//반환받아 저장
 		ActionForward actionForward=action.execute(request, response);
 		
 		//4.뷰 관련 정보가 저장된 ActionForward 객체를 이용하여 응답 처리
