@@ -1,8 +1,10 @@
 package xyz.itwill.mvc;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -37,6 +39,7 @@ public class ControllerServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		//System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
 		
+		/*
 		//Map 객체에 엔트리 추가
 		// => 모델 객체를 하나만 생성하여 제공 - 메모리 효율 증가
 		actionMap.put("/loginform.do", new LoginFormModel());
@@ -50,6 +53,57 @@ public class ControllerServlet extends HttpServlet {
 		actionMap.put("/modify.do", new ModifyModel());
 		actionMap.put("/rmeove.do", new RemoveModel());
 		actionMap.put("/error.do", new ErrorModel());
+		*/
+		
+		//Properties 파일에 요청정보와 모델 클래스를 저장하고 Properties 파일을 읽어 Map 객체의
+		//엔트리로 추가 - 유지보수의 효율성 증가
+		// => 컨트롤러를 변경하지 않고 Properties 파일만 변경하여 요청정보에 대한 모델 객체 관리 가능
+		Properties properties=new Properties();
+		
+		//Properties 파일의 파일 시스템 경로를 반환받아 저장
+		//String configFilePath=config.getServletContext().getRealPath("/WEB-INF/model.properties");
+		//ServletConfig.getInitParameter(String parameterName) : [web.xml] 파일의 init-param
+		//엘리먼트로 제공된 값을 반환하는 메소드
+		String configFilePath=config.getServletContext().getRealPath(config.getInitParameter("configFilePath"));
+		//System.out.println("configFilePath = "+configFilePath);
+		
+		try {
+			//Properties 파일에 저장된 이름과 값을 읽기 위한 파일 입력스트림 생성
+			FileInputStream in=new FileInputStream(configFilePath);
+			
+			//Properties 파일에 저장된 이름과 값을 엔트리로 생성하여 Properties 객체에 추가
+			properties.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//Properties 객체에 저장된 모든 엔트리의 이름(Key)이 저장된 Set 객체를 반환받아
+		//반복문을 사용하여 일괄 처리
+		for(Object key : properties.keySet()) {
+			//Properties 객체에 저장된 엔트리의 이름(Key)을 반환받아 저장 - 요청정보(Command)
+			String command=(String)key;
+			
+			//Properties 객체에 저장된 엔트리의 값(Value)을 반환받아 저장 - 모델 클래스(Model Class)
+			String actionClass=(String)properties.get(key);
+			
+			try {
+				//모델 클래스로 모델 객체를 생성하여 엔트리로 만들어 Map 객체에 추가
+				//리플렉션(Reflection) : 프로그램의 명령 실행시 Class 객체(Clazz)로 객체를
+				//생성하여 객체의 필드 또는 메소드에 접근하여 사용할 수 있도록 제공하는 기능
+				//Class.forName(String className) : 매개변수로 전달받은 문자열로 표현된 클래스를
+				//읽어 메모리에 저장하여 Class 객체(Clazz)를 반환하는 메소드
+				//Class.getDeclaredConstructor() : Class 객체의 생성자가 저장된 Constructor
+				//객체를 반환하는 메소드
+				//Constructor.newInstance() : Constructor 객체에 저장된 생성자를 이용하여
+				//Object 타입의 객체를 반환하는 메소드
+				Action actionObject=(Action)Class.forName(actionClass).getDeclaredConstructor().newInstance();
+				
+				//Map 객체에 엔트리(Key : 요청정보, Value : 모델 객체) 추가
+				actionMap.put(command, actionObject);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	//클라이언트가 서블릿을 요청할 때마다 자동 호출되는 메소드
