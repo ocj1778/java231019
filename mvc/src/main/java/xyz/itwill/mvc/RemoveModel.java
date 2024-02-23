@@ -12,7 +12,7 @@ import xyz.itwill.service.UserinfoService;
 
 //클라이언트가 [/remove.do]로 요청한 경우 객체로 생성될 모델 역활의 클래스
 // => 아이디를 전달받아 USERINFO 테이블에 저장된 행을 삭제하고 [/list.do] 주소로 리다이렉트
-//이동하기 위해 정보가 저장된 ActionForward 객체 반환
+//이동하기 위한 정보가 저장된 ActionForward 객체 반환
 // => 관리자가 자식의 회원정보를 삭제한 경우 [/logout.do] 주소로 리다이렉트 이동하기 위해 
 //정보가 저장된 ActionForward 객체 반환
 // => 관리자만 요청 가능하도록 권한 설정

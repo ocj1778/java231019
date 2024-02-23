@@ -11,7 +11,7 @@ import xyz.itwill.service.UserinfoService;
 
 //클라이언트가 [/modify.do]로 요청한 경우 객체로 생성될 모델 역활의 클래스
 // => 회원정보를 전달받아 USERINFO 테이블의에 저장된 행을 변경하고 [/view.do] 주소로 리다이렉트
-//이동하기 위해 정보가 저장된 ActionForward 객체 반환 - 아이디 전달
+//이동하기 위한 정보가 저장된 ActionForward 객체 반환 - 아이디 전달
 public class ModifyModel implements Action {
 
 	@Override
