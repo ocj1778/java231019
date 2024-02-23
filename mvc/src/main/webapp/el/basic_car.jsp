@@ -45,5 +45,8 @@
 	<%-- => [] 연산자에는 문자값으로 필드명을 명시하여 Getter 메소드로 필드값을 제공받아 출력 처리 --%> 
 	<p>자동차(모델명) = ${car["modelName"]}</p>
 	<p>자동차(색상) = ${car["carColor"]}</p>
+	<hr>
+	<%-- EL 표현식의 속성명으로 제공되는 속성값이 없는 경우 EL 미실행 - NullPointerException 미발생 --%>
+	<p>자동차(모델명) = ${pageCar.modelName}</p>
 </body>
 </html>
