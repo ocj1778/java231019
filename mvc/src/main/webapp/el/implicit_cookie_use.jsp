@@ -24,5 +24,13 @@
 		}
 	%>
 	<p>쿠키에 저장된 이름 = <%=userName %></p>
+	<hr>
+	<h2>EL 사용</h2>
+	<%-- EL 표현식에서 cookie 내장객체를 사용하여 클라이언트에서 보내온 쿠키값을 제공받아 
+	출력 처리 가능 --%>
+	<%-- => cookie 내장객체는 Map 객체로 맵키 대신 쿠키명을 사용하여 Cookie	객체를 제공받아 
+	value 이름으로 쿠키값 출력 처리 --%>
+	<%-- <p>쿠키에 저장된 사용자 이름 = ${cookie.userName } --%>	
+	<p>쿠키에 저장된 사용자 이름 = ${cookie.userName.value }	
 </body>
 </html>
