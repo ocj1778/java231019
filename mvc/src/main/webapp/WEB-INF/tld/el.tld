@@ -16,7 +16,7 @@
 		<!-- name : EL 함수의 이름을 설정하기 위한 엘리먼트 -->
 		<name>hello</name>
 		<!-- function-class : EL 함수 사용시 호출될 메소드가 작성된 클래스를 설정하기 위한 엘리먼트 -->
-		<function-class>xyz.itwill.el.HelloEl</function-class>
+		<function-class>xyz.itwill.el.HelloEL</function-class>
 		<!-- function-signature : EL 함수 사용시 호출될 메소드 머릿부를 설정하기 위한 엘리먼트 -->
 		<function-signature>java.lang.String hello(java.lang.String)</function-signature>
 	</function>
