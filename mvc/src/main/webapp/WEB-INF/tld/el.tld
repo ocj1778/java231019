@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TLD(Tag Library Description) 파일 : EL 함수 또는 커스텀 태그를 등록하기 위한 XML 파일 -->
+<!-- => XML 스키마 파일(web-jsptaglibrary_2_0.xsd)에서 제공되는 엘리먼트만 사용하여 작성 -->
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd ">
+	<!-- description : TLD 파일에 대한 설명을 제공하는 엘리먼트 -->
+	<description></description>
+	<!-- tlib-version : TLD 파일의 버전을 등록하기 위한 엘리먼트 -->
+	<tlib-version>0.0</tlib-version>
+	<!-- short-name : TLD 파일의 이름을 등록하기 위한 엘리먼트 -->
+	<short-name>elfun</short-name>
+	<!-- uri : JSP 문서에서 TLD 파일을 불러오기 위해 사용하는 식별자를 등록하기 위한 엘리먼트 -->
+	<uri>http://www.itwill.xyz/mvc/el</uri>
+	
+	<!-- function : EL 함수를 등록하기 위한 엘리먼트 -->
+	<function>
+		<!-- name : EL 함수의 이름을 설정하기 위한 엘리먼트 -->
+		<name>hello</name>
+		<!-- function-class : EL 함수 사용시 호출될 메소드가 작성된 클래스를 설정하기 위한 엘리먼트 -->
+		<function-class>xyz.itwill.el.HelloEl</function-class>
+		<!-- function-signature : EL 함수 사용시 호출될 메소드 머릿부를 설정하기 위한 엘리먼트 -->
+		<function-signature>java.lang.String hello(java.lang.String)</function-signature>
+	</function>
+</taglib>
