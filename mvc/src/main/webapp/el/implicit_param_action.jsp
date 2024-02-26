@@ -30,9 +30,10 @@
 		<li>좋아하는 음식-2 = <%=request.getParameterValues("food")[1] %></li>
 	</ul>
 	<hr>
+	<h2>EL 사용</h2>
 	<%-- EL 표현식에서 param 내장객체 또는 paramValues 내장객체를 사용하면 전달값을 제공받아
 	출력 처리 가능 --%>
-	<%-- =>  param 내장객체 또는 paramValues 내장객체는 Map 객체로 맵키 대신 전달값을 구분하는
+	<%-- => param 내장객체 또는 paramValues 내장객체는 Map 객체로 맵키 대신 전달값을 구분하는
 	이름을 사용하여 전달값을 제공받아 출력 처리 --%>
 	<ul>
 		<li>이름 = ${param.name }</li>
