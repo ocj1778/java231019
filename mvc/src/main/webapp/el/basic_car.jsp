@@ -22,6 +22,8 @@
 		//속성명에 대한 속성값이 없는 경우 [null]이 반환되어 참조변수에 저장
 		//Car car=(Car)pageContext.getAttribute("pageCar");
 	%>	
+	<%-- 참조변수를 출력할 경우 Object 클래스의 toString() 메소드가 자동 호출되어 객체의 메모리
+	주소(HashCode)를 문자열로 반환받아 출력 처리 --%>
 	<p>자동차 = <%=car %></p>
 	<%-- 객체의 Getter 메소드를 사용하여 객체 필드값을 반환받아 JSP 표현식으로 출력 처리 --%>
 	<%-- => [null]이 저장된 참조변수로 메소드를 호출한 경우 NullPointerException 발생 --%>

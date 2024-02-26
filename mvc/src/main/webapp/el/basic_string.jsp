@@ -15,8 +15,10 @@
 <body>
 	<h1>EL(Expression Language)</h1>
 	<hr>
-	<p>스코프(Scope)의 속성값으로 저장된 객체를 제공받아 출력 처리하기 위한 언어</p>
-	<p>스코프 : 객체를 속성값으로 저장할 수 있는 JSP 내장객체 - pageContext, request, session, application</p>
+	<p>스코프의 속성값으로 저장된 객체를 제공받아 출력 처리하기 위한 언어</p>
+	<p>스코프(Scope) : 객체를 속성값으로 저장하여 사용할 수 있는 범위 - JSP 내장객체에 따라 
+	속성값의 사용범위가 다르게 설정 : pageContext(PageScope), request(RequestScope)
+	, session(SessionScope), application(ApplicationScope)</p>
 	<hr>
 	<h2>EL 미사용</h2>
 	<% 
@@ -40,7 +42,7 @@
 	<%-- ${속성명} : EL 표현식으로 스코프의 속성명을 사용하여 속성값을 제공받아 출력 처리 --%>
 	<%-- => getAttribute() 메소드를 사용하지 않아도 스코프 속성값을 제공받아 출력 처리 가능 --%>
 	<p>이름(name) = ${name}</p>
-	<%-- EL 표현식으로 제공받은 값이 없는 경우 EL 미실행되어 어떠한 값도 출력되지 않도록 설정 --%>
+	<%-- EL 표현식으로 제공받은 객체가 없는 경우 EL 미실행되어 어떠한 값도 출력되지 않도록 설정 --%>
 	<p>이름(pageName) = ${pageName}</p>
 </body>
 </html>

@@ -77,8 +77,8 @@ public class ControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//Properties 객체에 저장된 모든 엔트리의 이름(Key)이 저장된 Set 객체를 반환받아
-		//반복문을 사용하여 일괄 처리
+		//Properties 객체(Map 객체)에 저장된 모든 엔트리의 이름(Key)이 저장된 Set 객체를 
+		//반환받아 반복문을 사용하여 일괄 처리
 		for(Object key : properties.keySet()) {
 			//Properties 객체에 저장된 엔트리의 이름(Key)을 반환받아 저장 - 요청정보(Command)
 			String command=(String)key;
@@ -91,11 +91,11 @@ public class ControllerServlet extends HttpServlet {
 				//리플렉션(Reflection) : 프로그램의 명령 실행시 Class 객체(Clazz)로 객체를
 				//생성하여 객체의 필드 또는 메소드에 접근하여 사용할 수 있도록 제공하는 기능
 				//Class.forName(String className) : 매개변수로 전달받은 문자열로 표현된 클래스를
-				//읽어 메모리에 저장하여 Class 객체(Clazz)를 반환하는 메소드
+				//읽어 메모리에 저장하여 Class 객체(Clazz)를 반환하는 정적 메소드
 				//Class.getDeclaredConstructor() : Class 객체의 생성자가 저장된 Constructor
-				//객체를 반환하는 메소드
+				//객체를 생성하여 반환하는 메소드
 				//Constructor.newInstance() : Constructor 객체에 저장된 생성자를 이용하여
-				//Object 타입의 객체를 반환하는 메소드
+				//Object 타입의 객체를 생성하여 반환하는 메소드
 				Action actionObject=(Action)Class.forName(actionClass).getDeclaredConstructor().newInstance();
 				
 				//Map 객체에 엔트리(Key : 요청정보, Value : 모델 객체) 추가
@@ -184,7 +184,7 @@ public class ControllerServlet extends HttpServlet {
 		// => 가독성 증가
 		Action action=actionMap.get(command);
 		if(action==null) {
-			action=new ErrorModel();
+			action=actionMap.get("/error.do");
 		}
 		//모델 객체로 요청 처리 메소드를 호출하여 클라이언트의 요청을 처리하고 뷰 관련 정보를 
 		//반환받아 저장
