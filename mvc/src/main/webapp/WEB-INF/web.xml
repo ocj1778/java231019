@@ -2,6 +2,12 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
 	<display-name>mvc</display-name>
 	
+	<!-- context-param : 모든 웹프로그램에게 값을 제공하기 위한 엘리먼트 -->
+	<context-param>
+		<param-name>name</param-name>
+		<param-value>홍길동</param-value>
+	</context-param>
+	
 	<!-- servlet : 클래스를 서블릿로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<servlet-name>controller</servlet-name>
