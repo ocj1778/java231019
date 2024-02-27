@@ -6,7 +6,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 //태그 속성이 있으며 태그 내용이 없는 커스텀 태그를 생성하기 위한 클래스
-public class HelloMessageTag extends TagSupport {
+public class HelloAttributeTag extends TagSupport {
 	private static final long serialVersionUID = 1L;
 
 	//커스텀 태그의 속성값을 저장하기 위한 필드
@@ -14,7 +14,7 @@ public class HelloMessageTag extends TagSupport {
 	private String name;
 
 	//객체 생성시 초기작 작업 관련 명령 작성 - 필드 초기값 설정
-	public HelloMessageTag() {
+	public HelloAttributeTag() {
 		//커스텀 태그 사용시 태그속성을 생략한 경우 기본적으로 사용될 속성값을 필드에 저장하기 위해 작성
 		// => 커스텀 태그의 속성이 필수 속성인 경우 필드 초기값 설정 생략
 		//name="홍길동";

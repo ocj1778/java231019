@@ -18,7 +18,7 @@
 	
 	<tag>
 		<name>helloMessage</name>
-		<tag-class>xyz.itwill.custom.HelloMessageTag</tag-class>
+		<tag-class>xyz.itwill.custom.HelloAttributeTag</tag-class>
 		<body-content>empty</body-content>
 		<!-- attribute : 태그 속성을 등록하기 위한 엘리먼트 -->
 		<attribute>
