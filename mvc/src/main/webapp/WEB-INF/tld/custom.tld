@@ -15,4 +15,27 @@
 		<!-- => empty : 태그내용이 없는 커스텀 태그를 생성하기 위한 엘리먼트 값 -->
 		<body-content>empty</body-content>
 	</tag>
+	
+	<tag>
+		<name>helloMessage</name>
+		<tag-class>xyz.itwill.custom.HelloMessageTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- attribute : 태그 속성을 등록하기 위한 엘리먼트 -->
+		<attribute>
+			<!-- name : 태그 속성의 이름을 설정하기 위한 엘리먼트 -->
+			<!-- =>  태그 클래스의 필드명과 같은 이름으로 커스텀 태그의 속성명 설정 -->
+			<name>name</name>
+			<!-- required : 커스텀 태그의 속성에 필수 여부를 설정하기 위한 엘리먼트 -->
+			<!-- => false : 선택 속성(기본값), true : 필수 속성 -->
+			<required>true</required>
+		</attribute>
+	</tag>
 </taglib>
+
+
+
+
+
+
+
+

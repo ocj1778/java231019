@@ -9,7 +9,7 @@
 <title>MVC</title>
 </head>
 <body>
-	<h1>Custom Tag</h1>
+	<h1>Custom Tag - NoAttribute And NoBody</h1>
 	<hr>
 	<%-- 커스텀 태그(Custom Tag) : JSP 문서에서 사용하기 위해 개발자가 작성한 태그 --%>
 	<%-- => 태그 클래스 작성 >> TLD 파일에 태그 클래스를 커스텀 태그로 등록 >> JSP 문서에서 커스텀 태그 사용 --%>
