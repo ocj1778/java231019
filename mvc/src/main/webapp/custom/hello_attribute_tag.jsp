@@ -12,12 +12,12 @@
 	<hr>
 	<%-- 커스텀 태그의 속성을 생략한 경우 태그 클래스의 생성자에서 설정한 기본값을 태그의 속성값으로 사용 --%>
 	<%-- => 커스텀 태그의 속성이 필수 속성인 경우 속성과 속성값이 생략되면 에러 발생 --%>
-	<%-- <simple:helloMessage/> --%>
+	<%-- <simple:helloAttribute/> --%>
 
 	<%-- 커스텀 태그의 속성을 사용한 경우 경우 태그 클래스의 Setter 메소드를 자동 호출하여 
 	태그 속성값으로 태그 클래스의 필드값을 변경하여 사용 --%>
 	<%-- => 태그 클래스의 필드에 대한 Setter 메소드가 없는 경우 에러 발생 --%>
-	<simple:helloMessage name="홍길동"/>
-	<simple:helloMessage name="임꺽정"/>
+	<simple:helloAttribute name="홍길동"/>
+	<simple:helloAttribute name="임꺽정"/>
 </body>
 </html>
