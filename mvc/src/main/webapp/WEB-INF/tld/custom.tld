@@ -39,14 +39,9 @@
 		<attribute>
 			<name>test</name>
 			<required>true</required>
+			<!-- rtexprvalue : 커스텀 태그의 속성값으로 JSP 표현식 또는 EL 사용 여부를 설정하기 위한 엘리먼트 -->
+			<!-- => false : 사용 불가능(기본값), true : 사용 가능 -->
+			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 </taglib>
-
-
-
-
-
-
-
-
