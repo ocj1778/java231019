@@ -8,6 +8,24 @@
 		<param-value>홍길동</param-value>
 	</context-param>
 	
+	<!-- filter : 클래스를 필터로 등록하기 위한 엘리먼트 -->
+	<!-- => servlet 엘리먼트보다 먼저 실행되도록 작성 -->
+	<filter>
+		<filter-name>Encoding Filter</filter-name>
+		<filter-class>xyz.itwill.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<!-- filter-mapping : 필터가 동작될 URL 패턴을 등록하기 위한 엘리먼트 -->
+	<filter-mapping>
+		<filter-name>Encoding Filter</filter-name>
+		<!-- 클라이언트가 서버에 존재하는 모든 웹프로그램을 요청한 경우 필터가 동작되도록 URL 패턴 등록 처리 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- servlet : 클래스를 서블릿로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<servlet-name>controller</servlet-name>

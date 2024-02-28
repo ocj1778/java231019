@@ -27,7 +27,9 @@ public class EncodingFilter implements Filter {
 	// => 초기화 작업에 필요한 명령 작성
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		encoding="utf-8";
+		//FilterConfig.getInitParameter(String name) : [web.xml] 파일에서 init-param 엘리먼트로
+		//제공된 값을 얻어와 반환하는 메소드
+		encoding=filterConfig.getInitParameter("encoding");
 	}
 	
 	//필터가 동작될 때마다 자동 호출되는 메소드

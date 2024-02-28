@@ -25,7 +25,7 @@ public class WriteModel implements Action {
 				throw new Exception("비정상적인 요청 - GET 방식 요청");//인위적 예외 발생
 			}
 			
-			request.setCharacterEncoding("utf-8");
+			//request.setCharacterEncoding("utf-8");
 			
 			String userid=request.getParameter("userid");
 			String password=request.getParameter("password");
