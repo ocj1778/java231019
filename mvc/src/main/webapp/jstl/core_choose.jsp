@@ -36,6 +36,7 @@
 		</c:otherwise>
 	</c:choose>
 	<hr>
+	
 	<c:set var="num" value="10"/>
 	<c:choose>
 		<c:when test="${num % 2 != 0}">${num } = 홀수</c:when>

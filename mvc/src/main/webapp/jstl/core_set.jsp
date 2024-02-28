@@ -22,7 +22,6 @@
 	<%-- => page, request, session, application 중 하나를 속성값으로 설정 --%>
 	<%-- => scope 속성을 생략하면 [page] 속성값을 기본값으로 사용 --%>
 	<c:set var="su" value="10" scope="page"/>
-	<p>su = ${su }</p>
 	
 	<%-- set 태그의 value 속성 대신 태그내용을 사용하여 스코프 속성값으로 저장될 객체 설정 가능 --%>
 	<%-- 스코프 속성명이 같은 경우 스코프 속성값을 변경 처리 --%>

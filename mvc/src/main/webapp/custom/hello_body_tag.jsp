@@ -28,11 +28,3 @@
 	<simple:helloBody test="${result }">홍경래</simple:helloBody>
 </body>
 </html>
-
-
-
-
-
-
-
-
