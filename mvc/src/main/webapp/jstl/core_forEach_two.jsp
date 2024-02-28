@@ -44,13 +44,3 @@
 	</c:forEach>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
