@@ -60,9 +60,9 @@ function userRemove(userid) {
 	  <table width=590 border=0 cellpadding=0 cellspacing=0>
 		  <tr>
 			<td align=center>
-			<c:if test="${loginUserinfo.statue eq 9  }">
-				<input type="button" value="수정" onClick="location.href='<c:url value="/modifyform.do"/>?userid=${userindo.userid }';">
-				<input type="button" value="삭제" onClick="userRemove('${userindo.userid }');">
+			<c:if test="${loginUserinfo.status eq 9  }">
+				<input type="button" value="수정" onClick="location.href='<c:url value="/modifyform.do"/>?userid=${userinfo.userid }';">
+				<input type="button" value="삭제" onClick="userRemove('${userinfo.userid }');">
 			</c:if>	
 			<input type="button" value="목록" onClick="location.href='<c:url value="/list.do"/>';"> 
 			</td>
