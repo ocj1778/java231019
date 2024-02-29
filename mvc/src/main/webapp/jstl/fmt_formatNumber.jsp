@@ -44,7 +44,6 @@
 	<p>원주율 = <fmt:formatNumber value="${pi }" pattern="#.##"/></p>
 	<p>원주율 = <fmt:formatNumber value="${pi }" pattern="#.###"/></p>
 	
-	
 	<c:set var="avg" value="70.5"/>
 	<%-- [#] 패턴문자를 사용하면 소숫점 자릿수의 값이 없으면 미출력 처리 --%>
 	<p>평균 = <fmt:formatNumber value="${avg }" pattern="##.##"/></p>
