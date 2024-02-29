@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis 환경설정파일 : SqlSessionFactory 객체를 생성하기 위한 필요한 정보(값)를 제공하는 파일 -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- environments : environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버 지정 -->
+	<environments default="development">
+		<!-- environment : DBMS 서버 접속에 필요한 정보를 설정하기 위한 엘리먼트 -->
+		<!-- => Connection 객체를 생성하기 위한 정보 제공 -->
+		<!-- id 속성 : environment 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+		<environment id="development">
+			<!-- transactionManager : 트렌젝션 관리자(커밋 또는 롤백 처리)를 설정하기 위한 엘리먼트 -->
+			<!-- type 속성 : [JDBC] 또는 [MANAGED] 중 하나를 속성값으로 설정 -->
+			<!-- => JDBC 속성값 : JDBC 기능을 사용하여 직접 트렌젝션 관리 -->
+			<!-- => MANAGED 속성값 : 트렌젝션 관리 기능을 사용하여 트렌젝션 관리 -->
+			<transactionManager type="JDBC"/>
+			<!-- dataSource : Connection 객체를 생성하기 위한 정보를 제공하는 엘리먼트 -->
+			<!-- type 속성 : [UNPOOLED], [POOLED], [JNDI] 중 하나를 속성값으로 설정 -->
+			<!-- => type 속성값에 따라 하위 엘리먼트 설정 변경 -->
+			<!-- => UNPOOLED 속성값 : Connection 객체를 미리 만들지 않고 실행시 생성하여 제공 -->
+			<!-- => POOLED 속성값 : Connection 객체를 미리 생성하여 실행시 제공 - DBCP -->
+			<!-- => JNDI 속성값 : WAS 프로그램 등록된 자원을 사용하여 Connection 객체를 실행시 제공 -->
+			<dataSource type="POOLED">
+				<!-- property : Connection 객체 생성에 필요한 값을 제공하는 엘리먼트 -->
+				<!-- name 속성 : 전달값을 구분하기 위한 이름을 속성값으로 설정 -->
+				<!-- value 속성 : 전달값을 속성값으로 설정 -->
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="tiger"/>
+			</dataSource>	
+		</environment>
+	</environments>
+	
+	<!-- mappers : mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<mappers>
+		<!-- mapper : 매퍼 파일(Mapper File)을 매퍼(Mapper)로 등록하기 위한 엘리먼트 -->
+		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 실행결과를
+		Java 객체(원시형)으로 매핑하기 위한 정보를 제공 -->
+		<!--  => mybatis 프레임워크에서는 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을
+		사용하여 매퍼 등록 -->
+		<!--  => ibatis 프레임워크에서는 XML 기반의 매퍼 파일로만	사용하여 매퍼 등록 -->
+		
+		<!-- resource 속성 : XML 기반의 매퍼 파일 경로를 속성값으로 설정 -->
+		<!-- => XML 기반의 매퍼 파일 경로는 파일 시스템 경로로 표현하여 작성 -->
+		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
