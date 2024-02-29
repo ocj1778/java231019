@@ -2,6 +2,31 @@
 <!-- mybatis 환경설정파일 : SqlSessionFactory 객체를 생성하기 위한 필요한 정보(값)를 제공하는 파일 -->
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- properties : property 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 - 생략 가능 -->
+	<!-- => property 엘리먼트 대신 Properties 파일에 저장된 값을 제공받아 사용 -->
+	<properties resource="oralce_url.properties">
+		<!-- property : mybatis 환경설정파일에 필요한 값을 제공하기 위한 엘리먼트 -->
+		<!-- => ${이름} 형식으로 property 엘리먼트로 제공되는 값 사용 -->
+		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위해 설정 - 유지보수의 효율성 증가 -->
+		<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+	</properties>
+	
+	<!-- settings : setting 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<settings>
+		<!-- setting : mybatis 실행시 필요한 정보를 제공하기 위한 엘리먼트 -->
+		<!-- => setting 엘리먼트를 사용하지 않아도 실행에 필요한 값은 기본값을 제공받아 사용 -->
+		<!-- => mybatis 실행을 기본값이 아닌 다른 값으로 제공받아ㅏ 사용할 경우에만 엘리먼트 사용 -->
+		<!-- callSettersOnNulls 옵션을 [true]로 설정하면 UPDATE 명령 실행시 컬럼값을 [NULL]로 변경하는 기능 제공 -->
+		<setting name="callSettersOnNulls" value="true"/>
+		<!-- jdbcTypeForNull 옵션을 [NULL]로 설정하면 SQL 명령 실행시 전달받은 객체의 필드값이
+		[NULL]인 경우 SQL 명령에서 [NULL]로 처리되는 기능 제공 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- mapUnderscoreToCamelCase 옵션을 [true]로 설정하면 SELECT 명령 실행시 스네이크 표기법으로
+		작성된 컬럼명을 자동으로 카멜 표기법의 컬럼명으로 변환하여 검색하는 기능 제공 -->		
+		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+	</settings>
+
 	<!-- environments : environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
 	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버 지정 -->
@@ -25,8 +50,10 @@
 				<!-- property : Connection 객체 생성에 필요한 값을 제공하는 엘리먼트 -->
 				<!-- name 속성 : 전달값을 구분하기 위한 이름을 속성값으로 설정 -->
 				<!-- value 속성 : 전달값을 속성값으로 설정 -->
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> -->
+				<property name="driver" value="${driver}"/>
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> -->
+				<property name="url" value="${local}"/>
 				<property name="username" value="scott"/>
 				<property name="password" value="tiger"/>
 			</dataSource>	
@@ -47,14 +74,3 @@
 		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
