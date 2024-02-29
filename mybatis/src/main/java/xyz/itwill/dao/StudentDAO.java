@@ -64,7 +64,7 @@ public class StudentDAO {
 			// => elementId 매개변수에는 매퍼 식별자(mapper 엘리먼트의 namespace 속성값)와  
 			//select 엘리먼트의 식별자(id 속성값)를 이용한 문자열을 전달받아 SQL 명령을 
 			//제공받아 DBMS 서버에 전달하여 실행
-			return sqlSession.selectList("xyz.itwill.mapper.StudnetMapper.selectStudentList");
+			return sqlSession.selectList("xyz.itwill.mapper.StudentMapper.selectStudentList");
 		} finally {
 			sqlSession.close();
 		}
