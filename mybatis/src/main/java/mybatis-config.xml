@@ -2,7 +2,7 @@
 <!-- mybatis 환경설정파일 : SqlSessionFactory 객체를 생성하기 위한 필요한 정보(값)를 제공하는 파일 -->
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- properties : property 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- properties : 1개 이상의 property 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 - 생략 가능 -->
 	<!-- => property 엘리먼트 대신 Properties 파일에 저장된 값을 제공받아 사용 -->
 	<properties resource="oralce_url.properties">
@@ -12,7 +12,7 @@
 		<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 	</properties>
 	
-	<!-- settings : setting 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- settings : 1개 이상의 setting 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<settings>
 		<!-- setting : mybatis 실행시 필요한 정보를 제공하기 위한 엘리먼트 -->
 		<!-- => setting 엘리먼트를 사용하지 않아도 실행에 필요한 값은 기본값을 제공받아 사용 -->
@@ -27,7 +27,7 @@
 		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
 	</settings>
 
-	<!-- environments : environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- environments : 1개 이상의 environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
 	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버 지정 -->
 	<environments default="development">
@@ -42,7 +42,7 @@
 			<transactionManager type="JDBC"/>
 			<!-- dataSource : Connection 객체를 생성하기 위한 정보를 제공하는 엘리먼트 -->
 			<!-- type 속성 : [UNPOOLED], [POOLED], [JNDI] 중 하나를 속성값으로 설정 -->
-			<!-- => type 속성값에 따라 하위 엘리먼트 설정 변경 -->
+			<!-- => type 속성값에 따라 property 엘리먼트의 name 속성의 속성값을 다르게 설정 -->
 			<!-- => UNPOOLED 속성값 : Connection 객체를 미리 만들지 않고 실행시 생성하여 제공 -->
 			<!-- => POOLED 속성값 : Connection 객체를 미리 생성하여 실행시 제공 - DBCP -->
 			<!-- => JNDI 속성값 : WAS 프로그램 등록된 자원을 사용하여 Connection 객체를 실행시 제공 -->
@@ -60,7 +60,7 @@
 		</environment>
 	</environments>
 	
-	<!-- mappers : mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- mappers : 1개 이상의 mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<mappers>
 		<!-- mapper : 매퍼 파일(Mapper File)을 매퍼(Mapper)로 등록하기 위한 엘리먼트 -->
 		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 실행결과를
