@@ -43,7 +43,7 @@
 		select id, name, phone, email from mymember where id=#{id}
 	</select>
 	
-	<select id="selectMemberList" resultType="MeMember">
+	<select id="selectMemberList" resultType="MyMember"> 
 		select id, name, phone, email from mymember order by id
 	</select>
 </mapper>
