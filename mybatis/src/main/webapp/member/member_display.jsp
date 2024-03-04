@@ -45,7 +45,9 @@ td, th {
 			<% for(MyMember member : memberList) { %>
 			<tr>
 				<td width="140"><%=member.getId() %></td>
-				<td width="160"><%=member.getName() %></td>
+				<td width="160">
+					<a href="member_view.jsp?id=<%=member.getId() %>"><%=member.getName() %></a>
+				</td>
 			</tr>
 			<% } %>
 		<% } %>
