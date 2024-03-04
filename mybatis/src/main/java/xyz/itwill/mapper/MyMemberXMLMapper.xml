@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.mapper.MyMemberXMLMapper">
+	<!-- insert : INSERT 명령을 등록하기 위한 엘리먼트 -->
+	<!-- id 속성 : 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- parameterType 속성 : SQL 명령 작성에 필요한 값을 제공받기 위한 Java 자료형을 속성값으로 설정 -->
+	<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+	<!-- => SQL 명령 작성에 필요한 값이 없는 경우 parameterType 속성 생략 가능 -->
+	<!-- DML 명령(INSERT, UPDATE, DELETE) 관련 엘리먼트는 등록된 SQL 명령을 DBMS 서버에 전달하여
+	실행한 후 조작행의 갯수를 무조건 정수값(int)으로 매핑하여 제공하므로 resultType 속성 생략 -->
+	<insert id="insertMember" parameterType="MyMember">
+		<!-- parameterType 속성값으로 전달받은 값은 SQL 명령에서 #{변수명|필드명|맵키} 형식으로
+		표현하여 값(변수값,필드값,맵값)을 제공받아 사용 -->
+		<!-- => parameterType 속성값으로 Java 객체(DTO 객체)를 전달받은 경우 #{필드명} 형식으로
+		필드값을 제공받아 SQL 명령 작성 - Getter 메소드 자동 호출  -->
+		<!-- => ibatis 프레임워크에서는 #변수명|필드명|맵키# 형식으로 표현하여 값을 제공받아 사용 -->
+		insert into mymember values(#{id},#{name},#{phone},#{email})
+	</insert>
+	
+	<!-- update : INSERT 명령을 등록하기 위한 엘리먼트 -->
+	<update id="updateMember" parameterType="MyMember">
+		update mymember set name=#{name},phone=#{phone},email=#{email} where id=#{id}	
+	</update>
+	
+	<!-- update : DELETE 명령을 등록하기 위한 엘리먼트 -->
+	<!-- => 전달값이 하나인 경우 String 클래스 또는 Wrapper 클래스(원시형) 사용 -->
+	<!-- => String 클래스 또는 Wrapper 클래스(원시형)는 내부적으로 선언된 별칭을 사용하여 설정 -->
+	<delete id="deleteMember" parameterType="string">
+		<!-- parameterType 속성값으로 값 하나만 전달받은 경우 #{변수명} 형식으로 표현하여 
+		전달값을 제공받아 SQL 명령에서 사용 - 변수명은 어떠한 이름으로 표현하여 사용 가능 -->
+		delete from mymember where id=#{id}	
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

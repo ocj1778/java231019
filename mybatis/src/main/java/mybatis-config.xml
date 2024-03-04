@@ -36,6 +36,7 @@
 		<!-- alias 속성 : Java 자료형 대신 사용 가능한 별칭을 속성값으로 설정 -->
 		<!-- => mybatis 프레임워크는 내부적으로 Java 자료형 대신 사용할 별칭 제공 -->
 		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
+		<typeAlias type="xyz.itwill.dto.MyMember" alias="MyMember"/>
 	</typeAliases>
 
 	<!-- environments : 1개 이상의 environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
@@ -83,5 +84,6 @@
 		<!-- resource 속성 : XML 기반의 매퍼 파일 경로를 속성값으로 설정 -->
 		<!-- => XML 기반의 매퍼 파일 경로는 파일 시스템 경로로 표현하여 작성 -->
 		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>
+		<mapper resource="xyz/itwill/mapper/MyMemberXMLMapper.xml"/>
 	</mappers>
 </configuration>
