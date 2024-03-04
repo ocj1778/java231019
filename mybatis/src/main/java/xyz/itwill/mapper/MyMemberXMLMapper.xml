@@ -14,12 +14,12 @@
 		<!-- => parameterType 속성값으로 Java 객체(DTO 객체)를 전달받은 경우 #{필드명} 형식으로
 		필드값을 제공받아 SQL 명령 작성 - Getter 메소드 자동 호출  -->
 		<!-- => ibatis 프레임워크에서는 #변수명|필드명|맵키# 형식으로 표현하여 값을 제공받아 사용 -->
-		insert into mymember values(#{id},#{name},#{phone},#{email})
+		insert into mymember values(#{id}, #{name}, #{phone}, #{email})
 	</insert>
 	
 	<!-- update : INSERT 명령을 등록하기 위한 엘리먼트 -->
 	<update id="updateMember" parameterType="MyMember">
-		update mymember set name=#{name},phone=#{phone},email=#{email} where id=#{id}	
+		update mymember set name=#{name}, phone=#{phone}, email=#{email} where id=#{id}	
 	</update>
 	
 	<!-- update : DELETE 명령을 등록하기 위한 엘리먼트 -->
@@ -30,17 +30,20 @@
 		전달값을 제공받아 SQL 명령에서 사용 - 변수명은 어떠한 이름으로 표현하여 사용 가능 -->
 		delete from mymember where id=#{id}	
 	</delete>
+	
+	<!-- select : SELECT 명령을 등록하기 위한 엘리먼트 -->
+	<!-- => 반드시 resultType 속성(자동) 또는 resultMap 속성(수동)을 설정하여 매핑정보를 제공받아 사용 -->
+	<!-- resultType 속성 : 검색행을 Java 객체(값)으로 제공하기 위한 Java 자료형을 속성값으로 설정 -->
+	<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+	<!-- => 하나의 검색행에 대한 Java 객체(값)를 제공하기 위한 Java 자료형 설정 -->
+	<!-- resultType 속성값으로 클래스(DTO)를 설정한 경우 클래스로 객체를 생성해 검색행의 컬럼값을 
+	컬럼명과 같은 이름의 객체 필드에 컬럼값을 저장하여 객체 제공 - 자동 매핑 -->
+	<!-- => 클래스 작성시 필드의 이름의 검색행의 컬럼명과 같도록 작성 -->
+	<select id="selectMember" parameterType="string" resultType="MyMember">
+		select id, name, phone, email from mymember where id=#{id}
+	</select>
+	
+	<select id="selectMemberList" resultType="MeMember">
+		select id, name, phone, email from mymember order by id
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
