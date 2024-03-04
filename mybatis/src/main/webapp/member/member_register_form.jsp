@@ -46,7 +46,7 @@ td, th {
 		<tr>
 			<td colspan="2">
 				<button type="button" id="submitBtn">입력제출</button>
-				<button type="button" id="resetBtn">더사압력</button>
+				<button type="button" id="resetBtn">다시입력</button>
 				<button type="button" id="displayBtn">회원목록</button>
 			</td>	
 		</tr>
