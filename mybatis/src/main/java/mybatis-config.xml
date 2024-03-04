@@ -27,6 +27,17 @@
 		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
 	</settings>
 
+	<!-- typeAliases :  1개 이상의 typeAlias 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- => typeAlias 엘리먼트 대신 package 엘리먼트 사용 가능 -->
+	<typeAliases>
+		<!-- typeAlias : XML 기반의 매퍼 파일에서 Java 자료형 대신 사용할 수 있는 별칭(AliasName)을
+		설정하기 위한 엘리먼트 -->
+		<!-- type 속성 : Java 자료형을 속성값으로 설정 -->
+		<!-- alias 속성 : Java 자료형 대신 사용 가능한 별칭을 속성값으로 설정 -->
+		<!-- => mybatis 프레임워크는 내부적으로 Java 자료형 대신 사용할 별칭 제공 -->
+		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
+	</typeAliases>
+
 	<!-- environments : 1개 이상의 environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
 	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버 지정 -->

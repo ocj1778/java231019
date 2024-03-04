@@ -12,7 +12,22 @@
 	<!-- id 속성 : SQL 명령이 등록된 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
 	<!-- resultType 속성 : SQL 명령(SELECT)의 실행결과를 객체로 매핑하여 제공하기 위한 Java 자료형을 속성값으로 설정 -->
 	<!-- => SELECT 명령으로 실행된 하나의 검색행에 대한 Java 자료형을 설정하여 Java 객체로 매핑 처리 -->
+	<!-- 
 	<select id="selectStudentList" resultType="xyz.itwill.dto.Student">
 		select no, name, phone, address, birthday from student order by no
 	</select>
+	-->
+	
+	<!-- resultType 속성값으로 Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+	<!-- => Java 자료형을 쉽게 표현하여 사용하기 위한 사용 - 유지보수의 효율성 증가 -->
+	<select id="selectStudentList" resultType="Student">
+		select no, name, phone, address, birthday from student order by no
+	</select>
 </mapper>
+
+
+
+
+
+
+
