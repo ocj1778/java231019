@@ -94,9 +94,20 @@
 		<!-- 단점 : 수동 매핑과 동적 SQL 기능 구현에 대한 설정 불편 -->
 		<mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/>
 		
-		<!-- 매퍼 바인딩 기능을 사용하여  -->
+		<!-- 매퍼 바인딩 기능을 사용하여 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을
+		하나의 매퍼로 등록되어 동작되도록 설정 가능 -->
+		<!-- 매퍼 바인딩(Mapper Binding) : SQL 명령은 XML 기반의 매퍼 파일에 등록하고 DAO
+		클래스는 Interface 기반의 매퍼 파일을 사용하여 작성 -->
+		<!-- => mapper 엘리먼트에는 XML 기반의 매퍼 파일 또는 Interface 기반의 매퍼 파일 중
+		하나만 매퍼로 등록하여 사용 -->
+		<mapper resource="xyz/itwill/mapper/MyMemberMapper.xml"/>
+		
 	</mappers>
 </configuration>
+
+
+
+
 
 
 

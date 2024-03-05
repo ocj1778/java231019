@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.dao.MyMemberDAO"%>
 <%@page import="xyz.itwill.dao.MyMemberInterfaceDAO"%>
 <%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
 <%@page import="xyz.itwill.dto.MyMember"%>
@@ -6,7 +7,8 @@
     pageEncoding="UTF-8"%>
 <%
 	//List<MyMember> memberList=MyMemberXMLDAO.getDAO().selectMemberList();
-	List<MyMember> memberList=MyMemberInterfaceDAO.getDAO().selectMemberList();
+	//List<MyMember> memberList=MyMemberInterfaceDAO.getDAO().selectMemberList();
+	List<MyMember> memberList=MyMemberDAO.getDAO().selectMemberList();
 %>    
 <!DOCTYPE html>
 <html>
