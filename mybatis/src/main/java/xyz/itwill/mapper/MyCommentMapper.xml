@@ -5,7 +5,34 @@
 		insert into mycomment values(mycomment_seq.nextval, #{commentId}, #{commentContent}, sysdate)
 	</insert>
 	
+	<insert id="insertComment2" parameterType="MyComment1">
+		<!-- selectKey : SELECT 명령의 실행결과로 값을 제공받아 insert 엘리먼트의 parameterType
+		속성값으로 설정된 객체의 필드값으로 저장하기 위한 엘리먼트 -->
+		<!-- => insert 엘리먼트에 종속된 엘리먼트 -->
+		<!-- => 자동 증가값 또는 난수값을 SELECT 명령으로 검색하여 객체 필드에 저장해 INSERT
+		명령에서 사용하기 위한 작성 -->
+		<!-- resultType 속성 : SELECT 명령으로 검색된 결과값을 제공받기 위한 Java 자료형을
+		속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+		<!-- keyProperty 속성 : insert 엘리먼트의 parameterType 속성값으로 설정된 클래스의 
+		필드명을 속성값으로 설정 - 전달받은 객체의 필드값으로 저장 -->
+		<!-- order 속성 : [BEFORE] 또는 [AFTER] 중 하나를 속성값으로 설정 -->
+		<selectKey resultType="int" keyProperty="commentNo" order="BEFORE">
+			select mycomment_seq.nextval from dual
+		</selectKey>
+		insert into mycomment values(#{commentNo}, #{commentId}, #{commentContent}, sysdate)
+	</insert>
+	
 	<select id="selectCommentList1" resultType="MyComment1">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
 </mapper>
+
+
+
+
+
+
+
+
+

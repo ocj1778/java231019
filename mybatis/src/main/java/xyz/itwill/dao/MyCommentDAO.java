@@ -31,6 +31,15 @@ public class MyCommentDAO extends AbstractSession {
 		}
 	}
 	
+	public int insertComment2(MyComment1 comment) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyCommentMapper.class).insertComment2(comment);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public List<MyComment1> selectCommentList1() {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
