@@ -61,13 +61,3 @@ td, th {
 	</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

@@ -79,20 +79,22 @@
 		Java 객체(원시형)으로 매핑하기 위한 정보를 제공 -->
 		<!--  => mybatis 프레임워크에서는 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을
 		사용하여 매퍼 등록 -->
-		<!--  => ibatis 프레임워크에서는 XML 기반의 매퍼 파일로만	사용하여 매퍼 등록 -->
+		<!--  => ibatis 프레임워크에서는 XML 기반의 매퍼 파일로만 매퍼 등록 가능 -->
 		
 		<!-- resource 속성 : XML 기반의 매퍼 파일 경로를 속성값으로 설정 -->
 		<!-- => XML 기반의 매퍼 파일 경로는 파일 시스템 경로로 표현하여 작성 -->
 		<!-- 장점 : 수동 매핑과 동적 SQL 기능 구현에 대한 설정 편리 -->
-		<!-- 단점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 불편 -->
+		<!-- 단점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 불편 - DAO 작성 불편 -->
 		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>
 		<mapper resource="xyz/itwill/mapper/MyMemberXMLMapper.xml"/>
 		
 		<!-- class 속성 : Interface 기반의 매퍼 파일 경로를 속성값으로 설정 -->
 		<!-- => Interface 기반의 매퍼 파일 경로는 Java 자료형(인터페이스)로 표현하여 작성 -->
-		<!-- 장점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 편리 -->
+		<!-- 장점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 편리 - DAO 작성 편리 -->
 		<!-- 단점 : 수동 매핑과 동적 SQL 기능 구현에 대한 설정 불편 -->
 		<mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/>
+		
+		<!-- 매퍼 바인딩 기능을 사용하여  -->
 	</mappers>
 </configuration>
 
