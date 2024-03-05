@@ -25,7 +25,7 @@
 	-->
 	
 	<!-- sql : SQL 명령을 구성하는 일부분의 문장을 등록하기 위한 엘리먼트 -->
-	<!-- id 속성 : 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- id 속성 : sql 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
 	<!--  
 	<sql id="myUserColumnAlias">
 		user_id userId, user_name userName
@@ -42,22 +42,34 @@
 	
 	<!-- 해결법-2 : mybatis 환경설정파일(mybatis-config.xml)의 setting 엘리먼트를 사용하여 SQL 
 	명령에서 사용하는 스네이크 표기법의 식별자를 카멜 표기법의 식별자로 자동 변환하는 기능 사용 -->
+	<!--  
 	<select id="selectUserList" resultType="MyUser">
 		select user_id, user_name from myuser order by user_id
 	</select>
+	-->
+	
+	<!-- 해결법-3 : resultMap 엘리먼트를 사용하여 검색행의 컬럼값이 객체의 필드에 저장되도록 
+	설정 - 수동 매핑 -->
+	<!-- resultMap : 검색행을 Java 객체로 생성하여 제공하기 위한 엘리먼트  - 매핑정보 제공 -->
+	<!-- => 검색행의 컬럼값이 객체 필드에 저장되도록 처리하기 위해 하위 엘리먼트 사용 -->
+	<!-- => 하위 엘리먼트 : constructor, id, result, association, collection, discriminator -->
+	<!-- type 속성 : resultMap 엘리먼트로 제공될 객체의 Java 자료형을 속성값으로 설정 -->
+	<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+	<!-- id 속성 : resultMap 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<resultMap type="MyUser" id="myUserResultMap">
+		<!-- id : 검색행의 컬럼값을 Java 객체 필드에 저장하기 위한 엘리먼트 - Setter 메소드 자동 호출 -->
+		<!-- => PK 제약조건이 설정된 컬럼값을 제공받아 필드에 저장하기 위해 사용 -->
+		<!-- column 속성 : 검색행의 컬럼명을 속성값으로 설정 -->
+		<!-- property 속성 : Java 객체의 필드명을 속성값으로 설정 -->
+		<id column="user_id" property="userId"/>
+		<!-- result : 검색행의 컬럼값을 Java 객체 필드에 저장하기 위한 엘리먼트 - Setter 메소드 자동 호출 -->
+		<result column="user_name" property="userName"/>
+	</resultMap>
+	
+	<!-- select 엘리먼트에 resultMap 속성을 사용하여 검색행의 컬럼값을 객체 필드에 저장되도록 
+	설정 - 수동 매핑 -->
+	<!-- resultMap 속성 : resultMap 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<select id="selectUserList" resultMap="myUserResultMap">
+		select user_id, user_name from myuser order by user_id
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
