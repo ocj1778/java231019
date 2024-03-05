@@ -24,7 +24,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 		<!-- mapUnderscoreToCamelCase 옵션을 [true]로 설정하면 SELECT 명령 실행시 스네이크 표기법으로
 		작성된 컬럼명을 자동으로 카멜 표기법의 컬럼명으로 변환하여 검색하는 기능 제공 -->		
-		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 
 	<!-- typeAliases :  1개 이상의 typeAlias 엘리먼트를 등록하기 위한 상위 엘리먼트 -->

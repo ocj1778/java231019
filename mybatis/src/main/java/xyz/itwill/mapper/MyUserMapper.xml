@@ -26,14 +26,24 @@
 	
 	<!-- sql : SQL 명령을 구성하는 일부분의 문장을 등록하기 위한 엘리먼트 -->
 	<!-- id 속성 : 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!--  
 	<sql id="myUserColumnAlias">
 		user_id userId, user_name userName
 	</sql>
+	-->
 	
 	<!-- include : sql 엘리먼트에 등록된 문장을 제공받아 SQL 명령에 포함하는 엘리먼트 -->
 	<!-- refid : sql 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<!--  
 	<select id="selectUserList" resultType="MyUser">
 		select <include refid="myUserColumnAlias"/> from myuser order by user_id
+	</select>
+	-->
+	
+	<!-- 해결법-2 : mybatis 환경설정파일(mybatis-config.xml)의 setting 엘리먼트를 사용하여 SQL 
+	명령에서 사용하는 스네이크 표기법의 식별자를 카멜 표기법의 식별자로 자동 변환하는 기능 사용 -->
+	<select id="selectUserList" resultType="MyUser">
+		select user_id, user_name from myuser order by user_id
 	</select>
 </mapper>
 
