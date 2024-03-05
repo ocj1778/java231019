@@ -5,7 +5,7 @@
 	<!-- properties : 1개 이상의 property 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 - 생략 가능 -->
 	<!-- => property 엘리먼트 대신 Properties 파일에 저장된 값을 제공받아 사용 -->
-	<properties resource="oralce_url.properties">
+	<properties resource="oracle_url.properties">
 		<!-- property : mybatis 환경설정파일에 필요한 값을 제공하기 위한 엘리먼트 -->
 		<!-- => ${이름} 형식으로 property 엘리먼트로 제공되는 값 사용 -->
 		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위해 설정 - 유지보수의 효율성 증가 -->
