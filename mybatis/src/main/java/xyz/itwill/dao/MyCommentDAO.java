@@ -21,7 +21,7 @@ public class MyCommentDAO extends AbstractSession {
 	public static MyCommentDAO getDAO() {
 		return _dao;
 	}
-	
+	 
 	public int insertComment1(MyComment1 comment) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {

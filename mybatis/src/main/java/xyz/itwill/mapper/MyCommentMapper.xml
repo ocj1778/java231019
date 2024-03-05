@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.itwill.mapper.MyCommentMapper">
 	<insert id="insertComment1" parameterType="MyComment1">
-		insert into mycomment values(mycomment_sql.nextval, #{commentId}, #{commentContent}, sysdate)
+		insert into mycomment values(mycomment_seq.nextval, #{commentId}, #{commentContent}, sysdate)
 	</insert>
 	
 	<select id="selectCommentList1" resultType="MyComment1">
