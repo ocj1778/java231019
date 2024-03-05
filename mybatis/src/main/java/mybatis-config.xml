@@ -31,12 +31,17 @@
 	<!-- => typeAlias 엘리먼트 대신 package 엘리먼트 사용 가능 -->
 	<typeAliases>
 		<!-- typeAlias : XML 기반의 매퍼 파일에서 Java 자료형 대신 사용할 수 있는 별칭(AliasName)을
-		설정하기 위한 엘리먼트 -->
+		등록하기 위한 엘리먼트 -->
 		<!-- type 속성 : Java 자료형을 속성값으로 설정 -->
 		<!-- alias 속성 : Java 자료형 대신 사용 가능한 별칭을 속성값으로 설정 -->
 		<!-- => mybatis 프레임워크는 내부적으로 Java 자료형 대신 사용할 별칭 제공 -->
-		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
-		<typeAlias type="xyz.itwill.dto.MyMember" alias="MyMember"/>
+		<!-- <typeAlias type="xyz.itwill.dto.Student" alias="Student"/> -->
+		<!-- <typeAlias type="xyz.itwill.dto.MyMember" alias="MyMember"/> -->
+		
+		<!-- package : 특정 패키지에 작성된 모든 Java 자료형에 대한 별칭을 등록하는 엘리먼트 -->
+		<!-- => 패키지에 작성된 Java 자료형(DTO 클래스)의 이름이 별칭으로 자동 등록 -->
+		<!-- name 속성 : Java 자료형이 작성된 패키지를 속성값으로 설정 -->
+		<package name="xyz.itwill.dto"/>
 	</typeAliases>
 
 	<!-- environments : 1개 이상의 environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
@@ -73,6 +78,7 @@
 	</environments>
 	
 	<!-- mappers : 1개 이상의 mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<!-- => mapper 엘리먼트 대신 package 엘리먼트 사용 가능 -->	
 	<mappers>
 		<!-- mapper : 매퍼 파일(Mapper File)을 매퍼(Mapper)로 등록하기 위한 엘리먼트 -->
 		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 실행결과를
@@ -92,7 +98,7 @@
 		<!-- => Interface 기반의 매퍼 파일 경로는 Java 자료형(인터페이스)로 표현하여 작성 -->
 		<!-- 장점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 편리 - DAO 작성 편리 -->
 		<!-- 단점 : 수동 매핑과 동적 SQL 기능 구현에 대한 설정 불편 -->
-		<mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/>
+		<!-- <mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/> -->
 		
 		<!-- 매퍼 바인딩 기능을 사용하여 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을
 		하나의 매퍼로 등록되어 동작되도록 설정 가능 -->
@@ -100,16 +106,11 @@
 		클래스는 Interface 기반의 매퍼 파일을 사용하여 작성 -->
 		<!-- => mapper 엘리먼트에는 XML 기반의 매퍼 파일 또는 Interface 기반의 매퍼 파일 중
 		하나만 매퍼로 등록하여 사용 -->
-		<mapper resource="xyz/itwill/mapper/MyMemberMapper.xml"/>
+		<!-- <mapper resource="xyz/itwill/mapper/MyMemberMapper.xml"/> -->
 		
+		<!-- package : 특정 패키지에 작성된 Interface 기반의 매퍼 파일을 매퍼로 등록하는 엘리먼트 -->
+		<!-- => XML 기반의 매퍼 파일은 package 엘리먼트를 사용해 맵퍼로 등록 불가능 -->
+		<!-- name 속성 : Interface 기반의 매퍼 파일이 작성된 패키지를 속성값으로 설정 -->
+		<package name="xyz.itwill.mapper"/>
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-

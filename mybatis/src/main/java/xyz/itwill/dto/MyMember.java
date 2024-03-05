@@ -3,7 +3,7 @@ package xyz.itwill.dto;
 //create table mymember(id varchar2(50) primary key, name varchar2(50)
 //	    , phone varchar2(20), email varchar2(100));
 
-//테이블 생성 >> DTO 클래스 작성 >> mybatis 환경설정파일에 별칭 및 맵퍼 등록 
+//테이블 생성 >> DTO 클래스 작성 >> mybatis 환경설정파일에 별칭 및 맵퍼 등록 - 생략 가능 
 // >> 매퍼 파일 작성 >> DAO 클래스 작성
 
 public class MyMember {
