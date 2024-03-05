@@ -52,7 +52,7 @@ public class MyCommentDAO extends AbstractSession {
 	
 	public List<MyComment2> selectCommentList2() {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
-		try {
+		try { 
 			return sqlSession.getMapper(MyCommentMapper.class).selectCommentList2();
 		} finally {
 			sqlSession.close();

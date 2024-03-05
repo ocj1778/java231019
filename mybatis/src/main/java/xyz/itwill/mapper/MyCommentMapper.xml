@@ -27,11 +27,83 @@
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
 	
+	<!-- 검색행의 컬럼명과 resultType 속성값으로 설정된 클래스의 필드명이 모두 다른 경우 
+	resultType 속성값으로 설정된 클래스의 객체 대신 NULL 제공 -->
+	<!-- 
 	<select id="selectCommentList2" resultType="MyComment2">
+		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
+	 -->
+
+	<!-- 검색행의 컬럼명을  resultType 속성값으로 설정된 클래스의 필드명과 같도록 ColumnAlias
+	기능을 사용하여 검색 - 식별자로 사용하기 부적절한 단어는 "" 기호를 사용하여 표현 -->
+	<!--  	 
+	<select id="selectCommentList2" resultType="MyComment2">
+		select comment_no no, comment_id id, comment_content content, comment_date "date" 
+			from mycomment order by comment_no desc
+	</select>
+	--> 
+	
+	<!-- resultMap 엘리먼트를 사용하여 검색행의 컬럼값을 객체 필드에 저장되도록 설정해 검색행을
+	Java 객체로 생성하여 제공 -->
+	<!-- => type 속성값으로 설정된 클래스의 기본 생성자를 사용하여 객체를 생성하고 id 엘리먼트
+	또는 result 엘리먼트를 사용해 객체의 Setter 메소드를 호출하여 검색행의 컬럼값으로 필드값 변경 -->
+	<!-- => resultMap 엘리먼트의 하위 엘리먼트로 id 엘리먼트 또는 result 엘리먼트를 0개이상 작성 가능 --> 
+	<resultMap type="MyComment2" id="myComment2ResultMap">
+		<id column="comment_no" property="no"/>
+		<result column="comment_id" property="id"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
+	</resultMap>
+	
+	<!-- select 엘리먼트의 resultMap 속성을 사용하여 검색행을 Java 객체로 제공되도록 수동 매핑 설정 -->
+	<!-- 
+	<select id="selectCommentList2" resultMap="myComment2ResultMap">
+		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
+	 -->
+	 
+	<!-- constructor 엘리먼트를 사용하여 type 속성값으로 설정된 클래스의 매개변수가 작성된 생성자로 
+	객체를 생성하고 생성자 매개변수로 검색행의 컬럼값을 전달받아 객체 필드값으로 저장되도록 초기화 처리 -->
+	<!-- => resultMap 엘리먼트의 하위 엘리먼트로 constructor 엘리먼트를 0개 또는 1개만 작성 가능 --> 
+	<resultMap type="MyComment2" id="myComment2ConstructorResultMap">
+		<!-- constructor : resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 생성자를
+		사용하여 매핑 처리하기 위한 정보를 제공하는 엘리먼트 -->
+		<!-- => 하위 엘리먼트 : idArg 엘리먼트 또는 arg 엘리먼트 사용 -->
+		<!-- => 생성자 매개변수의 갯수와 constructor 엘리먼트의 하위 엘리먼트 갯수 및 자료형이
+		반드시 같도록 작성 -->
+		<constructor>
+			<!-- idArg : 검색행의 컬럼값을 생성자 매개변수에 전달하기 위한 엘리먼트 -->
+			<!-- => PK 제약조건이 설정된 컬럼값을 제공받아 매개변수에 전달하기 위해 사용 -->
+			<!-- column 속성 : 검색행의 컬럼명을 속성값으로 설정 -->
+			<!-- javaType 속성 : 검색행의 컬럼값이 저장된 매개변수의 Java 자료형을 속성값으로 설정 -->
+			<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+			<idArg column="comment_no" javaType="_int"/>
+			<!-- arg : 검색행의 컬럼값을 생성자 매개변수에 전달하기 위한 엘리먼트 -->
+			<arg column="comment_id" javaType="string"/>
+			<!-- 
+			<arg column="comment_content" javaType="string"/>
+			<arg column="comment_date" javaType="string"/>
+			 -->
+		</constructor>
+		
+		<!-- constructor 엘리먼트와 id 엘리먼트(result 엘리먼트)를 같이 사용하여 검색행의
+		컬럼값이 객체 필드에 저장되도록 설정 가능 -->
+		<!-- => constructor 엘리먼트 뒤에 id 엘리먼트(result 엘리먼트) 작성 -->
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
+	</resultMap> 
+	
+	<select id="selectCommentList2" resultMap="myComment2ConstructorResultMap">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
 	
 </mapper>
+
+
+
+
+
 
 
 
