@@ -21,7 +21,7 @@ public class MyUserDAO extends AbstractSession {
 	public static MyUserDAO getDAO() {
 		return _dao;
 	}
-	 
+		
 	public int insertUser(MyUser user) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {

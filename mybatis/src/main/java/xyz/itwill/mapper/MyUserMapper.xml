@@ -5,7 +5,49 @@
 		insert into myuser values(#{userId}, #{userName})
 	</insert>
 	
+	<!-- resultType 속성을 사용하면 resultType 속성값으로 설정된 클래스로 객체를 생성하여
+	검색행의 컬럼값을 같은 이름의 객체 필드값으로 자동 저장하여 제공 - 자동 매핑 -->
+	<!-- 문제점 : 검색행의 컬럼명과 resultType 속성값으로 설정된 클래스의 필드명이 모두 다른
+	경우 resultType 속성값으로 설정된 클래스로 객체를 생성하여 제공하지 않고 NULL 제공 -->
+	<!-- => 웹프로그램 실행시 NullPointerException 발생 -->
+	<!--  
 	<select id="selectUserList" resultType="MyUser">
 		select user_id, user_name from myuser order by user_id
 	</select>
+	-->
+	
+	<!-- 해결법-1 : 검색행의 컬럼명을 resultType 속성값으로 설정된 클래스의 필드명과 같도록 검색 -->
+	<!-- => SELECT 명령에서 Column Alias 기능을 사용하여 검색대상의 별칭을 필드명과 같도록 작성 -->
+	<!-- 
+	<select id="selectUserList" resultType="MyUser">
+		select user_id userId, user_name userName from myuser order by user_id
+	</select>
+	-->
+	
+	<!-- sql : SQL 명령을 구성하는 일부분의 문장을 등록하기 위한 엘리먼트 -->
+	<!-- id 속성 : 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<sql id="myUserColumnAlias">
+		user_id userId, user_name userName
+	</sql>
+	
+	<!-- include : sql 엘리먼트에 등록된 문장을 제공받아 SQL 명령에 포함하는 엘리먼트 -->
+	<!-- refid : sql 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<select id="selectUserList" resultType="MyUser">
+		select <include refid="myUserColumnAlias"/> from myuser order by user_id
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
