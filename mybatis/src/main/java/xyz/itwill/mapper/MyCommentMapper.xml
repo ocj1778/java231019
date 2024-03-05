@@ -26,6 +26,11 @@
 	<select id="selectCommentList1" resultType="MyComment1">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
+	
+	<select id="selectCommentList2" resultType="MyComment2">
+		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
+	
 </mapper>
 
 
