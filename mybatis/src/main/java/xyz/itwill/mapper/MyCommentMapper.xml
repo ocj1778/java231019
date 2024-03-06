@@ -119,6 +119,11 @@
 		select comment_no, comment_id, user_name, comment_content, comment_date 
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
+	
+	<select id="selectCommentUserList1" resultType="MyCommentUser1">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name 
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
 </mapper>
 
 
