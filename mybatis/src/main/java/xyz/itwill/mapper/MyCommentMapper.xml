@@ -148,6 +148,19 @@
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name 
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
+	
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 행을 검색하여 게시글(MyComment1 객체)을 
+	제공하는 엘리먼트 - 검색행 : 1개 -->
+	<select id="selectComment" parameterType="int" resultType="MyComment1">
+		select comment_no, comment_id, comment_content, comment_date from mycomment where comment_no=#{commentNo}
+	</select>
+	
+	<!-- 게시글번호를 전달받아 MYREPLY 테이블에 저장된 행을 검색하여 댓글(MyReply 객체)을 
+	제공하는 엘리먼트 - 검색행 : 0개 이상 -->
+	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no from myreply
+			where reply_comment_no=#{replyCommentNo} order by reply_no desc 
+	</select>
 </mapper>
 
 
