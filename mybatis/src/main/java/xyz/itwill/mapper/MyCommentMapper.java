@@ -6,6 +6,7 @@ import xyz.itwill.dto.MyComment1;
 import xyz.itwill.dto.MyComment2;
 import xyz.itwill.dto.MyComment3;
 import xyz.itwill.dto.MyCommentUser1;
+import xyz.itwill.dto.MyCommentUser2;
 
 public interface MyCommentMapper {
 	int insertComment1(MyComment1 comment);
@@ -14,4 +15,5 @@ public interface MyCommentMapper {
 	List<MyComment2> selectCommentList2();
 	List<MyComment3> selectCommentList3();
 	List<MyCommentUser1> selectCommentUserList1();
+	List<MyCommentUser2> selectCommentUserList2();
 }

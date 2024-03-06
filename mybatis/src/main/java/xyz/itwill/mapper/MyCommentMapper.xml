@@ -107,8 +107,7 @@
 	-->
 	
 	<resultMap type="MyComment3" id="myComment3ResultMap">
-		<id column="" property=""/>
-		<result column="comment_no" property="no"/>
+		<id column="comment_no" property="no"/>
 		<result column="comment_id" property="id"/>
 		<result column="user_name" property="name"/>
 		<result column="comment_content" property="content"/>
@@ -121,6 +120,31 @@
 	</select>
 	
 	<select id="selectCommentUserList1" resultType="MyCommentUser1">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name 
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
+	
+	<resultMap type="MyCommentUser2" id="myCommentUser2ResultMap">
+		<!-- association : 1:1 관계의 테이블 조인에서 검색행의 컬럼값으로 객체를 생성하여
+		resultMap 엘리먼트의 type 속성값으로 설정된 클래스의 객체 필드에 저장하는 엘리먼트 -->
+		<!-- => 하위 엘리먼트로 id 엘리먼트 또는 result 엘리먼트를 사용하여 검색행의 컬럼값을
+		association 엘리먼트로 생성된 객체 필드에 저장되도록 설정 -->
+		<!-- property 속성 : association 엘리먼트로 생성된 객체가 저장된 클래스의 필드명을 속성값으로 설정 -->
+		<!-- javaType 속성 : association 엘리먼트로 생성된 객체의 Java 자료형을 속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias 엘리먼트로 설정한 별칭(AliasName) 사용 가능 -->
+		<association property="comment" javaType="MyComment1">
+			<id column="comment_no" property="commentNo"/>
+			<result column="comment_id" property="commentId"/>
+			<result column="comment_content" property="commentContent"/>
+			<result column="comment_date" property="commentDate"/>
+		</association>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectCommentUserList2" resultMap="myCommentUser2ResultMap">
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name 
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
