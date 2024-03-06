@@ -10,6 +10,6 @@
 	
 	<select id="selectReplyList" resultType="MyReply">
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no 
-			from myreply ordey by reply_no desc 
+			from myreply order by reply_no desc 
 	</select>
 </mapper>
