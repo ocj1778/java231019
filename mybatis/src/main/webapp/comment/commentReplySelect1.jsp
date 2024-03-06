@@ -18,7 +18,7 @@
 	
 	//게시글번호를 전달받아 MYREPLY 테이블에 저장된 행을 검색하여 댓글목록을 반환하는 메소드 호출 
 	List<MyReply> replyList=MyCommentDAO.getDAO().selectCommentNoReplyList(commentNo);
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
