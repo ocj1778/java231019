@@ -32,17 +32,56 @@
 			, reply_comment_no from myreply order by reply_no desc) reply where rownum<6
 		]]>	
 	</select>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap1">
+		<association property="reply" javaType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</association>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectReplyUserList1" resultMap="myReplyUserResultMap1">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no, user_id
+			, user_name from myreply join myuser on reply_id=user_id order by reply_no desc
+	</select>
+	
+	<resultMap type="MyReply" id="myReplyResultMap">
+		<id column="reply_no" property="replyNo"/>
+		<result column="reply_id" property="replyId"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="reply_date" property="replyDate"/>
+		<result column="reply_comment_no" property="replyCommentNo"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap2">
+		<!-- resultMap 속성 : resultMap 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+		<!-- => 다른 resultMap 엘리먼트의 매핑정보로 객체를 제공받아 필드에 저장 -->
+		<!-- => resultMap 엘리먼트의 매핑정보 재활용 가능 - 생산성 및 유지보수의 효율성 증가 -->
+		<association property="reply" resultMap="myReplyResultMap"/>
+		<!-- select 속성 : select 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+		<!-- => select 엘리먼트로 객체를 제공받아 필드에 저장 -->
+		<!-- column 속성 : SELECT 명령에 필요한 값을 제공하기 위해 검색행의 컬럼명을 속성값으로 설정  -->
+		<!-- => 검색행의 컬럼값을 select 속성값으로 설정된 select 엘리먼트의 parameterType
+		속성값으로 전달하여 SELECT 명령에서 사용 -->
+		<association property="user" select="selectMyUser" column="reply_id"/>
+	</resultMap>
+	
+	<!-- DAO 클래스의 메소드에서 사용하지 않고 association 엘리먼트에서 사용하는 select 엘리먼트 -->
+	<!-- => Interface 기반의 매퍼 파일에서 select 엘리먼트를 추상메소드로 미작성 -->
+	<!-- => select 엘리먼트의 parameterType 속성값으로 하나의 행만 검색되도록 SELECT 명령 작성 -->
+	<select id="selectMyUser" resultType="MyUser" parameterType="string">
+		select user_id, user_name from myuser where user_id=#{replyId}
+	</select>
+	
+	<select id="selectReplyUserList2" resultMap="myReplyUserResultMap2">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			from myreply order by reply_no desc
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-

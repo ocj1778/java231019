@@ -8,7 +8,7 @@ public class MyCommentUser2 {
 	// => 검색행을 객체로 제공받아 필드에 저장하기 위해 반드시 수동 매칭 기능 사용
 	private MyComment1 comment;
 	
-	//MYCOMMENT 테이블의 검색행(회원정보) 1개를 객체로 제공받아 저장하기 위한 필드
+	//MYUSER 테이블의 검색행(회원정보) 1개를 객체로 제공받아 저장하기 위한 필드
 	private MyUser user;
 	
 	public MyCommentUser2() {

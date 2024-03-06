@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import xyz.itwill.dto.MyReply;
+import xyz.itwill.dto.MyReplyUser;
 import xyz.itwill.mapper.MyReplyMapper;
 
 public class MyReplyDAO extends AbstractSession {
@@ -44,6 +45,24 @@ public class MyReplyDAO extends AbstractSession {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
 			return sqlSession.getMapper(MyReplyMapper.class).selectCountReplyList();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<MyReplyUser> selectReplyUserList1() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyReplyMapper.class).selectReplyUserList1();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<MyReplyUser> selectReplyUserList2() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyReplyMapper.class).selectReplyUserList2();
 		} finally {
 			sqlSession.close();
 		}
