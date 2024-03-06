@@ -23,7 +23,7 @@
 		[NULL]인 경우 SQL 명령에서 [NULL]로 처리되는 기능 제공 -->
 		<setting name="jdbcTypeForNull" value="NULL"/>
 		<!-- mapUnderscoreToCamelCase 옵션을 [true]로 설정하면 SELECT 명령 실행시 스네이크 표기법으로
-		작성된 컬럼명을 자동으로 카멜 표기법의 컬럼명으로 변환하여 검색하는 기능 제공 -->		
+		작성된 컬럼명을 자동으로 카멜 표기법의 컬럼명으로 변환하여 필드에 저장하는 기능 제공 -->		
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 
