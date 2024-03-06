@@ -98,4 +98,39 @@
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
 	
+	<!--  
+	<select id="selectCommentList3" resultType="MyComment3">
+		select comment_no "no", comment_id "id", user_name "name", comment_content "content"
+			, comment_date "date" from mycomment join myuser on comment_id=user_id 
+			order by comment_no desc
+	</select>
+	-->
+	
+	<resultMap type="MyComment3" id="myComment3ResultMap">
+		<id column="" property=""/>
+		<result column="comment_no" property="no"/>
+		<result column="comment_id" property="id"/>
+		<result column="user_name" property="name"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
+	</resultMap>
+	
+	<select id="selectCommentList3" resultMap="myComment3ResultMap">
+		select comment_no, comment_id, user_name, comment_content, comment_date 
+			from mycomment join myuser on comment_id=user_id order by comment_no desc
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
