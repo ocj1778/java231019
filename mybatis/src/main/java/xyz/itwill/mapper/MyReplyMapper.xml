@@ -12,4 +12,37 @@
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no 
 			from myreply order by reply_no desc 
 	</select>
+	
+	<!-- MYREPLY 테이블에 저장된 행(댓글) 중 가장 최근에 작성된 5개 행만 검색하는 SELECT 명령 등록 -->
+	<!-- 문제점 : XML 기반의 매퍼 파일에서는 엘리먼트에 등록된 SQL 명령에서 비교 연산자 중
+	> 또는 < 연산자를 사용할 경우 엘리먼트를 표현하는 기호로 인식되어 에러 발생 -->
+	<!-- 해결법-1 : > 또는 < 연산자를 엔티티 레퍼런스(회피문자)로 표현하여 SQL 명령 작성 -->
+	<!--  
+	<select id="selectCountReplyList" resultType="MyReply">
+		select rownum, reply.* from (select reply_no, reply_id, reply_content, reply_date
+			, reply_comment_no from myreply order by reply_no desc) reply where rownum &lt; 6
+	</select>
+	-->
+	
+	<!-- 해결법-2 : CDATA 세션을 작성하여 세션 내부에 SQL 명령 작성 -->
+	<!-- CDATA 세션 : XML 문서에서 엘리먼트의 내용을 그대로 사용하도록 만들어 주는 영역 -->
+	<select id="selectCountReplyList" resultType="MyReply">
+		<![CDATA[
+		select rownum, reply.* from (select reply_no, reply_id, reply_content, reply_date
+			, reply_comment_no from myreply order by reply_no desc) reply where rownum<6
+		]]>	
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,4 +7,5 @@ import xyz.itwill.dto.MyReply;
 public interface MyReplyMapper {
 	int insertReply(MyReply reply);
 	List<MyReply> selectReplyList();
+	List<MyReply> selectCountReplyList();
 }
