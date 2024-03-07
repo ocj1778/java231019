@@ -182,7 +182,7 @@
 		<collection property="replyList" ofType="MyReply">
 			<id column="reply_no" property="replyNo"/>
 			<result column="reply_id" property="replyId"/>
-			<result column="reply_content" property="creplyContent"/>
+			<result column="reply_content" property="replyContent"/>
 			<result column="reply_date" property="replyDate"/>
 			<result column="reply_comment" property="replyCommentNo"/>
 		</collection>
