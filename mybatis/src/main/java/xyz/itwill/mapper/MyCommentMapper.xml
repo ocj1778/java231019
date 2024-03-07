@@ -202,6 +202,7 @@
 			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
 	</select>
 	
+	<!--  
 	<resultMap type="MyCommentUserReply" id="myCommentUserReplyResultMap">
 		<id column="comment_no" property="commentNo"/>
 		<result column="comment_id" property="commentId"/>
@@ -227,10 +228,12 @@
 			</association>
 		</collection>
 	</resultMap>
+	-->
 
 	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블(MYUSER 테이블)에 저장된 행과 MYREPLY 테이블
 	(MYUSER 테이블)에 저장된 행을 1:N 관계로 결합되도록 검색하여 Java 객체(MyCommentUserReply 
 	객체)로 제공하는 엘리먼트 -->
+	<!--  
 	<select id="selectCommentUserReply" parameterType="int" resultMap="myCommentUserReplyResultMap">
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
 			, reply_no, reply_id, reply_content, reply_date, reply_comment_no, reply_user_id 
@@ -239,6 +242,32 @@
 			, user_id reply_user_id, user_name reply_user_name from myreply join myuser 
 			on reply_id=user_id) on comment_no=reply_comment_no where comment_no=#{commentNo}
 			order by reply_no desc 
+	</select>
+	-->
+	
+	<!-- autoMapping 속성 : false(기본) 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => autoMapping 속성의 속성값을 [true]로 설정한 경우 검색행의 컬럼명과 같은 이름의 
+	필드에 검색행의 컬럼값을 자동으로 저장되도록 처리 -->
+	<resultMap type="MyCommentUserReply" id="myCommentUserReplyResultMap" autoMapping="true">
+		<id column="comment_no" property="commentNo"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+		<collection property="replyUserList" select="selectReplyUser" column="comment_no"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
+		<association property="reply" javaType="MyReply" autoMapping="true"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+	</resultMap>
+	
+	<select id="selectReplyUser" parameterType="int" resultMap="myReplyUserResultMap">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no, user_id 
+			, user_name from myreply join myuser on reply_id=user_id where 
+			reply_comment_no=#{commentNo} order by reply_no desc	
+	</select>
+	
+	<select id="selectCommentUserReply" parameterType="int" resultMap="myCommentUserReplyResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			from mycomment join myuser on comment_id=user_id where comment_no=#{commentNo}	
 	</select>
 </mapper>
 
