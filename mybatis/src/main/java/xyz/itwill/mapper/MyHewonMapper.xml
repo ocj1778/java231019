@@ -26,6 +26,7 @@
 	<!-- case : discriminator 엘리먼트로 제공받은 컬럼값과 비교하기 위한 값을 제공하는 엘리먼트 - 1개 이상 -->
 	<!-- => 하위 엘리먼트로 매핑정보를 제공하는 엘리먼트(constructor, id, result, association, collection) 사용 -->
 	<!-- value 속성 : 비교값을 속성값으로 설정 -->
+	<!--  
 	<resultMap type="MyHewon" id="myHewonDiscriminatorResultMap">
 		<discriminator javaType="int" column="hewon_status">
 			<case value="1">
@@ -50,6 +51,58 @@
 				<result column="hewon_email" property="email"/>
 				<result column="hewon_status" property="status"/>
 			</case>
+		</discriminator>
+	</resultMap>
+	-->
+	
+	<!-- 모든 case 엘리먼트에 공통적인 매핑정보가 존재할 경우 discriminator 엘리먼트가 아닌
+	다른 엘리먼트를 사용하여 매핑 정보 제공 가능 -->
+	<!--  
+	<resultMap type="MyHewon" id="myHewonDiscriminatorResultMap">
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_status" property="status"/>
+		<discriminator javaType="int" column="hewon_status">
+			<case value="2">
+				<result column="hewon_name" property="name"/>
+			</case>
+			<case value="3">
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>			
+			</case>
+			<case value="4">
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_email" property="email"/>
+			</case>
+		</discriminator>
+	</resultMap>
+	-->
+	
+	<resultMap type="MyHewon" id="myHewonOneResultMap">
+		<id column="hewon_id" property="id"/>
+		<result column="hewon_status" property="status"/>
+	</resultMap>
+	
+	<!-- extends 속성 : resultMap 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<!-- => 다른 resultMap 엘리먼트의 매핑정보를 상속받아 사용하기 위한 속성 -->
+	<resultMap type="MyHewon" id="myHewonTwoResultMap" extends="myHewonOneResultMap">
+		<result column="hewon_name" property="name"/>
+	</resultMap>
+
+	<resultMap type="MyHewon" id="myHewonThreeResultMap" extends="myHewonTwoResultMap">
+		<result column="hewon_phone" property="phone"/>
+	</resultMap>
+
+	<resultMap type="MyHewon" id="myHewonFourResultMap" extends="myHewonThreeResultMap">
+		<result column="hewon_email" property="email"/>
+	</resultMap>
+	
+	<resultMap type="MyHewon" id="myHewonDiscriminatorResultMap">
+		<discriminator javaType="int" column="hewon_status">
+			<case value="1" resultMap="myHewonOneResultMap"/>
+			<case value="2" resultMap="myHewonTwoResultMap"/>
+			<case value="3" resultMap="myHewonThreeResultMap"/>
+			<case value="4" resultMap="myHewonFourResultMap"/>
 		</discriminator>
 	</resultMap>
 	
