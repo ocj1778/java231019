@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.itwill.mapper.MyCommentMapper">
+	<!-- cache : SELECT 명령의 검색결과(Java 객체)를 임시 메모리(Cache Memory)에 저장하여
+	재검색할 경우 기존 검색결과를 제공하기 위한 엘리먼트 - 가독성 증가  -->
+	<!-- => INSERT, UPDATE, DELETE 명령이 실행되면 임시 메모리에 저장된 검색결과는 자동으로 초기화 처리 -->
+	<!-- => 검색결과를 저장하는 객체의 클래스는 반드시 객체 직렬화 클래스로 작성 -->
+	<!-- <cache/> -->
+
 	<insert id="insertComment1" parameterType="MyComment1">
 		insert into mycomment values(mycomment_seq.nextval, #{commentId}, #{commentContent}, sysdate)
 	</insert>
