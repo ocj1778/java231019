@@ -184,7 +184,7 @@
 			<result column="reply_id" property="replyId"/>
 			<result column="reply_content" property="replyContent"/>
 			<result column="reply_date" property="replyDate"/>
-			<result column="reply_comment" property="replyCommentNo"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
 		</collection>
 	</resultMap>
 	
