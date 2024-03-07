@@ -2,7 +2,7 @@ package xyz.itwill.dto;
 
 import java.util.List;
 
-//MYCOMMENT 테이블과 MYREPLY 테이블에 저장된 행을 1:N 관계로 결합하여 검색 결과값을 저장하기 위한 클래스
+//MYCOMMENT 테이블과 MYREPLY 테이블에 저장된 행을 1:N 관계로 결합하여 검색한 결과값을 저장하기 위한 클래스
 public class MyCommentReply {
 	private int commentNo;
 	

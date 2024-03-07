@@ -201,6 +201,45 @@
 			, reply_content, reply_date, reply_comment_no from mycomment left join myreply on 
 			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
 	</select>
+	
+	<resultMap type="MyCommentUserReply" id="myCommentUserReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+		<result column="comment_id" property="commentId"/>
+		<result column="comment_content" property="commentContent"/>
+		<result column="comment_date" property="commentDate"/>
+		
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+		
+		<collection property="replyUserList" ofType="MyReplyUser">
+			<association property="reply" javaType="MyReply">
+				<id column="reply_no" property="replyNo"/>
+				<result column="reply_id" property="replyId"/>
+				<result column="reply_content" property="replyContent"/>
+				<result column="reply_date" property="replyDate"/>
+				<result column="reply_comment_no" property="replyCommentNo"/>
+			</association>
+			<association property="user" javaType="MyUser">
+				<id column="reply_user_id" property="userId"/>
+				<result column="reply_user_name" property="userName"/>
+			</association>
+		</collection>
+	</resultMap>
+
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블(MYUSER 테이블)에 저장된 행과 MYREPLY 테이블
+	(MYUSER 테이블)에 저장된 행을 1:N 관계로 결합되도록 검색하여 Java 객체(MyCommentUserReply 
+	객체)로 제공하는 엘리먼트 -->
+	<select id="selectCommentUserReply" parameterType="int" resultMap="myCommentUserReplyResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			, reply_no, reply_id, reply_content, reply_date, reply_comment_no, reply_user_id 
+			, reply_user_name from mycomment join myuser on comment_id=user_id left join
+			(select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			, user_id reply_user_id, user_name reply_user_name from myreply join myuser 
+			on reply_id=user_id) on comment_no=reply_comment_no where comment_no=#{commentNo}
+			order by reply_no desc 
+	</select>
 </mapper>
 
 
