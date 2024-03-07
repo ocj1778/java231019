@@ -102,12 +102,12 @@ public class MyCommentDAO extends AbstractSession {
 	
 	public List<MyReply> selectCommentNoReplyList(int commentNo) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
-		try { 
+		try {
 			return sqlSession.getMapper(MyCommentMapper.class).selectCommentNoReplyList(commentNo);
 		} finally {
 			sqlSession.close();
 		}
-	}
+	} 
 	
 	public MyCommentReply selectCommentReply(int commentNo) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);

@@ -164,7 +164,13 @@
 			where reply_comment_no=#{replyCommentNo} order by reply_no desc 
 	</select>
 	
+	<!-- 문제점 : resultMap 엘리먼트의 첫번째 하위 엘리먼트로 association 엘리먼트를 사용한 경우 
+	하나의 검색행을 Java 객체를 만들어 제공하지만 다수의 행이 검색되면 TooManyResultsException 예외 발생 -->
+	<!-- 해결법 : 다수의 행이 검색되는 경우 resultMap 엘리먼트의 첫번째 하위 엘리먼트로
+	association 엘리먼트외에 다른 엘리먼트(constructor, id, result)를 사용하여 작성 -->
 	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+	
 		<association property="comment" javaType="MyComment1">
 			<id column="comment_no" property="commentNo"/>
 			<result column="comment_id" property="commentId"/>
