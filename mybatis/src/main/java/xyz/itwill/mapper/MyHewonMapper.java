@@ -7,4 +7,5 @@ import xyz.itwill.dto.MyHewon;
 public interface MyHewonMapper {
 	int insertHewon(MyHewon hewon);
 	List<MyHewon> selectHewonList();
+	List<MyHewon> selectDiscriminatorHewonList();
 }
