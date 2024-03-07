@@ -8,6 +8,7 @@ import xyz.itwill.dto.MyComment3;
 import xyz.itwill.dto.MyCommentReply;
 import xyz.itwill.dto.MyCommentUser1;
 import xyz.itwill.dto.MyCommentUser2;
+import xyz.itwill.dto.MyCommentUserReply;
 import xyz.itwill.dto.MyReply;
 
 public interface MyCommentMapper {
@@ -21,4 +22,5 @@ public interface MyCommentMapper {
 	MyComment1 selectComment(int commentNo);
 	List<MyReply> selectCommentNoReplyList(int commentNo);
 	MyCommentReply selectCommentReply(int commentNo);
+	MyCommentUserReply selectCommentUserReply(int commentNo);
 }
