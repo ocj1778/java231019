@@ -21,13 +21,13 @@ public class MyHewon {
 	private String name;
 	private String phone;
 	private String email;
-	private String status;
+	private int status;
 	
 	public MyHewon() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MyHewon(String id, String name, String phone, String email, String status) {
+	public MyHewon(String id, String name, String phone, String email, int status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -68,11 +68,11 @@ public class MyHewon {
 		this.email = email;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 }
