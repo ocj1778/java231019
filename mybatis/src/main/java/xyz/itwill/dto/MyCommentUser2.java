@@ -5,7 +5,7 @@ package xyz.itwill.dto;
 public class MyCommentUser2 {
 	//MYCOMMENT 테이블의 검색행(게시글정보) 1개를 객체로 제공받아 저장하기 위한 필드
 	// => 필드에 반드시 객체를 저장해야만 포함관계 완성
-	// => 검색행을 객체로 제공받아 필드에 저장하기 위해 반드시 수동 매칭 기능 사용
+	// => 검색행을 객체로 제공받아 필드에 저장하기 위해 반드시 수동 매핑 기능 사용
 	private MyComment1 comment;
 	
 	//MYUSER 테이블의 검색행(회원정보) 1개를 객체로 제공받아 저장하기 위한 필드
