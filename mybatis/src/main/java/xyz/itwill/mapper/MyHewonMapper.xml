@@ -168,8 +168,23 @@
 	(Map 인터페이스)를 설정하여 객체를 전달받아 SQL 명령에서 #{맵키} 형식으로 표현하여 맵값 사용 -->
 	<select id="selectMapHewonId" parameterType="map" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
-	</select>	
+	</select>
+	
+	<insert id="insertMapHewon" parameterType="map">
+		insert into myhewon values(#{id}, #{name}, #{phone}, #{email}, #{status})
+	</insert>
+	
+	<!-- select 엘리먼트의 resultType 속성값을 HashMap 클래스(Map 인터페이스)로 설정하면
+	하나의 검색행을 Map 객체로 생성하여 제공 -->
+	<!-- => 검색행의 컬럼명은 맵키로 매핑되고 컬럼값은 맵값으로 매핑되어 Map 객체의 엔트리로 추가 -->
+	<!-- => 검색행의 컬럼명은 대문자로 검색되어 맵키도 대문자로 매핑 처리 -->
+	<select id="selectMapHewonList" resultType="map">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status
+			from myhewon order by hewon_id
+	</select>
 </mapper>
+
+
 
 
 
