@@ -235,7 +235,7 @@
 	행만 검색하여 Java 객체로 제공하는 엘리먼트 -->
 	<select id="selectDynamicNameHewonList" parameterType="string" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
-		<!-- if : 조건에 의해 엘리먼트 내용(SQL 문장)을 포함여부를 설정하는 엘리먼트 -->
+		<!-- if : 조건에 의해 엘리먼트 내용(SQL 문장)의 포함 여부를 설정하는 엘리먼트 -->
 		<!-- => if 엘리먼트의 조건이 참인 경우 엘리먼트 내용을 SQL 명령에 포함 -->
 		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
 		<!-- => parameterType 속성값으로 전달받은 값을 이용해 조건식을 작성하여 속성값 제공 -->
@@ -244,15 +244,58 @@
 		</if>
 		order by hewon_id
 	</select>
+	
+	<!-- 아이디와 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 행을 검색하여 검색결과를
+	Java 객체로 제공하고 아이디 또는 이름을 전달받은 경우 MYHEWON 테이블에 저장된 행에서 해당 
+	아이디 또는 이름의 행만 검색하여 Java 객체로 제공하는 엘리먼트 -->
+	<!-- => 아이디와 이름을 모두 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 -->
+	<!-- 
+	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<if test="id != null and id != ''">
+			where hewon_id = #{id}
+		</if>
+		<if test="name != null and name != ''">
+			where hewon_name = #{name}
+		</if>
+		order by hewon_id
+	</select>
+	 -->
+	 
+	 
+	<!-- 아이디와 이름을 모두 전달받아도 하나의 SQL 문장만 SQL 명령에 포함되도록 설정 -->
+	<!-- => 아이디와 이름을 모두 전달받은 경우 아이디만 이용하여 검색 -->
+	<!-- choose : 조건에 맞는 하나의 엘리먼트 내용(SQL 문장)이 SQL 명령에 포함되도록 설정하는 엘리먼트 -->
+	<!-- => 하위 엘리먼트 : when 엘리먼트(1개 이상), otherwise 엘리먼트(0개 또는 1개) -->
+	<!-- when : 조건에 의해 엘리먼트 내용(SQL 문장)의 포함 여부를 설정하는 엘리먼트 -->
+	<!-- => when 엘리먼트의 조건이 맞는 경우 엘리먼트 내용을 SQL 명령에 포함한 후 choose 엘리먼트 종료 -->
+	<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
+	<!-- otherwise : when 엘리먼트의 모든 조건이 거짓인 경우 엘리먼트 내용을 SQL 명령에 포함하기 위한 엘리먼트 -->
+	<!-- 
+	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<choose>
+			<when test="id != null and id != ''">
+				where hewon_id = #{id}
+			</when>
+			<when test="name != null and name != ''">
+				where hewon_name = #{name}
+			</when>
+		</choose>
+		order by hewon_id
+	</select>
+	 --> 
+	 
+	<!-- 아이디와 이름을 모두 전달받아도 하나의 SQL 문장으로 SQL 명령에 포함되도록 설정 -->
+	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 -->
+	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<if test="id != null and id != ''">
+			where hewon_id = #{id}
+		</if>
+		<if test="name != null and name != ''">
+			${choice} hewon_name = #{name}
+		</if>
+		order by hewon_id
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
