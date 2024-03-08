@@ -151,7 +151,7 @@
 	<!-- => 값을 여러개 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 DTO 클래스를
 	설정하여 객체를 전달받아 SQL 명령에서 #{필드명} 형식으로 표현하여 필드값 사용 -->
 	<!-- 
-	<select id="selectDTOHewonId" parameterType="MyHewon" resultType="string">
+	<select id="selectDtoHewonId" parameterType="MyHewon" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
 	 -->
@@ -161,6 +161,14 @@
 	<select id="selectDtoHewonId" resultType="string">
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>
+	
+	<!-- 이름과 이메일을 전달받아 MYHEWON 테이블에 저장된 행에서 전달값과 같은 이름과 이메일의 
+	행을 검색하여 아이디(String 객체 - 문자열)를 제공하는 엘리먼트 -->
+	<!-- => 값을 여러개 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 HashMap 클래스
+	(Map 인터페이스)를 설정하여 객체를 전달받아 SQL 명령에서 #{맵키} 형식으로 표현하여 맵값 사용 -->
+	<select id="selectMapHewonId" parameterType="map" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
+	</select>	
 </mapper>
 
 
