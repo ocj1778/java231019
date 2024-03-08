@@ -182,6 +182,23 @@
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status
 			from myhewon order by hewon_id
 	</select>
+	
+	<!-- 이름과 이메일을 전달받아 MYHEWON 테이블에 저장된 행에서 전달값과 같은 이름과 이메일의 
+	행을 검색하여 아이디(String 객체 - 문자열)를 제공하는 엘리먼트 -->
+	<!-- => 매퍼 바인딩을 설정한 경우 Interface 기반의 매퍼 파일에서 추상메소드의 매개변수에
+	전달되어 저장된 값을 @Param 어노테이션의 value 속성값으로 제공받아 엘리먼트에 등록된
+	SQL 명령에서 #{속성값} 형식으로 표현하여 매개변수의 저장값 사용 -->
+	<!-- => parameterType 속성을 반드시 생략 -->
+	<select id="selectParamHewonId" resultType="string">
+		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
+	</select>	
+	
+	<!-- 검색대상과 검색단어를 MYHEWON 테이블에 저장된 행에서 검색대상(컬럼명)에 검색단어가 
+	저장된 행을 검색하여 Java 객체로 제공하는 엘리먼트 -->
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status
+			from myhewon where #{searchColumn}=#{searchKeyword} order by hewon_id
+	</select>
 </mapper>
 
 
