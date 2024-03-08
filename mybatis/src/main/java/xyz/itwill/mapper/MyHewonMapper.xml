@@ -195,9 +195,13 @@
 	
 	<!-- 검색대상과 검색단어를 MYHEWON 테이블에 저장된 행에서 검색대상(컬럼명)에 검색단어가 
 	저장된 행을 검색하여 Java 객체로 제공하는 엘리먼트 -->
+	<!-- #{변수명|필드명|맵키} : '전달값' - 전달값을 SQL 명령의 문자값으로 사용 -->
+	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값을 SQL 명령의 SQL 문장으로 사용 -->
+	<!-- => ibatis 프레임워크에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
+	<!-- => $표현식은 InSQL 공격에 취약하므로 사용하는 것을 미권장 -->
 	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status
-			from myhewon where #{searchColumn}=#{searchKeyword} order by hewon_id
+			from myhewon where ${searchColumn}=#{searchKeyword} order by hewon_id 
 	</select>
 </mapper>
 
