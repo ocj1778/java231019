@@ -8,4 +8,5 @@ public interface MyHewonMapper {
 	int insertHewon(MyHewon hewon);
 	List<MyHewon> selectHewonList();
 	List<MyHewon> selectDiscriminatorHewonList();
+	List<MyHewon> selectStatusHewonList(int status);
 }
