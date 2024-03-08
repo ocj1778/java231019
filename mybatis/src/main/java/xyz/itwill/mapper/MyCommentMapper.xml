@@ -276,17 +276,3 @@
 			from mycomment join myuser on comment_id=user_id where comment_no=#{commentNo}	
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
