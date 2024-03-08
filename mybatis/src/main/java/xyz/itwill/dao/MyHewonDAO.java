@@ -58,10 +58,10 @@ public class MyHewonDAO extends AbstractSession {
 		}
 	}
 	
-	public String selectDTOHewonId(MyHewon hewon) {
+	public String selectDtoHewonId(MyHewon hewon) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
-			return sqlSession.getMapper(MyHewonMapper.class).selectDTOHewonId(hewon);
+			return sqlSession.getMapper(MyHewonMapper.class).selectDtoHewonId(hewon);
 		} finally {
 			sqlSession.close();
 		}

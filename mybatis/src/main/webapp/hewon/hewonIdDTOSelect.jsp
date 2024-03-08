@@ -14,7 +14,7 @@
 		hewon.setName(name);
 		hewon.setEmail(email);
 		
-		id=MyHewonDAO.getDAO().selectDTOHewonId(hewon);
+		id=MyHewonDAO.getDAO().selectDtoHewonId(hewon);
 	}
 %>    
 <!DOCTYPE html>
