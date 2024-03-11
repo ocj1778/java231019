@@ -195,8 +195,8 @@
 	
 	<!-- 검색대상과 검색단어를 전달받아 MYHEWON 테이블에 저장된 행에서 검색대상(컬럼명)에  
 	검색단어가 저장된 행을 검색하여 Java 객체로 제공하는 엘리먼트 -->
-	<!-- #{변수명|필드명|맵키} : '전달값' - 전달값을 SQL 명령의 문자값으로 사용 -->
-	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값을 SQL 명령의 SQL 문장으로 사용 -->
+	<!-- #{변수명|필드명|맵키} : 전달값을 SQL 명령의 문자값으로 사용 - '전달값' -->
+	<!-- ${변수명|필드명|맵키} : 전달값을 SQL 명령의 SQL 문장으로 사용 - 전달값 -->
 	<!-- => ibatis 프레임워크에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
 	<!-- => $표현식은 InSQL 공격에 취약하므로 사용하는 것을 미권장 -->
 	<!--  
@@ -227,8 +227,8 @@
 			from myhewon where ${searchColumn} like #{keyword} order by hewon_id 
 	</select>
 	
-	<!-- 동적 SQL(Dynamic SQL) : 전달값에 따란 엘리먼트에 다른 SQL 명령을 등록하는 기능 -->
-	<!-- => OGNL(Object Graph Navigation Language) 표현식을 사용하여 구현 -->
+	<!-- 동적 SQL(Dynamic SQL) : 전달값에 따라 엘리먼트에 다른 SQL 명령을 등록하는 기능 -->
+	<!-- => OGNL(Object Graph Navigation Language) 표현식을 사용하여 전달값을 사용해 구현 -->
 	
 	<!-- 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 행을 검색하여 검색결과를
 	Java 객체로 제공하고 이름을 전달받은 경우 MYHEWON 테이블에 저장된 행에서 해당 이름의
@@ -238,7 +238,7 @@
 		<!-- if : 조건에 의해 엘리먼트 내용(SQL 문장)의 포함 여부를 설정하는 엘리먼트 -->
 		<!-- => if 엘리먼트의 조건이 참인 경우 엘리먼트 내용을 SQL 명령에 포함 -->
 		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
-		<!-- => parameterType 속성값으로 전달받은 값을 이용해 조건식을 작성하여 속성값 제공 -->
+		<!-- => parameterType 속성값으로 전달받은 값을 OGNL 표현식을 사용해 조건식을 작성하여 속성값 제공 -->
 		<if test="name != null and name != ''"><!-- 전달값(이름)이 있는 경우 -->
 			where hewon_name = #{name}
 		</if>
@@ -287,15 +287,27 @@
 	 --> 
 	 
 	<!-- 아이디와 이름을 모두 전달받아도 하나의 SQL 문장으로 SQL 명령에 포함되도록 설정 -->
-	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 -->
+	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 - trim 엘리먼트를 사용하여 해결 가능 -->
+	<!-- trim : 엘리먼트 내용에 필요한 SQL 문장을 추가하여 불필요한 SQL 문장을 삭제하여 
+	SQL 명령에 포함하는 엘리먼트 - 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
+	<!-- prefix 속성 : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 추가될 SQL 
+	문장을 속성값으로 설정 -->
+	<!-- suffix 속성 : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용 뒷부분에 추가될 SQL 
+	문장을 속성값으로 설정 -->
+	<!-- prefixOverrides : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용에서 삭제될 앞부분의
+	SQL	문장을 속성값으로 설정 -->
+	<!-- suffixOverrides : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용에서 삭제될 뒷부분의
+	SQL	문장을 속성값으로 설정 -->
 	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
-		<if test="id != null and id != ''">
-			where hewon_id = #{id}
-		</if>
-		<if test="name != null and name != ''">
-			${choice} hewon_name = #{name}
-		</if>
+		<trim prefix="where" prefixOverrides="or|and">
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</trim>
 		order by hewon_id
 	</select>
 </mapper>
