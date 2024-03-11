@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String ids=request.getParameter("ids");
+	String ids=request.getParameter("ids");//aaa, bbb, ccc
 
 	List<String> idList=null;
 	if(ids!=null && !ids.equals("")) {
