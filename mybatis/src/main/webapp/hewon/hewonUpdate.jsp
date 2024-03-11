@@ -13,7 +13,7 @@
 	// => DTO 객체(MyHewon 객체)에는 아이디와 이름만 필드에 저장되어 있고 나머지 필드에는 기본값 저장
 	// => MYHEWON 테이블에 저장된 행에서 이름을 제외한 컬럼값이 비정상적으로 변경
 	MyHewonDAO.getDAO().updateHewon(hewon);
-	*/
+	*/ 
 	
 	MyHewon hewon=new MyHewon();//기본 생성자로 생성된 객체 필드에는 기본값 저장
 	hewon.setId("xxx");//필드값을 변경하는 메소드
