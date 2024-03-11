@@ -298,6 +298,7 @@
 	SQL	문장을 속성값으로 설정 -->
 	<!-- suffixOverrides : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용에서 삭제될 뒷부분의
 	SQL	문장을 속성값으로 설정 -->
+	<!--  
 	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
 		<trim prefix="where" prefixOverrides="or|and">
@@ -310,4 +311,46 @@
 		</trim>
 		order by hewon_id
 	</select>
+	-->
+	
+	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 조건식 앞부분에 불필요한
+	SQL 문장(or 또는 and 등)이 있을 경우 삭제하고 엘리먼트 내용 앞부분에 [where] 문장을
+	추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<where>
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</where>
+		order by hewon_id
+	</select>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 행을 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 모든 컬럼값을 변경하도록 처리 -->
+	<update id="updateHewon" parameterType="MyHewon">
+		update myhewon set hewon_name=#{name}, hewon_phone=#{phone}, hewon_email=#{email}
+			, hewon_status=#{status} where hewon_id=#{id}
+	</update>
+	
+	
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

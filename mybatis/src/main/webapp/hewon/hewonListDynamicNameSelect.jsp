@@ -35,7 +35,7 @@ td {
 </style>
 </head>
 <body>
-	<h1>게시글 목록</h1>
+	<h1>회원목록</h1>
 	<hr>
 	<table>
 		<tr>
