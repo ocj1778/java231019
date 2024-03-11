@@ -4,7 +4,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyHewon> hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();
+	request.setCharacterEncoding("utf-8");
+
+	String name=request.getParameter("name");
+
+	/*
+	List<MyHewon> hewonList=null;
+	if(name==null || name.equals("")) {//전달값이 없는 경우
+		hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();//전체 검색
+	} else {
+		hewonList=MyHewonInterfaceDAO.getDAO().selectNameHewonList(name);//조건 검색
+	}
+	*/
+	
+	List<MyHewon> hewonList=MyHewonInterfaceDAO.getDAO().selectDynamicNameHewonList(name);
 %>    
 <!DOCTYPE html>
 <html>
@@ -56,6 +69,21 @@ td {
 			</tr>
 			<% } %>
 		<% } %>
-	</table>	
+	</table>
+	<br>
+	
+	<form method="post">
+		이름 : <input type="text" name="name">
+		<button type="submit">검색</button>
+	</form>	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
