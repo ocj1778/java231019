@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import xyz.itwill.dto.MyHewon;
-import xyz.itwill.mapper.MyHewonMapper;
+import xyz.itwill.mapper.MyHewonInterfaceMapper;
 
 public class MyHewonInterfaceDAO extends AbstractSession {
 	private static MyHewonInterfaceDAO _dao;
@@ -25,7 +25,7 @@ public class MyHewonInterfaceDAO extends AbstractSession {
 	public List<MyHewon> selectHewonList() {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
-			return sqlSession.getMapper(MyHewonMapper.class).selectHewonList();
+			return sqlSession.getMapper(MyHewonInterfaceMapper.class).selectHewonList();
 		} finally {
 			sqlSession.close();
 		}
