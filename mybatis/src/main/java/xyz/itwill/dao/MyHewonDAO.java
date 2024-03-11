@@ -139,6 +139,15 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public int updateDynamicHewon(MyHewon hewon) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).updateDynamicHewon(hewon);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
 
 

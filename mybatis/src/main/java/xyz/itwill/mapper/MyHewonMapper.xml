@@ -313,9 +313,9 @@
 	</select>
 	-->
 	
-	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 조건식 앞부분에 불필요한
-	SQL 문장(or 또는 and 등)이 있을 경우 삭제하고 엘리먼트 내용 앞부분에 [where] 문장을
-	추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용(조건식)에서 앞부분에 불필요한
+	SQL 문장(or 또는 and 등)을 삭제하고 엘리먼트 내용 앞부분에 [where] 문장을 추가하여 
+	SQL 명령에 포함하는 엘리먼트 -->
 	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
 		<where>
@@ -336,8 +336,53 @@
 			, hewon_status=#{status} where hewon_id=#{id}
 	</update>
 	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 행을 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 컬럼값을 전달값이 있는 경우에만 변경하도록 처리 -->
+	<!-- if 엘리먼트의 test 속성값으로 조건식을 사용할 경우 비교 연산자(>, <, >=, <=)를 
+	사용하면 에러 발생 -->
+	<!-- => 기호로 표현된 비교 연산자 대신 문자로 표현된 연산자(gt, lt, gte, lte)를 사용하여 조건식 작성 -->
+	<!-- 
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<trim prefix="set" suffixOverrides=",">
+				<if test="name!=null and name!=''">
+					hewon_name=#{name},
+				</if>
+				<if test="phone!=null and phone!=''">
+					 hewon_phone=#{phone},
+				</if>
+				<if test="email!=null and email!=''">
+					 hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					 hewon_status=#{status} 
+				</if>  
+			</trim>
+		where hewon_id=#{id}
+	</update>
+	 -->
 	
-	
+	<!-- set : 엘리먼트 내용이 있는 경우 엘리먼트 내용(변경식)에서 뒷부분에 불필요한
+	SQL 문장(, 기호)을 삭제하고 엘리먼트 내용 앞부분에 [set] 문장을 추가하여 SQL 명령에  
+	포함하는 엘리먼트 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<set>
+				<if test="name!=null and name!=''">
+					hewon_name=#{name},
+				</if>
+				<if test="phone!=null and phone!=''">
+					 hewon_phone=#{phone},
+				</if>
+				<if test="email!=null and email!=''">
+					 hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					 hewon_status=#{status} 
+				</if>  
+			</set>
+		where hewon_id=#{id}
+	</update> 
 </mapper>
 
 
