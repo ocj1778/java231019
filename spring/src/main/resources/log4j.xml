@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
+<!-- log4j.xml : 로그 구현체 실행을 위한 정보를 제공하는 환경설정파일 -->
+<!-- => 로그 구현체 : 로깅 정보를 제공받아 기록하기 위한 프로그램 -->
+	
 	<!-- Appenders -->
+	<!-- appender : 로그 구현체 관련 정보를 설정하기 위한 엘리먼트 -->
+	<!-- name 속성 : appender 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- class 속성 : 로그 구현체로 실행하기 위한 클래스를 속성값으로 설정 -->
+	<!-- => http://logging.apache.org/log4j/1.2/apidocs 사이트 참조 -->
+	<!-- => class 속성값으로 설정될 클래스는 반드시 Appender 인터페이스를 상속받은 클래스로 설정 -->
+	<!-- => ConsoleAppender 클래스 : 로깅 정보를 제공받아 콘솔에 기록하기 위한 클래스 -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<!-- param : Appender 클래스에 필요한 값을 제공하기 위한 엘리먼트 -->
+		<!-- => Appender 클래스에 따른 전달할 이름과 값을 다르게 설정  -->
 		<param name="Target" value="System.out" />
+		<!-- layout : 로깅 정보를 제공받아 기록하기 위한 형식을 설정하기 위한 엘리먼트 -->
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
