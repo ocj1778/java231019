@@ -147,9 +147,9 @@
 		</dependency>  
 		
 		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
-		<!-- => 로그 구현체에 전달되어 출력될 로깅 정보에 파일 경로가 있는 경우 파일 경로에
-		인식할 수 없는 문자가 존재하는 경우 발생하는 예외(문제)를 해결하기 위해 파일 경로를 
-		부호화 처리하기 위한 기능을 제공하는 라이브러리 -->
+		<!-- => 로그 구현체에 환경설정파일(log4j.xml)을 읽어 실행될 때 필요한 파일의 경로에
+		인식할 수 없는 문자가 존재하면 예외가 발생되어 로그 구현체 미동작되는 문제 발생 --> 
+		<!-- => 파일 경로를 부호화 처리하기 위한 기능을 제공하는 라이브러리를 사용하여 문제 해결 -->
 		<dependency>
 		    <groupId>xerces</groupId>
 		    <artifactId>xercesImpl</artifactId>
