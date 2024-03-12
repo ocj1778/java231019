@@ -13,7 +13,7 @@ import xyz.itwill.dto.MyHewon;
 public interface MyHewonInterfaceMapper {
 	//추상메소드의 @Select 어노테이션으로 등록된 SELECT 명령은 기본적으로 검색행을 자동 매핑
 	//하여 Java 객체로 제공
-	// => 자동 매핑 기능을 사용하기 위해서는 검색행의 컬럼명과 객체 필드의 이름을 반드가 같도록 작성
+	// => 자동 매핑 기능을 사용하기 위해서는 검색행의 컬럼명과 객체 필드의 이름을 반드시 같도록 작성
 	// => 검색행의 컬럼명이 객체 필드의 이름과 모두 다른 경우 Java 객체 대신 NULL 제공
 	//@Results : 검색행을 Java 객체로 제공하기 위한 매핑 정보를 설정하는 어노테이션
 	// => XML 기반의 매퍼 파일에서 resultMap 엘리먼트와 유사한 기능 제공

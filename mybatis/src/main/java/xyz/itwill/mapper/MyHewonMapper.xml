@@ -288,7 +288,7 @@
 	 
 	<!-- 아이디와 이름을 모두 전달받아도 하나의 SQL 문장으로 SQL 명령에 포함되도록 설정 -->
 	<!-- => 이름만 전달받은 경우 SQL 명령에 오류가 발생되어 에러 발생 - trim 엘리먼트를 사용하여 해결 가능 -->
-	<!-- trim : 엘리먼트 내용에 필요한 SQL 문장을 추가하여 불필요한 SQL 문장을 삭제하여 
+	<!-- trim : 엘리먼트 내용에 필요한 SQL 문장을 추가하고 불필요한 SQL 문장을 삭제하여 
 	SQL 명령에 포함하는 엘리먼트 - 하위 엘리먼트로 다수의 if 엘리먼트 사용 -->
 	<!-- prefix 속성 : trim 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 추가될 SQL 
 	문장을 속성값으로 설정 -->
@@ -313,7 +313,7 @@
 	</select>
 	-->
 	
-	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용(조건식)에서 앞부분에 불필요한
+	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용(조건식)의 앞부분에 불필요한
 	SQL 문장(or 또는 and 등)을 삭제하고 엘리먼트 내용 앞부분에 [where] 문장을 추가하여 
 	SQL 명령에 포함하는 엘리먼트 -->
 	<select id="selectDynamicIdNameHewonList" parameterType="map" resultMap="myHewonResultMap">
@@ -393,7 +393,7 @@
 	<select id="selectMultiIdDynamicHewonList" parameterType="list" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
 		<if test="list != null">
-			where hewon_id in 
+			where hewon_id in  
 			<!-- foreach : 전달받은 ArrayList 객체(List 객체)의 요소값을 차례대로 제공받아
 			반복적으로 엘리먼트 내용(SQL 문장)을 SQL 명령에 포함하는 엘리먼트 -->
 			<!-- collection 속성 : 반복 처리할 ArrayList 객체(List 객체)의 이름을 속성값으로 설정 -->
@@ -408,18 +408,3 @@
 		order by hewon_id
 	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
