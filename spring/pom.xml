@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	<!-- Maven : 빌드 툴(Build Tool) - 프로젝트 라이브러리의 빌드 처리 관리하는 프로그램 -->
+	<!-- pom.xml : 메이븐을 사용하여 프로젝트 라이브러리를 빌드 처리하기 위한 정보를 제공하는 환경설정파일 -->
+	<!-- => 로컬 저장소에 저장된 라이브러리 파일을 제공받아 프로젝트 빌드 처리 -->
+	<!-- => 로컬 저장소에 라이브러리 파일이 없는 경우 메이븐 저장소에서 라이브러리 파일을
+	다운로드 받아 로컬 저장소에 저장하여 사용  -->
+	<!-- 로컬 저장소(Local Repository) : 프로젝트에 빌드 처리될 라이브러리 파일이 저장된 폴더 -->
+	<!-- => 기본적으로 사용자 폴더의 .m2 폴더를 로컬 저장소로 사용 -->
+	<!-- => 라이브러리 파일에 문제가 있어 프로그램 실행시 에러가 발생될 경우 이클립스 종료
+	후 해당 라이브러리 파일(폴더)을 삭제하고 이클립스 재실행 -->
+	<!-- 메이븐 저장소(Local Repository) : 인터넷에 라이브러리 파일이 저장된 저장소 -->
+	<!-- => https://mvnrepository.com 사이트 참조 -->
+	
+	<!-- 현재 작업중인 프로젝트를 메이븐으로 배포하기 위한 파일을 생성할 정보를 제공하는 엘리먼트 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>xyz.itwill</groupId>
 	<artifactId>spring</artifactId>
 	<name>spring</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	<!-- properties : pom.xml 파일에서 자주 사용되는 값을 이름으로 제공하도록 등록하는 엘리먼트 -->
+	<!-- => 하위 엘리먼트의 이름을 식별자로 사용하여 엘리먼트 내용을 값으로 제공 -->
+	<!-- => pom.xml 파일에서 ${이름} 형식으로 값을 제공하여 사용 -->
+	<!-- => 라이브러리 버전을 효율적으로 관리하기 위한 properties 엘리먼트 사용 -->
 	<properties>
-		<java-version>1.6</java-version>
-		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.springframework-version>5.3.32</org.springframework-version>
+		<org.aspectj-version>1.9.21.1</org.aspectj-version>
+		<org.slf4j-version>2.0.12</org.slf4j-version>
 	</properties>
+	
+	<!-- dependencies : 1개 이상의 dependency 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<dependencies>
-		<!-- Spring -->
+		<!-- dependency : 라이브러리 파일을 제공받아 프로젝트에 빌드 처리하기 위한 엘리먼트 -->
+		<!-- => 라이브러리 의존 관계에 의해 다른 라이브러리 파일을 프로젝트에 자동으로 빌드 처리 
+		=> 의존 전이(Transitive Dependencies) -->
+		<!-- Spring - Spring 프레임워크의 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
+			<!-- groupId : 라이브러리 파일을 제공하는 그룹의 도메인을 설정하기 위한 엘리먼트 -->
 			<groupId>org.springframework</groupId>
+			<!-- artifactId : 라이브러리의 이름을 설정하기 위한 엘리먼트 -->
 			<artifactId>spring-context</artifactId>
+			<!-- version : 라이브러리의 버전을 설정하기 위한 엘리먼트 -->
 			<version>${org.springframework-version}</version>
+			<!-- exclusions : 1개 이상의 exclusion 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 			<exclusions>
+				<!-- exclusion : 의존 관계의 라이브러리 중 제외 라이브러리를 설정하기 위한 엘리먼트 -->
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -27,20 +54,21 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
-		<!-- AspectJ -->
+		<!-- AspectJ - Spring AOP 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
-		<!-- Logging -->
+		<!-- Logging - 로그 관련 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -56,12 +84,13 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
+			<!-- scope : 라이브러리가 프로젝트에 빌드되는 시점을 설정하는 엘리먼트 -->
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
+			<version>1.2.17</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
@@ -90,18 +119,18 @@
 			<version>1</version>
 		</dependency>
 				
-		<!-- Servlet -->
+		<!-- Servlet - 웹프로그램 작성에 필요한 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
+		    <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.3.3</version>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -109,13 +138,24 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- Test -->
+		<!-- Test - 테스트 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>        
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.13.2</version>
+		    <scope>test</scope>
+		</dependency>  
+		
+		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
+		<!-- => 로그 구현체에 전달되어 출력될 로깅 정보에 파일 경로가 있는 경우 파일 경로에
+		인식할 수 없는 문자가 존재하는 경우 발생하는 예외(문제)를 해결하기 위해 파일 경로를 
+		부호화 처리하기 위한 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>xerces</groupId>
+		    <artifactId>xercesImpl</artifactId>
+		    <version>2.12.2</version>
+		</dependency>
+		     
 	</dependencies>
     <build>
         <plugins>
