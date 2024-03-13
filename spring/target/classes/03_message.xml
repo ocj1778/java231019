@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 스프링 컨테이너(Spring Container)는 환경설정파일(Spring Bean Configuration File - XML)로부터
+	클래스를 제공받아 객체를 생성하여 관리 -->
+	<!-- => Spring Bean : 스프링 컨테이너에 의해 관리되는 객체(클래스) -->
+	<!-- => 스프링 컨테이너는 클래스(문자열)를 전달받아 리플렉션(Reflection) 기술을 사용하여 객체 생성 -->
+	
+	<!-- bean 엘리먼트를 사용하여 스프링 컨테이너에게 Spring Bean으로 사용될 클래스를 제공 -->
+	<bean class="xyz.itwill03.spring.HelloMessageObject" id="helloMessageObject"/>
+	<bean class="xyz.itwill03.spring.HiMessageObject" id="hiMessageObject"/>
+	
+	<!-- bean 엘리먼트의 하위 엘리먼트를 사용하여 Spring Bean에 대한 의존관계 설정 - 의존성 관계 -->
+	<bean class="xyz.itwill03.spring.MessagePrintObject" id="messagePrintObject">
+		<!-- <property name="object" ref="helloMessageObject"/> -->
+		<property name="object" ref="hiMessageObject"/>
+	</bean>
+</beans>
