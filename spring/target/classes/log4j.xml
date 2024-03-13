@@ -37,6 +37,21 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+
+	<appender name="hello" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%c{1} 클래스의 %M 메소드 - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="daily" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="deilyLog" />
+		<param name="DatePattern" value=".yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}]%-5p : %c - %m%n" />
+		</layout>
+	</appender>
 	
 	<!-- logger : 특정 패키지의 클래스에서 발생되는 로그 이벤트를 기록하기 위한 엘리먼트 -->
 	<!-- name 속성 : 로그 이벤트가 발생될 클래스의 패키지를 속성값으로 설정 -->
@@ -45,6 +60,18 @@
 		<!-- level : 클래스에 적용될 로그 이벤트를 설정하기 위한 엘리먼트 -->
 		<!-- => root 엘리먼트의 priority 엘리먼트로 제공되는 로그 이벤트 대신 사용되도록 설정 -->
 		<level value="info" />
+	</logger>
+
+	<!-- logger 엘리먼트는 기본적으로 root 엘리먼트의 정보를 제공받아 사용 -->
+	<!-- => root 엘리먼트의 priority 엘리먼트는 level 엘리먼트를 사용하여 로그 이벤트 변경 가능 -->
+	<!-- => root 엘리먼트의 appender-ref 엘리먼트의 Appender 변경 불가능 -->
+	<!-- additivity 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
+	<!-- => additivity 속성값을 [false]로 설정하면 root 엘리먼트의 appender-ref 엘리먼트의
+	Appender를 상속받아 사용하지 않도록 변경 -->
+	<logger name="xyz.itwill00.log" additivity="false">
+		<level value="info" />
+		<appender-ref ref="hello" />
+		<appender-ref ref="daily" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -76,7 +103,6 @@
 		<!-- ref 속성 : appender 엘리먼트의 식별자(name 속성값)을 속성값으로 설정 -->
 		<appender-ref ref="console" />
 	</root>
-	
 </log4j:configuration>
 
 
