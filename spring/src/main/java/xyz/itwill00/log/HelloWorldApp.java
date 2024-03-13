@@ -2,10 +2,10 @@ package xyz.itwill00.log;
 
 public class HelloWorldApp {
 	public static void main(String[] args) {
-		System.out.println("HelloWorldApp Å¬·¡½ºÀÇ main ¸Ş¼Òµå - ½ÃÀÛ");
+		System.out.println("HelloWorldApp í´ë˜ìŠ¤ì˜ hello ë©”ì†Œë“œ - ì‹œì‘");
 		HelloWorld hw=new HelloWorld();
-		String message=hw.hello("È«±æµ¿");
+		String message=hw.hello("í™ê¸¸ë™");
 		System.out.println("message = "+message);
-		System.out.println("HelloWorldApp Å¬·¡½ºÀÇ main ¸Ş¼Òµå - Á¾·á");
+		System.out.println("HelloWorldApp í´ë˜ìŠ¤ì˜ hello ë©”ì†Œë“œ - ì¢…ë£Œ");
 	}
 }

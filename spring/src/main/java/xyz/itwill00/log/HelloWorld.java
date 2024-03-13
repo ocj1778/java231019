@@ -2,9 +2,9 @@ package xyz.itwill00.log;
 
 public class HelloWorld {
 	public String hello(String name) {
-		System.out.println("HelloWorld Å¬·¡½ºÀÇ hello ¸Ş¼Òµå - ½ÃÀÛ");
-		String message=name+"´Ô, ¾È³çÇÏ¼¼¿ä.";
-		System.out.println("HelloWorld Å¬·¡½ºÀÇ hello ¸Ş¼Òµå - Á¾·á");
+		System.out.println("HelloWorld í´ë˜ìŠ¤ì˜ hello ë©”ì†Œë“œ - ì‹œì‘");
+		String message=name+"ë‹˜, ì•ˆë…•í•˜ì„¸ìš”.";
+		System.out.println("HelloWorld í´ë˜ìŠ¤ì˜ hello ë©”ì†Œë“œ - ì¢…ë£Œ");
 		return message;
 	}
 }
