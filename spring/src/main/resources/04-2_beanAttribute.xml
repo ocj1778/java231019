@@ -16,5 +16,32 @@
 	<!-- => false : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성 -->	
 	<!-- => true : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성하고 않고
 	getBean() 메소드를 호출하여 객체를 제공받을 때 객체 생성 -->	
-	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>	
+	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>
+	
+	<!-- 스프링 컨테이너는 Spring Bean Configuration File에 등록된 모든 클래스를 리플렉션
+	기술을 사용하여 미리 객체(Spring Bean)로 생성 -->
+	<!-- => 리플렉션 기술을 사용하면 접근 제한자에 상관없이 필드 또는 메소드 사용 가능 -->
+	<!-- => 생성자가 은닉화 선언되어 있어도 스프링 컨테이너는 클래스의 생성자로 객체 생성 가능 -->
+	<!-- 문제점)Spring Bean Configuration File에 등록된 싱글톤 클래스는 해당 클래스를 읽어 
+	메모리에 저장하여 Class 객체를 생성한 후 정적영역의 명령을 실행하여 객체를 생성하고 스프링
+	컨테이너의 리플렉션에 의해 객체를 다시 생성 - 싱글톤 클래스로 2개의 객체가 생성  -->
+	<!-- 해결법)bean 엘리먼트에 factory-method 속성을 사용하여 객체가 생성되도록 설정 -->
+	<!-- factory-method 속성 : 싱글톤 클래스에서 객체를 반환하는 메소드의 이름을 속성값으로 설정 -->
+	<!-- => factory-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+	<!-- => 스프링 컨테이너의 리플렉션을 사용하여 객체를 생성하지 않고 정적영역에서 생성된 객체를 사용 -->
+	<bean class="xyz.itwill04.bean.FactoryMethodBean" factory-method="getFactoryMethodBean"/>	
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
