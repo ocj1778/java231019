@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- <bean class="xyz.itwill04.bean.AnnotationBean" id="annotationBean"/> -->
+	
+	<!-- component-scan : 스프링 컨테이너가 스프링 어노테이션을 검색하여 처리할 수 있도록
+	설정하는 엘리먼트 -->
+	<!-- base-package 속성 : 스프링 컨테이너가 스프링 어노테이션을 사용한 클래스를 검색하기 
+	위한 패키지를 속성값으로 설정 - 상위 패키지를 설정하면 하위 패키지도 자동으로 포함 -->
+	<context:component-scan base-package="xyz.itwill04.bean"/>	
+</beans>
