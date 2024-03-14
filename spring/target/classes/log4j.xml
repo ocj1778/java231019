@@ -33,7 +33,7 @@
 		<!-- => %t : 로그 이벤트가 발생된 스레드의 이름을 기록 -->
 		<!-- => %r : 프로그램 시작 이후부터 로깅 정보를 제공받아 기록되는 시간(ms)을 기록 -->
 		<layout class="org.apache.log4j.PatternLayout">
-			<!-- ConversionPattern 이름으로 변환 문자을 사용한 패턴 관련 정보를 전달 -->
+			<!-- ConversionPattern 이름으로 변환 문자을 사용한 기록 관련 패턴 정보를 전달 -->
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
@@ -104,13 +104,3 @@
 		<appender-ref ref="console" />
 	</root>
 </log4j:configuration>
-
-
-
-
-
-
-
-
-
-
