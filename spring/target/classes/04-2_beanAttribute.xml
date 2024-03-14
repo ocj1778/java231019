@@ -29,19 +29,23 @@
 	<!-- factory-method 속성 : 싱글톤 클래스에서 객체를 반환하는 메소드의 이름을 속성값으로 설정 -->
 	<!-- => factory-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
 	<!-- => 스프링 컨테이너의 리플렉션을 사용하여 객체를 생성하지 않고 정적영역에서 생성된 객체를 사용 -->
-	<bean class="xyz.itwill04.bean.FactoryMethodBean" factory-method="getFactoryMethodBean"/>	
+	<bean class="xyz.itwill04.bean.FactoryMethodBean" factory-method="getFactoryMethodBean"/>
+	
+	<!-- 스프링 컨테이너는 bean 엘리먼트를 순서대로 읽어 클래스를 Spring Bean으로 등록 -->
+	<!-- depends-on 속성 : Spring Bean을 구분하기 위한 식별자(BeanName)을 속성값으로 설정 -->
+	<!-- => bean 엘리먼트로 클래스를 Spring Bean으로 등록하기 전에 다른 bean 엘리먼트의 
+	클래스로 Spring Bean 등록 -->
+	<bean class="xyz.itwill04.bean.DependsOnOneBean" depends-on="dependsOnTwoBean"/>	
+	<bean class="xyz.itwill04.bean.DependsOnTwoBean" id="dependsOnTwoBean"/>
+	
+	<!-- scope 속성 : singleton(기본값), prototype, request, session 중 하나를 속성값으로 설정 -->
+	<!-- singleton 또는 prototype 속성값 : 객체(Spring Bean)의 생성 갯수를 설정하는 속성값 -->
+	<!-- => singleton 속성값 : 스프링 컨테이너가 bean 엘리먼트의 클래스로 객체를 하나만 생성하여 제공 -->
+	<!-- => prototype 속성값 : 스프링 컨테이너가 bean 엘리먼트의 클래스로 객체를 여러개 생성하여 제공 -->
+	<!-- scope 속성값을 [prototype]으로 설정하면 lazy-init 속성값이 자동으로 [true] 설정  -->
+	<!-- => 스프링 컨테이너가 초기화될 때 객체를 미리 생성하지 않고 getBean() 메소드를 호출할 때 객체 생성 -->
+	<!-- request 또는 session 속성값 : 객체(Spring Bean)의 사용범위를 설정하는 속성값 -->
+	<!-- => 웹프로그램 작성시에만 사용 -->
+	<bean class="xyz.itwill04.bean.ScopeBean" id="singletonBean" lazy-init="true" scope="singleton"/>	
+	<bean class="xyz.itwill04.bean.ScopeBean" id="prototypeBean" lazy-init="true" scope="prototype"/>	
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
