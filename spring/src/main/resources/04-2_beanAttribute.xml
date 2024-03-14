@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- init-method 속성 : 스프링 컨테이너에 의해 객체(String Bean)가 생성된 후에 자동으로 
+	한번만 호출되어 객체 초기화 작업을 실행하기 위한 메소드의 이름을 속성값으로 설정 -->
+	<!-- => init-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+	<!-- destroy-method 속성 : 스프링 컨테이너에 의해 객체(String Bean)가 소멸되기 전에 자동으로 
+	한번만 호출되어 객체 마무리 작업을 실행하기 위한 메소드의 이름을 속성값으로 설정 -->
+	<!-- => destroy-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+	<bean class="xyz.itwill04.bean.InitDestroyMethodBean" id="initDestroyMethodBean"
+		init-method="init" destroy-method="destroy"/>
+	
+	<!-- lazy-init 속성 : false(기본값) 또는 true 중 하나를 속성값을 설정 -->
+	<!-- => false : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성 -->	
+	<!-- => true : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성하고 않고
+	getBean() 메소드를 호출하여 객체를 제공받을 때 객체 생성 -->	
+	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>	
+</beans>
