@@ -11,7 +11,7 @@
 	<bean class="xyz.itwill03.spring.HelloMessageObject" id="helloMessageObject"/>
 	<bean class="xyz.itwill03.spring.HiMessageObject" id="hiMessageObject"/>
 	
-	<!-- bean 엘리먼트의 하위 엘리먼트를 사용하여 Spring Bean에 대한 의존관계 설정 - 의존성 관계 -->
+	<!-- bean 엘리먼트의 하위 엘리먼트를 사용하여 Spring Bean에 대한 의존관계 설정 - 의존성 주입 -->
 	<bean class="xyz.itwill03.spring.MessagePrintObject" id="messagePrintObject">
 		<!-- <property name="object" ref="helloMessageObject"/> -->
 		<property name="object" ref="hiMessageObject"/>
