@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 스프링 컨테이너가 클래스의 기본 생성자를 사용하여 객체 생성 -->
+	<!-- => 객체 필드에는 기본값(숫자형 : 0, 논리형 : false, 참조형 : null)이 저장 -->
+	<bean class="xyz.itwill05.di.Student" id="student1"/>
+	
+	<!-- Spring Injection : 스프링 컨테이너에 의해 Spring Bean Configuration File에 등록된
+	클래스를 객체로 생성할 때 객체 필드에 값(객체)이 저장되도록 설정하는 기능 -->
+	<!-- => 생성자(Constructor Injection) 또는 Setter 메소드(Setter Injection)를 사용하여 
+	객체 필드에 값(객체) 저장 -->
+	
+	<!-- 스프링 컨테이너가 클래스의 매개변수가 작성된 생성자를 사용하여 객체 생성 -->
+	<!-- => 생성자 매개변수에 전달된 값(객체)을 사용하여 필드값으로 저장 - Constructor Injection -->
+	<!-- Constructor Injection : 생성자를 사용하여 객체가 생성될 때 객체 필드에 값(객체)를 주입하는 방법 -->
+	<!-- => bean 엘리먼트의 하위 엘리먼트로 constructor-arg 엘리먼트를 사용하여 설정 -->
+	<bean class="xyz.itwill05.di.Student" id="student2">
+		<!-- constructor-arg : 생성자 매개변수에 값(객체)을 전달하기 위한 엘리먼트 -->
+		<!-- => constructor-arg 엘리먼트의 갯수만큼 매개변수가 작성된 생성자가 반드시 존재 -->
+		<!-- value 속성 : 생성자 매개변수에 전달되어 저장된 값을 속성값으로 설정 -->
+		<!-- => 매개변수에 저장된 값은 필드값으로 저장 - 값 주입(Value Injection) -->
+		<!-- => 매개변수에 전달되는 값은 기본적으로 문자열로 전달되지만 매개변수에 자료형에
+		의해 자동 형변환 -->
+		<!-- => 매개변수에 의해 자동 형변환시 NumberFormatException 발생 가능 -->
+		<!-- type 속성 : 매개변수의 자료형을 속성값으로 설정 -->
+		<constructor-arg value="1000" type="int"/>
+	</bean>
+	
+	<!-- constructor-arg 엘리먼트의 작성순서에 의해 매개변수에 값(객체)이 차례대로 전달되어 저장 -->
+	<!--  
+	<bean class="xyz.itwill05.di.Student" id="student3">
+		<constructor-arg value="2000"/>
+		<constructor-arg value="홍길동"/>
+		<constructor-arg value="abc123@itwill.xyz"/>
+	</bean>
+	-->
+	
+	<bean class="xyz.itwill05.di.Student" id="student3">
+		<!-- index 속성 : 생성자 매개변수에 값(객체)을 전달하기 위한 순서를 속성값으로 설정 -->
+		<!-- index 속성값은 0부터 1씩 증가되는 정수값 사용 -->
+		<constructor-arg value="abc123@itwill.xyz" index="2"/>
+		<constructor-arg value="2000" index="0"/>
+		<constructor-arg value="홍길동" index="1"/>
+	</bean>
+	
+	<!-- 스프링 컨테이너가 클래스의 기본 생성자를 사용하여 객체 생성 - 객체 필드에 기본값 저장 -->
+	<!-- => 객체 생성 후 필드의 Setter 메소드를 호출하여 필드값을 변경하여 저장 - Setter Injection -->
+	<!-- Setter Injection : Setter 메소드를 사용하면 필드에 값(객체)를 주입하는 방법 -->
+	<!-- => bean 엘리먼트의 하위 엘리먼트로 property 엘리먼트를 사용하여 설정 -->
+	<bean class="xyz.itwill05.di.Student" id="student4">
+		<!-- property : 객체 필드의 Setter 메소드를 호출하여 필드값을 변경하는 엘리먼트 -->
+		<!-- name 속성 : 필드값을 변경할 필드의 이름을 속성값으로 설정 - 자동 완성 기능 사용 가능 -->
+		<!-- => name 속성값으로 설정된 필드의 Setter 메소드를 자동 호출하여 필드값 변경 -->
+		<!-- => 필드에 대한 Setter 메소드가 없거나 메소드 작성 형식이 맞지 않은 경우 예외 발생 -->
+		<!-- value 속성 : Setter 메소드의 매개변수에 전달되어 저장된 값을 속성값으로 설정 -->
+		<!-- => 매개변수에 저장된 값은 필드값으로 저장 - 값 주입(Value Injection) -->
+		<property name="num" value="3000"/>
+		<property name="name" value="임꺽정"/>
+		<property name="email" value="opq456@itwill.xyz"/>
+	</bean>
+	
+	<!-- Constructor Injection과 Setter Injection를 같이 사용하여 객체 필드 초기화 가능 -->
+	<bean class="xyz.itwill05.di.Student" id="student5">
+		<constructor-arg value="4000"/>
+		<constructor-arg value="전우치"/>
+		<property name="email" value="xyz789@itwill.xyz"/>
+	</bean>
+	
+	<!-- PropertyPlaceholderConfigurer 클래스를 Spring Bean으로 등록 -->
+	<!-- => PropertyPlaceholderConfigurer 클래스 : Properties 파일을 제공받아 파일에 저장된
+	값을 Spring Bean Configuration File에서 사용할 수 있도록 제공하는 클래스 -->
+	<!-- => locations 필드에 Properties 파일 경로를 전달하여 저장 -->
+	<!-- =? Properties 파일에 의해 제공되는 값은 ${이름} 형식으로 표현하여 사용 -->
+	<!--  
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="xyz/itwill05/di/student.properties"/>
+	</bean>
+	-->
+	
+	<!-- Spring 5.2 이상에서는 PropertySourcesPlaceholderConfigurer 클래스를 사용하여 Properties 파일의
+	값을 제공받아 Spring Bean Configuration File에서 사용 -->
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations" value="xyz/itwill05/di/student.properties"/>
+	</bean>
+	
+	<bean class="xyz.itwill05.di.Student" id="student6">
+		<property name="num" value="${num}"/>
+		<property name="name" value="${name}"/>
+		<property name="email" value="${email}"/>
+	</bean>
+</beans>
