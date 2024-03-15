@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- StudnetDAO 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill05.di.StudentJdbcDAOImpl" id="studentJdbcDAOImpl"/>
+	
+	<!-- StudnetService 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => StudentServiceImpl 클래스의 studentDAO 필드에 StudentDAO 인터페이스를 상속받은
+	자식클래스의 객체가 저장되도록 의존성 주입 -->
+	<!-- => 의존성 주입을 하지 않은 경우 studentDAO 필드에 [null]이 저장되어 메소드르 호출하면
+	NullPointerException 발생 -->
+	<!-- property 엘리먼트를 사용하여 studentDAO 필드에 StudentDAO 인터페이스를 상속받은
+	클래스의 Spring Bean를 제공받아 의존성 주입 - Setter Injection -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentJdbcDAOImpl"/>
+	</bean>
+</beans>
