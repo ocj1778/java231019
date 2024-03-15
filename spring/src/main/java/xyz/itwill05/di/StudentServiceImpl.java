@@ -72,5 +72,4 @@ public class StudentServiceImpl implements StudentService {
 		System.out.println("*** StudentServiceImpl 클래스의 getStudentList() 메소드 호출 ***");
 		return studentDAO.selectStudentList();
 	}
-
 }
