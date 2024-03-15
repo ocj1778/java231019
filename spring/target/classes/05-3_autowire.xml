@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- StudnetDAO 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- <bean class="xyz.itwill05.di.StudentJdbcDAOImpl" id="studentDAO"/> -->
 	<bean class="xyz.itwill05.di.StudentJdbcDAOImpl" id="studentJdbcDAOImpl"/>
+	<bean class="xyz.itwill05.di.StudentMybatisDAOImpl" id="studentMybatisDAOImpl"/>
 	
 	<!-- StudnetService 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
 	<!-- => StudentServiceImpl 클래스의 studentDAO 필드에 StudentDAO 인터페이스를 상속받은
@@ -13,7 +15,41 @@
 	NullPointerException 발생 -->
 	<!-- property 엘리먼트를 사용하여 studentDAO 필드에 StudentDAO 인터페이스를 상속받은
 	클래스의 Spring Bean를 제공받아 의존성 주입 - Setter Injection -->
+	<!-- 
 	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService">
 		<property name="studentDAO" ref="studentJdbcDAOImpl"/>
 	</bean>
+	-->
+
+	<!-- autowire 속성 : no(기본값), byName, byType, constructor 중 하나를 속성값으로 설정 -->
+	<!-- => bean 엘리먼트의 클래스로 객체가 생성될 때 스프링 컨테이너가 자동으로 생성된 객체
+	필드에 Spring Bean을 주입하여 저장하기 위한 속성 - 자동으로 DI 기능 구현 -->
+	<!-- no 속성 : 자동으로 의존관계를 구현하는 기능 미사용 -->
+	<!-- => Constructor Injection 또는 Setter Injection을 사용하여 Spring Bean을 제공받아 필드에 
+	저장되도록 설정 - 수동으로 DI 기능 구현 -->
+	<!-- 
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="no">
+		<property name="studentDAO" ref="studentJdbcDAOImpl"/>
+	</bean>
+	-->
+	
+	<!-- byName 속성값 : 클래스의 필드명과 같은 이름의 식별자(beanName)로 등록된 Spring Bean을
+	제공받아 필드에 저장되도록 의존성 주입 - Setter Injection -->
+	<!-- => 필드명과 같은 이름의 식별자로 등록된 Spring Bean이 없는 경우 의존성 미주입 - NullPointerException 발생 -->
+	<!-- <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="byName"/>  -->
+	
+	<!-- byType 속성값 : 클래스의 필드와 같은 자료형(클래스)의 Spring Bean을 제공받아 필드에
+	저장되도록 의존성 주입 - Setter Injection -->
+	<!-- => 필드의 자료형이 인터페이스인 경우 인터페이스를 상속받은 자식클래스로 등록된
+	Spring Bean을 제공받아 필드에 저장되도록 의존성 주입 -->
+	<!-- => 필드의 자료형(인터페이스)이 같은 Spring Bean이 2개 이상 등록된 경우 의존성 주입
+	실패 - UnsatisfiedDependencyException 발생 -->
+	<!-- <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="byType"/> -->
+
+	<!-- constructor 속성값 : 클래스의 필드와 같은 자료형(클래스)의 Spring Bean을 제공받아 
+	필드에 저장되도록 의존성 주입 - Constructor Injection -->	
+	<!-- => 필드의 자료형이 인터페이스인 경우 인터페이스를 상속받은 자식클래스로 등록된
+	Spring Bean을 제공받아 필드에 저장되도록 의존성 주입 -->
+	<!-- => 필드의 자료형(인터페이스)이 같은 Spring Bean이 2개 이상 등록된 경우 의존성 미주입 -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="constructor"/>
 </beans>
