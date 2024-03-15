@@ -95,9 +95,25 @@
 	<bean class="xyz.itwill05.di.StudentJdbcDAOImpl" id="studentJdbcDAOImpl"/>
 	
 	<!-- StudentService 인터페이스를 상속받은 자식클래스(Service 클래스)를 Spring Bean으로 등록 -->
-	<!-- => StudentServiceImpl 클래스의 기본 생성자를 사용하여 객체 생성 -->
-	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl"/>
-	
+	<!-- => StudentServiceImpl 클래스의 기본 생성자를 사용하여 객체 생성 - 필드에 기본값 저장 -->
+	<!-- 문제점)StudentServiceImpl 클래스의 studentDAO 필드에는 [null]아 저장되므로 StudentServiceImpl 
+	클래스의 메소드에서 studentDAO 필드를 사용하여 메소드를 호출하면 NullPointerException 발생 -->
+	<!-- => 의존관계가 구현되지 않아 발생 -->
+	<!-- 해결법)StudentServiceImpl 클래스의 studentDAO 필드에 StudentDAO 인터페이스를
+	상속받은 자식클래스의 객체가 저장되도록 설정 - 의존관계 구현 -->
+	<!-- <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl"/> -->
+
+	<!-- StudentServiceImpl 클래스의 매개변수가 작성된 생성자를 사용하여 객체 생성 -->
+	<!-- => 생성자 매개변수에 StudentDAO 인터페이스를 상속받은 자식클래스(DAO 클래스)의 객체를
+	전달받아 studentDAO 필드에 저장 - Constructor Injection -->
+	<!-- => constructor-arg 엘리먼트를 사용하여 StudentServiceImpl 클래스가 객체로 생성될 때 생성자 
+	매개변수에 StudentDAO 인터페이스를 상속받은 자식클래스의 객체를 전달받아 필드에 저장 - 의존관계 구현  -->
+	<!-- ref 속성 : Spring Bean의 식별자(BeanName)을 속성값으로 설정  - 자동 완성 기능 사용 -->
+	<!-- => 스프링 컨테이너에서 Spring Bean(객체)을 제공받아 객체 필드에 저장되도록 주입 
+	- 의존성 주입(DI : Dependency Injection) -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl">
+		<constructor-arg ref="studentJdbcDAOImpl"/>
+	</bean>
 </beans>
 
 
