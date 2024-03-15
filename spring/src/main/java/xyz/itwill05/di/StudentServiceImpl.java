@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
 	private StudentDAO studentDAO;
 
 	public StudentServiceImpl() {
-		System.out.println("### StudentJdbcDAOImpl 클래스의 기본 생성자 호출 ###");
+		System.out.println("### StudentServiceImpl 클래스의 기본 생성자 호출 ###");
 	}
 	
 	public StudentServiceImpl(StudentDAO studentDAO) {

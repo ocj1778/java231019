@@ -90,4 +90,27 @@
 		<property name="name" value="${name}"/>
 		<property name="email" value="${email}"/>
 	</bean>
+	
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스(DAO 클래스)를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill05.di.StudentJdbcDAOImpl" id="studentJdbcDAOImpl"/>
+	
+	<!-- StudentService 인터페이스를 상속받은 자식클래스(Service 클래스)를 Spring Bean으로 등록 -->
+	<!-- => StudentServiceImpl 클래스의 기본 생성자를 사용하여 객체 생성 -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl"/>
+	
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
