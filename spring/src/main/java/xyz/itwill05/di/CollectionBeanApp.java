@@ -14,6 +14,8 @@ public class CollectionBeanApp {
 		// => 콜렉션 객체의 toString() 메소드 호출 - Collection에 저장된 모든 요소값 출력
 		System.out.println("nameSet = "+bean.getNameSet());
 		System.out.println("nameList = "+bean.getNameList());
+		System.out.println("controllerSet = "+bean.getControllerSet());
+		System.out.println("controllerList = "+bean.getControllerList());
 		System.out.println("==========================================================");
 		((ClassPathXmlApplicationContext)context).close();		
 	}

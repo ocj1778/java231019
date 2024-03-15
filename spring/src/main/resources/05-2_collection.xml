@@ -3,6 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<!-- Controller 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill05.di.LoginController" id="loginController"/>
+	<bean class="xyz.itwill05.di.LogoutController" id="logoutController"/>
+	<bean class="xyz.itwill05.di.ListController" id="listController"/>
+	
 	<!-- Setter 메소드를 사용하여 필드에 콜렉션 객체가 저장되도록 의존관계 구현 - DI -->
 	<bean class="xyz.itwill05.di.CollectionBean" id="collectionBean">
 		<property name="nameSet">
@@ -23,6 +28,23 @@
 				<value>전우치</value>
 				<value>홍길동</value>
 			</list>		
+		</property>
+		<property name="controllerSet">
+			<set>
+				<!-- ref : 콜렉션 객체에 Spring Bean을 전달하여 요소로 추가하기 위한 엘리먼트 -->
+				<!-- bean 속성 : Spring Bean을 구분하기 위한 식별자(beanName)를 속성값으로 설정 -->
+				<!-- => 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</set>
+		</property>
+		<property name="controllerList">
+			<list>
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</list>
 		</property>
 	</bean>
 </beans>
