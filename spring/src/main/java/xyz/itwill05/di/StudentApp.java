@@ -28,7 +28,10 @@ public class StudentApp {
 		System.out.println(student6);
 		System.out.println("==========================================================");
 		//스프링 컨테이너에서 데이타 처리 기능을 제공하는 Service 객체를 반환받아 저장
-		StudentServiceImpl service=context.getBean("studentServiceImpl", StudentServiceImpl.class);
+		//StudentServiceImpl service=context.getBean("studentServiceImpl", StudentServiceImpl.class);
+		
+		//인터페이스로 참조변수를 생성하여 객체를 반환받아 저장하여 사용하는 것을 권장
+		StudentService service=context.getBean("studentServiceImpl", StudentService.class);
 		
 		//Service 객체의 메소드를 호출하여 데이타 처리 기능 구현
 		service.addStudent(student1);
@@ -40,16 +43,3 @@ public class StudentApp {
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
