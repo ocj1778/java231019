@@ -16,6 +16,8 @@ public class CollectionBeanApp {
 		System.out.println("nameList = "+bean.getNameList());
 		System.out.println("controllerSet = "+bean.getControllerSet());
 		System.out.println("controllerList = "+bean.getControllerList());
+		System.out.println("controllerMap = "+bean.getControllerMap());
+		System.out.println("controllerProperties = "+bean.getControllerProperties());
 		System.out.println("==========================================================");
 		((ClassPathXmlApplicationContext)context).close();		
 	}

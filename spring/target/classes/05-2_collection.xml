@@ -46,6 +46,44 @@
 				<ref bean="listController"/>
 			</list>
 		</property>
+		<property name="controllerMap">
+			<!-- map : Map 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
+			<map>
+				<!-- entry : Map 객체에 엔트리를 추가하기 위한 엘리먼트 -->
+				<entry>
+					<!-- key : 엔트리의 맵키(Map Key)을 설정하기 위한 엘리먼트 -->
+					<key>
+						<value>login</value>
+					</key>
+					<!-- ref : 엔트리의 맵값(Map Value)으로 Spring Bean을 저장하기 위한 엘리먼트 -->
+					<!-- => 엔트리의 맵값(Map Value)으로 값을 저장할 경우 value 엘리먼트 사용 -->
+					<ref bean="loginController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>logout</value>
+					</key>
+					<ref bean="logoutController"/>
+				</entry>
+				<entry>
+					<key>
+						<value>list</value>
+					</key>
+					<ref bean="listController"/>
+				</entry>
+			</map>
+		</property>
+		<property name="controllerProperties">
+			<!-- props : Properties 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
+			<props>
+				<!-- prop : Properties 객체에 엔트리를 추가하기 위한 엘리먼트 -->
+				<!-- key 속성 : 엔트리의 이름(맵키)을 속성값으로 설정 -->
+				<!-- prop 엘리먼트의 내용을 엔트리의 값(맵값)으로 사용 -->
+				<prop key="login">xyz.itwill05.di.LoginController</prop>
+				<prop key="logout">xyz.itwill05.di.LogoutController</prop>
+				<prop key="list">xyz.itwill05.di.ListController</prop>
+			</props>
+		</property>
 	</bean>
 </beans>
 
