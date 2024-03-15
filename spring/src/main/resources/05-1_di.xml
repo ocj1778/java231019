@@ -13,7 +13,7 @@
 	객체 필드에 값(객체) 저장 -->
 	
 	<!-- 스프링 컨테이너가 클래스의 매개변수가 작성된 생성자를 사용하여 객체 생성 -->
-	<!-- => 생성자 매개변수에 전달된 값(객체)을 사용하여 필드값으로 저장 - Constructor Injection -->
+	<!-- => 값(객체)을 생성자 매개변수에 전달하여 필드값으로 저장 - Constructor Injection -->
 	<!-- Constructor Injection : 생성자를 사용하여 객체가 생성될 때 객체 필드에 값(객체)를 주입하는 방법 -->
 	<!-- => bean 엘리먼트의 하위 엘리먼트로 constructor-arg 엘리먼트를 사용하여 설정 -->
 	<bean class="xyz.itwill05.di.Student" id="student2">
@@ -72,7 +72,7 @@
 	<!-- => PropertyPlaceholderConfigurer 클래스 : Properties 파일을 제공받아 파일에 저장된
 	값을 Spring Bean Configuration File에서 사용할 수 있도록 제공하는 클래스 -->
 	<!-- => locations 필드에 Properties 파일 경로를 전달하여 저장 -->
-	<!-- =? Properties 파일에 의해 제공되는 값은 ${이름} 형식으로 표현하여 사용 -->
+	<!-- => Properties 파일에 의해 제공되는 값은 ${이름} 형식으로 표현하여 사용 -->
 	<!--  
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations" value="xyz/itwill05/di/student.properties"/>

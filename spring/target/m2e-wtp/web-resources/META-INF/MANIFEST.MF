@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Built-By: itwill
-Build-Jdk: 11.0.22
+Build-Jdk-Spec: 17
 Created-By: Maven Integration for Eclipse
 
