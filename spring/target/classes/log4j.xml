@@ -73,6 +73,10 @@
 		<appender-ref ref="hello" />
 		<appender-ref ref="daily" />
 	</logger>
+
+	<logger name="xyz.itwill05.lombok">
+		<level value="info"/>
+	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
