@@ -24,7 +24,7 @@
 	<!-- autowire 속성 : no(기본값), byName, byType, constructor 중 하나를 속성값으로 설정 -->
 	<!-- => bean 엘리먼트의 클래스로 객체가 생성될 때 스프링 컨테이너가 자동으로 생성된 객체
 	필드에 Spring Bean을 주입하여 저장하기 위한 속성 - 자동으로 DI 기능 구현 -->
-	<!-- no 속성 : 자동으로 의존관계를 구현하는 기능 미사용 -->
+	<!-- no 속성값 : 자동으로 의존관계를 구현하는 기능 미사용 -->
 	<!-- => Constructor Injection 또는 Setter Injection을 사용하여 Spring Bean을 제공받아 필드에 
 	저장되도록 설정 - 수동으로 DI 기능 구현 -->
 	<!-- 

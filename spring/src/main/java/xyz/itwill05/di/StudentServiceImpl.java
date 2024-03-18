@@ -19,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 	//StudentDAO 인터페이스로 필드 작성 - StudentDAO 인터페이스를 상속받은 자식클래스로 생성된
 	//모든 객체 저장
 	// => StudentDAO 인터페이스를 상속받은 자식클래스의 객체를 필드에 저장해야만 의존관계 완성
-	// => StudentDAO 인터페이스의 필드로 추상메소드를 호출하면 묵시적 객체 형변환되어 필드에  
+	// => StudentDAO 인터페이스의 필드로 추상메소드를 호출하면 묵시적 객체 형변환에 의해 필드에  
 	//저장된 자식 객체의 오버라이드 메소드가 호출 - 오버라이드에 의한 다형성
 	// => DAO 클래스가 교체돼도 Service 클래스에 영향 최소화 - 결합도를 낮춰 유지보수의 효율성 증가
 	private StudentDAO studentDAO;
