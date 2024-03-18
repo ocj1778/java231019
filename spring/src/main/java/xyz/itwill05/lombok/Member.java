@@ -38,7 +38,7 @@ import lombok.NoArgsConstructor;
 // => Builder 클래스의 메소드를 호출하여 객체 필드에 필요한 값을 저장되도록 설정
 // => 필요한 필드만 초기화 처리할 수 있어 생성자 보다 가독성이 좋으며 필드의 순서에 상관없이
 //필드 초기화 작업에 편리
-//@Slf4j : 로그 이벤트를 발생할 수 있는 Logger 객체가 저장된 필드(log)를 제공하기 위한 어노테이션
+//@Slf4j : 로그 이벤트를 발생할 수 있는 Logger 객체가 저장된 log 필드를 제공하기 위한 어노테이션
 
 @NoArgsConstructor
 @AllArgsConstructor
