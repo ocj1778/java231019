@@ -3,10 +3,7 @@ package xyz.itwill05.lombok;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 //클래스 작성에 필요한 메소드를 자동으로 생성해주는 Lombok 라이브러리를 사용하는 방법
 //1.Lombok 라이브러리를 프로젝트 빌드 처리 - 메이븐 사용 : pom.xml
@@ -36,6 +33,12 @@ import lombok.ToString;
 // => 클래스에 작성된 모든 필드값을 결합하여 문자열로 반환하는 기능 제공 - 필드값 확인
 //@Data : Setter 메소드, Getter 메소드, toString 메소드, equals 메소드, hashCode 메소드를 
 //제공하기 위한 어노테이션 - VO 클래스(객체를 값으로 비교되도록 작성된 클래스)를 선언할 때 사용
+//@Builder : 클래스에 Builder 클래스와 Builder 클래스 관련 메소드를 제공하는 어노테이션
+// => Builder 클래스 : 객체 생성시 객체 필드에 필요한 값을 저장하기 위한 메소드를 제공하는 클래스
+// => Builder 클래스의 메소드를 호출하여 객체 필드에 필요한 값을 저장되도록 설정
+// => 필요한 필드만 초기화 처리할 수 있어 생성자 보다 가독성이 좋으며 필드의 순서에 상관없이
+//필드 초기화 작업에 편리
+//@Slf4j : 로그 이벤트를 발생할 수 있는 Logger 객체가 저장된 필드(log)를 제공하기 위한 어노테이션
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,16 +49,3 @@ public class Member {
 	private String name;
 	private String email;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
