@@ -5,5 +5,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
+	<!-- 핵심관심모듈의 클래스를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill06.aop.JoinPointBean" id="joinPointBean"/>
+	
+	<!-- 횡단관심모듈의 클래스(Advice 클래스)를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill06.aop.JoinPointAdvice" id="joinPointAdvice"/>
+	
+	<aop:config>
+		<aop:aspect ref="joinPointAdvice">
+			<aop:before method="beforeDisplay" pointcut="execution(* *(..))"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
