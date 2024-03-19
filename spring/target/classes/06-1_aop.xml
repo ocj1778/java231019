@@ -41,8 +41,56 @@
 			<!-- => PointCut 표현식에서 사용하는 패턴문자 : ..(0개 이상), *(1개 이상), ?(0개 또는 1개) -->
 			<!-- => PointCut 표현식에서 사용하는 연산자 : !(Not), &&(And), ||(Or) -->
 			
-			<!--  -->
-			<aop:before method="beforeLog" pointcut=""/>
+			<!-- execution 명시자를 사용하여 타겟메소드를 지정하는 방법 -->
+			<!-- => execution 명시자는 메소드의 머릿부를 표현하여 타겟메소드 지정 -->
+			<!-- 형식) execution([접근제한자] 반환형 [패키지.클래스.]메소드명(자료형,자료형,...)) -->
+			<!-- => 클래스 대신 인터페이스 사용 가능 - 인터페이스를 상속받은 모든 자식클래스를 표현 -->
+			<!-- => Spring Bean으로 등록된 클래스의 메소드만 타겟메소드로 지정  -->
+			<!-- => 반환형 또는 매개변수의 자료형이 클래스(인터페이스)인 경우 패키지를 포함하여 표현 -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(void addHewon(xyz.itwill06.aop.Hewon))"/> -->
+			<!-- 클래스(핵심관심모듈)의 메소드 매개변수가 0개인 이상인 메소드를 타겟메소드로 지정  -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* *(..))"/> -->
+			<!-- 클래스(핵심관심모듈)의 메소드 매개변수가 1개인 이상인 메소드를 타겟메소드로 지정  -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* *(*))"/> -->
+			<!-- xyz.itwill06.aop 패키지에 작성된 클래스(핵심관심모듈)의 모든 메소드를 타겟메소드로 지정  -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* xyz.itwill06.aop.*(..))"/> -->
+			<!-- xyz.itwill06.aop 패키지와 하위패키지에 작성된 클래스(핵심관심모듈)의 모든 메소드를 타겟메소드로 지정  -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* xyz.itwill06.aop..*(..))"/> -->
+			<!-- xyz.itwill06.aop.HewonDAOImpl 클래스의 모든 메소드를 타겟메소드로 지정  -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* xyz.itwill06.aop.HewonDAOImpl.*(..))"/> -->
+			<!-- xyz.itwill06.aop.HewonDAO 인터페이스를 상속받은 자식클래스의 모든 메소드를 타겟메소드로 지정 -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* xyz.itwill06.aop.HewonDAO.*(..))"/> --> 
+			<!-- <aop:before method="beforeLog" pointcut="execution(* xyz.itwill06.aop.Hewon*.*(..))"/> -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* get*(..))"/> --> 
+			<!-- <aop:before method="beforeLog" pointcut="!execution(* get*(..))"/> -->
+			<!-- <aop:before method="beforeLog" pointcut="execution(* *(int)) or execution(int *(..))"/> -->
+			
+			<!-- within 명시자를 사용하여 타겟메소드를 지정하는 방법 -->
+			<!-- => Spring Bean으로 등록된 클래스의 모든 메소드를 타겟메소드로 지정 -->
+			<!-- 형식) within(패키지명.클래스명) -->
+			<!-- => 클래스 대신 인터페이스 사용 불가능 -->
+			<!-- <aop:before method="beforeLog" pointcut="within(xyz.itwill06.aop.HewonDAOImpl)"/> -->  
+			<!-- <aop:before method="beforeLog" pointcut="within(xyz.itwill06.aop.*)"/> -->
+			
+			<!-- bean 명시자를 사용하여 타겟메소드를 지정하는 방법 -->
+			<!-- => Spring Bean의 beanName으로 등록된 클래스의 모든 메소드를 타겟메소드로 지정 -->
+			<!-- 형식) bean(beanName) -->
+			<!-- <aop:before method="beforeLog" pointcut="bean(hewonDAO)"/> -->  
+			<!-- <aop:before method="beforeLog" pointcut="bean(hewonService*)"/> -->
+			
+			<!-- pointcut : 클래스(핵심관심모듈)의 메소드 중 횡단관심코드가 삽입될 타겟메소드를
+			지정하기 위한 엘리먼트 -->
+			<!-- => 자주 사용되는 PointCut 표현식을 저장하여 타겟메소드로 제공하기 위해 사용 -->
+			<!-- => aspect 엘리먼트 밖에서 작성(전역)하거나 aspect 엘리먼트에 안에서 작성(지역) 가능 -->
+			<!-- expression 속성 : 타겟메소드를 지정하기 위한 Pointcut 표현식을 속성값으로 설정 -->
+			<!-- id 속성 : pointcut 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+			<aop:pointcut expression="execution(* xyz.itwill06.aop.HewonDAO.*(..))" id="hewonDAOPointcut"/>
+			<aop:pointcut expression="execution(* xyz.itwill06.aop.HewonService.*(..))" id="hewonServicePointcut"/>
+			
+			<!-- pointcut-ref 속성 : pointcut 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 - 자동 완성 기능 사용 -->
+			<!-- => pointcut 엘리먼트가 제공한 정보를 이용하여 타겟메소드 지정 -->
+			<!-- <aop:before method="beforeLog" pointcut-ref="hewonDAOPointcut"/>  -->  
+			<aop:before method="beforeLog" pointcut-ref="hewonServicePointcut"/>  
 		</aop:aspect>
 	</aop:config>	
 </beans>
