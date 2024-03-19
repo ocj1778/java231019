@@ -90,7 +90,19 @@
 			<!-- pointcut-ref 속성 : pointcut 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 - 자동 완성 기능 사용 -->
 			<!-- => pointcut 엘리먼트가 제공한 정보를 이용하여 타겟메소드 지정 -->
 			<!-- <aop:before method="beforeLog" pointcut-ref="hewonDAOPointcut"/>  -->  
-			<aop:before method="beforeLog" pointcut-ref="hewonServicePointcut"/>  
+			<aop:before method="beforeLog" pointcut-ref="hewonServicePointcut"/>
+			
+			<!-- after : 타겟 메소드의 명령(핵심관심코드) 실행 후 횡단관심코드를 무조건 삽입하여 실행되도록 설정하는 엘리먼트 -->
+			<aop:after method="afterLog" pointcut-ref="hewonServicePointcut"/>
+			
+			<!-- after-returning : 타겟 메소드의 명령(핵심관심코드)이 정상적으로 실행된 후 횡단관심코드를 삽입하여 실행되도록 설정하는 엘리먼트 -->
+			<aop:after-returning method="afterReturningLog" pointcut-ref="hewonServicePointcut"/>  
+
+			<!-- after-throwing : 타겟 메소드의 명령(핵심관심코드)에서 예외가 발생된 후 횡단관심코드를 삽입하여 실행되도록 설정하는 엘리먼트 -->
+			<aop:after-throwing method="afterThrowingLog" pointcut-ref="hewonServicePointcut"/>
+			
+			<!-- around : 타겟 메소드의 명령(핵심관심코드)이 실행되기 전 또는 후에 횡단관심코드를 삽입하여 실행되도록 설정하는 엘리먼트 -->
+			<aop:around method="aroundLog" pointcut-ref="hewonDAOPointcut"/>
 		</aop:aspect>
 	</aop:config>	
 </beans>
