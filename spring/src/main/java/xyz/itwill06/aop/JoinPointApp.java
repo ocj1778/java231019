@@ -17,6 +17,7 @@ public class JoinPointApp {
 		bean.getName();
 		System.out.println("==============================================================");
 		bean.calc(20, 10);
+		//bean.calc(20, 0);
 		System.out.println("==============================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	}

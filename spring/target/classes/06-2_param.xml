@@ -14,6 +14,29 @@
 	<aop:config>
 		<aop:aspect ref="joinPointAdvice">
 			<aop:before method="beforeDisplay" pointcut="execution(* *(..))"/>
+			<aop:after method="displayMessage" pointcut="execution(* remove(int))"/>
+			<!-- returning 속성 : 타겟메소드의 반환값이 저장될 Advice 클래스의 메소드
+			매개변수의 이름을 속성값으로 설정 -->
+			<aop:after-returning method="displayName" 
+				pointcut="execution(java.lang.String getName())" returning="object"/>
+			<!-- throwing 속성 : 타겟메소드에서 발생된 예외가 저장될 Advice 클래스의 메소드
+			매개변수의 이름을 속성값으로 설정 -->
+			<aop:after-throwing method="exceptionHandle" 
+				pointcut="execution(void calc(int, int))" throwing="exception"/>
+			<aop:around method="display" pointcut="execution(* modify(..))"/>	
 		</aop:aspect>
 	</aop:config>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
