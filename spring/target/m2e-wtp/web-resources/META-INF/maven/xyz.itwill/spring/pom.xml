@@ -62,11 +62,23 @@
 		</dependency>
 				
 		<!-- AspectJ - Spring AOP 기능을 제공하기 위한 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+		<!-- => AspectJ 컴파일러에 의해 생성된 Proxy 클래스의 실행 관리 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
+		
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<!-- => AspectJ 컴파일러로 핵심관심코드와 횡단관심코드가 결합된 클래스(Proxy 클래스)를
+		생성하는 Weaving 기능을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		    <scope>runtime</scope>
+		</dependency>
 		
 		<!-- Logging - 로그 관련 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
