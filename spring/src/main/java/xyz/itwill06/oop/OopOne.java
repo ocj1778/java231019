@@ -12,7 +12,7 @@ public class OopOne {
 	private OopLogger logger=new OopLogger();
 	
 	public void display1() {
-		//횡단관심코드 : 프로그램 실해에 보조적인 기능을 제공하는 명령
+		//횡단관심코드 : 프로그램 실행에 보조적인 기능을 제공하는 명령
 		// => 로그 처리, 권한 처리, 트렌젝션 처리, 예외 처리 등
 		//System.out.println("### 메소드 명령(핵심관심코드) 실행전에 기록될 내용 ###");
 		//beforeLog();
