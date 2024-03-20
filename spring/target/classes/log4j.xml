@@ -78,6 +78,10 @@
 		<level value="info"/>
 	</logger>
 	
+	<logger name="xyz.itwill06.aop">
+		<level value="info"/>
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

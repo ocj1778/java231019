@@ -19,7 +19,7 @@
 		<!-- Google의 앱 비밀번호를 제공받는 방법 -->
 		<!-- => Google 사이트에 접속하여 로그인 >> Google 계정 관리 >> 보안 >> 2단계 인증
 		>> 앱 비밀번호 >> 앱 이름 입력 후 만들기 >> 비밀번호 생성 -->
-		<property name="password" value="dsfk sdfk dsfs gsde"/>
+		<property name="password" value="fsdf dfds sdff sdfs"/>
 		<!-- javaMailProperties 필드 : SMTP 서비스를 제공하는 메일 서버의 메일 전송 관련
 		부가적인 정보를 Properties 객체의 엔트리로 전달하여 저장 -->
 		<property name="javaMailProperties">
@@ -37,17 +37,18 @@
 	<bean class="xyz.itwill06.aop.EmailSendBean" id="emailSendBean">
 		<property name="javaMailSender" ref="javaMailSender"/>
 	</bean>
+	
+	<!-- 횡단관심모듈의 클래스(EmailSendAdvice 클래스)를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill06.aop.EmailSendAdvice" id="emailSendAdvice"/>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* sendEmail(..))" id="sendEmailPointcut"/>
+		<aop:aspect ref="emailSendAdvice">
+			<aop:before method="accessLog" pointcut-ref="sendEmailPointcut"/>
+			<aop:after-returning method="successLog" 
+				pointcut-ref="sendEmailPointcut" returning="email"/>
+			<aop:after-throwing method="errorLog"
+				pointcut-ref="sendEmailPointcut" throwing="exception"/>	
+		</aop:aspect>
+	</aop:config>
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
