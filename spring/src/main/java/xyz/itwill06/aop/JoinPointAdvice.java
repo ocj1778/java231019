@@ -9,8 +9,8 @@ public class JoinPointAdvice {
 	//매개변수를 작성하지 않거나 JoinPoint 인터페이스를 자료형으로 사용하는 매개변수 작성 가능
 	// => Advice 클래스의 메소드를 규칙에 맞지 않게 작성한 경우 IllegalArgumentException 발생
 	//JoinPoint 객체 : 타겟메소드 관련 정보가 저장된 객체
-	// => AspectJ 컴파일러에 의해 Advice 클래스의 메소드가 호출될 때 타겟메소드 관련 정보를 저장한
-	//JoinPoint 객체를 매개변수에 전달하여 저장
+	// => AspectJ 컴파일러에 의해 Advice 클래스의 메소드가 호출될 때 타겟메소드 관련 정보가
+	//저장된 JoinPoint 객체를 매개변수에 전달하여 저장
 	// => Advice 클래스의 메소드에서 타겟메소드 관련 정보가 필요한 경우 매개변수를 선언하여
 	//JoinPoint 객체를 전달받아 JoinPoint 객체의 메소드를 호출하여 사용 가능
 	
