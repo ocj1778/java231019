@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DataSource 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => spring-jdbc 라이브러리의 DriverManagerDataSource 클래스 사용 -->
+	<!-- => DBCP(DataBase Connection Pool) 기능을 제공하는 DataSource 객체 생성 -->
+	<!-- => DriverManagerDataSource 클래스의 필드에 Connection 객체를 생성하기 위한 값 주입 - Setter Injection -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+</beans>
