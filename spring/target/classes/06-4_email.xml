@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- JavaMailSender 인터페이스를 상속받은 JavaMailSenderImpl 클래스를 Spring Bean으로 등록 -->
+	<!-- => SMTP 서비스를 제공하는 메일 서버의 정보를 JavaMailSenderImpl 객체 필드에 저장되도록 값 주입 -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="javaMailSender">
+		<!-- host 필드 : SMTP 서비스를 제공하는 메일 서버의 이름(HostName)을 저장 -->
+		<property name="host" value="smtp.gmail.com"/>
+		<!-- port 필드 : SMTP 서비스를 제공하는 메일 서버의 포트번호(PortNumber)를 저장 -->
+		<property name="port" value="587"/>
+		<!-- username 필드 : SMTP 서비스를 제공하는 메일 서버의 접속 사용자 이름(아이디)을 저장 -->
+		<property name="username" value="ocj1778"/>
+		<!-- password 필드 : SMTP 서비스를 제공하는 메일 서버의 접속 사용자 비밀번호를 저장 -->
+		<!-- => 사용자 비밀번호 대신 앱 비밀번호를 제공받아 필드에 저장 -->
+		<!-- Google의 앱 비밀번호를 제공받는 방법 -->
+		<!-- => Google 사이트에 접속하여 로그인 >> Google 계정 관리 >> 보안 >> 2단계 인증
+		>> 앱 비밀번호 >> 앱 이름 입력 후 만들기 >> 비밀번호 생성 -->
+		<property name="password" value="dsfk sdfk dsfs gsde"/>
+		<!-- javaMailProperties 필드 : SMTP 서비스를 제공하는 메일 서버의 메일 전송 관련
+		부가적인 정보를 Properties 객체의 엔트리로 전달하여 저장 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enalbe">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>		
+	</bean>
+	
+	<!-- 핵심관심모듈의 클래스(EmailSendBean 클래스)를 Spring Bean으로 등록 -->
+	<!-- => EmailSendBean 클래스의 javaMailSender 필드에 JavaMailSenderImpl 객체(Spring Bean)가 
+	저장되도록 의존성 주입 -->
+	<bean class="xyz.itwill06.aop.EmailSendBean" id="emailSendBean">
+		<property name="javaMailSender" ref="javaMailSender"/>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
