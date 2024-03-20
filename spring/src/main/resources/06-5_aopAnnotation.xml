@@ -8,4 +8,8 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="xyz.itwill06.aop"/>
+	
+	<!-- aspectj-autoproxy : 스프링 어노테이션을 사용하여 AOP 기능을 제공하기 위해 사용하는 어노테이션 -->
+	<!-- => Aspectj 컴파일러에 의해 Aspect(Proxy 클래스)를 자동으로 생성하는 기능을 제공 -->
+	<aop:aspectj-autoproxy/>
 </beans>
