@@ -14,6 +14,22 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 엘리먼트 -->
+	<servlet>
+		<!-- servlet-name : 서블릿을 구분하기 위한 식별자를 설정하는 엘리먼트 -->
+		<servlet-name>mvc</servlet-name>
+		<!-- servlet-class : 서블릿 요청시 객체로 생성될 클래스를 설정하는 엘리먼트 -->
+		<servlet-class>xyz.itwill08.mvc.DispatcherServlet</servlet-class>
+	</servlet>
+	
+	<!-- servlet-mapping : 서블릿을 요청하기 위한 URL 주소를 등록하기 위한 엘리먼트 -->
+	<servlet-mapping>
+		<!-- servlet-name : 요청에 의해 실행될 서블릿의 식별자를 설정하는 엘리먼트 -->
+		<servlet-name>mvc</servlet-name>
+		<!-- url-pattern : 서블릿을 요청하기 위한 URL 패턴을 설정하는 엘리먼트 -->
+		<url-pattern>*.itwill</url-pattern>
+	</servlet-mapping>
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

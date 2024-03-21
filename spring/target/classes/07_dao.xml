@@ -13,4 +13,37 @@
 		<property name="username" value="scott"/>
 		<property name="password" value="tiger"/>
 	</bean>
+	
+	<!-- JdbcTemplate 클래스를 Spring Bean으로 등록 -->
+	<!-- => JdbcTemplate 클래스의 dataSource 필드에 DataSource 인터페이스를 상속받은  
+	자식클래스의 Spring Bean(객체)을 제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => StudentDAOImpl 클래스의 jdbcTemplate 필드에 JdbcTemplate 클래스의 Spring Bean(객체)을
+	제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="xyz.itwill07.dao.StudentDAOImpl" id="studentDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+
+	<!-- StudentService 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => StudentServiceImpl 클래스의 studentDAO 필드에 StudentDAO 인터페이스를 상속받은  
+	자식클래스의 Spring Bean(객체)을 제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="xyz.itwill07.dao.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentDAO"/>		
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
