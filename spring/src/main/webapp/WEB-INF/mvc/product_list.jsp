@@ -10,7 +10,7 @@
 <body>
 	<h1>제품목록</h1>
 	<hr>
-	<c:forEach var="product" items="${prductList }">
+	<c:forEach var="product" items="${productList }">
 		<p>제품번호 = ${product.num }, 제품이름 = ${product.name }</p>
 	</c:forEach>
 </body>
