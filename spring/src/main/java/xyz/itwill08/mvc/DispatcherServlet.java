@@ -28,18 +28,29 @@ public class DispatcherServlet extends HttpServlet {
 		
 		//클라이언트 요청정보(Command)를 이용하여 요청 처리 클래스(Model)의 객체를 제공받아 
 		//메소드를 호출하여 클라이언트 요청을 처리하고 응답 관련 정보를 반환받아 저장
+		/*
+		Controller controller=null;
+		//클라이언트의 요청정보를 비교하여 요청 처리 클래스를 객체로 생성하여 저장
+		if(command.equals("/list.itwill")) {
+			controller=new ListController();
+		} else if(command.equals("/view.itwill")) {
+			controller=new ViewController();
+		}
+		*/
+		
+		//HandlerMapping 클래스로 객체 생성
+		HandlerMapping handlerMapping=new HandlerMapping();
+		//HandlerMapping 클래스의 메소드를 호출하여 클라이언트의 요청정보에 대한 요청 처리
+		//클래스의 객체를 반환받아 저장
+		Controller controller=handlerMapping.getController(command);
+		
+		//요청 처리 클래스의 메소드를 호출하여 클라이언트의 요청을 처리하고 뷰이름을 반환받아 저장
+		String viewName=controller.handleRequest(request, response);
+		
+		//뷰(JSP)로 포워드 이동하여 클라이언트 요청에 대한 처리결과를 응답 처리
+		// => 요청 처리 메소드의 반환값(ViewName)을 사용하여 JSP 문서의 경로를 완성해 포워드 이동
+		ViewResolver viewResolver=new ViewResolver();
+		String view=viewResolver.getView(viewName);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
