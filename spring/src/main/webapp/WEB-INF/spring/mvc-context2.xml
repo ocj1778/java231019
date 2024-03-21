@@ -3,5 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- spring-webmvc 라이브러리의 InternalResourceViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- => InternalResourceViewResolver 객체 : 요청 처리 메소드의 반환값(ViewName)을 전달받아
+	포워드 이동될 JSP 문서의 경로를 생성하는 제공하는 기능 -->
+	<!-- => prefix 필드와 suffix 필드에 JSP 문서의 경로를 생성하기 위한 값을 주입하여 저장 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- prefix 필드 : 뷰이름 앞부분에 추가될 문자열을 저장 - 폴더 -->
+		<property name="prefix" value="/WEB-INF/mvc/"/>
+		<!-- suffix 필드 : 뷰이름 뒷부분에 추가될 문자열을 저장 - 확장자 -->
+		<property name="suffix" value=".jsp"/>
+	</bean>
 </beans>
