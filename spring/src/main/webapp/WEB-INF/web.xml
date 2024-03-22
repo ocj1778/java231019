@@ -87,6 +87,8 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
+		<!-- url-pattern 엘리먼트의 내용을 [/]로 설정한 경우 클라이언트의 모든 요청에 대해
+		서블릿(Front Controller)에서 처리되도록 설정 -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>
