@@ -10,5 +10,7 @@
 	<h1>출력페이지</h1>
 	<hr>
 	<h2>ModelAndView = ${mavName }</h2>
+	<h2>HttpServletRequest = ${requestName }</h2>
+	<h2>Model = ${modelName }</h2>
 </body>
 </html>
