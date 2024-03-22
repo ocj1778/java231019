@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //컨트롤러(Controller) : 클라이언트의 모든 요청을 받아 URL 주소를  분석하여 필요한 요청 처리
-//클래스(Model)의 메소드를 호출하여 클라이언트의 요청을 처리하고 JSP 문서(View)로 스레드를
+//클래스(Model)의 메소드를 호출해 클라이언트의 요청을 처리하고 JSP 문서(View)로 스레드를
 //이동하여 응답처리 되도록 프로그램의 흐름을 제어하는 기능을 제공 - 서블릿(Servlet)으로 구현
 
 //컨트롤러 기능을 제공하기 위한 서블릿 클래스

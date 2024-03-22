@@ -55,13 +55,13 @@
 		<!-- => contextConfigLocation 이름으로 스프링 컨테이너(WebApplicationContext 객체)가 
 		읽어 초기화 처리할 수 있는 Spring Bean Configuration File 경로를 제공 -->
 		<!-- => Spring Bean Configuration File에 등록된 Spring Bean은 Front Controller 역활의
-		클래스에서만 사용 가능하도록 제공 -->
+		클래스에서만 사용되도록 제공 -->
 		<!-- => Spring Bean Configuration File은 엔터(Enter) 또는 [,] 및 [;] 기호를 사용하여 여러개 제공 가능 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/mvc-context1.xml
-				/WEB-INF/spring/mvc-context2.xml
+				/WEB-INF/spring/mvc/mvc-context1.xml
+				/WEB-INF/spring/mvc/mvc-context2.xml
 			</param-value>
 		</init-param>
 		<!-- load-on-startup : WAS 프로그램이 실행될 때 서블릿 클래스를 객체로 생성하는 기능을 제공하는 엘리먼트 -->

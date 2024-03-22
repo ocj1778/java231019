@@ -28,12 +28,12 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student getStudent(int no) {
-		return  studentDAO.selectStudent(no);
+		return studentDAO.selectStudent(no);
 	}
 
 	@Override
 	public List<Student> getStudentList() {
-		return  studentDAO.selectStudentList();
+		return studentDAO.selectStudentList();
 	}
 
 }
