@@ -38,16 +38,23 @@ public class LoginController {
 		
 		return "login_display";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		//session.removeAttribute("loginId");
+		session.invalidate();
+		
+		return "logout_display";
+	}
+	
+	//로그인 상태의 사용자만 접근 가능한 페이지
+	@RequestMapping("/login_user")
+	public String login(HttpSession session, Model model) {
+		if(session.getAttribute("loginId")==null) {
+			model.addAttribute("message", "로그인 사용자만 접근 가능합니다.");
+			return "login_form";
+		}
+		
+		return "login_display";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,9 +7,9 @@
 <title>SPRING</title>
 </head>
 <body>
-	<h1>로그인 성공</h1>
+	<h1>로그아웃 성공</h1>
 	<hr>
-	<h2>${loginId }님, 환영합니다.</h2>
-	<a href="logout">로그아웃</a>
+	<h2>로그아웃 처리 되었습니다.</h2>
+	<a href="login">로그인</a>
 </body>
 </html>
