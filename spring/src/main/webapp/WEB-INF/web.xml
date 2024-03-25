@@ -30,6 +30,28 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<!-- filter : 필터 클래스를 필터로 등록하기 위한 엘리먼트 -->
+	<filter>
+		<!-- filter-name : 필터를 구분하기 위한 식별자를 설정하는 엘리먼트 -->
+		<filter-name>encodingFilter</filter-name>
+		<!-- filter-class : 필터 요청시 객체로 생성될 클래스를 설정하는 엘리먼트 -->
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- init-param : 필터 클래스에게 필요한 값을 제공하는 엘리먼트 -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<!-- filter-mapping : 필터를 요청하기 위한 URL 주소를 등록하기 위한 엘리먼트 -->
+	<filter-mapping>
+		<!-- filter-name : 요청에 의해 실행될 필터의 식별자를 설정하는 엘리먼트 -->		
+		<filter-name>encodingFilter</filter-name>
+		<!-- url-pattern : 필터가 실행되기 위한 URL 패턴을 설정하는 엘리먼트 -->
+		<!-- => 클라이언트의 모든 요청에 대해 필터가 실해되도록 설정 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<!-- servlet-name : 서블릿을 구분하기 위한 식별자를 설정하는 엘리먼트 -->
@@ -42,7 +64,7 @@
 	<servlet-mapping>
 		<!-- servlet-name : 요청에 의해 실행될 서블릿의 식별자를 설정하는 엘리먼트 -->
 		<servlet-name>mvc</servlet-name>
-		<!-- url-pattern : 서블릿을 요청하기 위한 URL 패턴을 설정하는 엘리먼트 -->
+		<!-- url-pattern : 서블릿을 실행하기 위한 URL 패턴을 설정하는 엘리먼트 -->
 		<url-pattern>*.itwill</url-pattern>
 	</servlet-mapping>
 
