@@ -24,8 +24,8 @@ public class HelloController {
 	
 	//@RequestMapping : Controller 클래스의 메소드를 클라이언트의 요청을 처리 하기 위한 요청
 	//처리 메소드로 설정하기 위한 어노테이션
-	// => 클라이언트의 모든 요청방식(Method - GET, POST, PUT, PATCH, DELETE 등)에 의해
-	//요청한 경우 호출되는 요청 처리 메소드를 작성할 때 사용
+	// => 클라이언트의 모든 요청방식(Method - GET, POST, PUT, PATCH, DELETE 등)에 의해 호출되는 
+	//요청 처리 메소드를 작성할 때 사용
 	// => 클라이언트의 요청방식을 구분하여 요청 처리 메소드를 호출해야될 경우 @GetMapping,
 	//@PostMapping, @PutMapping, @PatchMapping, @DeleteMapping 등의 어노테이션을 사용하여 설정
 	//value 속성 : 클라이언트의 요청정보(Command - URL 주소)를 속성값으로 설정

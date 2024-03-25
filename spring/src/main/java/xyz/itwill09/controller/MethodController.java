@@ -65,17 +65,3 @@ public class MethodController {
 		return "method_output";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

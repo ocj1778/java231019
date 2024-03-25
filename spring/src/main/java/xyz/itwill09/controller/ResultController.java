@@ -29,7 +29,7 @@ public class ResultController {
 	*/
 	
 	//요청 처리 메소드에 매개변수를 작성하면 Front Controller는 스프링 컨테이너(WebApplicationContext 객체)를
-	//사용해 Spring Bean으로 등록된 객체를 전달받아 매개변수에 저장하여 사용
+	//사용해 Spring Bean으로 등록된 객체를 전달받아 매개변수에 저장하여 사용되도록 제공
 	@RequestMapping("/resultMav")
 	public ModelAndView modelAndViewResult(ModelAndView modelAndView) {
 		modelAndView.setViewName("result_display");
@@ -54,26 +54,3 @@ public class ResultController {
 		return "result_display";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
