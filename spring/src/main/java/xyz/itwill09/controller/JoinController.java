@@ -1,13 +1,12 @@
 package xyz.itwill09.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import xyz.itwill09.dto.Member;
 
 @Controller
 public class JoinController {
@@ -83,7 +82,7 @@ public class JoinController {
 
 	/*
 	//요청 처리 메소드의 매개변수 자료형을 DTO 클래스로 작성하면 Front Controller는 DTO 클래스로
-	//객체를 생성하여 매개변수에 전달하여 제공
+	//객체를 생성하여 매개변수에 저장되도록 제공
 	// => 전달값의 이름과 같은 이름의 객체 필드에 전달값을 자동으로 저장하여 제공
 	//Command 객체 : 전달값이 필드에 저장된 객체를 매개변수에 저장하고 매개변수에 저장된 객체를
 	//속성값으로 저장해 뷰에서 사용할 수 있도록 제공하는 객체
@@ -107,6 +106,7 @@ public class JoinController {
 	}
 	*/
 	
+	/*
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("hewon") Member member, Model model) {
 		if(member.getId().equals("abc123")) {//아이디가 중복된 경우
@@ -115,15 +115,17 @@ public class JoinController {
 		}
 		return "join_display";
 	}
+	*/
+
+	//요청 처리 메소드의 매개변수 자료형을 Map 인터페이스로 작성하면 Front Controller는 Map
+	//객체를 생성하여 매개변수에 저장되도록 제공
+	// => Map 객체에는 모든 전달값의 이름(맵키 - String)과 전달값(맵값 - String)이 엔트리로
+	//생성되어 추가
+	// => 전달값이 저장된 Map 객체를 제공받아 매개변수에 저장하기 위해서는 반드시 @RequestParam
+	//어노테이션을 매개변수에 작성
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String join(@RequestParam Map<String, String> map, Model model) {
+		model.addAttribute("hewon", map);
+		return "join_display";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
