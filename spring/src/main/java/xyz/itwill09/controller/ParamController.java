@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ParamController {
@@ -24,6 +25,7 @@ public class ParamController {
 	}
 	*/
 	
+	/*
 	//페이지 요청시 전달되는 값의 이름과 같은 이름으로 원시형(Wrapper 클래스) 또는 String 클래스의
 	//매개변수를 작성하여 Front Controller는 전달값을 매개변수에 저장하여 사용할 수 있도록 제공
 	// => 전달값의 이름과 매개변수의 이름이 같지 않을 경우 String 클래스의 매개변수에는 null 저장
@@ -43,8 +45,50 @@ public class ParamController {
 		model.addAttribute("food", food);
 		return "param_display";
 	}
+	*/
+	
+	/*
+	//전달값을 제공받아 저장하기 위한 매개변수에 @RequestParam 어노테이션 사용 - 권장
+	//@RequestParam : 전달값을 제공받아 매개변수에 저장하기 위한 어노테이션
+	// => 매개변수의 이름과 같은 이름으로 전달된 값이 없는 경우 400 에러코드 발생
+	// => 전달값의 이름과 매개변수의 이름이 같도록 작성하여 반드시 전달값을 제공받아 사용하도록
+	//설정하는 어노테이션
+	// => 전달값의 이름과 매개변수의 이름이 같은 경우 전달값이 없으면 매개변수에 null 저장 - 400 에러코드 미발생
+	@RequestMapping(value = "/param", method = RequestMethod.POST)
+	public String action(@RequestParam String food, Model model) {
+		model.addAttribute("food", food);
+		return "param_display";
+	}
+	*/
+	
+	/*
+	//required 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정
+	// => [false] 속성값을 사용하면 전달값의 이름과 매개변수의 이름이 같이 않아도 400 에러코드가 
+	//발생하지 않고 [true] 속성값을 사용하여 전달값의 이름과 매개변수의 이름이 같지 않으면 400 에러코드 발생
+	//value 속성 : 전달값의 이름을 속성값으로 설정
+	// => value 속성값으로 설정된 이름의 전달값을 얻어와 매개변수에 저장
+	// => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
+	// => 전달값이 이름과 매개변수의 이름이 다른 경우 전달값을 얻어와 매개변수에 저장하기 위해 사용
+	@RequestMapping(value = "/param", method = RequestMethod.POST)
+	public String action(@RequestParam(required = true, value = "food") String foodname, Model model) {
+		model.addAttribute("food", foodname);
+		return "param_display";
+	}
+	*/
+	
+	//defaultValue 속성 : 전달값의 이름과 매개변수의 이름이 다른 경우 매개변수에 저장될 
+	//기본값을 속성값으로 설정
+	// => 전달값이 없는 경우 매개변수에 [null] 대신에 defaultValue 속성값을 매개변수에 저장
+	@RequestMapping(value = "/param", method = RequestMethod.POST)
+	public String action(@RequestParam(defaultValue = "된장찌개", value ="food") String foodname, Model model) {
+		model.addAttribute("food", foodname);
+		return "param_display";
+	}
 	
 }
+
+
+
 
 
 
