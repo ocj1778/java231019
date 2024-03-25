@@ -1,5 +1,7 @@
 package xyz.itwill09.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,4 +87,26 @@ public class ParamController {
 		return "param_display";
 	}
 	
+	@RequestMapping(value = "/same", method = RequestMethod.GET)
+	public String same() {
+		return "same_form";
+	}
+	
+	//같은 이름으로 전달된 값이 여러개인 경우 매개변수를 String 배열로 작성하면 전달값이
+	//요소로 저장된 배열을 제공받아 매개변수에 저장하여 사용 가능
+	/*
+	@RequestMapping(value = "/same", method = RequestMethod.POST)
+	public String same(@RequestParam("hobby") String[] hobbyList, Model model) {
+		model.addAttribute("hobbyList", hobbyList);
+		return "same_display";
+	}
+	*/
+	
+	//같은 이름으로 전달된 값이 여러개인 경우 매개변수의 자료형을 String 배열 대신 List
+	//인터페이스를 사용하여 전달값이 요소에 저장된 List 객체를 매개변수에 저장하여 사용 가능
+	@RequestMapping(value = "/same", method = RequestMethod.POST)
+	public String same(@RequestParam("hobby") List<String> hobbyList, Model model) {
+		model.addAttribute("hobbyList", hobbyList);
+		return "same_display";
+	}
 }
