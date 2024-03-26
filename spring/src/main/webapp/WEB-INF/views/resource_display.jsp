@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>SPRING</title>
-<link href="/spring/css/style.css" type="text/css" rel="stylesheet">
+<%-- <link href="/spring/css/style.css" type="text/css" rel="stylesheet"> --%>
+<link href="<c:url value="/css/style.css"/>" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<h1 class="text">Resource File</h1>
@@ -29,22 +32,23 @@
 	<%-- => Spring Bean Configuration File(servlet-context.xml)에서 resources 엘리먼트 설정 --%>
 	<%-- <img src="/spring/Koala.jpg" width="200"> --%>
 	
+	<%-- servlet-context.xml 파일의 resources 엘리먼트에 location 속성값으로 설정된 폴더 및
+	하위폴더에 리소스 파일을 저장하여 클라이언트가 mapping 속성값으로 설정된 URL 주소의
+	패턴으로 리소스 파일을 요청하여 Front Controller에 의해 직접 응답 처리되도록 설정 --%>
+	<%-- <img src="/spring/resources/images/Koala.jpg" width="200"> --%>
 	<img src="/spring/images/Koala.jpg" width="200">
+	
+	<%-- 리소스 파일의 경로는 절대경로로 표현하여 요청 --%>
+	<%-- => 프로젝트에 대한 컨텍스트 폴더의 이름이 변경될 경우 컨텍스트 경로가 변경되어 404 에러코드 발생 가능 --%>
+	<%-- 컨텍스트 폴더의 이름이 변경되도 웹자원의 경로가 변경되지 않도록 컨텍스트 경로를 제공받아 작성 --%>
+
+	<%-- 1.EL의 pageContext 내장객체를 사용하여 컨텍스트 경로를 제공받아 작성 --%>
+	<img src="${pageContext.request.contextPath}/images/Koala.jpg" width="200">
+	
+	<%-- 2.core 태그 라이브러리의 url 태그를 사용하여 컨텍스트 경로를 제공받아 작성 --%>
+	<img src="<c:url value="/images/Koala.jpg"/>" width="200">
+
+	<%-- 3.spring 태그 라이브러리의 url 태그를 사용하여 컨텍스트 경로를 제공받아 작성 --%>
+	<img src="<spring:url value="/images/Koala.jpg"/>" width="200">
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
