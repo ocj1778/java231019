@@ -14,5 +14,6 @@
 		<li>이름 = ${hewon.name }</li>
 		<li>이메일 = ${hewon.email }</li>
 	</ul>
+	<button type="button" onclick="location.href='hewon_update?id=${hewon.id}';">회원정보변경</button>
 </body>
 </html>

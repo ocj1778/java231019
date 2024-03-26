@@ -3,6 +3,7 @@ package xyz.itwill09.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import xyz.itwill09.dto.Hewon;
@@ -13,9 +14,9 @@ public class SessionController {
 	private Hewon getHewon(String id) {
 		return Hewon.builder().id("abc123").name("홍길동").email("abc@itwill.xyz").build();
 	}
-	
+	 
 	//아이디를 전달받아 아이디의 회원정보를 검색하여 뷰에게 제공하기 위한 요청 처리 메소드
-	// => 아이디로 검색된 회원정보를 속성값으로 저장하여 뷰(JSP)에서 HTML 태그로 응답 처리
+	// => 아이디로 검색된 회원정보를 속성값으로 저장하여 뷰(JSP)에서 HTML 태그로 출력되도록 응답 처리
 	@RequestMapping("/hewon_view")
 	public String view(@RequestParam(defaultValue = "abc123") String id, Model model) {
 		//Service 클래스의 메소드를 호출하여 매개변수로 전달받은 아이디의 회원정보를 검색해 반환받아 저장 
@@ -27,6 +28,16 @@ public class SessionController {
 		
 		return "hewon_view";
 	}
+	
+	//아이디를 전달받아 아이디의 회원정보를 검색하여 뷰에게 제공하기 위한 요청 처리 메소드
+	// => 아이디로 검색된 회원정보를 속성값으로 저장하여 뷰(JSP)에서 입력태그의 초기값으로 사용하여 응답 처리
+	@RequestMapping(value = "/hewon_update", method = RequestMethod.GET)
+	public String update(@RequestParam(defaultValue = "abc123") String id, Model model) {
+		Hewon hewon=getHewon(id);
+		model.addAttribute(hewon);
+		return "hewon_update";
+	}
+	
 }
 
 
