@@ -13,7 +13,8 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id" value="${id }"></td>
+			<%-- <td><input type="text" name="id" value="${id }"></td> --%>
+			<td><input type="text" name="id" value="${member.id }"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>

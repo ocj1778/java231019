@@ -57,7 +57,7 @@ public class JoinController {
 	
 	/*
 	//전달값(회원정보)을 매개변수로 제공받아 DTO 객체의 필드값으로 저장한 후 DTO 객체를 Request
-	//Scope 속성값으로 저장하여 속성값을 출력하고 JSP 문서의 뷰이름을 반환하는 요청 처리 메소드
+	//Scope 속성값으로 저장하여 속성값을 출력하는 JSP 문서의 뷰이름을 반환하는 요청 처리 메소드
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@RequestParam String id, @RequestParam String passwd
 			, @RequestParam String name, @RequestParam String email, Model model) {
@@ -68,7 +68,7 @@ public class JoinController {
 		member.setName(name);
 		member.setEmail(email);
 
-		//DTO 객체를 Mode 객체의 속성값 저장 - 뷰에게 DTO 객체 제공
+		//DTO 객체를 Model 객체의 속성값 저장 - 뷰에게 DTO 객체 제공
 		//model.addAttribute("member", member);
 		//Model.addAttribute(Object attributeValue) : 객체를 속성값으로 저장하여 뷰에게 제공하는 메소드
 		// => 매개변수에 속성명을 전달하지 않으면 속성값으로 저장되는 객체의 자료형(클래스)의
@@ -85,7 +85,7 @@ public class JoinController {
 	//객체를 생성하여 매개변수에 저장되도록 제공
 	// => 전달값의 이름과 같은 이름의 객체 필드에 전달값을 자동으로 저장하여 제공
 	//Command 객체 : 전달값이 필드에 저장된 객체를 매개변수에 저장하고 매개변수에 저장된 객체를
-	//속성값으로 저장해 뷰에서 사용할 수 있도록 제공하는 객체
+	//속성값으로 저장해 뷰에서 사용할 수 있도록 제공되는 객체
 	// => Command 객체로 사용하기 위해 매개변수에 @ModelAttribute 어노테이션 사용
 	// => @ModelAttribute 어노테이션을 사용하지 않아도 뷰에서 사용할 수 있는 속성값으로 제공
 	//Command 객체는 ModelAttribute 어노테이션의 value 속성 생략 가능
@@ -119,8 +119,8 @@ public class JoinController {
 
 	//요청 처리 메소드의 매개변수 자료형을 Map 인터페이스로 작성하면 Front Controller는 Map
 	//객체를 생성하여 매개변수에 저장되도록 제공
-	// => Map 객체에는 모든 전달값의 이름(맵키 - String)과 전달값(맵값 - String)이 엔트리로
-	//생성되어 추가
+	// => 모든 전달값의 이름(맵키 - String)과 전달값(맵값 - String or Object)이 엔트리로  
+	//추가되어 Map 객체에 저장
 	// => 전달값이 저장된 Map 객체를 제공받아 매개변수에 저장하기 위해서는 반드시 @RequestParam
 	//어노테이션을 매개변수에 작성
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
