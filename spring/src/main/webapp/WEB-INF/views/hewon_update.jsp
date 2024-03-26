@@ -13,7 +13,8 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id" value="${hewon.id }"></td>
+			<%-- <td><input type="text" name="id" value="${hewon.id }" readonly="readonly"></td> --%>
+			<td>${hewon.id }</td>
 		</tr>
 		<tr>
 			<td>이름</td>
