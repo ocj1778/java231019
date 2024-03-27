@@ -35,7 +35,7 @@ public class SessionController {
 		Hewon hewon=getHewon(id);
 		
 		//Model 객체를 사용하여 검색된 회원정보를 속성값으로 저장하여 뷰에게 제공
-		// => 현재 요청 처리 메소드의 뷰에게만 속성값을 객체로 제공하여 응답 처리 - Request Scope
+		// => 현재 요청 처리 메소드의 뷰에서만 속성값을 객체로 제공받아 응답 처리 - Request Scope
 		//@SessionAttributes 어노테이션에 의해 Model 객체로 저장된 속성값은 제한적인 Session Scope 
 		//속성값으로 사용되어 현재 Controller 클래스의 모든 요청 처리 메소드와 뷰에게 속성값 제공
 		model.addAttribute(hewon);//속성명 생략 - 속성값에 대한 클래스명을 속성명으로 사용

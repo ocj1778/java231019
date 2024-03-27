@@ -33,6 +33,12 @@ public class RedirectController {
 		return "redirect:/redirect_move";
 	}
 	
+	@RequestMapping("/redirect_move")
+	public String redirect(Model model) {
+		model.addAttribute("name", "임꺽정");
+		return "display_redirect";
+	}
+	
 	*/
 
 	//요청 처리 메소드에 RedirectAttributes 인터페이스를 매개변수를 작성하여 RedirectAttributes
