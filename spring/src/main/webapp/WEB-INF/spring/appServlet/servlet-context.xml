@@ -37,4 +37,44 @@
 	
 	<!-- <context:component-scan base-package="xyz.itwill.spring" /> -->
 	<context:component-scan base-package="xyz.itwill09.controller" />
+
+	<!--  메세지 관리 기능을 제공하는 클래스(ReloadableResourceBundleMessageSource)를 Spring Bean으로 등록 -->
+	<!-- => Spring Bean의 식별자(beanName)을 반드시 [messageSource]로 설정 -->	
+	<beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
+		<!-- basenames 필드에는 List 객체를 생성하여 저장되도록 의존성 주입 -->
+		<!-- => List 객체의 요소에는 메세지가 저장된 Properties 파일의 경로를 저장 -->
+		<!-- => Properties 파일 -->
+		<beans:property name="basenames">
+			<beans:list>
+				<!-- [src/main/webapp] 폴더에 작성된 Properties 파일을 참조 -->
+				<!-- => Properties 파일이 변경되면 자동으로 변경된 메세지 적용 -->
+				<!-- <beans:value>/WEB-INF/message/label</beans:value> -->
+	
+				<!-- [src/main/java] 또는 [src/main/resources] 폴더에 Properties 파일을 작성한 
+				경우 classpath 접두사를 사용하여 Properties 파일에 참조 -->
+				<!-- => Properties 파일이 변경되면 WAS 프로그램을 반드시 재실행해야 변경된 메세지 적용 -->
+				<beans:value>classpath:message/label</beans:value>
+			</beans:list>
+		</beans:property>
+		<!-- cacheSeconds 필드에 Properties 파일을 읽어 메모리에 로딩하기 위한 시간(초)이 저장되도록 값 주입 -->
+		<beans:property name="cacheSeconds" value="60"/>
+		<!-- defaultEncoding 필드에 Properties 파일의 문자형태(캐릭터셋)을 저장되도록 값 주입 -->
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
