@@ -33,13 +33,3 @@ public class Employee {
 	@NotEmpty(message = "성별을 입력해 주세요.")
 	private String gender;
 }
-
-
-
-
-
-
-
-
-
-
