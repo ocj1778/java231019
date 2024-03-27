@@ -54,12 +54,20 @@
 				경우 classpath 접두사를 사용하여 Properties 파일에 참조 -->
 				<!-- => Properties 파일이 변경되면 WAS 프로그램을 반드시 재실행해야 변경된 메세지 적용 -->
 				<beans:value>classpath:message/label</beans:value>
+				
+				<beans:value>/WEB-INF/message/error</beans:value>
 			</beans:list>
 		</beans:property>
 		<!-- cacheSeconds 필드에 Properties 파일을 읽어 메모리에 로딩하기 위한 시간(초)이 저장되도록 값 주입 -->
 		<beans:property name="cacheSeconds" value="60"/>
 		<!-- defaultEncoding 필드에 Properties 파일의 문자형태(캐릭터셋)을 저장되도록 값 주입 -->
 		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>
+	
+	<!-- 세션 속성값으로 저장된 Locale 객체를 사용해 메세지를 제공하는 기능의 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver">
+		<!-- defaultLocale 필드에 기본적으로 사용될 언어가 저장되도록 값 주입 -->
+		<beans:property name="defaultLocale" value="ko"/>
 	</beans:bean>
 </beans:beans>
 

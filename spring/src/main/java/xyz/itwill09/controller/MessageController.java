@@ -1,5 +1,8 @@
 package xyz.itwill09.controller;
 
+import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import xyz.itwill09.dto.Product;
 
@@ -26,7 +30,14 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String message(@ModelAttribute @Valid Product product, Errors errors) {
+	public String message(@ModelAttribute @Valid Product product, Errors errors, HttpSession session) {
+		//Locale 객체 생성 - 사용 언어 설정
+		Locale locale=new Locale("en");
+		
+		//HttpSession 객체에 Locale 객체를 속성값으로 저장
+		// => 반드시 속성명은 SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME 상수로 설정
+		session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, locale);
+		
 		if(errors.hasErrors()) {
 			return "message/register";
 		}
