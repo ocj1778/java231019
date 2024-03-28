@@ -18,4 +18,9 @@ public class TilesController {
 	public String tiles() {
 		return "main";
 	}
+	
+	@RequestMapping("/tiles1")
+	public String tiles1() {
+		return "tiles1";
+	}
 }

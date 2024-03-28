@@ -33,6 +33,34 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="3"/>
+	</beans:bean>
+	
+	<!-- UrlBasedViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- => UrlBasedViewResolver 객체 : 클라이언트 요청에 의해 호출되는 요청 처리 메소드의 
+	반환값(ViewName)을 Spring 프레임워크에서 제공하는 ViewResolver 객체가 아닌 외부의 
+	ViewResolver 객체로 응답 처리하기 위한 기능을 제공하는 ViewResolver 객체 -->
+	<!-- => 뷰이름으로 응답 처리하기 위한 뷰를 커스터마이징(Customizing) 할 때 사용하는 객체 -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<!-- viewClass 필드에 ViewResolver 기능을 제공할 클래스가 저장되도록 값 주입 -->
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<!-- order 필드에 ViewResolver 객체의 우선순위를 설정하기 위한 정수값 주입 -->
+		<!-- => ViewResolver 객체가 여러개 등록되어 있는 경우 반드시 설정 -->
+		<!-- => 필드에 저장된 정수값이 작을수록 우선순위가 높게 설정 -->
+		<beans:property name="order" value="2"/>
+	</beans:bean>
+	
+	<!-- TilesConfigurer 클래스를 Spring Bean으로 등록 -->
+	<!-- => TilesConfigurer 객체 : 요청 처리 메소드의 반환값(ViewName)으로 TilesView 객체가 
+	응답하기 위한 정보를 저장된 환경설정파일을 제공하기 위한 객체 -->
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<!-- definitions 필드에 List 객체를 생성하여 저장되도록 의존성 주입 -->
+		<!-- => List 객체의 요청에는 TilesView 객체가 사용할 환경설정파일의 경로가 저장되도록 설정 -->
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/spring/appServlet/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>	
 	</beans:bean>
 	
 	<!-- <context:component-scan base-package="xyz.itwill.spring" /> -->
