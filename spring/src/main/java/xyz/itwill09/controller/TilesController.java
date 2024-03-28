@@ -23,4 +23,17 @@ public class TilesController {
 	public String tiles1() {
 		return "tiles1";
 	}
+	
+	@RequestMapping("/tiles2")
+	public String tiles2() {
+		return "layout/tiles2";
+	}
+	
+	@RequestMapping("/admin")
+	public String admin() {
+		return "admin";
+	}
 }
+
+
+
