@@ -4,5 +4,64 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- root-context.xml : 모든 Front Controller에게 제공될 Spring Bean을 등록하기 위한 
+	Spring Bean Configuration File -->
+	<!-- => DAO 클래스 작성에 필요한 객체의 클래스를 Spring Bean으로 등록 -->
+	<!-- => DataSource, SqlSessionFactory, SqlSession, TransactionManager 등 -->
+	
+	<!-- DataSource 관련 클래스(DriverManagerDataSource 클래스)를 Spring Bean으로 등록 -->
+	<!-- => 필드에 Connection 객체 생성에 필요한 값이 저장되도록 값 주입 - Setter Injection -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- SqlSessionFactory 관련 클래스(SqlSessionFactoryBean 클래스)를 Spring Bean으로 등록 -->
+	<!-- => 필드에 SqlSesion 객체를 생성하기 위한 값(객체)이 저장되도록 값(객체) 주입 - Setter Injection -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<!-- configLocation 필드에 Mybatis 프레임워크의 환경설정파일에 경로가 저장되도록 값 주입 -->
+		<!-- [src/main/java] 또는 [src/main/resources] 폴더에 환경설정파일을 작성한 경우 파일
+		경로 앞에 classpath 접두사를 붙여야만 접근 가능 -->
+		<!-- 
+		<property name="configLocation" value="classpath:xyz/itwill/config/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		 -->
+		<!-- [src/main/webapp] 폴더에 환경설정파일을 작성한 경우 웹자원의 경로로 표현하여 접근 --> 
+		<property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml"/>
 		
+		<!-- dataSource 필드에 DataSource 관련 클래스의 Spring Bean을 제공받아 의존성 주입 -->
+		<!-- =>  Mybatis 프레임워크의 환경설정파일에서 environment 엘리먼트와 유사한 기능 제공 -->
+		<property name="dataSource" ref="dataSource"/>
+		
+		<!-- typeAliasesPackage 필드에는 DTO 클래스가 작성된 패키지 경로를 저장되도록 값 주입 -->
+		<!-- => XML 기반의 매퍼 파일에서 Java 자료형 대신 사용될 별칭을 제공하기 위해 설정 -->
+		<!-- =>  Mybatis 프레임워크의 환경설정파일에서 typeAlias 엘리먼트와 유사한 기능 제공 -->
+		<property name="typeAliasesPackage" value="xyz.itwill09.dto"/>
+		
+		<!-- mapperLocations 필드에 List 객체를 생성하여 저장되도록 의존성 주입 -->
+		<!-- => List 객체의 요소에는 XML 기반의 매퍼 파일의 경로를 저장 - 매퍼 등록 -->
+		<!-- =>  Mybatis 프레임워크의 환경설정파일에서 mapper 엘리먼트와 유사한 기능 제공 -->
+		<property name="mapperLocations">
+			<list>
+				<!-- [src/main/java] 폴더의 패키지에 작성된 모든 XML 파일을 매퍼로 등록 -->
+				<value>classpath:xyz/itwill09/mapper/*.xml</value>
+			</list>
+		</property>				
+	</bean>
+				
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

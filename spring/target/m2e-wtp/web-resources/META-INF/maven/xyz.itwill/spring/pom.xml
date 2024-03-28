@@ -234,6 +234,22 @@
 		    <version>3.0.8</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<!-- => Mybatis 프레임워크를 사용하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.15</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<!-- => SpringMVC 프레임워크에서 Mybatis 프레임워크를 사용하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>3.0.3</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>
