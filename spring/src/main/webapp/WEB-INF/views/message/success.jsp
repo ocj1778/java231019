@@ -10,6 +10,11 @@
 <body>
 	<h1>제품등록확인</h1>
 	<hr>
+	<%-- 
+	<p>제품코드 : ${product.productCode }</p>
+	<p>제품이름 : ${product.productName }</p>
+	<p>제품수량 : ${product.productQuantity }</p>
+	--%>
 	<p><spring:message code="product.code"/> : ${product.productCode }</p>
 	<p><spring:message code="product.name"/> : ${product.productName }</p>
 	<p><spring:message code="product.qty"/> : ${product.productQuantity }</p>

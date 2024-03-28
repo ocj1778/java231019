@@ -70,19 +70,3 @@
 		<beans:property name="defaultLocale" value="ko"/>
 	</beans:bean>
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -13,6 +13,7 @@ public class Product {
 	private String productCode;
 	@NotEmpty
 	private String productName;
+	@NotEmpty
 	@Min(value = 1)
 	@Max(value = 100)
 	private int productQuantity;

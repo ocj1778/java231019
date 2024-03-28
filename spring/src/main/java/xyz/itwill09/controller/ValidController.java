@@ -63,6 +63,7 @@ public class ValidController {
 	
 	//요청 처리 메소드의 매개변수를 Errors 인터페이스로 작성하면 Errors 객체를 전달받아 저장
 	// => Errors : 전달값에 대한 검증 실패시 발생되는 모든 에러 관련 정보를 저장한 객체
+	//@RequestMapping(value = "/valid/spring", method = RequestMethod.POST)
 	@RequestMapping(value = "/spring", method = RequestMethod.POST)
 	public String spring(@ModelAttribute @Valid Employee employee, Errors errors) {
 		//Errors.hasErrors() : Errors 객체에 에러 관련 정보가 저장된 경우 [true]를 반환하는 메소드
@@ -79,14 +80,3 @@ public class ValidController {
 		return Arrays.asList("남자","여자");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

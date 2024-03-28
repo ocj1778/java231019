@@ -22,7 +22,7 @@
 	<%-- Spring form 태그 : 페이지를 요청하여 입력값을 전달하는 태그 --%>
 	<%-- modelAttribute 속성(필수) : 요청 처리 메소드의 매개변수에 저장된 Command 객체의 속성명을
 	속성값으로 설정 --%>
-	<%-- => 전달값에 대한 검증 실패시 사용자 입력값이 저장된 Command 객체를 제공받아 사용 --%>
+	<%-- => 전달값에 대한 검증 실패시 전달값이 저장된 Command 객체를 제공받아 입력태그의 초기값으로 사용 --%>
 	<form:form action="${url }" method="post" modelAttribute="employee" id="registerForm">
 	<table>
 		<tr>
