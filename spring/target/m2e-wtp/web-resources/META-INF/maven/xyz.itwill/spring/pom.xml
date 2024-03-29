@@ -155,7 +155,7 @@
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <version>4.13.2</version>
-		    <scope>test</scope>
+		    <!-- <scope>test</scope> -->
 		</dependency>  
 		
 		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
@@ -257,6 +257,15 @@
 		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
 		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 		    <version>1.16</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<!-- => Spring 프레임워크에서 테스트 프로그램에 작성에 필요한 기능을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${org.springframework-version}</version>
+		    <!-- <scope>test</scope> -->
 		</dependency>
 		
 	</dependencies>

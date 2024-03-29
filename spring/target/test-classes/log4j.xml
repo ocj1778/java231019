@@ -15,6 +15,35 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="jdbc.sqlonly">
+		<level value="info" />
+	</logger>	
+
+	<!-- jdbc.sqltiming : SQL 명령의 실행시간(ms) 기록 -->
+	<logger name="jdbc.sqltiming">
+		<level value="info" />
+	</logger>	
+
+	<!-- jdbc.audit : ResultSet 관련 정보를 제외한 모든 JDBC 관련 정보 기록 -->
+	<logger name="jdbc.audit">
+		<level value="info" />
+	</logger>	
+
+	<!-- jdbc.resultset : ResultSet 객체 관련 정보(매핑정보) 기록 -->
+	<logger name="jdbc.resultset">
+		<level value="info" />
+	</logger>
+
+	<!-- jdbc.resultsettable : ResultSet 객체 관련 정보를 표 형식으로 기록 -->
+	<logger name="jdbc.resultsettable">
+		<level value="info" />
+	</logger>	
+
+	<!-- jdbc.connection : Connection 객체 관련 정보 기록 -->
+	<logger name="jdbc.connection">
+		<level value="info" />
+	</logger>		
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
