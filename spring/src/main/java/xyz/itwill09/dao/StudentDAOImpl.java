@@ -40,12 +40,12 @@ public class StudentDAOImpl implements StudentDAO {
 	// => SqlSession 객체가 저장될 수 있는 필드를 작성하여 스프링 컨테이너로부터 Spring Bean을
 	//제공받아 저장되도록 의존성 주입(DI)
 
-	//SqlSession 객체가 저장될 필드에 @Autowired 어노테이션을 사용해 의존성 주입
+	//SqlSession 객체가 저장될 필드에 @Autowired 어노테이션을 사용해 의존성 주입 - 필드 레벨의 의존성 주입
 	//@Autowired
 	//private SqlSession sqlSession;
 
 	//매개변수가 작성된 생성자에 @Autowired 어노테이션을 사용해 SqlSession 객체가 필드에 
-	//저장되도록 의존성 주입 - 순환참조 방지
+	//저장되도록 의존성 주입 - 생성자 레벨의 의존성 주입 : 순환참조 방지
 	// => 생성자가 하나만 작성된 경우 @Autowired 어노테이션 생략 가능
 	private final SqlSession sqlSession;
 	

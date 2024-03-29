@@ -66,6 +66,7 @@
 	<!-- <context:component-scan base-package="xyz.itwill.spring" /> -->
 	<context:component-scan base-package="xyz.itwill09.controller" />
 	<context:component-scan base-package="xyz.itwill09.dao" />
+	<context:component-scan base-package="xyz.itwill09.service" />
 
 	<!--  메세지 관리 기능을 제공하는 클래스(ReloadableResourceBundleMessageSource)를 Spring Bean으로 등록 -->
 	<!-- => Spring Bean의 식별자(beanName)을 반드시 [messageSource]로 설정 -->	
