@@ -50,18 +50,23 @@
 			</list>
 		</property>				
 	</bean>
-				
+		
+	<!-- SqlSession 관련 클래스(SqlSessionTemplate 클래스)를 Spring Bean으로 등록 -->
+	<!-- => 필드에 SqlSession 객체 생성에 필요한 SqlSessionFactory 객체를 저장하기 위해 
+	의존성 주입 - Constructor Injection -->
+	<!-- destroy-method 속성을 사용하여 SqlSession 객체가 소멸되기 전에 clearCache() 메소드가  
+	자동 호출되도록 설정 -->
+	<!-- => clearCache() 메소드가 호출되면 SqlSession 객체가 사용한 JDBC 관련 객체를 자동 소멸 -->
+	<!-- => DAO 클래스의 메소드에서 SqlSession 객체 사용 후 close() 메소드를 호출하지 않도록 설정 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession" destroy-method="clearCache">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>	
+
+	<!-- TransactionManager 관련 클래스(DataSourceTransactionManager)를 Spring Bean으로 등록 -->
+	<!-- => Spring Bean의 식별자(beanName)를 반드시 [transactionManager]로 설정 -->
+	<!-- => 필드에 TransactionManager 객체에 의해 트렌젝션 관리될 DataSource 객체가 저장되도록
+	의존성 주입 - Setter Injection -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>		
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
