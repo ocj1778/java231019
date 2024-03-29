@@ -41,7 +41,7 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		 -->
 		<!-- [src/main/webapp] 폴더에 환경설정파일을 작성한 경우 웹자원의 경로로 표현하여 접근 --> 
-		<!-- <property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml"/> -->
+		<property name="configLocation" value="/WEB-INF/spring/mybatis-config.xml"/>
 		
 		<!-- dataSource 필드에 DataSource 관련 클래스의 Spring Bean을 제공받아 의존성 주입 -->
 		<!-- => Mybatis 프레임워크의 환경설정파일에서 environment 엘리먼트와 유사한 기능 제공 -->
