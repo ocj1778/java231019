@@ -1,4 +1,4 @@
-package xyz.itwill9.service;
+package xyz.itwill09.service;
 
 import java.util.List;
 
@@ -18,7 +18,6 @@ import xyz.itwill09.dto.Student;
 //=> Service 클래스는 @Service 어노테이션을 사용하여 Spring Bean으로 등록 처리
 //=> @Service 어노테이션을 스프링 컨테이너가 처리하기 위해 반드시 클래스가 작성된 패키지를
 //Spring Bean Configuration File(servlet-context.xml)의 component-scan 엘리먼트로 검색되도록 설정
-
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
