@@ -250,6 +250,15 @@
 		    <version>3.0.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
+		<!-- => 퍼시스턴스 프레임워크(Mybatis)에 의해 발생되는 로그 이벤트를 Spring 프레임워크의
+		로그 구현체로 기록하는 기능을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+		    <version>1.16</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

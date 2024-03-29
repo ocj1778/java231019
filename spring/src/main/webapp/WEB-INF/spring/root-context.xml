@@ -11,9 +11,21 @@
 	
 	<!-- DataSource 관련 클래스(DriverManagerDataSource 클래스)를 Spring Bean으로 등록 -->
 	<!-- => 필드에 Connection 객체 생성에 필요한 값이 저장되도록 값 주입 - Setter Injection -->
+	<!--  
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	-->
+	
+	<!-- Mybatis 프레임워크에서 발생되는 로그 이벤트를 전달받아 Spring 프레임워크의 로그 구현체로
+	기록되도록 driverClassName 필드값와 url 필드값을 log4jdbc-log4j2-jdbc4 라이브러리에서 제공되는 
+	값으로 변경 -->	
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="scott"/>
 		<property name="password" value="tiger"/>
 	</bean>
