@@ -3,6 +3,7 @@ package xyz.itwill09.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dao.PointBoardDAO;
@@ -18,7 +19,10 @@ public class PointBoardServiceImpl implements PointBoardService {
 
 	//매개변수로 게시글을 전달받아 POINT_BOARD 테이블에 행으로 삽입하고 게시글 작성자에 대한
 	//회원정보를 POINT_USER 테이블에서 검색하여 PointUserDTO 객체로 반환하는 메소드
-	// => POINT_USER 테이블에서 게시글 작성자에 대한 행의 POINT 컬럼값이 증가되도록 변경 처리 
+	// => POINT_USER 테이블에서 게시글 작성자에 대한 행의 POINT 컬럼값이 증가되도록 변경 처리
+	//@Transactional : TransactionManager 객체에 의해 트렌젝션 처리 기능을 제공받기 위한 어노테이션
+	//rollbackFor 속성 : 예외클래스(Class 객체)를 속성값으로 설정 - 예외가 발생되면 롤백 처리
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public PointUser addPointBoard(PointBoard board) {
 		pointBoardDAO.insertPointBoard(board);
@@ -37,6 +41,7 @@ public class PointBoardServiceImpl implements PointBoardService {
 	//매개변수로 글번호을 전달받아 POINT_BOARD 테이블에 저장된 행을 삭제하고 게시글 작성자에
 	//대한 회원정보를 POINT_USER 테이블에서 검색하여 PointUserDTO 객체로 반환하는 메소드
 	// => POINT_USER 테이블에서 게시글 작성자에 대한 행의 POINT 컬럼값이 감소되도록 변경 처리 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public PointUser removePointBoard(int idx) {
 		PointBoard board=pointBoardDAO.selectPointBoard(idx);

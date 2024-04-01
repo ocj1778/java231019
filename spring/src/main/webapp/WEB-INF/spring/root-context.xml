@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- root-context.xml : 모든 Front Controller에게 제공될 Spring Bean을 등록하기 위한 
@@ -80,5 +82,9 @@
 	의존성 주입 - Setter Injection -->
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
 		<property name="dataSource" ref="dataSource"/>
-	</bean>		
+	</bean>	
+	
+	<!-- annotation-driven : @Transactional 어노테이션을 사용하여 TransactionManager 객체로
+	트렌젝션 처리 기능을 제공하기 위한 엘리먼트 -->
+	<tx:annotation-driven/>	
 </beans>
