@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 // => 테스트 클래스로 객체를 생성하여 테스트 메소드를 호출하여 테스트 명령 실행
 //value 속성 : 테스트 클래스를 실행하기 위한 클래스(Class 객체)를 속성값으로 설정
 // => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
-//SpringJUnit4ClassRunner 클래스를 사용하여 테스트 클래스에 스프링 컨테이너(ApplicationContext 객체)를 생성하여 제공
+//SpringJUnit4ClassRunner 클래스를 사용하면 테스트 클래스에 스프링 컨테이너(ApplicationContext 객체)를 생성하여 제공
 // => 스프링 컨테이너는 테스트 클래스에서 사용될 객체를 Spring Bean으로 제공
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration : 스프링 컨테이너의 환경설정파일(Spring Bean Configuration File)을 

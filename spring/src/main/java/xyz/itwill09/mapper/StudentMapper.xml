@@ -7,7 +7,8 @@
 	</insert>
 	
 	<!-- 검색행의 컬럼명과 DTO 클래스의 필드명이 같은 경우 resultType 속성을 사용하여 검색행을
-	DTO	클래스의 객체를 제공받도록 설정 - 자동 매핑 -->
+	DTO	클래스의 객체를 제공받도록 설정 -->
+	<!-- => 검색행의 컬럼값이 같은 이름의 필드에 자동 저장되어 DTO 객체로 제공 - 자동 매핑 -->
 	<select id="selectStudentList" resultType="Student">
 		select no, name, phone, address, birthday from student order by no
 	</select>

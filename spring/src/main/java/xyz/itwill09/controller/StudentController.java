@@ -26,8 +26,8 @@ import xyz.itwill09.service.StudentService;
 //되도록 환경설정파일(log4j.xml) 변경 - logger 엘리먼트 추가
 
 //Controller 클래스 : 클라이언트의 요청을 처리하는 기능을 제공하기 위한 클래스
-// => Controller 클래스의 메소드에서는 클라이언트의 요청을 처리하기 위한 명령으로 Service 
-//클래스의 메소드를 호출하여 작성 
+// => Controller 클래스의 메소드에서는 클라이언트의 요청에 대한 데이타 처리 기능을 구현하기
+//위해 Service 클래스의 메소드를 호출하여 작성 
 
 //Controller 클래스는 Front Controller에서 사용할 수 있도록 반드시 Spring Bean으로 등록
 // => Controller 클래스는 @Controller 어노테이션을 사용하여 Spring Bean으로 등록 처리
