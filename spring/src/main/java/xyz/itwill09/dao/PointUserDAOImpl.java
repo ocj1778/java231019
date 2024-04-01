@@ -1,7 +1,5 @@
 package xyz.itwill09.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +28,7 @@ public class PointUserDAOImpl implements PointUserDAO {
 	}
 
 	@Override
-	public List<PointUser> selectPointUser(String id) {
+	public PointUser selectPointUser(String id) {
 		return sqlSession.getMapper(PointUserMapper.class).selectPointUser(id);
 	}
 }
