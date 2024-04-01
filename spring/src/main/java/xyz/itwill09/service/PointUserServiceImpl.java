@@ -12,7 +12,7 @@ public class PointUserServiceImpl implements PointUserService {
 	private final PointUserDAO pointUserDAO;
 	
 	//매개변수로 회원정보를 전달받아 POINT_USER 테이블에 행으로 삽입하고 삽입된 행(회원정보)을
-	//검색하여 DTO 객체로 반환하는 메소드
+	//검색하여 PointUserDTO 객체로 반환하는 메소드
 	@Override
 	public PointUser addPointUser(PointUser user) {
 		//매개변수로 전달받은 회원정보의 아이디가 중복될 경우 인위적 예외 발생
