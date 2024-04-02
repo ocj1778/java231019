@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dto.Userinfo;
-import xyz.itwill09.exception.BadRequestException;
 import xyz.itwill09.service.UserinfoService;
 
 @Controller
@@ -40,15 +39,9 @@ public class UserinfoController {
 	*/
 	
 	//예외 처리 메소드(Exception Handle Method)를 사용하여 예외 처리
+	//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(HttpSession session) {
-		//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
-		/*
-		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		if(loginUserinfo ==null || loginUserinfo.getStatus() != 9) {
-			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
-		}
-		*/
+	public String write() {
 		return "userinfo/user_write";	
 	}
 	
@@ -71,7 +64,7 @@ public class UserinfoController {
 	
 	//예외 처리 메소드(Exception Handle Method)를 사용하여 예외 처리
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(@ModelAttribute Userinfo userinfo, Model model) {
+	public String write(@ModelAttribute Userinfo userinfo) {
 		userinfoService.addUserinfo(userinfo);
 		return "redirect:/userinfo/login";	
 	}

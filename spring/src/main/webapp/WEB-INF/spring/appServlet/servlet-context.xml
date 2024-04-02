@@ -138,23 +138,43 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvisor" pointcut="execution(* xyz.itwill09.service..*(..))"/>	
 	</aop:config>
-	-->		
+	-->	
+	
+	<!-- Interceptor 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="xyz.itwill09.util.AdminAuthInterceptor" id="adminAuthInterceptor"/>
+	<beans:bean class="xyz.itwill09.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
+	
+	<!-- interceptors : interceptor 엘리먼트를 등록하기 위한 엘리먼트 -->
+	<interceptors>
+		<!-- interceptor : Interceptor 객체가 실행될 규칙을 제공하기 위한 엘리먼트 -->
+		<interceptor>
+			<!-- mapping : Interceptor 객체가 실행될 페이지의 요청 URL 주소를 설정하는 엘리먼트 -->
+			<!-- path 속성 : 요청 처리 메소드가 호출될 페이지의 URL 주소를 속성값으로 설정 -->
+			<mapping path="/userinfo/write"/>
+			<mapping path="/userinfo/modify"/>
+			<mapping path="/userinfo/remove"/>
+			
+			<!-- ref : 인터셉터 기능을 제공하기 위한 객체(Spring Bean)을 설정하는 엘리먼트 -->
+			<!-- bean 속성 : Interceptor 객체(Spring Bean)의 식별자(beanName)를 속성값으로 설정  -->
+			<beans:ref bean="adminAuthInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<!-- 
+			<mapping path="/userinfo/list"/>
+			<mapping path="/userinfo/view"/>
+			<beans:ref bean="loginAuthInterceptor"/>
+		 	-->
+		 	
+			<!-- mapping 엘리먼트의 path 속성값으로 [*] 패턴문자를 사용하여 요청 URL 주소 설정 -->
+			<!-- => [*] : 폴더의 모든 페이지를 요청한 경우 -->
+			<!-- => [**] : 폴더 및 하위 폴더의 모든 페이지를 요청한 경우 -->
+			<!-- <mapping path="/*"/> -->
+			<!-- <mapping path="/**"/> -->
+			<mapping path="/userinfo/*"/>
+			<!-- exclude-mapping : 인터셉터가 실행되지 않는 페이지의 요청 URL 주소를 설정하는 엘리먼트 -->
+			<exclude-mapping path="/userinfo/login"/>
+			<beans:ref bean="loginAuthInterceptor"/>
+		</interceptor>
+	</interceptors>	
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
