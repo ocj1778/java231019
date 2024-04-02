@@ -42,10 +42,13 @@ public class UserinfoController {
 	//예외 처리 메소드(Exception Handle Method)를 사용하여 예외 처리
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) {
+		//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
+		/*
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
 		if(loginUserinfo ==null || loginUserinfo.getStatus() != 9) {
 			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
 		}
+		*/
 		return "userinfo/user_write";	
 	}
 	
@@ -117,6 +120,7 @@ public class UserinfoController {
 	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장해 회원목록을 출력하는
 	//뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	/*
 	@RequestMapping("/list")
 	public String list(Model model, HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
@@ -127,7 +131,16 @@ public class UserinfoController {
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
+	*/
+	
+	//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
+	@RequestMapping("/list")
+	public String list(Model model) {
+		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
+		return "userinfo/user_list";
+	}
 
+	/*
 	//아이디를 전달받아 USERINFO 테이블에 저장된 회원정보를 검색하여 속성값으로 저장해 
 	//회원정보를 출력하는 뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
@@ -138,6 +151,14 @@ public class UserinfoController {
 		if(loginUserinfo == null) {
 			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
 		}
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_view";
+	}
+	*/
+	
+	//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
+	@RequestMapping("/view")
+	public String view(@RequestParam String userid, Model model, HttpSession session) {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_view";
 	}

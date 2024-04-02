@@ -1,11 +1,11 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%-- request 객체의 속성값으로 저장된 회원정보를 반환받아 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
+<%-- 속성값으로 저장된 회원정보를 제공받아 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
 <%-- => [수정] 태그를 클릭한 경우 [/userinfo/modify] 페이지 요청 - 아이디 전달 --%>
 <%-- => [삭제] 태그를 클릭한 경우 [/userinfo/remove] 페이지 요청 - 아이디 전달 --%>
 <%-- => [목록] 태그를 클릭한 경우 [/userinfo/list] 페이지 요청 --%>
-<%-- => [수정] 태그와 [삭제] 태그는 관리자에게만 링크 제공 --%>
+<%-- => [수정] 태그와 [삭제] 태그는 관리자에게만 태그 제공 --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
