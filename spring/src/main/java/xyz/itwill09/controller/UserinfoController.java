@@ -4,15 +4,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill09.dto.Userinfo;
 import xyz.itwill09.exception.BadRequestException;
-import xyz.itwill09.exception.ExistsUserinfoException;
 import xyz.itwill09.service.UserinfoService;
 
 @Controller
@@ -30,7 +29,7 @@ public class UserinfoController {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
 		try {
 			//페이지를 요청한 사용자가 비로그인 사용자이거나 관리자가 아닌 일반회원인 경우
-			if(loginUserinfo ==null || loginUserinfo.getStatus() != 9) {
+			if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
 				throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
 			}
 		} catch (BadRequestException e) {
@@ -44,7 +43,6 @@ public class UserinfoController {
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		//페이지를 요청한 사용자가 비로그인 사용자이거나 관리자가 아닌 일반회원인 경우
 		if(loginUserinfo ==null || loginUserinfo.getStatus() != 9) {
 			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
 		}
@@ -81,9 +79,26 @@ public class UserinfoController {
 		return "userinfo/user_login";	
 	}
 	
+	/*
 	//인증정보를 전달받아 USERINFO 테이블에 저장된 행을 검색해 인증 처리하고 환영메세지를 
 	//출력하는 뷰이름을 반환하는 요청 처리 메소드
 	// => 인증 성공 후 세션에 권한 관련 정보(회원정보)를 속성값으로 저장
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@ModelAttribute Userinfo userinfo, HttpSession session, Model model) {
+		try {
+			//매개변수로 전달받은 인증정보에 대한 인증실패시 LoginAuthFailException 발생
+			Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
+			session.setAttribute("loginUserinfo", authUserinfo);	
+		} catch (LoginAuthFailException e) {
+			model.addAttribute("message", e.getMessage());
+			model.addAttribute("userid", e.getUserid());
+			return "userinfo/user_login";	
+		}
+		return "userinfo/user_login";	
+	}
+	*/
+	
+	//예외 처리 메소드(Exception Handle Method)를 사용하여 예외 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute Userinfo userinfo, HttpSession session) {
 		Userinfo authUserinfo=userinfoService.loginAuth(userinfo);
@@ -99,6 +114,35 @@ public class UserinfoController {
 		return "redirect:/userinfo/login";	
 	}
 	
+	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장해 회원목록을 출력하는
+	//뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	@RequestMapping("/list")
+	public String list(Model model, HttpSession session) {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//페이지를 요청한 사용자가 비로그인 사용자인 경우
+		if(loginUserinfo == null) {
+			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
+		}
+		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
+		return "userinfo/user_list";
+	}
+
+	//아이디를 전달받아 USERINFO 테이블에 저장된 회원정보를 검색하여 속성값으로 저장해 
+	//회원정보를 출력하는 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	@RequestMapping("/view")
+	public String view(@RequestParam String userid, Model model, HttpSession session) {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//페이지를 요청한 사용자가 비로그인 사용자인 경우
+		if(loginUserinfo == null) {
+			throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
+		}
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_view";
+	}
+	
+	/*
 	//@ExceptionHandler : 예외 처리 기능의 메소드를 설정하기 위한 어노테이션
 	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생되면 Front Controller에 의해
 	//자동 호출되어 예외 처리하는 메소드 - 예외 처리 메소드
@@ -117,6 +161,24 @@ public class UserinfoController {
 		model.addAttribute("userinfo", exception.getUserinfo());
 		return "userinfo/user_write";	
 	}
+	
+	@ExceptionHandler(LoginAuthFailException.class)
+	public String loginAuthFailExceptionHandler(LoginAuthFailException exception, Model model) {
+		model.addAttribute("message", exception.getMessage());
+		model.addAttribute("userid", exception.getUserid());
+		return "userinfo/user_login";	
+	}
+	
+	@ExceptionHandler(UserinfoNotFoundException.class)
+	public String userinfoNotFoundExceptionHandler() {
+		return "userinfo/user_error";	
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String exceptionHandler() {
+		return "userinfo/user_error";	
+	}
+	*/
 }
 
 
