@@ -37,7 +37,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 		}
 		
 		//매개변수로 전달받은 회원정보의 비밀번호를 암호화 처리하여 필드값으로 변경 처리
-		String hashedPasword=userinfo.getPassword();
+		String hashedPasword=BCrypt.hashpw(userinfo.getPassword(),BCrypt.gensalt());
 		userinfo.setPassword(hashedPasword);
 		
 		userinfoDAO.insertUserinfo(userinfo);
@@ -51,7 +51,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 		}
 		
 		if(userinfo.getPassword() !=null && !userinfo.getPassword().equals("")) {
-			String hashedPasword=userinfo.getPassword();
+			String hashedPasword=BCrypt.hashpw(userinfo.getPassword(),BCrypt.gensalt());
 			userinfo.setPassword(hashedPasword);
 		}
 		

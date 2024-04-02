@@ -52,8 +52,8 @@ public class PointBoardServiceTest {
 		//실행된 상태이므로 POINT_BOARD 테이블에는 비정상적인 행 삽입 처리
 		// => POINT_BOARD 테이블에 게시글 작성자가 없는 게시글 저장 - 게시글을 검색하여 출력할 경우 비정상적인 결과 발생
 		//해결법)예외가 발생되기 전에 실행된 SQL 명령(INSERT, UPDATE, DELETE)에 대한 모두 롤백 처리되도록 설정
-		// => Spring 프레임워크에서는 트렌젝션 관리 기능을 사용하여 트렌젝션 처리
-		// => TranscationManager 객체를 사용하여 일관성 있는 트렌젝션 관리 기능 제공
+		// => Spring 프레임워크에서는 TranscationManager 객체를 사용하여 일관성 있는 트렌젝션 
+		//관리 기능 제공하여 트렌젝션 처리
 		PointUser user=pointBoardService.addPointBoard(board);
 		
 		log.info(user.toString());
