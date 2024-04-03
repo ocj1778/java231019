@@ -20,14 +20,15 @@ public class UserinfoController {
 	private final UserinfoService userinfoService;
 	
 	//회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
-	// => 비로그인 사용자 또는 관리자가 아닌 일반회원이 페이지를 요청할 경우 인위적 예외 발생 - 500 에러코드 발생
-	// => try~catch 구문을 사용하여 예외가 발생될 경우 에러메세지를 출력하는 뷰이름 반환 - 500 에러코드 미발생
+	// => 관리자만 요청 가능한 페이지	
 	/*
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpSession session) {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//try~catch 구문을 사용하여 예외가 발생될 경우 에러메세지를 출력하는 뷰이름 반환 - 500 에러코드 미발생
 		try {
-			//페이지를 요청한 사용자가 비로그인 사용자이거나 관리자가 아닌 일반회원인 경우
+			//페이지를 요청한 사용자가 비로그인 사용자이거나 관리자가 아닌 일반회원인 경우 
+			//인위적 예외 발생 - 500 에러코드 발생
 			if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
 				throw new BadRequestException("비정상적인 방식으로 페이지를 요청 하였습니다.");
 			}
@@ -38,8 +39,9 @@ public class UserinfoController {
 	}
 	*/
 	
-	//예외 처리 메소드(Exception Handle Method)를 사용하여 예외 처리
-	//인터셉터를 사용하여 권한 관련 처리 구현 - 요청 처리 메소드에서는 권한 관련 명령 미작성
+	//예외 처리 메소드(Exception Handler Method)를 사용하여 예외 처리 기능 구현하고 인터셉터를 
+	//사용하여 권한 관련 처리 기능 구현 
+	// => 요청 처리 메소드에서는 예외 처리 및 권한 관련 명령 미작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		return "userinfo/user_write";	
@@ -201,10 +203,10 @@ public class UserinfoController {
 	
 	/*
 	//@ExceptionHandler : 예외 처리 기능의 메소드를 설정하기 위한 어노테이션
-	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생되면 Front Controller에 의해
+	// => Controller 클래스의 요청 처리 메소드에서 예외가 발생될 경우 Front Controller에 의해
 	//자동 호출되어 예외 처리하는 메소드 - 예외 처리 메소드
 	// => 예외 처리 메소드의 매개변수에 예외 처리에 필요한 객체를 전달받아 예외를 처리할 수
-	//있으며 클라이언트에게 응답할 뷰이름 반환 - 리다이렉트 이동가능
+	//있으며 클라이언트에게 응답할 뷰(ViewName)의 뷰이름 반환 - 리다이렉트 이동 가능
 	//value 속성 : 예외 처리하기 위한 클래스(Class 객체)를 속성값으로 설정
 	// => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 	@ExceptionHandler(value = BadRequestException.class)

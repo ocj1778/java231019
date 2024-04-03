@@ -86,7 +86,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 	public Userinfo loginAuth(Userinfo userinfo) {
 		Userinfo authUserinfo=userinfoDAO.selectUserinfo(userinfo.getUserid());
 
-		if(authUserinfo ==null) {//아이디 인증 실패
+		if(authUserinfo == null) {//아이디 인증 실패
 			throw new LoginAuthFailException("아이디의 회원정보가 존재하지 않습니다.", userinfo.getUserid());
 		}
 		

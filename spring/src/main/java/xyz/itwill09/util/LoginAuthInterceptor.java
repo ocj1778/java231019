@@ -16,7 +16,7 @@ import xyz.itwill09.exception.BadRequestException;
 // => Interceptor 클래스는 Front Controller에 의해 관리되므로 Spring Bean Configuration File
 //(servlet-context.xml)에서 Spring Bean으로 등록하여 요청 처리 메소드 호출 전 또는 후에 실행되도록 설정
 // => Filter 클래스는 Front Controller 이전에 위치하여 실행되고 Interceptor 클래스는 Front 
-//Controller 다음에 위치하여 실행 - Filter 클래스는 WAS 프로그램에 의해 관리 
+//Controller 다음에 위치하여 실행 - Filter 클래스는 WAS 프로그램에 의해 관리(web.xml 파일로 설정) 
 
 //로그인 사용자 관련 권한 처리를 위해 작성된 인터셉터 클래스
 // => 요청 처리 메소드 호출 전에 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
