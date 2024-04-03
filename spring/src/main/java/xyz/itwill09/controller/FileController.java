@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+//클라이언트로부터 파일을 전달받아 서버 디렉토리애 업로드 처리하기 위한 방법
+//1.commons-fileupload 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
+//2.Spring Bean Configuration File(servlet-context.xml)에 파일 업로드 처리 기능을 제공하는 
+//클래스를 Spring Bean으로 등록
+//3.MultipartHttpServletRequest 객체를 사용하여 [multipart/form-data] 형태로 전달된 값 또는 
+//파일을 제공받아 처리
+
 @Controller
 @RequestMapping("/file")
 public class FileController {
