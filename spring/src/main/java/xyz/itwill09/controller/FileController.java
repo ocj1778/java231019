@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
+import xyz.itwill09.dto.FileBoard;
+import xyz.itwill09.service.FileBoardService;
 
 //클라이언트로부터 파일을 전달받아 서버 디렉토리애 업로드 처리하기 위한 방법
 //1.commons-fileupload 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
@@ -29,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 	//WebApplicationContext 객체(스프링 컨테이너)를 제공받아 필드에 저장되도록 의존성 주입
 	private final WebApplicationContext context;
+	private final FileBoardService fileBoardService;
 	
 	@RequestMapping(value = "/upload1", method = RequestMethod.GET)
 	public String uploadOne() {
@@ -154,6 +159,44 @@ public class FileController {
 		model.addAttribute("filenameList", filenameList);
 		
 		return "file/upload_success_two";
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String fileBoardWrite() {
+		return "file/board_write";
+	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String fileBoardWrite(@ModelAttribute FileBoard fileBoard
+			, @RequestParam MultipartFile multipartFile) throws IOException {
+		if(multipartFile.isEmpty()) {
+			return "file/board_write";
+		}
+
+		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
+		// => 다운로드 프로그램에서만 파일에 접근 가능하도록 /WEB-INF 폴더에 업로드 폴더 작성
+		String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
+
+		//업로드 처리될 파일명을 생성하여 FileBoard 객체의 필드값 변경
+		fileBoard.setFilename(UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename());
+
+		//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
+		multipartFile.transferTo(new File(uploadDirectory, fileBoard.getFilename()));
+		
+		//전달값과 업로드 처리된 파일명을 FILE_BOARD 테이블의 행으로 삽입 처리
+		fileBoardService.addFileBoard(fileBoard);
+		
+		return "redirect:/file/list";
+	}
+
+	@RequestMapping("/list")
+	public String fileBoardList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		Map<String, Object> map=fileBoardService.getFileBoardList(pageNum);
+		
+		model.addAttribute("pager", map.get("pager"));
+		model.addAttribute("fileBoardList", map.get("fileBoardList"));
+		
+		return "file/board_list";
 	}
 }
 

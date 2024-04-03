@@ -1,7 +1,5 @@
 package xyz.itwill09.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 //create table file_board(idx number primary key, writer varchar2(20)
@@ -18,7 +16,7 @@ public class FileBoard {
 	//서버 디렉토리에 저장된 업로드 파일명을 저장하기 위한 필드 - 테이블 저장 
 	private String filename;
 	//사용자로부터 입력되어 전달된 파일정보를 저장하기 위한 필드 - 업로드 처리
-	private MultipartFile multipartFile;
+	//private MultipartFile multipartFile;
 }
 
 
