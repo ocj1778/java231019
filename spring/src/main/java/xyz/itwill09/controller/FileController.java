@@ -2,6 +2,8 @@ package xyz.itwill09.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
@@ -121,6 +123,37 @@ public class FileController {
 	@RequestMapping(value = "/upload2", method = RequestMethod.GET)
 	public String uploadTwo() {
 		return "file/form_two";
+	}
+	
+	//전달파일이 여러개인 경우 매개변수를 List 인터페이스로 작성하여 전달파일에 대한
+	//MultipartFile 객체가 요소로 저장된 List 객체를 제공받아 사용 
+	@RequestMapping(value = "/upload2", method = RequestMethod.POST)
+	public String uploadTwo(@RequestParam String uploaderName
+			, @RequestParam List<MultipartFile> uploaderFileList, Model model) throws IOException {
+		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
+		
+		//업로드 처리된 모든 파일의 이름을 저장하기 위한 List 객체 생성
+		List<String> filenameList=new ArrayList<String>();
+		
+		for(MultipartFile multipartFile : uploaderFileList) {
+			if(multipartFile.isEmpty() || !multipartFile.getContentType().equals("image/jpeg")) {
+				return "file/upload_fail";
+			}
+
+			//전달파일을 서버 디렉토리에 저장되도록 업로드 처리
+			String uploadFilename=UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
+			File file=new File(uploadDirectory, uploadFilename);
+			multipartFile.transferTo(file);
+			
+			//List 객체에 업로드 처리된 파일명을 요소값으로 추가하여 저장
+			filenameList.add(uploadFilename);
+		}
+			
+		model.addAttribute("uploaderName", uploaderName);
+		model.addAttribute("filenameList", filenameList);
+		
+		return "file/upload_success_two";
 	}
 }
 
