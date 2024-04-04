@@ -9,7 +9,7 @@
 <body>
 	<h1>입력페이지</h1>
 	<hr>
-	<form method="post">
+	<form method="post" enctype="application/x-www-form-urlencoded">
 	<table>
 		<tr>
 			<td>아이디</td>
