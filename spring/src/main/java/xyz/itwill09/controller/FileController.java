@@ -198,4 +198,52 @@ public class FileController {
 		
 		return "file/board_list";
 	}
+	
+	@RequestMapping("/delete")
+	public String fileBoardDelete(@RequestParam int idx) {
+		//삭제될 게시글을 반환받아 저장 - 파일명을 제공받기 위해 사용
+		FileBoard fileBoard=fileBoardService.getFileBoard(idx);
+		String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
+		//서버 디렉토리에 저장된 게시글의 파일 삭제 처리
+		new File(uploadDirectory, fileBoard.getFilename()).delete();		
+		
+		fileBoardService.removeFileBoard(idx);
+		return "redirect:/file/list";
+	}
+	
+	//다운로드(Download) : 서버 디렉토리에 저장된 파일을 클라이언트에게 전달하여 저장하는 기능
+	//요청 처리 메소드에 의해 반환되는 문자열(ViewName)로 다운로드 기능을 제공하는 객체(Spring
+	//Bean)의 메소드를 호출하여 서버 디렉토리에 저장된 파일을 클라이언트에게 전달되도록 응답 처리
+	// => BeanNameViewResovler 객체를 사용하여 반환되는 문자열(ViewName)로 객체의 메소드 호출
+	// => Spring Bean Configuration File(servlet-context.xml)에 BeanNameViewResovler 클래스를
+	//Spring Bean으로 등록
+	// => ViewResolver 객체 중 가장 우선 순위가 높도록 설정
+	@RequestMapping("/download")
+	public String fileBoardDownload(@RequestParam int idx, Model model) {
+		FileBoard fileBoard=fileBoardService.getFileBoard(idx);
+
+		//Model 객체를 사용하여 BeanNameViewResovler 객체에 의해 실행될 클래스에서 사용할 수
+		//있는 속성값 저장하여 제공
+		model.addAttribute("uploadDirectory", context.getServletContext().getRealPath("/WEB-INF/upload"));
+		model.addAttribute("uploadFilename", fileBoard.getFilename());
+
+		//BeanNameViewResovler 객체에 의해 실행될 클래스의 Spring Bean의 식별자(beanName)를 반환
+		// => BeanNameViewResovler 객체에 의해 실행될 클래스를 작성하여 Spring Bean Configuration 
+		//File(servlet-context.xml)에 Spring Bean으로 등록 - @Component 어노테이션 사용 가능
+		return "fileDownload";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
