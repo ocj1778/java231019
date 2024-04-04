@@ -23,7 +23,7 @@ public class FileDownload extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		//요청 처리 메소드에서 제공된 속성값(다운로드 관련 정보)을 객체로 반환받아 저장
-		String uploadDirectory=(String)model.get("vDirectory");
+		String uploadDirectory=(String)model.get("uploadDirectory");
 		String uploadFilename=(String)model.get("uploadFilename");
 		
 		//서버 디렉토리에 저장된 업로드 파일에 대한 File 객체 생성
@@ -37,7 +37,7 @@ public class FileDownload extends AbstractView {
 		
 		//클라이언트에 저장될 파일명 설정
 		// => 파일의 이름에 한글이 존재할 경우 부호화 처리하여 응답 처리
-		String originalFilename=URLEncoder.encode(uploadFilename.substring(36), "utf-8");
+		String originalFilename=URLEncoder.encode(uploadFilename.substring(37), "utf-8");
 		response.setHeader("Content-Disposition", "attachement;filename=\""
 				+originalFilename+"\";");
 		

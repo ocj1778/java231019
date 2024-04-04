@@ -90,7 +90,7 @@ th, td {
 		}
 	}
 	
-	function fileDownload() {
+	function fileDownload(idx) {
 		location.href="<c:url value="/file/download"/>?idx="+idx;
 	}
 	</script>
