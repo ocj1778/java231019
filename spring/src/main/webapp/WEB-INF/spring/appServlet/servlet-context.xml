@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task https://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
@@ -197,7 +199,48 @@
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>
 	
-	<!-- 파일 다운로드 기능을 제공하는 클래스 Spring Bean으로 등록 -->
+	<!-- 파일 다운로드 기능을 제공하는 클래스를 Spring Bean으로 등록 -->
 	<!-- => Spring Bean의 식별자(beanName)를 요청 처리 메소드의 반환값과 같도록 작성 -->
 	<beans:bean class="xyz.itwill09.util.FileDownload" id="fileDownload"/>
+	
+	<!-- 스케줄링 기능을 제공하는 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="xyz.itwill09.util.Scheduler" id="scheduler"/>
+	
+	<!-- 스케줄링 기능을 구현하기 위해 Spring Bean Configuration File에 task 네임스페이스를
+	추가하여 spring-task 파일의 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- scheduler : 스케줄링 기능을 제공하기 위한 엘리먼트 -->
+	<!-- id 속성 : scheduler 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- pool-size 속성 : 스케줄링 기능을 제공하기 위한 스레드의 갯수를 속성값으로 설정 -->
+	<task:scheduler id="baseScheduler" pool-size="10"/>
+	
+	<!-- scheduled-tasks : scheduled 엘리먼트로 실행될 객체를 설정하기 위한 엘리먼트 -->
+	<!-- => 스케줄링 클래스의 메소드에 @Scheduled 어노테이션을 사용하여 설정 가능 -->	
+	<!-- scheduler 속성 : scheduled 엘리먼트의 식별자를 속성값으로 설정 -->
+	<!-- scheduled : 스케줄링 기능을 제공하기 위한 객체와 메소드를 설정하기 위한 엘리먼트 -->
+	<!-- ref 속성 : 스케줄링 기능을 제공하기 위한 객체(Spring Bean)의 식별자를 속성값으로 설정 -->
+	<!-- method 속성 : 스케줄링 객체로 자동 호출될 메소드의 이름을 속성값으로 설정 -->
+	<!-- cron 속성 : 스케줄링 객체로 메소드를 자동 호출하기 위한 날짜와 시간을 속성값으로 설정 -->
+	<!-- => 속성값 : 초 분 시 일 월 요일 - 패턴문자 사용 가능 -->
+	<!--  
+	<task:scheduled-tasks scheduler="baseScheduler">
+		<task:scheduled ref="scheduler" method="autoUpdate" cron="1 * * * * *"/>
+	</task:scheduled-tasks>
+	-->
+	<!-- annotation-driven : 스케줄링 기능의 어노테이션을 사용하기 위해 설정하는 엘리먼트 -->
+	<task:annotation-driven/>
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
