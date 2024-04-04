@@ -201,15 +201,3 @@
 	<!-- => Spring Bean의 식별자(beanName)를 요청 처리 메소드의 반환값과 같도록 작성 -->
 	<beans:bean class="xyz.itwill09.util.FileDownload" id="fileDownload"/>
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -55,12 +55,3 @@ public class FileDownload extends AbstractView {
 	}
 
 }
-
-
-
-
-
-
-
-
-
