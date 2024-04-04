@@ -107,7 +107,7 @@ public class FileController {
 		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
 		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
 
-		//UUID.randomUUID() : 36Byte 크기의 문자열이 저장된 UUID 객체를 반환하는 메소드
+		//UUID.randomUUID() : 36Byte 크기의 문자열이 저장된 UUID 객체를 반환하는 정적 메소드
 		// => UUID 객체 : 식별자 정보를 저장하기 위한 객체
 		//UUID.toString() : UUID 객체에 저장된 식별자를  문자열로 반환하는 메소드
 		String uploadFilename=UUID.randomUUID().toString()+"_"+uploaderFile.getOriginalFilename();
@@ -199,14 +199,3 @@ public class FileController {
 		return "file/board_list";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

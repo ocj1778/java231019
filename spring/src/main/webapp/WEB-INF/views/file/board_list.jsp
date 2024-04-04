@@ -32,8 +32,8 @@ th, td {
 			<th width="100">작성자</th>
 			<th width="300">제목</th>
 			<th width="350">파일명</th>
-			<th width="100">다운로드</th>
 			<th width="100">삭제</th>
+			<th width="100">다운로드</th>
 		</tr>
 		
 		<%-- 게시글 목록 출력 --%>
@@ -44,10 +44,10 @@ th, td {
 				<td>${fileBoard.subject }</td>
 				<td>${fn:split(fileBoard.filename, "_")[1] }</td>
 				<td align="center">
-					<button type="button">다운로드</button>
+					<button type="button">삭제</button>
 				</td>
 				<td align="center">
-					<button type="button">삭제</button>
+					<button type="button">다운로드</button>
 				</td>
 			</tr>
 		</c:forEach>
