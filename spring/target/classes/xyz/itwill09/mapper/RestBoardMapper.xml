@@ -20,13 +20,13 @@
 		select idx, wrtier, content, regdate from rest_board where idx=#{idx}
 	</select>
 	
-	<select id="selectRestBoardCount" resultType="RestBoard">
+	<select id="selectRestBoardCount" resultType="int">
 		select count(*) from rest_board
 	</select>
 	
 	<select id="selectRestBoardList" resultType="RestBoard">
-		select * from (select rownum rn, board.* from (select idx, wrtier, content, regdate 
-			from rest_board order by idx desc) board) where rn beweeen #{startRow} and #{endRow}
+		select * from (select rownum rn, board.* from (select idx, writer, content, regdate 
+			from rest_board order by idx desc) board) where rn between #{startRow} and #{endRow}
 	</select>
 	
 </mapper>

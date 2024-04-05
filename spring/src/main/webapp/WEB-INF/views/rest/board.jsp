@@ -105,7 +105,30 @@
 	// => 페이지 번호에 대한 게시글 목록을 제공받기 위해 비동기식 방식으로 페이지 요청
 	function boardListDisplay(pageNum) {
 		page=pageNum;
-		$.ajax({});
+		$.ajax({
+			type: "get",
+			url: "<c:url value="/rest/board_list"/>",
+			data: {"pageNum":pageNum},
+			dataType: "json",
+			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
+			success: function(result) {
+				//alert(result);//[object Object]
+				
+				//응답받은 Javascipt 객체를 HTML 태그로 변환하여 출력 처리
+				if(result.restBoardList.length == 0) {//검색된 게시글이 없는 경우
+					var html="<table id='restBoardTable'>";
+					html+="<tr>";
+					html+="<th width='800'>검색된 게시글이 없습니다.</th>";
+					html+="</tr>";
+					html+="</table>"
+					$("#restBoardListDiv").html(html);
+					return;
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 목록 검색) = "+xhr.status);
+			}
+		});
 	}
 
 	
