@@ -229,18 +229,3 @@
 	<!-- annotation-driven : 스케줄링 기능의 어노테이션을 사용하기 위해 설정하는 엘리먼트 -->
 	<task:annotation-driven/>
 </beans:beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
