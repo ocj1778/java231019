@@ -2,9 +2,11 @@ package xyz.itwill09.controller;
 
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,17 +82,21 @@ public class RestBoardController {
 		return restBoardService.getRestBoard(idx);
 	}
 	
+	//게시글을 전달받아 REST_BOARD 테이블에 저장된 행을 변경하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	// => [application/json] 형식의 문자열로 전달된 게시글 정보를 Java 객체로 제공받아 
+	//매개변수에 저장하기 위해 @RequestBody 어노테이션 사용	
+	@PutMapping("/board_modify")
+	public String restBoardModify(@RequestBody RestBoard restBoard) {
+		restBoard.setContent(HtmlUtils.htmlEscape(restBoard.getContent()));
+		restBoardService.modifyRestBoard(restBoard);
+		return "success";
+	}
+	
+	//글번호를 전달받아 REST_BOARD 테이블에 저장된 행을 삭제하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	// => 요청 URL 주소로 제공된 값을 매개변수에 저장하기 위해 @PathVariable 어노테이션 사용
+	@DeleteMapping("/board_remove/{idx}")
+	public String restBoardRemove(@PathVariable int idx) {
+		restBoardService.removeRestBoard(idx);
+		return "success";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
