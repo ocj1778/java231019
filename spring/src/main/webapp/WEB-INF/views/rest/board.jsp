@@ -124,6 +124,32 @@
 					$("#restBoardListDiv").html(html);
 					return;
 				}
+				
+				var html="<table id='restBoardTable'>";
+				html+="<tr>";
+				html+="<th width='50'>번호</th>";
+				html+="<th width='100'>작성자</th>";
+				html+="<th width='350'>내용</th>";
+				html+="<th width='200'>작성일</th>";
+				html+="<th width='50'>변경</th>";
+				html+="<th width='50'>삭제</th>";
+				html+="</tr>";
+				$(result.restBoardList).each(function() {//Array 객체(게시글 목록) 반복 처리
+					html+="<tr>";
+					html+="<td align='center'>"+this.idx+"</td>";
+					html+="<td align='center'>"+this.writer+"</td>";
+					html+="<td>"+this.content+"</td>";
+					html+="<td align='center'>"+this.regdate+"</td>";
+					html+="<td align='center'><button type='button'>변경</td>";
+					html+="<td align='center'><button type='button'>삭제</td>";
+					html+="</tr>";
+				});
+				html+="</table>";
+
+				$("#restBoardListDiv").html(html);
+				
+				//페이지 번호를 출력하는 함수 호출
+				pageNumberDisplay(result.pager);
 			},
 			error: function(xhr) {
 				alert("에러코드(게시글 목록 검색) = "+xhr.status);
@@ -131,7 +157,94 @@
 		});
 	}
 
+	//매개변수로 페이징 관련 정보가 저장된 Object 객체를 전달받아 페이지 번호를 HTML 태그로
+	//변환하여 출력하는 함수
+	function pageNumberDisplay(pager) {
+		var html="";
+		
+		if(pager.startPage > pager.blockSize) {
+			html+="<a href='javascript:boardListDisplay("+pager.prevPage+");'>[이전]</a>";
+		} else {
+			html+="[이전]";
+		}
+		
+		for(i = pager.startPage ; i <= pager.endPage ; i++) {
+			if(pager.pageNum != i) {
+				html+="<a href='javascript:boardListDisplay("+i+");'>["+i+"]</a>";
+			} else {
+				html+="["+i+"]";
+			}
+		}
+		
+		if(pager.endPage != pager.totalPage) {
+			html+="<a href='javascript:boardListDisplay("+pager.nextPage+");'>[다음]</a>";
+		} else {
+			html+="[다음]";
+		}
+		
+		$("#pageNumDiv").html(html);
+	}
+
+	//모든 입력태그 초기화 및 태그 숨김 처리
+	function init() {
+		$(".insert").val("");
+		$(".update").val("");
+		$(".inputDiv").hide();
+	}
 	
+	//[글쓰기] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	$("#writeBtn").click(function() {
+		init();
+		//신규 게시글을 입력받기 위한 태그 출력
+		$("#insertDiv").show();
+	});
+	
+	//신규 게시글을 입력받기 위한 태그에서 [저장] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 입력값(게시글)을 삽입 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 출력 처리 
+	$("#insertBtn").click(function() {
+		var writer=$("#insertWriter").val();
+		var content=$("#insertContent").val();
+		
+		if(writer == "") {
+			alert("작성자를 입력해 주세요.");
+			return;
+		}
+		
+		if(content == "") {
+			alert("내용을 입력해 주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "<c:url value="/rest/board_add"/>",
+			//headers : 리퀘스트 메세지 머릿부(Header)에 저장된 정보를 변경하기 위한 속성
+			// => 리퀘스트 메세지 몸체부에 저장된 전달될 값의 파일형식(MimeType)을 변경
+			//headers:{"contentType":"applicaion/json"},
+			//contentType : 리퀘스트 메세지 몸체부에 저장된 전달될 값의 파일형식(MimeType)을
+			//변경하기 위한 속성
+			// => 리퀘스트 메세지 몸체부에 JSON 형식의 문자열로 값 전달
+			// => 요청 처리 메소드의 매개변수에서는 @RequestBody 어노테이션을 사용하여 JSON 
+			//형식의 문자열을 Java 객체로 제공받아 사용 - 속성명과 동일한 이름의 Java 객체의
+			//필드에 속성값 저장
+			contentType: "application/json",
+			//JSON.stringify(object) : Javascript 객체를 JSON 형식의 문자값으로 변환하여 반환하는 메소드
+			data: JSON.stringify({"writer":writer, "content":content}),
+			dataType: "text",
+			success: function(result) {
+				if(result == "success") {
+					init();
+					boardListDisplay(page);
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 삽입) = "+xhr.status);
+			}
+		});
+	});
+	
+	//신규 게시글을 입력받기 위한 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	$("#cancelInsertBtn").click(init);
 	</script>
 </body>
 </html>

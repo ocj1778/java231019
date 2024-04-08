@@ -3,7 +3,7 @@
 <mapper namespace="xyz.itwill09.mapper.RestBoardMapper">
 	<insert id="insertRestBoard">
 		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
-			select rest_board_req.nextval from dual
+			select rest_board_seq.nextval from dual
 		</selectKey>
 		insert into rest_board values(#{idx}, #{writer}, #{content}, sysdate)
 	</insert>

@@ -3,11 +3,15 @@ package xyz.itwill09.controller;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
 import lombok.RequiredArgsConstructor;
+import xyz.itwill09.dto.RestBoard;
 import xyz.itwill09.service.RestBoardService;
 
 //REST 기능을 제공하는 요청 처리 메소드에 대한 검증은 ARC(Advanced REST Client) 프로그램 사용
@@ -33,10 +37,22 @@ public class RestBoardController {
 	//@RequestMapping(value = "/board_list", method = RequestMethod.GET)
 	@GetMapping("/board_list")
 	//Controller 클래스를 @RestController 어노테이션을 사용하여 Spring Bean으로 등록한 경우
-	//요청 처리 메소드에 @ResponseBody 어노테이션을 작성하지 않아도 문자열로 응답 처리
+	//요청 처리 메소드에 @ResponseBody 어노테이션을 작성하지 않아도 문자열(JSON)로 응답 처리
 	//@ResponseBody
 	public Map<String, Object> restBoardList(@RequestParam(defaultValue = "1") int pageNum) {
 		return restBoardService.getRestBoardList(pageNum);
+	}
+	
+	//게시글을 전달받아 REST_BOARD 테이블에 행으로 삽입 처리하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	// => [application/json] 형식의 문자열로 전달된 게시글 정보를 Java 객체로 제공받아 
+	//매개변수에 저장하기 위해 @RequestBody 어노테이션 사용
+	@PostMapping("/board_add")
+	public String restBoardAdd(@RequestBody RestBoard restBoard) {
+		//HtmlUtils.htmlEscape(String str) : 매개변수로 전달받은 문자열에 저장된 HTML 태그
+		//관련 문자를 회피문자로 변환하여 반환하는 정적 메소드 - XSS 공격에 대한 방법
+		restBoard.setContent(HtmlUtils.htmlEscape(restBoard.getContent()));
+		restBoardService.addRestBoard(restBoard);
+		return "success";
 	}
 }
 
