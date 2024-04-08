@@ -141,7 +141,7 @@
 					html+="<td>"+this.content+"</td>";
 					html+="<td align='center'>"+this.regdate+"</td>";
 					html+="<td align='center'><button type='button' onclick='modify("+this.idx+");'>변경</td>";
-					html+="<td align='center'><button type='button'>삭제</td>";
+					html+="<td align='center'><button type='button' onclick='remove("+this.idx+");'>삭제</td>";
 					html+="</tr>";
 				});
 				html+="</table>";
@@ -274,8 +274,63 @@
 		});
 	} 
 	
+	//변경 게시글을 입력받기 위한 태그에서 [변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 입력값(게시글)을 변경 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 출력 처리 
+	$("#updateBtn").click(function() {
+		var idx=$("#updateIdx").val();
+		var writer=$("#updateWriter").val();
+		var content=$("#updateContent").val();
+		
+		if(writer == "") {
+			alert("작성자를 입력해 주세요.");
+			return;
+		}
+		
+		if(content == "") {
+			alert("내용을 입력해 주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "put",
+			url: "<c:url value="/rest/board_modify"/>",
+			contentType: "application/json",
+			data: JSON.stringify({"idx":idx, "writer":writer, "content":content}),
+			dataType: "text",
+			success: function(result) {
+				if(result == "success") {
+					init();
+					boardListDisplay(page);
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 변경) = "+xhr.status);
+			}
+		});
+	});
+	
 	//변경 게시글을 입력받기 위한 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
 	$("#cancelUpdateBtn").click(init);
+
+	//게시글의 [삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 게시글을 삭제 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 출력 처리 
+	function remove(idx) {
+		if(confirm("게시글을 삭제 하시겠습니까?")) {
+			$.ajax({
+				type: "delete",
+				url: "<c:url value="/rest/board_remove/"/>"+idx,
+				dataType: "text",
+				success: function(result) {
+					if(result == "success") {
+						boardListDisplay(page);
+					}
+				},
+				error: function(xhr) {
+					alert("에러코드(게시글 삭제) = "+xhr.status);
+				}
+			});
+		}	
+	}
 	</script>
 </body>
 </html>
