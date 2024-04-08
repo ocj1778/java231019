@@ -140,7 +140,7 @@
 					html+="<td align='center'>"+this.writer+"</td>";
 					html+="<td>"+this.content+"</td>";
 					html+="<td align='center'>"+this.regdate+"</td>";
-					html+="<td align='center'><button type='button'>변경</td>";
+					html+="<td align='center'><button type='button' onclick='modify("+this.idx+");'>변경</td>";
 					html+="<td align='center'><button type='button'>삭제</td>";
 					html+="</tr>";
 				});
@@ -245,6 +245,37 @@
 	
 	//신규 게시글을 입력받기 위한 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
 	$("#cancelInsertBtn").click(init);
+	
+	//게시글의 [변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 매개변수의 게시글을 JSON 형식의 문자값으로 제공하는 Restful API를 비동기식으로 
+	//요청하여 실행결과(JSON)를 제공받아 출력 처리 
+	function modify(idx) {
+		//alert(idx);
+		init();
+		$("#updateDiv").show();
+		
+		$.ajax({
+			type: "get",
+			//url: "<c:url value="/rest/board_view"/>?idx="+idx,
+			//url: "<c:url value="/rest/board_view"/>",
+			//data: {"idx":idx},//GET 방식으로 페이지를 요청한 경우 질의문자열 값 전달
+			//요청 URL 주소를 사용하여 값 전달
+			url: "<c:url value="/rest/board_view"/>/"+idx,
+			dataType: "json",
+			success: function(result) {
+				//매개변수로 제공받은 실행결과(Object 객체)로 입력태그의 입력값 변경
+				$("#updateIdx").val(result.idx);
+				$("#updateWriter").val(result.writer);
+				$("#updateContent").val(result.content);
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 검색) = "+xhr.status);
+			}
+		});
+	} 
+	
+	//변경 게시글을 입력받기 위한 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	$("#cancelUpdateBtn").click(init);
 	</script>
 </body>
 </html>

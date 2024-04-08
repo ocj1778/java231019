@@ -17,7 +17,7 @@
 	</delete>
 	
 	<select id="selectRestBoard" resultType="RestBoard">
-		select idx, wrtier, content, regdate from rest_board where idx=#{idx}
+		select idx, writer, content, regdate from rest_board where idx=#{idx}
 	</select>
 	
 	<select id="selectRestBoardCount" resultType="int">

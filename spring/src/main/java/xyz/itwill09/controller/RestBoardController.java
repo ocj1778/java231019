@@ -3,6 +3,7 @@ package xyz.itwill09.controller;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,31 @@ public class RestBoardController {
 		restBoardService.addRestBoard(restBoard);
 		return "success";
 	}
+	
+	/*
+	//글번호를 전달받아 REST_BOARD 테이블에 저장된 행을 검색하여 JSON 형식의 문자열로 응답하는 요청 처리 메소드
+	// => 질의문자열(QueryString)으로 전달된 글번호를 매개변수로 제공받아 사용
+	@GetMapping("/board_view")
+	public RestBoard restBoardView(@RequestParam int idx) {
+		return restBoardService.getRestBoard(idx);
+	}
+	*/
+	
+	//글번호를 전달받아 REST_BOARD 테이블에 저장된 행을 검색하여 JSON 형식의 문자열로 응답하는 요청 처리 메소드
+	// => 요청 URL 주소로 글번호를 전달받아 매개변수로 제공받아 사용 
+	//요청 URL 주소로 값을 전달하기 위해서는 @GetMapping 어노테이션의 value 속성값으로 {이름}
+	//형식의 표현식 사용
+	// => 요청 URL 주소로 제공된 값을 매개변수에 저장하기 위해 @PathVariable 어노테이션 사용
+	//@PathVariable : 요청 URL 주소로 제공된 값을 매개변수에 저장하기 위한 어노테이션
+	// => @GetMapping 어노테이션의 value 속성값으로 사용된 표현식의 이름과 매개변수의 이름을
+	//동일하게 작성해야만 요청 URL 주소로 전달된 값을 매개변수에 저장 가능
+	// => 표현식의 이름과 매개변수의 이름이 다른 경우 @PathVariable 어노테이션에 value 속성을
+	//사용하여 요청 URL 주소로 전달된 값을 매개변수에 저장 가능
+	@GetMapping("/board_view/{idx}")
+	public RestBoard restBoardView(@PathVariable int idx) {
+		return restBoardService.getRestBoard(idx);
+	}
+	
 }
 
 
