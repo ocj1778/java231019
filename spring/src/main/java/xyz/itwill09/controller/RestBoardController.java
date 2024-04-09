@@ -52,7 +52,7 @@ public class RestBoardController {
 	@PostMapping("/board_add")
 	public String restBoardAdd(@RequestBody RestBoard restBoard) {
 		//HtmlUtils.htmlEscape(String str) : 매개변수로 전달받은 문자열에 저장된 HTML 태그
-		//관련 문자를 회피문자로 변환하여 반환하는 정적 메소드 - XSS 공격에 대한 방법
+		//관련 문자를 회피문자로 변환하여 반환하는 정적 메소드 - XSS 공격에 대한 방어
 		restBoard.setContent(HtmlUtils.htmlEscape(restBoard.getContent()));
 		restBoardService.addRestBoard(restBoard);
 		return "success";

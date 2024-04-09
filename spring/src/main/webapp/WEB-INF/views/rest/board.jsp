@@ -107,8 +107,9 @@
 		page=pageNum;
 		$.ajax({
 			type: "get",
+			//url: "<c:url value="/rest/board_list"/>?pageNum="+pageNum,
 			url: "<c:url value="/rest/board_list"/>",
-			data: {"pageNum":pageNum},
+			data: {"pageNum":pageNum},//GET 방식으로 페이지를 요청한 경우 질의문자열로 값 전달
 			dataType: "json",
 			//JSON 형식의 문자열을 제공받아 Javascipt 객체로 변환하여 매개변수에 저장
 			success: function(result) {
@@ -226,7 +227,7 @@
 			// => 리퀘스트 메세지 몸체부에 JSON 형식의 문자열로 값 전달
 			// => 요청 처리 메소드의 매개변수에서는 @RequestBody 어노테이션을 사용하여 JSON 
 			//형식의 문자열을 Java 객체로 제공받아 사용 - 속성명과 동일한 이름의 Java 객체의
-			//필드에 속성값 저장
+			//필드에 속성값 저장 : @RequestBady 어노테이션의 매개변수로 전달값 제공받아 사용
 			contentType: "application/json",
 			//JSON.stringify(object) : Javascript 객체를 JSON 형식의 문자값으로 변환하여 반환하는 메소드
 			data: JSON.stringify({"writer":writer, "content":content}),
@@ -256,10 +257,9 @@
 		
 		$.ajax({
 			type: "get",
+			//질의문자열(QueryString)을 사용하여 값 전달 - @RequestParam 어노테이션 사용
 			//url: "<c:url value="/rest/board_view"/>?idx="+idx,
-			//url: "<c:url value="/rest/board_view"/>",
-			//data: {"idx":idx},//GET 방식으로 페이지를 요청한 경우 질의문자열 값 전달
-			//요청 URL 주소를 사용하여 값 전달
+			//요청 URL 주소를 사용하여 값 전달 - @PathVariable 어노테이션 사용
 			url: "<c:url value="/rest/board_view"/>/"+idx,
 			dataType: "json",
 			success: function(result) {
