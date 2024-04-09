@@ -28,13 +28,13 @@ public class PaymentServiceimpl implements PaymentService {
 		
 		//요청할 OpenAPI에게 전달될 값을 JSON 형식의 문자열로 표현하여 저장
 		// => {"imp_key" : REST API Key, "imp_secret" : REST API Secret}
-		String data="{\"imp_key\":\"4655165165165\",\"imp_secret\":\"213df1g231dfg321df3g1dfg13sef21wegfdx23sg12sd\"}";
+		String data="{\"imp_key\":\"7145387726131117\",\"imp_secret\":\"p6hCDrAyOWsAd4wn5e6kN6L2Si3yT1wI8cUivJDq0YasIVqxucrW9BWy4DTE9Yng8iEkrFMnDohOTEe3\"}";
 		try {
 			//URL 주소가 저장된 URL 객체 생성
 			URL url=new URL(apiURL);
 			//URL.openConnection() : URL 객체에 저장된 정보를 사용하여 서버에 접속해 접속정보를 반환하는 메소드 
 			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-			connection.setRequestMethod("post");//요청방식을 변경하기 위해 필드값 변경
+			connection.setRequestMethod("POST");//요청방식을 변경하기 위해 필드값 변경
 			connection.setRequestProperty("Content-Type", "application/json");//전달값의 형식을 변경하기 위해 필드값 변경
 			connection.setDoOutput(true);//응답결과를 반환받기 위해 필드값 변경
 			
@@ -62,7 +62,7 @@ public class PaymentServiceimpl implements PaymentService {
 				}
 				br.close();
 				
-				System.out.println("result(Token) = "+result);//JSON 형식의 문자열
+				//System.out.println("result(Token) = "+result);//JSON 형식의 문자열
 				/*
 				{
 					"code": 0,
@@ -103,7 +103,7 @@ public class PaymentServiceimpl implements PaymentService {
 		try {
 			URL url=new URL(apiURL);
 			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-			connection.setRequestMethod("get");
+			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Authorization", accessToken);
 			int responseCode=connection.getResponseCode();
 			if(responseCode == 200) {
@@ -115,7 +115,7 @@ public class PaymentServiceimpl implements PaymentService {
 				}
 				br.close();
 				
-				System.out.println("result(payment) = "+result);
+				//System.out.println("result(payment) = "+result);
 				/*
 				{
 					  "code": 0,
@@ -187,7 +187,7 @@ public class PaymentServiceimpl implements PaymentService {
 				JSONObject responseObject=(JSONObject)jsonObject.get("response");
 				
 				payment.setImpUid((String)responseObject.get("imp_uid"));
-				payment.setMercharntUid((String)responseObject.get("merchant_uid"));
+				payment.setMerchantUid((String)responseObject.get("merchant_uid"));
 				payment.setAmount((Long)responseObject.get("amount"));
 				payment.setStatus((String)responseObject.get("status"));
 			} else {
@@ -202,8 +202,44 @@ public class PaymentServiceimpl implements PaymentService {
 	//결재정보를 취소하는 OpenAPI를 사용해 취소결과를 반환하는 메소드
 	@Override
 	public String canclePayment(String accessToken, Payment payment) {
-		// TODO Auto-generated method stub
-		return null;
+		//결재 취소를 요청하기 위한 OpenAPI의 URL 주소 저장
+		String apiUrl="https://api.iamport.kr/payments/cancel";
+		//요청 API에게 전달될 값을 JSON 형식의 문자열로 표현하여 저장
+		// => {"imp_uid" : 결재고유값, "checksum" : 취소금액} 
+		String data="{\"imp_uid\":\""+payment.getImpUid()+"\", \"checksum\":\""+payment.getAmount()+"\"}";
+		
+		String returnValue="";
+		try {
+			URL url = new URL(apiUrl);
+			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setRequestProperty("Authorization", accessToken);
+			
+			//OpenAPI 요청에 필요한 값을 출력스트림을 제공받아 전달
+			try(OutputStream out=connection.getOutputStream()) {
+				byte[] requestDate=data.getBytes("utf-8");
+				out.write(requestDate);
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			//응답코드를 반환받아 저장
+			int responseCode=connection.getResponseCode();
+
+			if(responseCode == 200) {
+				returnValue="success";	
+			} else {
+				returnValue="fail";	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return returnValue;
+
 	}
 	
 }
